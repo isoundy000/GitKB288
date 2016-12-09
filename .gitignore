@@ -1,0 +1,12 @@
+# Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+#kb288:
+*.dll
+*.pdb
+*.log
+*.txt
+*.cache
+*.bak
