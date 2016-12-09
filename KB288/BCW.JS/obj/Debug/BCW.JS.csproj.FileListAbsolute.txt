@@ -26,3 +26,11 @@ F:\Work\KB288\BCW.JS\bin\Debug\BCW.Data.pdb
 F:\Work\KB288\BCW.JS\obj\Debug\ResolveAssemblyReference.cache
 F:\Work\KB288\BCW.JS\obj\Debug\BCW.JS.dll
 F:\Work\KB288\BCW.JS\obj\Debug\BCW.JS.pdb
+F:\Work\GitKB288\KB288\BCW.JS\bin\Debug\BCW.JS.dll
+F:\Work\GitKB288\KB288\BCW.JS\bin\Debug\BCW.JS.pdb
+F:\Work\GitKB288\KB288\BCW.JS\bin\Debug\BCW.Common.dll
+F:\Work\GitKB288\KB288\BCW.JS\bin\Debug\BCW.Data.dll
+F:\Work\GitKB288\KB288\BCW.JS\bin\Debug\BCW.Data.pdb
+F:\Work\GitKB288\KB288\BCW.JS\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\GitKB288\KB288\BCW.JS\obj\Debug\BCW.JS.dll
+F:\Work\GitKB288\KB288\BCW.JS\obj\Debug\BCW.JS.pdb

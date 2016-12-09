@@ -34,3 +34,9 @@ F:\Work\KB288\BCW.Data\bin\Debug\BCW.Common.dll
 F:\Work\KB288\BCW.Data\obj\Debug\ResolveAssemblyReference.cache
 F:\Work\KB288\BCW.Data\obj\Debug\BCW.Data.dll
 F:\Work\KB288\BCW.Data\obj\Debug\BCW.Data.pdb
+F:\Work\GitKB288\KB288\BCW.Data\bin\Debug\BCW.Data.dll
+F:\Work\GitKB288\KB288\BCW.Data\bin\Debug\BCW.Data.pdb
+F:\Work\GitKB288\KB288\BCW.Data\bin\Debug\BCW.Common.dll
+F:\Work\GitKB288\KB288\BCW.Data\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\GitKB288\KB288\BCW.Data\obj\Debug\BCW.Data.dll
+F:\Work\GitKB288\KB288\BCW.Data\obj\Debug\BCW.Data.pdb

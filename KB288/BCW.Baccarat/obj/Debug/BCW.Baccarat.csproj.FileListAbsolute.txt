@@ -8,3 +8,13 @@ F:\Work\KB288\BCW.Baccarat\bin\Debug\BCW.Data.pdb
 F:\Work\KB288\BCW.Baccarat\obj\Debug\ResolveAssemblyReference.cache
 F:\Work\KB288\BCW.Baccarat\obj\Debug\BCW.Baccarat.dll
 F:\Work\KB288\BCW.Baccarat\obj\Debug\BCW.Baccarat.pdb
+F:\Work\GitKB288\KB288\BCW.Baccarat\bin\Debug\BCW.Baccarat.dll
+F:\Work\GitKB288\KB288\BCW.Baccarat\bin\Debug\BCW.Baccarat.pdb
+F:\Work\GitKB288\KB288\BCW.Baccarat\bin\Debug\BCW.Common.dll
+F:\Work\GitKB288\KB288\BCW.Baccarat\bin\Debug\BCW.Data.dll
+F:\Work\GitKB288\KB288\BCW.Baccarat\bin\Debug\Microsoft.SqlServer.Replication.dll
+F:\Work\GitKB288\KB288\BCW.Baccarat\bin\Debug\Microsoft.SqlServer.BatchParser.dll
+F:\Work\GitKB288\KB288\BCW.Baccarat\bin\Debug\BCW.Data.pdb
+F:\Work\GitKB288\KB288\BCW.Baccarat\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\GitKB288\KB288\BCW.Baccarat\obj\Debug\BCW.Baccarat.dll
+F:\Work\GitKB288\KB288\BCW.Baccarat\obj\Debug\BCW.Baccarat.pdb

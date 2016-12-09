@@ -58,6 +58,8 @@
     <Compile Include="BLL\SseOrder.cs" />
     <Compile Include="BLL\SsePrizePool.cs" />
     <Compile Include="BLL\SsePrizePoolChang.cs" />
+    <Compile Include="Class\sseMgr\sseMgr.cs" />
+    <Compile Include="Class\sseModel\Account.cs" />
     <Compile Include="DAL\SseBase.cs" />
     <Compile Include="DAL\SseFastVal.cs" />
     <Compile Include="DAL\SseGetPrize.cs" />
@@ -83,9 +85,17 @@
       <Project>{1F911584-4168-4896-A86D-4BEF49B65A0E}</Project>
       <Name>BCW.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BCW.farm\BCW.farm.csproj">
+      <Project>{E489FDB8-182E-4450-B7B6-066B6CFF63D1}</Project>
+      <Name>BCW.farm</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BCW.JS\BCW.JS.csproj">
       <Project>{ECDD4AE3-FB39-49BC-B1B0-BB66AEC0F12E}</Project>
       <Name>BCW.JS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BCW.Model\BCW.Model.csproj">
+      <Project>{39DC906A-CDCA-4F36-878F-D6661C9BF84E}</Project>
+      <Name>BCW.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\BCW.Service\BCW.Service.csproj">
       <Project>{166B4423-512F-424A-ABB7-B797EB8D92F1}</Project>
@@ -99,6 +109,9 @@
     <Content Include="DAL\DAL.csproj.user" />
     <Content Include="Model\Model.csproj" />
     <Content Include="Model\Model.csproj.user" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Class\sseController\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

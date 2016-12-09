@@ -351,7 +351,7 @@ namespace BCW.SSE.DAL
             IList<BCW.SSE.Model.SseGetPrizeCharts> listGetPrizeCharts = new List<BCW.SSE.Model.SseGetPrizeCharts>();
 
             // 计算记录数
-            string countString = "SELECT COUNT(DISTINCT userId) FROM tb_SseGetPrize where " + strWhere + "";
+            string countString = "SELECT COUNT(DISTINCT p.userId) FROM tb_SseGetPrize p where " + strWhere + "";
 
             p_recordCount = Convert.ToInt32( SqlHelper.GetSingle( countString ) );
 
@@ -367,7 +367,7 @@ namespace BCW.SSE.DAL
             // 取出相关记录
             string queryString = "";
 
-            queryString = "SELECT userId,SUM(prizeVal)totalprizeVal FROM tb_SseGetPrize where " + strWhere + " group by userId order by totalprizeVal desc";
+            queryString = "SELECT p.userId,(SUM(p.prizeVal) - SUM(o.buyMoney) - SUM(p.poundage)) totalprizeVal FROM tb_SseGetPrize p left join tb_SseOrder o on p.orderId = o.id where " + strWhere + " group by p.userId order by totalprizeVal desc";
             using( SqlDataReader reader = SqlHelper.ExecuteReader( queryString ) )
             {
                 int stratIndex = ( p_pageIndex - 1 ) * p_pageSize;

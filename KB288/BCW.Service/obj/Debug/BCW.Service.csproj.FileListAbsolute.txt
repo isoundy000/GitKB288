@@ -58,3 +58,13 @@ F:\Work\KB288\BCW.Service\bin\Debug\BCW.SharpZipLib.pdb
 F:\Work\KB288\BCW.Service\obj\Debug\ResolveAssemblyReference.cache
 F:\Work\KB288\BCW.Service\obj\Debug\BCW.Service.dll
 F:\Work\KB288\BCW.Service\obj\Debug\BCW.Service.pdb
+F:\Work\GitKB288\KB288\BCW.Service\bin\Debug\BCW.Service.dll
+F:\Work\GitKB288\KB288\BCW.Service\bin\Debug\BCW.Service.pdb
+F:\Work\GitKB288\KB288\BCW.Service\bin\Debug\BCW.Common.dll
+F:\Work\GitKB288\KB288\BCW.Service\bin\Debug\BCW.Model.dll
+F:\Work\GitKB288\KB288\BCW.Service\bin\Debug\BCW.SharpZipLib.dll
+F:\Work\GitKB288\KB288\BCW.Service\bin\Debug\BCW.Model.pdb
+F:\Work\GitKB288\KB288\BCW.Service\bin\Debug\BCW.SharpZipLib.pdb
+F:\Work\GitKB288\KB288\BCW.Service\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\GitKB288\KB288\BCW.Service\obj\Debug\BCW.Service.dll
+F:\Work\GitKB288\KB288\BCW.Service\obj\Debug\BCW.Service.pdb

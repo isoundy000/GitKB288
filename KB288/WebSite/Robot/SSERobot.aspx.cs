@@ -128,7 +128,7 @@ public class SSERobot_Normal:ISSERobot
 
             //写入游戏动态
             string wText = "[url=/bbs/uinfo.aspx?uid=" + meid + "]" + new BCW.BLL.User().GetUsName( meid ) + "[/url]在[url=/bbs/game/SSE.aspx]上证指数第" + this.sseNo + "期[/url]下注**" + ub.Get( "SiteBz" ) + "";//" + Convert.ToInt64(allBuyCent) + "
-            new BCW.BLL.Action().Add( 1020, _orderId, 0, "", wText );
+            new BCW.BLL.Action().Add( 1021, _orderId, 0, "", wText );
 
             //扣币
             new BCW.BLL.User().UpdateiGold( meid, -this.buyMoney, string.Format( "上证|{0}期|标识:{1}|【{2}】", this.sseNo, _orderId, buyType == 1 ? "猜涨" : "猜跌" ) );

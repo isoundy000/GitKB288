@@ -46,3 +46,11 @@ F:\Work\KB288\BCW.LHC\bin\Debug\BCW.Data.pdb
 F:\Work\KB288\BCW.LHC\obj\Debug\ResolveAssemblyReference.cache
 F:\Work\KB288\BCW.LHC\obj\Debug\BCW.LHC.dll
 F:\Work\KB288\BCW.LHC\obj\Debug\BCW.LHC.pdb
+F:\Work\GitKB288\KB288\BCW.LHC\bin\Debug\BCW.LHC.dll
+F:\Work\GitKB288\KB288\BCW.LHC\bin\Debug\BCW.LHC.pdb
+F:\Work\GitKB288\KB288\BCW.LHC\bin\Debug\BCW.Common.dll
+F:\Work\GitKB288\KB288\BCW.LHC\bin\Debug\BCW.Data.dll
+F:\Work\GitKB288\KB288\BCW.LHC\bin\Debug\BCW.Data.pdb
+F:\Work\GitKB288\KB288\BCW.LHC\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\GitKB288\KB288\BCW.LHC\obj\Debug\BCW.LHC.dll
+F:\Work\GitKB288\KB288\BCW.LHC\obj\Debug\BCW.LHC.pdb

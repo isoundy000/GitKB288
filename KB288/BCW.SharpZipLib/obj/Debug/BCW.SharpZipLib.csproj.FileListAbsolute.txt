@@ -28,3 +28,8 @@ F:\Work\KB288\BCW.SharpZipLib\bin\Debug\BCW.SharpZipLib.pdb
 F:\Work\KB288\BCW.SharpZipLib\obj\Debug\ResolveAssemblyReference.cache
 F:\Work\KB288\BCW.SharpZipLib\obj\Debug\BCW.SharpZipLib.dll
 F:\Work\KB288\BCW.SharpZipLib\obj\Debug\BCW.SharpZipLib.pdb
+F:\Work\GitKB288\KB288\BCW.SharpZipLib\bin\Debug\BCW.SharpZipLib.dll
+F:\Work\GitKB288\KB288\BCW.SharpZipLib\bin\Debug\BCW.SharpZipLib.pdb
+F:\Work\GitKB288\KB288\BCW.SharpZipLib\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\GitKB288\KB288\BCW.SharpZipLib\obj\Debug\BCW.SharpZipLib.dll
+F:\Work\GitKB288\KB288\BCW.SharpZipLib\obj\Debug\BCW.SharpZipLib.pdb

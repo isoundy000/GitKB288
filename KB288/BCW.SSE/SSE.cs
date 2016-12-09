@@ -35,8 +35,6 @@ namespace BCW.SSE
 
             if( System.DateTime.Now >= _beginTime && System.DateTime.Now <= _endTime )              //符合条件(但周末始终是休市的)
             {
-                if( System.DateTime.Now.DayOfWeek == DayOfWeek.Saturday || System.DateTime.Now.DayOfWeek == DayOfWeek.Sunday )
-                    return false;
 
                 return true;
             }
@@ -116,10 +114,10 @@ namespace BCW.SSE
         }
 
         //确认下注.
-        public int CreateNewOrder(int sseNo,int buyType, Int64 money, bool isAutoOrder)
+        public int CreateNewOrder(int orderType,int sseNo,int buyType, Int64 money, bool isAutoOrder)
         {
             int id;
-            int _orderType = 0;         //酷币订单.
+            int _orderType = orderType;         //酷币or金币订单.
             int _sseNo = sseNo;         //期数.
             DateTime _buyTime = System.DateTime.Now;
             int _userId = new BCW.User.Users().GetUsId();
@@ -190,23 +188,23 @@ namespace BCW.SSE
 
 
         #region 获取页脚统计信息
-        public List<string> GetFooterData()
+        public List<string> GetFooterData(int _versionId)
         {
             List<string> _result = new List<string>();
 
             //统计当期投注总额.
 
-            DataSet _dsPrizePool = BCW.Data.SqlHelper.Query( string.Format( "select  top 1 totalPrizeMoney from tb_SsePrizePool where sseNo = {0}", BCW.SSE.SSE.Instance().GetBuySseNo() ) );
+            DataSet _dsPrizePool = BCW.Data.SqlHelper.Query( string.Format( "select  top 1 totalPrizeMoney from tb_SsePrizePool where sseNo = {0} and prizeType={1}", BCW.SSE.SSE.Instance().GetBuySseNo(), _versionId ) );
             //string _prizePoolVal = long.Parse( _dsPrizePool.Tables[ 0 ].Rows.Count == 0 ? "0" : _dsPrizePool.Tables[ 0 ].Rows[ 0 ][ "totalPrizeMoney" ].ToString() ).ToString();
 
 
-            DataSet _dsOrder = BCW.Data.SqlHelper.Query(string.Format("select SUM(buyMoney)buyMoney from tb_SseOrder where sseNo = {0} and orderType = 0 and state=0", BCW.SSE.SSE.Instance().GetBuySseNo()));
+            DataSet _dsOrder = BCW.Data.SqlHelper.Query(string.Format("select SUM(buyMoney)buyMoney from tb_SseOrder where sseNo = {0} and orderType = {1} and state=0", BCW.SSE.SSE.Instance().GetBuySseNo(),_versionId));
             _result.Add( ( _dsOrder.Tables[ 0 ].Rows.Count == 0 ? "0" : _dsOrder.Tables[ 0 ].Rows[ 0 ][ "buyMoney" ].ToString() ));
 
-            DataSet _ds1 = BCW.Data.SqlHelper.Query( string.Format( "select SUM(buyMoney) buyMoney from tb_SseOrder where sseNo = {0} and orderType = 0 and buyType = 1 and state=0 group by buyType", BCW.SSE.SSE.Instance().GetBuySseNo() ) );
+            DataSet _ds1 = BCW.Data.SqlHelper.Query( string.Format( "select SUM(buyMoney) buyMoney from tb_SseOrder where sseNo = {0} and orderType = {1} and buyType = 1 and state=0 group by buyType", BCW.SSE.SSE.Instance().GetBuySseNo() ,_versionId) );
             _result.Add(_ds1.Tables[0].Rows.Count == 0 ? "0" : _ds1.Tables[0].Rows[0]["buyMoney"].ToString());
 
-            DataSet _ds2 = BCW.Data.SqlHelper.Query( string.Format( "select SUM(buyMoney) buyMoney from tb_SseOrder where sseNo = {0} and orderType = 0 and buyType = 0 and state=0 group by buyType", BCW.SSE.SSE.Instance().GetBuySseNo() ) );
+            DataSet _ds2 = BCW.Data.SqlHelper.Query( string.Format( "select SUM(buyMoney) buyMoney from tb_SseOrder where sseNo = {0} and orderType = {1} and buyType = 0 and state=0 group by buyType", BCW.SSE.SSE.Instance().GetBuySseNo(),_versionId ) );
             _result.Add(_ds2.Tables[0].Rows.Count == 0 ? "0" :_ds2.Tables[0].Rows[0]["buyMoney"].ToString());
 
             _result.Add( _dsPrizePool.Tables[ 0 ].Rows.Count == 0 ? "0" : _dsPrizePool.Tables[ 0 ].Rows[ 0 ][ "totalPrizeMoney" ].ToString() );
@@ -234,8 +232,8 @@ namespace BCW.SSE
             System.DateTime _endTime = DateTime.Parse( ub.GetSub( "SSEEnd", xmlPath ) );     //开始截止下注的时间.
 
             //如果是周五，则周五截止时间到00：00：00
-            if( DateTime.Now.DayOfWeek == DayOfWeek.Friday)
-                _endTime = Convert.ToDateTime( DateTime.Now.ToString( "yyyy-MM-dd" ) + " 23:59:59" );
+            //if( DateTime.Now.DayOfWeek == DayOfWeek.Friday)
+            //    _endTime = Convert.ToDateTime( DateTime.Now.ToString( "yyyy-MM-dd" ) + " 23:59:59" );
 
 
             string _countDownTim = "";
@@ -355,7 +353,7 @@ namespace BCW.SSE
             string queryString = "";
 
             // 计算记录数
-            string countString = "select COUNT(*)from tb_SsePrizePool p where p.prizeType=0 and 1=1 ".Replace( "1=1", strWhere );
+            string countString = "select COUNT(*)from tb_SsePrizePool p where 1=1 ".Replace( "1=1", strWhere );
 
             p_recordCount = Convert.ToInt32( BCW.Data.SqlHelper.GetSingle( countString ) );
 
@@ -369,7 +367,7 @@ namespace BCW.SSE
             }
 
 
-            queryString = " select p.sseNo,p.totalPrizeMoney,case b.bz when '1' then '涨' when '0' then '跌' when '-1' then '平' else '-' end openResult  from tb_SsePrizePool p left join tb_SseBase b on p.sseNo = b.sseNo where prizeType=0 and 1=1 order by p.sseNo desc".Replace( "1=1", strWhere );
+            queryString = " select p.sseNo,p.totalPrizeMoney,case b.bz when '1' then '涨' when '0' then '跌' when '-1' then '平' else '-' end openResult  from tb_SsePrizePool p left join tb_SseBase b on p.sseNo = b.sseNo where 1=1 order by p.sseNo desc".Replace( "1=1", strWhere );
             using( SqlDataReader reader = BCW.Data.SqlHelper.ExecuteReader( queryString ) )
             {
                 int stratIndex = ( p_pageIndex - 1 ) * p_pageSize;
@@ -544,25 +542,31 @@ namespace BCW.SSE
                             int _moneyType =   int.Parse( ds.Tables[ 0 ].Rows[ i ][ "orderType" ].ToString() );     //订单货币类型.    
                             Int64 _backMoney = (Int64)decimal.Parse( ds.Tables[ 0 ].Rows[ i ][ "buyMoney" ].ToString() );     //订单金额.
 
-                            //执行金钱返还操作.
-                            if (_moneyType == 0)
-                            {
-                                //变更订单状态
-                                BCW.SSE.Model.SseOrder modelSseOrder = new BCW.SSE.BLL.SseOrder().GetModel( _orderId  );
-                                modelSseOrder.bz = "2";                                    //2：特殊处理;记录一下订单是系统平局退回
-                                new BCW.SSE.BLL.SseOrder().Update( modelSseOrder );
 
-                                //返还金钱
-                                new BCW.BLL.User().UpdateiGold( _userId, ( long ) _backMoney, string.Format( "上证【{0}】期平局退回|标识({1})", _sseNo, _orderId ) );
-                               
-                                //发内线
-                                string strLog = string.Format( "上证【{0}】期平局退回|金额{1})，请注意查收", _sseNo, _backMoney.ToString("0")+ub.Get("SiteBz"));
-                                new BCW.BLL.Guest().Add( 0, _userId, new BCW.BLL.User().GetUsName( _userId ), strLog ); 
+                            //变更订单状态
+                            BCW.SSE.Model.SseOrder modelSseOrder = new BCW.SSE.BLL.SseOrder().GetModel( _orderId  );
+                            modelSseOrder.bz = "2";                                    //2：特殊处理;记录一下订单是系统平局退回
+                            new BCW.SSE.BLL.SseOrder().Update( modelSseOrder );
+
+
+                            //退还酷币
+                            string strLog = "";
+                            if( _moneyType == 0 )
+                            {
+                                new BCW.BLL.User().UpdateiGold( _userId, ( long ) _backMoney, string.Format( "上证【{0}】期平局退回|标识({1})", _sseNo, _orderId ) );                 
+                                strLog = string.Format( "上证【{0}】期平局退回|金额{1})，请注意查收", _sseNo, _backMoney.ToString( "0" ) + ub.Get( "SiteBz" ) );
                             }
+                            //退还农场金币
                             else
                             {
-                                    //TODO by zhc 这里处理金币的退还.  
-                            }         
+                                new BCW.farm.BLL.NC_user().UpdateiGold( _userId, new BCW.BLL.User().GetUsName( _userId ), ( long ) _backMoney, string.Format( "上证【{0}】期平局退回|标识({1})|获得{2}金币|结{3}金币)", _sseNo, _orderId, Math.Abs( _backMoney ), (new BCW.farm.BLL.NC_user().GetGold( _userId ) + _backMoney).ToString("#0") ), 8 );
+                                strLog = string.Format( "上证【{0}】期平局退回|金额{1})，请注意查收", _sseNo, _backMoney.ToString( "0" ) + "金币" );
+                            }
+
+                            //发内线
+                            if( string.IsNullOrEmpty( strLog )==false )
+                             new BCW.BLL.Guest().Add( 0, _userId, new BCW.BLL.User().GetUsName( _userId ), strLog ); 
+    
 
                             //更新奖池.               
                             IDataParameter[] _parameters = new SqlParameter[3];
@@ -578,7 +582,9 @@ namespace BCW.SSE
                 }
 
 
-               //如果正常涨跌，交由存储过程处理相关开奖逻辑                      
+               //如果正常涨跌，交由存储过程处理相关开奖逻辑   
+
+                //酷币开奖.
                 IDataParameter[] _parameters2 = new SqlParameter[4];
                 _parameters2[ 0 ] = new SqlParameter( "@sseNo", SqlDbType.Int );
                 _parameters2[ 1 ] = new SqlParameter( "@prizeCalcRate", SqlDbType.Float );
@@ -587,16 +593,44 @@ namespace BCW.SSE
                 _parameters2[ 0 ].Value = _sseNo;            //订单ID.                   
                 _parameters2[ 1 ].Value = ub.GetSub( "SSEPrizeCalcRate", xmlPath );            //订单计奖率.
                 _parameters2[ 2 ].Value = ub.GetSub( "SSEPrizePoundageRate", xmlPath );         //订单兑奖手续费率.
-                _parameters2[ 3 ].Value = 0;                                                  //酷币开奖.
-                BCW.Data.SqlHelper.ExecuteRunProcedure( "sp_SseOpenPrize", _parameters2 );  
+                _parameters2[ 3 ].Value = 0;                                                 
+                BCW.Data.SqlHelper.ExecuteRunProcedure( "sp_SseOpenPrize", _parameters2 );
+
+
+                //金币开奖.
+                _parameters2[ 0 ] = new SqlParameter( "@sseNo", SqlDbType.Int );
+                _parameters2[ 1 ] = new SqlParameter( "@prizeCalcRate", SqlDbType.Float );
+                _parameters2[ 2 ] = new SqlParameter( "@poundageRate", SqlDbType.Float );
+                _parameters2[ 3 ] = new SqlParameter( "@orderType", SqlDbType.Int );
+                _parameters2[ 0 ].Value = _sseNo;            //订单ID.                   
+                _parameters2[ 1 ].Value = ub.GetSub( "SSEPrizeCalcRate", xmlPath );            //订单计奖率.
+                _parameters2[ 2 ].Value = ub.GetSub( "SSEPrizePoundageRate", xmlPath );         //订单兑奖手续费率.
+                _parameters2[ 3 ].Value = 1;
+                BCW.Data.SqlHelper.ExecuteRunProcedure( "sp_SseOpenPrize", _parameters2 ); 
+
+
 
                 //内线通知中奖玩家
                 DataSet _dsGetPrizeUser = new BCW.SSE.BLL.SseGetPrize().GetList( "sseNo ="+_sseNo );
                 for( int i=0; i < _dsGetPrizeUser.Tables[ 0 ].Rows.Count;i++ )
                 {
                     //发内线
-                    string getStr = "[url=/bbs/game/SSE.aspx?act=getPirzeConfirm&amp;prizeId=" + _dsGetPrizeUser.Tables[ 0 ].Rows[ i ][ "id" ].ToString()  +"]马上兑奖[/URL]";  
-                    string strLog = string.Format( "恭喜您在上证第{0}期赢得{1}", _sseNo, decimal.Parse( _dsGetPrizeUser.Tables[ 0 ].Rows[ i ][ "prizeVal" ].ToString() ).ToString( "#0" ) + ub.Get( "SiteBz" ) );
+                    //退还酷币
+                    string strLog = "";
+                    string getStr = "";
+                    if( int.Parse(_dsGetPrizeUser.Tables[ 0 ].Rows[ i ][ "orderType" ].ToString()) == 0 )
+                    {
+                        getStr = "[url=/bbs/game/SSE.aspx?sseVe=0&amp;act=getPirze]马上兑奖[/URL]";
+                        strLog = string.Format( "恭喜您在上证第{0}期赢得{1}", _sseNo, decimal.Parse( _dsGetPrizeUser.Tables[ 0 ].Rows[ i ][ "prizeVal" ].ToString() ).ToString( "#0" ) + ub.Get( "SiteBz" ) );
+                    }
+                    //退还农场金币
+                    else
+                    {
+                        getStr = "[url=/bbs/game/SSE.aspx?sseVe=1&amp;act=getPirze]马上兑奖[/URL]";
+                        strLog = string.Format( "恭喜您在上证第{0}期赢得{1}", _sseNo, decimal.Parse( _dsGetPrizeUser.Tables[ 0 ].Rows[ i ][ "prizeVal" ].ToString() ).ToString( "#0" ) + "金币" );
+                    }   
+                     
+                    
                     new BCW.BLL.Guest().Add( 0, int.Parse( _dsGetPrizeUser.Tables[ 0 ].Rows[ i ][ "userId" ].ToString() ), new BCW.BLL.User().GetUsName( int.Parse( _dsGetPrizeUser.Tables[ 0 ].Rows[ i ][ "userId" ].ToString() ) ), strLog + getStr ); 
                 }
 

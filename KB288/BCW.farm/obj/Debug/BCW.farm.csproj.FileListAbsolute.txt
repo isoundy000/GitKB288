@@ -6,3 +6,11 @@ F:\Work\KB288\BCW.farm\bin\Debug\BCW.Data.pdb
 F:\Work\KB288\BCW.farm\obj\Debug\ResolveAssemblyReference.cache
 F:\Work\KB288\BCW.farm\obj\Debug\BCW.farm.dll
 F:\Work\KB288\BCW.farm\obj\Debug\BCW.farm.pdb
+F:\Work\GitKB288\KB288\BCW.farm\bin\Debug\BCW.farm.dll
+F:\Work\GitKB288\KB288\BCW.farm\bin\Debug\BCW.farm.pdb
+F:\Work\GitKB288\KB288\BCW.farm\bin\Debug\BCW.Common.dll
+F:\Work\GitKB288\KB288\BCW.farm\bin\Debug\BCW.Data.dll
+F:\Work\GitKB288\KB288\BCW.farm\bin\Debug\BCW.Data.pdb
+F:\Work\GitKB288\KB288\BCW.farm\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\GitKB288\KB288\BCW.farm\obj\Debug\BCW.farm.dll
+F:\Work\GitKB288\KB288\BCW.farm\obj\Debug\BCW.farm.pdb

@@ -2,27 +2,27 @@
 <data>
 	<set name="SSERobotEPrice" value="500" />
 	<set name="SSERobotOrderSpace" value="3" />
-	<set name="SSEBegin" value="2016-12-19 14:10:00" />
+	<set name="SSEBegin" value="2016-12-08 15:10:00" />
 	<set name="SSEPrizeCalcRate" value="0.9" />
+	<set name="SSEOpen" value="2016-12-09 15:30:00" />
 	<set name="SSEMin" value="2" />
 	<set name="SSEPageSize" value="10" />
 	<set name="SSERobotBPrice" value="112#123#222#115#116#117#118#119#123#124#125" />
 	<set name="SFrule" value="  本游戏是以上证综合指数为竞猜标的，会员之间公平、合理地互相博弈，会员所参与竞猜的币都进入奖池，除一部分奖池的币滚存进入下一期外，奖池其余所有的币在系统开奖后，按结算比例对竞猜正确的会员进行派奖，所有币真正“取之于民，还之于民”。上证指数的运行走势有迹可循，遵循一定的趋势波动规律，熟悉其规律后，极易猜中。\\  游戏攻略：\\  1.猜涨跌标的：上证指数。\\  2.涨跌概念：今日上证收盘点位高于昨日收盘点位即视为涨，反之为跌。精确到小数点后两位。\\  3.猜涨跌时间：除下午开盘这段时间外（即13:00－15：00）不可投注，其他时间都可投注。\\  4.猜涨跌次数：不限次数，可以同时猜涨也可以同时猜跌。\\  5.猜涨跌币数：100酷币起，不设上限。\\  6.奖池分配方式：\\  猜错：参与币数全部扣除，作为对猜对客户的奖励。\\  猜对：可按最终结算比例获得奖励币。\\  若不涨也不跌（即精确到指数后两位，完全一致），则猜对猜跌均退回。\\\\  [B][红]举例说明：[/红][/B]某日截止日期时，猜涨共10万币，猜跌为25万币。\\  若当天是涨的，猜涨的获得奖励：所投猜涨的币数 * [（10万+25万+上期滚存结余）*90%/10万]\\  若当天是跌的，猜跌获得的奖励：所投猜跌的币数 * [（10万+25万+上期滚存结余）*90%/25万）]\\  若不涨不跌，刚猜涨猜跌的各自退回。\\  " />
-	<set name="SSERobot" value="709#708#50169#50170#50177#50178" />
+	<set name="DefaultFastVal" value="300#500#1000#3000#50000" />
 	<set name="SSEName" value="上证指数" />
-	<set name="SSERobotState" value="0" />
+	<set name="SSERobotState" value="1" />
 	<set name="SSEMax" value="2000000" />
 	<set name="SSEPrizePoundageRate" value="0.01" />
 	<set name="SSEOpenDefault" value="15:30:00" />
 	<set name="SSEBeginDefault" value="15:10:00" />
-	<set name="SSEEnd" value="2016-12-20 13:00:00" />
 	<set name="SSEManagePageSize" value="20" />
 	<set name="SSEDemoIDS" value="729#181#182#555#50167#50520" />
 	<set name="SSEGetPrizeTimeLimit" value="365" />
 	<set name="SSEEndDefault" value="13:00:00" />
-	<set name="DefaultFastVal" value="300#500#1000#3000#50000" />
+	<set name="SSERobot" value="709#708#50169#50170#50177#50178" />
 	<set name="SSEBig" value="40000000" />
 	<set name="SSEState" value="2" />
-	<set name="SSEOpen" value="2016-12-20 15:30:00" />
-	<set name="SSEBuyExpir" value="3" />
+	<set name="SSEEnd" value="2016-12-09 13:00:00" />
+	<set name="SSEBuyExpir" value="4" />
 </data>

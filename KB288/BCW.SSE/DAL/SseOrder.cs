@@ -432,9 +432,9 @@ namespace BCW.SSE.DAL
         }
 
 
-        public decimal GetGuessMoney( int _sseNo, int _buyType )
+        public decimal GetGuessMoney( int orderType, int _sseNo, int _buyType )
         {
-            string countString = string.Format( "select SUM(buyMoney) buyMoney from tb_SseOrder where sseNo = {0} and orderType = 0 and buyType = {1} and (state=0 or bz='2')  group by buyType", _sseNo, _buyType );
+            string countString = string.Format( "select SUM(buyMoney) buyMoney from tb_SseOrder where sseNo = {0} and orderType = {1} and buyType = {2} and (state=0 or bz='2')  group by buyType", _sseNo,orderType, _buyType );
 
             return Convert.ToDecimal( SqlHelper.GetSingle( countString ) );   
         }

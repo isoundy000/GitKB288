@@ -172,9 +172,9 @@ namespace BCW.SSE.BLL
         }
 
         //获取本期猜涨跌总金额
-        public decimal GetGuessMoney( int _sseNo, int buyType )
+        public decimal GetGuessMoney(int orderType ,int _sseNo, int buyType )
         {
-            return dal.GetGuessMoney( _sseNo, buyType );
+            return dal.GetGuessMoney(orderType, _sseNo, buyType );
         }
 
 

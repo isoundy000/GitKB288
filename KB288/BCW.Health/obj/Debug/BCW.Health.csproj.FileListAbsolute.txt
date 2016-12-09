@@ -40,3 +40,10 @@ F:\Work\KB288\BCW.Health\bin\Debug\BCW.Data.pdb
 F:\Work\KB288\BCW.Health\obj\Debug\ResolveAssemblyReference.cache
 F:\Work\KB288\BCW.Health\obj\Debug\BCW.Health.dll
 F:\Work\KB288\BCW.Health\obj\Debug\BCW.Health.pdb
+F:\Work\GitKB288\KB288\BCW.Health\bin\Debug\BCW.Health.dll
+F:\Work\GitKB288\KB288\BCW.Health\bin\Debug\BCW.Health.pdb
+F:\Work\GitKB288\KB288\BCW.Health\bin\Debug\BCW.Data.dll
+F:\Work\GitKB288\KB288\BCW.Health\bin\Debug\BCW.Data.pdb
+F:\Work\GitKB288\KB288\BCW.Health\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\GitKB288\KB288\BCW.Health\obj\Debug\BCW.Health.dll
+F:\Work\GitKB288\KB288\BCW.Health\obj\Debug\BCW.Health.pdb

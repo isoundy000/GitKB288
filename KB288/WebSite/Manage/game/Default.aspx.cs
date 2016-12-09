@@ -28,9 +28,9 @@ public partial class Manage_game_Default : System.Web.UI.Page
         //管理后台游戏列表，已弃用 20151228
         //string GameName = new BCW.User.Game.GameRole().GameName();
         string GameName = "球彩竞猜,虚拟49选1,半场/单节竞猜,北京赛车PK10,胜负彩,6场半,进球彩,快乐十分,点值抽奖,活跃抽奖,即时比分,百家乐,每日云购,捕鱼达人,新快三,新快三(试玩),快乐扑克3,德州扑克,开心农场,时时彩,大小庄,挖宝竞猜,跑马风云,闯荡人生,好彩一,";
-        GameName += "上证指数,疯狂吹牛,大小掷骰,幸运二八,竞拍系统,拾物活动,系统号自动补币#";
+        GameName += "上证指数,疯狂吹牛,大小掷骰,幸运二八,竞拍系统,拾物活动,系统号自动补币,新上证【酷币版】,新上证【金币版】#";
         GameName += "/bbs/guess2/default,six49,/bbs/guessbc/default,PK10,SFC,BQC,jqc,klsf,draw,winners,footballs,bjl,kbyg,bydr,xk3,xk3swset,HP3,dzpk,farm,ssc,bigsmall,dice,horse,dawnlifeManage,hc1,";
-        GameName += "stkguess,brag,dxdice,luck28,race,flows,RobotGold";
+        GameName += "stkguess,brag,dxdice,luck28,race,flows,RobotGold,sse.aspx?sseVe=0&amp;,sse.aspx?sseVe=1&amp;";
         string[] gTemp = GameName.Split('#');
 
         #endregion

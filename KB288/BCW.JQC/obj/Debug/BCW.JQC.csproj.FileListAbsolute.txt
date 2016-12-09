@@ -10,3 +10,15 @@ F:\Work\KB288\BCW.JQC\bin\Debug\BCW.Model.pdb
 F:\Work\KB288\BCW.JQC\obj\Debug\ResolveAssemblyReference.cache
 F:\Work\KB288\BCW.JQC\obj\Debug\BCW.JQC.dll
 F:\Work\KB288\BCW.JQC\obj\Debug\BCW.JQC.pdb
+F:\Work\GitKB288\KB288\BCW.JQC\bin\Debug\BCW.JQC.dll
+F:\Work\GitKB288\KB288\BCW.JQC\bin\Debug\BCW.JQC.pdb
+F:\Work\GitKB288\KB288\BCW.JQC\bin\Debug\BCW.Common.dll
+F:\Work\GitKB288\KB288\BCW.JQC\bin\Debug\BCW.DAL.dll
+F:\Work\GitKB288\KB288\BCW.JQC\bin\Debug\BCW.Data.dll
+F:\Work\GitKB288\KB288\BCW.JQC\bin\Debug\BCW.Model.dll
+F:\Work\GitKB288\KB288\BCW.JQC\bin\Debug\BCW.Data.pdb
+F:\Work\GitKB288\KB288\BCW.JQC\bin\Debug\BCW.DAL.pdb
+F:\Work\GitKB288\KB288\BCW.JQC\bin\Debug\BCW.Model.pdb
+F:\Work\GitKB288\KB288\BCW.JQC\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\GitKB288\KB288\BCW.JQC\obj\Debug\BCW.JQC.dll
+F:\Work\GitKB288\KB288\BCW.JQC\obj\Debug\BCW.JQC.pdb

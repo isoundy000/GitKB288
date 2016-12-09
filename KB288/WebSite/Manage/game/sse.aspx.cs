@@ -15,6 +15,7 @@ using System.Text.RegularExpressions;
 using SseManageClass;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
+using BCW.SSE.Class.sseMgr;
 
 
 public partial class Manage_game_sse : System.Web.UI.Page
@@ -24,47 +25,64 @@ public partial class Manage_game_sse : System.Web.UI.Page
     protected void Page_Load( object sender, EventArgs e )
     {
 
-        string _act = Utils.GetRequest( "act", "all", 1, "", "" );   
+       
+        string _act = Utils.GetRequest( "act", "all", 1, "", "" );
 
+        //选择运行版本(酷币版Or金币版)
+        int _sseType = Utils.ParseInt( Utils.GetRequest( "sseVe", "all", 1, "", "-1" ) );
+        sseMgrBase _verMgr = null;
+        switch( ( ESseVersionType ) _sseType )
+        {
+            case ESseVersionType.sseKB:
+                _verMgr = new sseKbMgr();
+                break;
+            case ESseVersionType.sseJB:
+                _verMgr = new sseJbMgr();
+                break;
+            default:
+                Utils.Error( "版本类型不匹配", "" );
+                break;
+        }
+        
         SSEManagePage.SseManagePageBase _pageObj = null;
-        _pageObj = null;
+
         switch( _act )
         {
             case "state":
-                _pageObj = new SSEManagePage.SSEPageState( this, this.Master );
+                _pageObj = new SSEManagePage.SSEPageState( this, this.Master,_verMgr );         //无需分版
                 break;
             case "order":
-                _pageObj = new SSEManagePage.SSEPageOrder( this, this.Master );
+                _pageObj = new SSEManagePage.SSEPageOrder( this, this.Master, _verMgr );        //分版完成
                 break;
             case "charts":
-                _pageObj = new SSEManagePage.SSEPageCharts( this, this.Master );
+                _pageObj = new SSEManagePage.SSEPageCharts( this, this.Master, _verMgr );        //分版完成
                 break;
             case "prizepool":
-                _pageObj = new SSEManagePage.SSEPagePrizepool( this, this.Master );
+                _pageObj = new SSEManagePage.SSEPagePrizepool( this, this.Master, _verMgr );      //分版完成
                 break;
             case "analyse":
-                _pageObj = new SSEManagePage.SSEPageAnalyse( this, this.Master );
+                _pageObj = new SSEManagePage.SSEPageAnalyse( this, this.Master, _verMgr );
                 break;
             case "setting":
-                _pageObj = new SSEManagePage.SSEPageSetting( this, this.Master );
+                _pageObj = new SSEManagePage.SSEPageSetting( this, this.Master, _verMgr );          //无需分版
                 break;
             case "cancelOrderSubmit":
-                _pageObj = new SSEManagePage.SSEPageCancelOrderSubmit( this, this.Master );
+                _pageObj = new SSEManagePage.SSEPageCancelOrderSubmit( this, this.Master, _verMgr );   //分版完成
                 break;
             case "reset":
-                _pageObj = new SSEManagePage.SSEPageGameReset( this, this.Master );
+                _pageObj = new SSEManagePage.SSEPageGameReset( this, this.Master, _verMgr );           //无需分版
                 break;
             case "orderQuery":
-                _pageObj = new SSEManagePage.SSEPageOrderQuery( this, this.Master );
+                _pageObj = new SSEManagePage.SSEPageOrderQuery( this, this.Master, _verMgr );         //分版完成
                 break;
             case "getPirzeConfirm":
-                _pageObj = new SSEManagePage.SSEPageGetPirzeConfirm( this, this.Master );
+                _pageObj = new SSEManagePage.SSEPageGetPirzeConfirm( this, this.Master, _verMgr );     //分版完成
                 break;
             case "getPirzeSubMit":
-                _pageObj = new SSEManagePage.SSEPageGetPirzeSubmit( this, this.Master );
+                _pageObj = new SSEManagePage.SSEPageGetPirzeSubmit( this, this.Master, _verMgr );      //分版完成
                 break;
             default:
-                _pageObj = new SSEManagePage.SSEPageMain( this, this.Master );
+                _pageObj = new SSEManagePage.SSEPageMain( this, this.Master, _verMgr );          //正在分版
                 break;
         }
         _pageObj.ShowPage();
@@ -82,14 +100,17 @@ namespace SSEManagePage
         protected int pageSize;
         private string pageTitle;
 
+        protected sseMgrBase mSseVersionMgr;
 
-        public SseManagePageBase( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster )
+
+        public SseManagePageBase( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster, sseMgrBase _sseMgr )
         {
             this.mainPage = _mainPage;
             this.baseMaster = _baseMaster;
+            this.mSseVersionMgr = _sseMgr;
             meid = new BCW.User.Users().GetUsId();
             pageSize = int.Parse( ub.GetSub( "SSEManagePageSize", xmlPath ) );
-            this.pageTitle = "<a href=\"" + Utils.getUrl( "default.aspx" ) + "\">游戏管理</a>&gt;<a href=\"" + Utils.getUrl( "SSE.aspx?act=main" ) + "\">上证指数></a>";
+            this.pageTitle = "<a href=\"" + Utils.getUrl( "default.aspx" ) + "\">游戏管理</a>&gt;<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName + "act=main" ) + "\">上证指数【" + this.mSseVersionMgr.account.name + "版】></a>";
         }
 
         public void SetTitle(string _title)
@@ -104,7 +125,7 @@ namespace SSEManagePage
         public virtual void ShowPage()
         {
             
-            this.IncludePage( new SSEPageFooter( this.mainPage, this.baseMaster ) );  
+            this.IncludePage( new SSEPageFooter( this.mainPage, this.baseMaster,this.mSseVersionMgr ) );  
         }
 
          public void IncludePage(SseManagePageBase _page)
@@ -120,8 +141,8 @@ namespace SSEManagePage
     //页头
     public class SSEPageHeader :  SseManagePageBase
     {
-        public SSEPageHeader( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster )
-            : base(_mainPage, _baseMaster)
+        public SSEPageHeader( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster, sseMgrBase _sseMgr )
+            : base( _mainPage, _baseMaster, _sseMgr )
         {
 
         }
@@ -133,13 +154,13 @@ namespace SSEManagePage
 
             this.mainPage.builder.Append( Out.Tab( "<div  class=\"text\">", "" ) );
 
-            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=setting" ) + "\">游戏配置 </a><br />" );
-            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=charts" ) + "\">游戏排行</a><br /> " );   
-            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=analyse" ) + "\">盈利分析 </a><br /> " );
-            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=orderQuery" ) + "\">游戏查询 </a><br /> " );
-            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=prizepool" ) + "\">奖池记录</a> <br /> " );
-            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=state" ) + "\">游戏维护</a><br />" );
-            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=reset" ) + "\">重置游戏</a><br />" );
+            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=setting" ) + "\">游戏配置 </a><br />" );
+            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=charts" ) + "\">游戏排行</a><br /> " );   
+            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=analyse" ) + "\">盈利分析 </a><br /> " );
+            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=orderQuery" ) + "\">游戏查询 </a><br /> " );
+            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=prizepool" ) + "\">奖池记录</a> <br /> " );
+            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=state" ) + "\">游戏维护</a><br />" );
+            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=reset" ) + "\">重置游戏</a><br />" );
             this.mainPage.builder.Append( "--------------------------------------------------<br />" );
 
         }          
@@ -148,8 +169,8 @@ namespace SSEManagePage
     //页脚
     public class SSEPageFooter : SseManagePageBase
     {
-        public SSEPageFooter( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster )
-            : base( _mainPage, _baseMaster )
+        public SSEPageFooter( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster, sseMgrBase _sseMgr )
+            : base( _mainPage, _baseMaster, _sseMgr )
         {
 
         }
@@ -159,7 +180,7 @@ namespace SSEManagePage
               
             this.mainPage.builder.Append( Out.Tab( "<div>", "" ) );
             this.mainPage.builder.Append( "<br />--------------------------------------------------<br />" );              
-            this.mainPage.builder.Append( "<a href=\"" + Utils.getPage( "sse.aspx" ) + "\">返回上一级</a>" );
+            this.mainPage.builder.Append( "<a href=\"" + Utils.getPage( this.mSseVersionMgr.pageName ) + "\">返回上一级</a>" );
             this.mainPage.builder.Append( Out.Tab( "</div>", "<br />" ) );
             this.mainPage.builder.Append( Out.Tab( "<div class=\"title\">", "" ) );
             this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "../default.aspx" ) + "\">返回管理中心</a>" );
@@ -174,8 +195,8 @@ namespace SSEManagePage
         private int pSseNo;
 
 
-        public SSEPageMain( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster )
-            : base( _mainPage, _baseMaster )
+        public SSEPageMain( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster, sseMgrBase _sseMgr )
+            : base( _mainPage, _baseMaster, _sseMgr )
         {
 
         }
@@ -186,7 +207,7 @@ namespace SSEManagePage
         {
             this.SetTitle( "投注" );
 
-            this.IncludePage( new SSEPageHeader( this.mainPage, this.baseMaster ) );
+            this.IncludePage( new SSEPageHeader( this.mainPage, this.baseMaster,this.mSseVersionMgr) );
 
             this.mainPage.builder.Append( Out.Tab( "<div>", "" ) );
            
@@ -234,7 +255,7 @@ namespace SSEManagePage
 
             int pageIndex;
             int recordCount;
-            string[] pageValUrl = { "act", "sseNo", "backurl" };
+            string[] pageValUrl = { "sseVe","act", "sseNo", "backurl" };
             string strWhere = "";
             pageIndex = Utils.ParseInt( this.mainPage.Request.QueryString[ "page" ] );
             if( pageIndex == 0 )
@@ -248,7 +269,7 @@ namespace SSEManagePage
                 //查询本期
                 if( pageIndex == 1 )
                 {
-                    this.mainPage.builder.Append( string.Format( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=main&amp;pSseNo=" + _thisSseNo ) + "\">【管理】></a>第{0}期开出指数：<a href=\"" + Utils.getUrl( "SSE.aspx?act=order&amp;pSseNo=" + _thisSseNo ) + "\">未开</a> <a href=\"" + Utils.getUrl( "SSE.aspx?act=main&amp;editOpenPrize="+_thisSseNo ) + "\">开奖</a> <br />", _thisSseNo ) );
+                    this.mainPage.builder.Append( string.Format( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=main&amp;pSseNo=" + _thisSseNo ) + "\">【管理】></a>第{0}期开出指数：<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=order&amp;pSseNo=" + _thisSseNo ) + "\">未开</a> <a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=main&amp;editOpenPrize="+_thisSseNo ) + "\">开奖</a> <br />", _thisSseNo ) );
 
 
                 }
@@ -266,7 +287,7 @@ namespace SSEManagePage
                             this.mainPage.builder.Append( Out.Tab( "<div>", "<br />" ) );
                     }
 
-                    this.mainPage.builder.Append( string.Format( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=main&amp;pSseNo=" + n.sseNo ) + "\">【管理】></a>第{0}期开出指数：<a href=\"" + Utils.getUrl( "SSE.aspx?act=order&amp;pSseNo=" + n.sseNo ) + "\">{1}</a>【{2}】", n.sseNo, n.closePrice.ToString(), n.bz.Trim() == "1" ? "涨" : n.bz.Trim() == "0" ? "跌" : "平" ) );
+                    this.mainPage.builder.Append( string.Format( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=main&amp;pSseNo=" + n.sseNo ) + "\">【管理】></a>第{0}期开出指数：<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=order&amp;pSseNo=" + n.sseNo ) + "\">{1}</a>【{2}】", n.sseNo, n.closePrice.ToString(), n.bz.Trim() == "1" ? "涨" : n.bz.Trim() == "0" ? "跌" : "平" ) );
                    // this.mainPage.builder.Append( string.Format( "第{0}期：{1}点【{2}】", n.sseNo,  ) );
                     k++;
                     this.mainPage.builder.Append( Out.Tab( "</div>", "" ) );
@@ -297,7 +318,7 @@ namespace SSEManagePage
             DataSet ds = new BCW.SSE.BLL.SseBase().GetList( "sseNo="+pSseNo );
             if( ds.Tables[ 0 ].Rows.Count > 0 )
             {
-                Utils.Error( "该期已经开奖，不能设定相关参数", "" );
+                Utils.Error( "该期已经开奖，不能设定相关参数", Utils.getUrl(this.mSseVersionMgr.pageName) );
                 return;
             }
               
@@ -314,10 +335,10 @@ namespace SSEManagePage
             string strValu = "" + _beginTime + "'" + _beginEnd + "'" + _beginOpen + "'" + Utils.getPage( 0 ) + "";
             string strEmpt = "false,false,false,false";
             string strIdea = "/";
-            string strOthe = "/确定修改,SSE.aspx?act=main,post,1,red";
+            string strOthe = "/确定修改,"+this.mSseVersionMgr.pageName+"act=main,post,1,red";
             this.mainPage.builder.Append( Out.wapform( strText, strName, strType, strValu, strEmpt, strIdea, strOthe ) );
 
-            this.mainPage.builder.Append( "<br /><a href=\"" + Utils.getUrl( "SSE.aspx?act=main" ) + "\">再看看吧</a> " );
+            this.mainPage.builder.Append( "<br /><a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=main" ) + "\">再看看吧</a> " );
             
             this.mainPage.builder.Append( Out.Tab( "</div>", "<br />" ) );
 
@@ -335,23 +356,23 @@ namespace SSEManagePage
 
             //日期校验.
             if( pOpenTime != "" && Regex.IsMatch( pOpenTime, @"^\d{4}(\-)\d{1,2}\-\d{1,2} \d{2}:\d{2}:\d{2}$" ) == false )
-                Utils.Error( "开盘时间填写格式有误", "" );
+                Utils.Error( "开盘时间填写格式有误", Utils.getUrl(this.mSseVersionMgr.pageName) );
 
             if( pCloseTime != "" && Regex.IsMatch( pCloseTime, @"^\d{4}(\-)\d{1,2}\-\d{1,2} \d{2}:\d{2}:\d{2}$" ) == false )
-                Utils.Error( "截止投注时间填写格式有误", "" );
+                Utils.Error( "截止投注时间填写格式有误", Utils.getUrl( this.mSseVersionMgr.pageName ) );
 
             if( pOpenPrizeTime != "" && Regex.IsMatch( pOpenPrizeTime, @"^\d{4}(\-)\d{1,2}\-\d{1,2} \d{2}:\d{2}:\d{2}$" ) == false )
-                Utils.Error( "开奖日期填写格式有误", "" );
+                Utils.Error( "开奖日期填写格式有误", Utils.getUrl( this.mSseVersionMgr.pageName ) );
 
 
             //if( DateTime.Parse( pOpenTime ) <= DateTime.Now )
             //    Utils.Error( "开盘时间不能早于当前时间", "" );
 
             if( DateTime.Parse( pCloseTime ) <= DateTime.Parse( pOpenTime ) )
-                Utils.Error( "截止投注时间不能早于开盘时间", "" );
+                Utils.Error( "截止投注时间不能早于开盘时间", Utils.getUrl( this.mSseVersionMgr.pageName ) );
 
             if( DateTime.Parse( pOpenPrizeTime ).DayOfWeek == DayOfWeek.Saturday || DateTime.Parse( pOpenPrizeTime ).DayOfWeek == DayOfWeek.Sunday || DateTime.Parse( pOpenPrizeTime ) <= DateTime.Parse( pCloseTime ) )
-                Utils.Error( "开奖日期不能设定在周末 ，且不能早于截止投注时间", "" );
+                Utils.Error( "开奖日期不能设定在周末 ，且不能早于截止投注时间", Utils.getUrl( this.mSseVersionMgr.pageName ) );
 
             //修改开奖期号，变更相应数据期号
             string oldOpenPrizeTime = ub.GetSub( "SSEOpen", xmlPath );
@@ -377,7 +398,7 @@ namespace SSEManagePage
             xml.dss[ "SSEOpen" ] = pOpenPrizeTime.ToString();
 
             System.IO.File.WriteAllText( this.mainPage.Server.MapPath( xmlPath ), xml.Post( xml.dss ), System.Text.Encoding.UTF8 );
-            Utils.Success( "游戏状态管理", "设置成功，正在返回..", Utils.getUrl( "sse.aspx" ), "1" );
+            Utils.Success( "游戏状态管理", "设置成功，正在返回..", Utils.getUrl( this.mSseVersionMgr.pageName ), "1" );
 
         }
 
@@ -404,7 +425,7 @@ namespace SSEManagePage
             string strValu = "" + "''"+BCW.SSE.SSE.Instance().GetBuySseNo()+"'" + Utils.getPage( 0 ) + "";
             string strEmpt = "false,true,false,false";
             string strIdea = "/";
-            string strOthe = "/确定开奖,SSE.aspx?act=main,post,1,red";
+            string strOthe = "/确定开奖,"+this.mSseVersionMgr.pageName+"act=main,post,1,red";
             this.mainPage.builder.Append( Out.wapform( strText, strName, strType, strValu, strEmpt, strIdea, strOthe ) );
 
 
@@ -423,21 +444,21 @@ namespace SSEManagePage
 
             //期数校验.
             if( sseNo != "" && Regex.IsMatch( sseNo, @"^\d*$" ) == false )
-                Utils.Error( "开奖期数参数有误，无法开奖", "" );
+                Utils.Error( "开奖期数参数有误，无法开奖", Utils.getUrl( this.mSseVersionMgr.pageName ) );
 
             //开奖校验.
             if( openPrizeVal != "" && Regex.IsMatch( openPrizeVal, @"^\d+\.\d{2,}$" ) == false )
-                Utils.Error( "开奖指数至少要带两位小数(如123.45)", "" );
+                Utils.Error( "开奖指数至少要带两位小数(如123.45)", Utils.getUrl( this.mSseVersionMgr.pageName ) );
 
             //周末不能开奖              
             if( System.DateTime.Now.DayOfWeek == DayOfWeek.Saturday || System.DateTime.Now.DayOfWeek == DayOfWeek.Sunday )
-                Utils.Error( "周末不能开奖", "" );
+                Utils.Error( "周末不能开奖", Utils.getUrl( this.mSseVersionMgr.pageName ) );
 
             //同一日不能多次开奖
             string _dayNo = System.DateTime.Now.Year.ToString( "#0000" ) + System.DateTime.Now.Month.ToString( "#00" ) + System.DateTime.Now.Day.ToString( "#00" );
             DataSet _ds = new BCW.SSE.BLL.SseBase().GetList( " sseNo=" + _dayNo );
             if( _ds.Tables[0].Rows.Count >0 )
-                Utils.Error( "同一天不能多次开奖", "" );
+                Utils.Error( "同一天不能多次开奖", Utils.getUrl( this.mSseVersionMgr.pageName ) );
 
             //获取新一期的开奖数据.
             BCW.SSE.SSEDataParseNew _c = new BCW.SSE.SSEDataParseNew();
@@ -449,7 +470,7 @@ namespace SSEManagePage
             
             this.mainPage.builder.Append( Out.Tab( "</div>", "<br />" ) );
 
-            Utils.Success( "开奖成功", "开奖成功，正在返回..", Utils.getUrl( "sse.aspx" ), "1" );
+            Utils.Success( "开奖成功", "开奖成功，正在返回..", Utils.getUrl( this.mSseVersionMgr.pageName ), "1" );
 
             base.ShowPage();
         }
@@ -484,8 +505,8 @@ namespace SSEManagePage
     //状态管理
     public class SSEPageState : SseManagePageBase
     {
-        public SSEPageState( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster )
-            : base( _mainPage, _baseMaster )
+        public SSEPageState( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster, sseMgrBase _sseMgr )
+            : base( _mainPage, _baseMaster ,_sseMgr)
         {
 
         }
@@ -516,7 +537,7 @@ namespace SSEManagePage
                 string SSEDemoIDS = Utils.GetRequest( "SSEDemoIDS", "post", 1, "", "" );
 
                 if( Regex.IsMatch( robotBPrice, @"^(\d+\#)+\d+$" ) == false )
-                    Utils.Error( "机器人投注金额设置格式有错，用#分隔(最少填两个数值)","" );
+                    Utils.Error( "机器人投注金额设置格式有错，用#分隔(最少填两个数值)", Utils.getUrl( this.mSseVersionMgr.pageName ) );
 
                 xml.dss[ "SSEState" ] = SSEState;       
                 xml.dss[ "SSERobotState" ] = robotState;
@@ -527,7 +548,7 @@ namespace SSEManagePage
                                                    
 
                 System.IO.File.WriteAllText( this.mainPage.Server.MapPath( xmlPath ), xml.Post( xml.dss ), System.Text.Encoding.UTF8 );
-                Utils.Success( "游戏维护", "设置成功，正在返回..", Utils.getUrl( "sse.aspx?act=state" ), "1" );   
+                Utils.Success( "游戏维护", "设置成功，正在返回..", Utils.getUrl( this.mSseVersionMgr.pageName+"act=state" ), "1" );   
 
                 return;
             }
@@ -542,7 +563,7 @@ namespace SSEManagePage
             string strValu = "" + xml.dss[ "SSEState" ] + "'" + xml.dss[ "SSERobotState" ] + "'" + xml.dss[ "SSERobot" ] + "'" + xml.dss[ "SSERobotBPrice" ] + "'" + xml.dss[ "SSERobotOrderSpace" ] + "'" + xml.dss[ "SSEDemoIDS" ] + "'"  +Utils.getPage( 0 ) + "";
             string strEmpt = "0|关服|1|内测|2|开服,0|关|1|开,false,false,false,false,false";
             string strIdea = "/";
-            string strOthe = "确定修改,sse.aspx?act=state,post,1,red";
+            string strOthe = "确定修改,"+this.mSseVersionMgr.pageName+"act=state,post,1,red";
             this.mainPage.builder.Append( Out.wapform( strText, strName, strType, strValu, strEmpt, strIdea, strOthe ) );
 
             //this.mainPage.builder.Append( Out.Tab( "<div class=\"test\">", "" ) );
@@ -571,8 +592,8 @@ namespace SSEManagePage
         private int ptype;          //请求类型
         private string useDateTime;
 
-        public SSEPageOrder( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster )
-            : base( _mainPage, _baseMaster )
+        public SSEPageOrder( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster, sseMgrBase _sseMgr )
+            : base( _mainPage, _baseMaster, _sseMgr )
         {
 
         }
@@ -585,7 +606,7 @@ namespace SSEManagePage
             string strValu = "''"+int.Parse(useDateTime)+"'" + DT.FormatDate( DateTime.Now.AddMonths( -1 ), 0 ) + "'" + DT.FormatDate( DateTime.Now, 0 ) + "";
             string strEmpt = "false,false,0|不启用|1|启用,false,false";
             string strIdea = "/";
-            string strOthe = "马上查询,sse.aspx?act=order,post,1,red";
+            string strOthe = "马上查询,"+this.mSseVersionMgr.pageName+"act=order,post,1,red";
             this.mainPage.builder.Append( Out.wapform( strText, strName, strType, strValu, strEmpt, strIdea, strOthe ) );
         }
 
@@ -612,11 +633,11 @@ namespace SSEManagePage
 
            /* if( pSseNo != "" )
             {
-                this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=order&amp;ptype=0" + "&amp;pSseNo=" + pSseNo ) + "\">全部</a> " );
-                this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=order&amp;ptype=1" + "&amp;pSseNo=" + pSseNo ) + "\">未开奖</a> " );
-                this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=order&amp;ptype=2" + "&amp;pSseNo=" + pSseNo ) + "\">已开奖</a> " );
-                this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=order&amp;ptype=3" + "&amp;pSseNo=" + pSseNo ) + "\">未兑奖</a> " );
-                this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=order&amp;ptype=4" + "&amp;pSseNo=" + pSseNo ) + "\">已兑奖</a> <br />" );
+                this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=order&amp;ptype=0" + "&amp;pSseNo=" + pSseNo ) + "\">全部</a> " );
+                this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=order&amp;ptype=1" + "&amp;pSseNo=" + pSseNo ) + "\">未开奖</a> " );
+                this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=order&amp;ptype=2" + "&amp;pSseNo=" + pSseNo ) + "\">已开奖</a> " );
+                this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=order&amp;ptype=3" + "&amp;pSseNo=" + pSseNo ) + "\">未兑奖</a> " );
+                this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=order&amp;ptype=4" + "&amp;pSseNo=" + pSseNo ) + "\">已兑奖</a> <br />" );
             }
              */
                           
@@ -630,16 +651,16 @@ namespace SSEManagePage
 
             int pageIndex;
             int recordCount;
-            string[] pageValUrl = { "act", "ptype", "pSseNo", "backurl" };
+            string[] pageValUrl = { "sseVe", "act", "ptype", "pSseNo", "backurl" };
 
-            string strWhere = " 1=1";// string.Format( "userId ={0}", meid );
+            string strWhere = " 1=1 and orderType="+this.mSseVersionMgr.versionId;// string.Format( "userId ={0}", meid );
 
 
             
             if  (string.IsNullOrEmpty( orderId ) == false)
             {
                 if (Regex.IsMatch( orderId, @"^[0-9]*$" ) == false )
-                     Utils.Error( "订单标识填写格式有误", "" );
+                    Utils.Error( "订单标识填写格式有误", Utils.getUrl( this.mSseVersionMgr.pageName ) );
                 else              
                     strWhere += " and id=" + orderId;
             }
@@ -647,7 +668,7 @@ namespace SSEManagePage
             if( string.IsNullOrEmpty( userId ) == false) 
             {
                if (Regex.IsMatch( userId, @"^[0-9]*$" ) == false )
-                    Utils.Error( "订单标识填写格式有误", "" );
+                   Utils.Error( "订单标识填写格式有误", Utils.getUrl( this.mSseVersionMgr.pageName ) );
                 else
                     strWhere += " and userId=" + userId;
             }
@@ -655,7 +676,7 @@ namespace SSEManagePage
             if( string.IsNullOrEmpty( pSseNo ) == false )
             {
                 if( Regex.IsMatch( pSseNo, @"^\d*$" ) == false )
-                    Utils.Error( "期数格式有误", "" );
+                    Utils.Error( "期数格式有误", Utils.getUrl( this.mSseVersionMgr.pageName ) );
                 else
                     strWhere += " and sseNo=" + pSseNo;
             }
@@ -664,13 +685,13 @@ namespace SSEManagePage
             if( int.Parse(useDateTime) == 1 )
             {
                 if( beginTime != "" && Regex.IsMatch( beginTime, @"^\d{4}(\-)\d{1,2}\-\d{1,2} [0-9]{2}:[0-9]{2}:[0-9]{2}$" ) == false )
-                    Utils.Error( "开始日期填写格式有误","" );
+                    Utils.Error( "开始日期填写格式有误", Utils.getUrl( this.mSseVersionMgr.pageName ) );
                 else
                     strWhere += " and orderDateTime>='" + beginTime+"'";
 
 
                 if( endTime != "" && Regex.IsMatch( endTime, @"^\d{4}(\-)\d{1,2}\-\d{1,2} [0-9]{2}:[0-9]{2}:[0-9]{2}$" ) == false )
-                    Utils.Error( "结束日期填写格式有误", "" );
+                    Utils.Error( "结束日期填写格式有误", Utils.getUrl( this.mSseVersionMgr.pageName ) );
                 else
                     strWhere += " and orderDateTime<='" + endTime+"'";             
             }
@@ -732,23 +753,23 @@ namespace SSEManagePage
                     }
 
                     //this.mainPage.builder.Append( string.Format( "【{0}】,{1},{2}",n.id.ToString(),n.buyType.ToString(),n.sseNo.ToString()));
-                    this.mainPage.builder.Append( string.Format( "{0}、{1}|标识({2})|{3}|投{4}|", k+((pageIndex-1)*pageSize) , "<a href=\"" + Utils.getUrl( "/bbs/uinfo.aspx?uid=" + n.userId + "&amp;backurl=" + Utils.PostPage( 1 ) + "" ) + "\">" + BCW.User.Users.SetUser( n.userId ) + "("+n.userId+")</a>" , n.id.ToString(), n.buyType ? "猜涨" : "猜跌", n.buyMoney.ToString( "#0" )+ub.Get("SiteBz") ) );
+                    this.mainPage.builder.Append( string.Format( "{0}、{1}|标识({2})|{3}|投{4}|", k+((pageIndex-1)*pageSize) , "<a href=\"" + Utils.getUrl( "/bbs/uinfo.aspx?uid=" + n.userId + "&amp;backurl=" + Utils.PostPage( 1 ) + "" ) + "\">" + BCW.User.Users.SetUser( n.userId ) + "("+n.userId+")</a>" , n.id.ToString(), n.buyType ? "猜涨" : "猜跌", n.buyMoney.ToString( "#0" )+this.mSseVersionMgr.account.name ) );
                     if( n.prizeVal > 0 )
                     {
-                        this.mainPage.builder.Append( string.Format( "<b style=\"color:#ff0000\">赢{0}</b>", n.prizeVal.ToString( "#0" ) + ub.Get( "SiteBz" ) ) );    
+                        this.mainPage.builder.Append( string.Format( "<b style=\"color:#ff0000\">赢{0}</b>", n.prizeVal.ToString( "#0" ) + this.mSseVersionMgr.account.name ) );    
                     } 
                     this.mainPage.builder.Append( string.Format( "【{0}】", n.sseNo == BCW.SSE.SSE.Instance().GetBuySseNo() ? "未开奖" : n.state ) );
                     this.mainPage.builder.Append( string.Format( "({0})", n.orderDateTime ) );
                     if( n.sseNo == BCW.SSE.SSE.Instance().GetBuySseNo() )
                     {
-                        this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=order&amp;cancelOrderId=" + n.id ) + "\">【退注】</a>" );
+                        this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=order&amp;cancelOrderId=" + n.id ) + "\">【退注】</a>" );
                     }
 
                     if( n.state == "未兑奖" )
                     {      
                         DataSet _ds = new BCW.SSE.BLL.SseGetPrize().GetList( 1, "orderId=" + n.id, "id" );
                         if (_ds.Tables[0].Rows.Count >0)
-                            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=getPirzeConfirm&amp;prizeId=" + _ds.Tables[ 0 ].Rows[ 0 ][ "id" ].ToString() ) + "\">【帮他兑奖】</a>" );
+                            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=getPirzeConfirm&amp;prizeId=" + _ds.Tables[ 0 ].Rows[ 0 ][ "id" ].ToString() ) + "\">【帮他兑奖】</a>" );
                     }
 
                     k++;
@@ -792,7 +813,7 @@ namespace SSEManagePage
                 this.mainPage.builder.Append( string.Format( "申请帐户:<a href=\"/bbs/uinfo.aspx?uid=" + _objModel.userId + "\">{0}({1})</a><br />", new BCW.BLL.User().GetUsName( _objModel.userId ) + "(" + _objModel.userId + ")", _objModel.userId ) );
                 this.mainPage.builder.Append( string.Format( "期数：第{0}期<br />", _objModel.sseNo ) );
                 this.mainPage.builder.Append( string.Format( "竞猜类型:{0}<br />", _objModel.buyType == true ? "猜涨" : "猜跌" ) );
-                this.mainPage.builder.Append( string.Format( "退注金额{0}:<br />", _objModel.buyMoney ) );
+                this.mainPage.builder.Append( string.Format( "退注金额:{0}<br />", _objModel.buyMoney.ToString("#0")+this.mSseVersionMgr.account.name ) );
             }
 
             this.mainPage.builder.Append( Out.Tab( "</div>", "<br />" ) );
@@ -803,7 +824,7 @@ namespace SSEManagePage
             string strValu = ""+_objModel.sseNo+"'" + _orderId + "'" + _objModel .userId+ "";
             string strEmpt = "false,false,false";
             string strIdea = "/";
-            string strOthe = "确认退注,sse.aspx?act=cancelOrderSubmit,post,1,red";
+            string strOthe = "确认退注,"+this.mSseVersionMgr.pageName+"act=cancelOrderSubmit,post,1,red";
             this.mainPage.builder.Append( Out.wapform( strText, strName, strType, strValu, strEmpt, strIdea, strOthe ) );
 
 
@@ -816,8 +837,8 @@ namespace SSEManagePage
    //确认退注
     public class SSEPageCancelOrderSubmit : SseManagePageBase
     {
-        public SSEPageCancelOrderSubmit( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster )
-            : base( _mainPage, _baseMaster )
+        public SSEPageCancelOrderSubmit( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster, sseMgrBase _sseMgr )
+            : base( _mainPage, _baseMaster, _sseMgr )
         {
 
         }
@@ -831,7 +852,7 @@ namespace SSEManagePage
             object getObjCacheTime = DataCache.GetCache( CacheKey );
             if( getObjCacheTime != null )
             {
-                Utils.Error( ub.GetSub( "BbsGreet", "/Controls/bbs.xml" ), "" );
+                Utils.Error( ub.GetSub( "BbsGreet", "/Controls/bbs.xml" ), Utils.getUrl( this.mSseVersionMgr.pageName ) );
             }
             object ObjCacheTime = DateTime.Now;
             DataCache.SetCache( CacheKey, ObjCacheTime, DateTime.Now.AddSeconds( Expir ), TimeSpan.Zero );
@@ -846,7 +867,7 @@ namespace SSEManagePage
 
              if( modelSseOrder == null )
              {
-                 Utils.Success( "确认退注", "找不到对应的订单号", Utils.getUrl( "sse.aspx?act=order&amp;pSseNo="+modelSseOrder.sseNo ), "1" );
+                 Utils.Success( "确认退注", "找不到对应的订单号", Utils.getUrl( this.mSseVersionMgr.pageName+"act=order&amp;pSseNo="+modelSseOrder.sseNo ), "1" );
                  return;
              }
              modelSseOrder.state = 1;
@@ -864,10 +885,12 @@ namespace SSEManagePage
 
 
              //返还币
-             new BCW.BLL.User().UpdateiGold( modelSseOrder.userId, ( Int64 ) modelSseOrder.buyMoney, string.Format( "上证|{0}期|申请退回|标识({1})", sseNo, orderId ) );
+             this.mSseVersionMgr.account.UpdateiGold(modelSseOrder.userId, ( Int64 ) modelSseOrder.buyMoney, string.Format( "上证|{0}期|申请退回|标识({1})", sseNo, orderId ) );
+
+             //new BCW.BLL.User().UpdateiGold( modelSseOrder.userId, ( Int64 ) modelSseOrder.buyMoney, string.Format( "上证|{0}期|申请退回|标识({1})", sseNo, orderId ) );
 
             this.mainPage.builder.Append( Out.Tab( "<div class=\"text\">", "<br />" ) );
-            Utils.Success( "确认退注", "退注成功", Utils.getUrl( "sse.aspx?act=order&amp;pSseNo="+modelSseOrder.sseNo ), "1" );
+            Utils.Success( "确认退注", "退注成功", Utils.getUrl( this.mSseVersionMgr.pageName+"act=order&amp;pSseNo="+modelSseOrder.sseNo ), "1" );
 
             this.mainPage.builder.Append( Out.Tab( "</div>", "<br />" ) );
             base.ShowPage();
@@ -881,8 +904,8 @@ namespace SSEManagePage
     {
         private int ptype;
 
-        public SSEPageCharts( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster )
-            : base( _mainPage, _baseMaster )
+        public SSEPageCharts( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster, sseMgrBase _sseMgr )
+            : base( _mainPage, _baseMaster, _sseMgr )
         {
 
         }
@@ -890,17 +913,21 @@ namespace SSEManagePage
         public override void ShowPage()
         {
             this.baseMaster.Title = "游戏排行";
-            this.SetTitle( "游戏排行" );              
+            this.SetTitle( "游戏排行" );
+
+            ptype = Utils.ParseInt( Utils.GetRequest( "ptype", "get", 1, @"^[0-3]$", "0" ) );
+            if( ptype < 0 )
+                ptype = 0;
 
             this.mainPage.builder.Append( Out.Tab( "<div class=\"text\">", "" ) );
 
-            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=charts&amp;ptype=0" ) + "\">日榜</a> " );
-            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=charts&amp;ptype=1" ) + "\">周榜</a> " );
-            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=charts&amp;ptype=2" ) + "\">月榜</a> " );
-            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=charts&amp;ptype=3" ) + "\">总榜</a> <br />" );
-            this.mainPage.builder.Append( Out.Tab( "</div>", "" ) );
+            this.mainPage.builder.Append( ptype == 0 ?"日榜 ":"<a href=\"" + Utils.getUrl(this.mSseVersionMgr.pageName+"act=charts&amp;ptype=0" ) + "\">日榜</a> " );
+            this.mainPage.builder.Append( ptype == 1 ? "周榜 " : "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=charts&amp;ptype=1" ) + "\">周榜</a> " );
+            this.mainPage.builder.Append( ptype == 2 ? "月榜 " : "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=charts&amp;ptype=2" ) + "\">月榜</a> " );
+            this.mainPage.builder.Append( ptype == 3 ? "总榜 " : "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=charts&amp;ptype=3" ) + "\">总榜</a> " );
 
-            ptype = Utils.ParseInt( Utils.GetRequest( "ptype", "get", 1, @"^[0-3]$", "0" ) );
+            this.mainPage.builder.Append( Out.Tab( "</div>", "<br />" ) );
+
             string pquery = Utils.GetRequest( "query", "post", 1, "", "" );
             string beginTime = Utils.GetRequest( "sTime", "post", 1, "", "" );
             string endTime = Utils.GetRequest( "oTime", "post", 1, "", "" );
@@ -909,7 +936,7 @@ namespace SSEManagePage
             int recordCount;
             int pageSize = 10;
             string strWhere = "1=1";
-            string[] pageValUrl = { "act", "backurl", "ptype", "sTime", "oTime" };
+            string[] pageValUrl = { "sseVe", "act", "backurl", "ptype", "sTime", "oTime" };
             pageIndex = Utils.ParseInt( this.mainPage.Request.QueryString[ "page" ] );
             if( pageIndex == 0 )
                 pageIndex = 1;
@@ -919,16 +946,16 @@ namespace SSEManagePage
             switch( ptype )
             {
                 case 0: //日榜
-                    strWhere = "CONVERT(varchar,openDateTime,112) in ( select top 1 CONVERT(varchar,openDateTime,112) from  tb_SseGetPrize)";
+                    strWhere = "CONVERT(varchar,p.openDateTime,112) in ( select top 1 CONVERT(varchar,openDateTime,112) from  tb_SseGetPrize order by id desc) and p.orderType=" + this.mSseVersionMgr.versionId;
                     break;
                 case 1: //周榜
-                    strWhere = "CONVERT(varchar,openDateTime,112) >= CONVERT(VARCHAR,DATEADD(DAY,-7,GETDATE()),112)";
+                    strWhere = "CONVERT(varchar,p.openDateTime,112) >= CONVERT(VARCHAR,DATEADD(DAY,-7,GETDATE()),112) and p.orderType=" + this.mSseVersionMgr.versionId;
                     break;
                 case 2: //月榜
-                    strWhere = "CONVERT(varchar,openDateTime,112) >= CONVERT(VARCHAR,DATEADD(MONTH,-7,GETDATE()),112)";
+                    strWhere = "CONVERT(varchar,p.openDateTime,112) >= CONVERT(VARCHAR,DATEADD(MONTH,-7,GETDATE()),112) and p.orderType=" + this.mSseVersionMgr.versionId;
                     break;
                 case 3: //总榜
-                    strWhere = "1=1";
+                    strWhere = "1=1 and p.orderType=" + this.mSseVersionMgr.versionId;
                     break;
             }
 
@@ -937,10 +964,10 @@ namespace SSEManagePage
             {
 
                 if( beginTime != "" && Regex.IsMatch( beginTime, @"^\d{4}-\d{1,2}-\d{1,2}$" ) == false )
-                    Utils.Error( "开始日期格式填写有误", "" );
+                    Utils.Error( "开始日期格式填写有误", Utils.getUrl( this.mSseVersionMgr.pageName ) );
 
                 if( endTime != "" && Regex.IsMatch( endTime, @"^\d{4}-\d{1,2}-\d{1,2}$" ) == false )
-                    Utils.Error( "结束日期格式填写有误", "" );
+                    Utils.Error( "结束日期格式填写有误", Utils.getUrl( this.mSseVersionMgr.pageName ) );
                 strWhere = string.Format( "CONVERT(varchar,openDateTime,112) >= '{0}' and CONVERT(varchar,openDateTime,112)<='{1}'", beginTime, endTime );
             }
 
@@ -960,11 +987,11 @@ namespace SSEManagePage
                         else
                             this.mainPage.builder.Append( Out.Tab( "<div>", "<br />" ) );
                     }
-                    this.mainPage.builder.Append( "[第" + ( ( pageIndex - 1 ) * pageSize + k ) + "名]<a href=\"" + Utils.getUrl( "/bbs/uinfo.aspx?uid=" + n.userId + "&amp;backurl=" + Utils.PostPage( 1 ) + "" ) + "\">" + BCW.User.Users.SetUser( n.userId ) + "(" + n.userId + ")</a>" + "赢得" + n.prizeVal + "" + ub.Get( "SiteBz" ) + "" );
+                    this.mainPage.builder.Append( "[第" + ( ( pageIndex - 1 ) * pageSize + k ) + "名]<a href=\"" + Utils.getUrl( "/bbs/uinfo.aspx?uid=" + n.userId + "&amp;backurl=" + Utils.PostPage( 1 ) + "" ) + "\">" + BCW.User.Users.SetUser( n.userId ) + "(" + n.userId + ")</a>" + "赢得" + n.prizeVal + "" + this.mSseVersionMgr.account.name + "" );
                     k++;
                     this.mainPage.builder.Append( Out.Tab( "</div>", "" ) );
                 }
-                   
+
                 this.mainPage.builder.Append( BasePage.MultiPage( pageIndex, pageSize, recordCount, Utils.getPageUrl(), pageValUrl, "page", 0 ) );
             
             }
@@ -982,7 +1009,7 @@ namespace SSEManagePage
 
             string strEmpt = "true,true,false,false";
             string strIdea = "/";
-            string strOthe = "马上查询/,sse.aspx?act=charts" + ",post,1,red";
+            string strOthe = "马上查询/,"+this.mSseVersionMgr.pageName+"act=charts" + ",post,1,red";
             this.mainPage.builder.Append( Out.wapform( strText, strName, strType, strValu, strEmpt, strIdea, strOthe ) );
 
 
@@ -997,7 +1024,7 @@ namespace SSEManagePage
         private int ptype;              //页面类型
         private int pageIndex;
         private int recordCount;
-        private string[] pageValUrl = { "act", "ptype", "pSseNo", "backurl" };  
+        private string[] pageValUrl = { "sseVe","act", "ptype", "pSseNo", "backurl" };  
         private string strWhere = " 1=1";
 
         
@@ -1007,8 +1034,8 @@ namespace SSEManagePage
 
 
 
-        public SSEPagePrizepool( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster )
-            : base( _mainPage, _baseMaster )
+        public SSEPagePrizepool( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster, sseMgrBase _sseMgr )
+            : base( _mainPage, _baseMaster, _sseMgr )
         {
 
         }
@@ -1016,13 +1043,14 @@ namespace SSEManagePage
         public override void ShowPage()
         {
             this.SetTitle( "奖池记录" );
+            strWhere = "1=1 and p.prizeType=" + this.mSseVersionMgr.versionId;
 
             //IncludePage( new SSEPageHeader( this.mainPage, this.baseMaster ) );
 
             this.mainPage.builder.Append( Out.Tab( "<div class=\"text\">", "" ) );
 
-           // this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=prizepool&amp;ptype=0" ) + "\">奖池概览</a> " );
-           // this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=prizepool&amp;ptype=1" ) + "\">奖池明细</a> <br /> " );
+           // this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=prizepool&amp;ptype=0" ) + "\">奖池概览</a> " );
+           // this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=prizepool&amp;ptype=1" ) + "\">奖池明细</a> <br /> " );
                                                  
             ptype = Utils.ParseInt(Utils.GetRequest("ptype","get",1,@"^[0-1]$","请求类型错误"));
 
@@ -1065,10 +1093,10 @@ namespace SSEManagePage
 
             //日期校验.
             if( beginTime != "" && Regex.IsMatch( beginTime, @"^\d{4}\d{1,2}\d{1,2}$" ) == false )
-                Utils.Error( "开始期数格式填写有误", "" );
+                Utils.Error( "开始期数格式填写有误", Utils.getUrl( this.mSseVersionMgr.pageName ) );
 
             if( endTime != "" && Regex.IsMatch( endTime, @"^\d{4}\d{1,2}\d{1,2}$" ) == false )
-                Utils.Error( "结束期数格式填写有误", "" );    
+                Utils.Error( "结束期数格式填写有误", Utils.getUrl( this.mSseVersionMgr.pageName ) );    
 
 
 
@@ -1111,11 +1139,11 @@ namespace SSEManagePage
 
                     //this.mainPage.builder.Append( string.Format( "【{0}】,{1},{2}",n.id.ToString(),n.buyType.ToString(),n.sseNo.ToString()));
                     if( n.sseNo != BCW.SSE.SSE.Instance().GetBuySseNo() )
-                        this.mainPage.builder.Append( string.Format( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=prizepool&amp;ptype=1&amp;pSseNo=" + n.sseNo ) + "\">第【{0}】期奖池</a>【{1}】", n.sseNo.ToString(), n.openResult ) );
-                    //this.mainPage.builder.Append( string.Format( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=prizepool&amp;ptype=1&amp;pSseNo=" + n.sseNo ) + "\">第【{0}】期奖池</a>【{1}】<b style=\"color:#ff0000\"> | 总奖池：{2} | 猜涨：{3} | 猜跌：{4}</b>", n.sseNo.ToString(), n.openResult, sumBeforeOpenPrizeVal.ToString( "#0" ), sumUpVal.ToString( "#0" ), sumDownVal.ToString( "#0" ) ) );
+                        this.mainPage.builder.Append( string.Format( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=prizepool&amp;ptype=1&amp;pSseNo=" + n.sseNo ) + "\">第【{0}】期奖池</a>【{1}】", n.sseNo.ToString(), n.openResult ) );
+                    //this.mainPage.builder.Append( string.Format( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=prizepool&amp;ptype=1&amp;pSseNo=" + n.sseNo ) + "\">第【{0}】期奖池</a>【{1}】<b style=\"color:#ff0000\"> | 总奖池：{2} | 猜涨：{3} | 猜跌：{4}</b>", n.sseNo.ToString(), n.openResult, sumBeforeOpenPrizeVal.ToString( "#0" ), sumUpVal.ToString( "#0" ), sumDownVal.ToString( "#0" ) ) );
                     else
-                        this.mainPage.builder.Append( string.Format( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=prizepool&amp;ptype=1&amp;pSseNo=" + n.sseNo ) + "\">系统当前奖池<b style=\"color:#ff0000\">(第{0}期)</b></a><b style=\"color:#ff0000\"> | 结余：{1} </b>", n.sseNo.ToString(), n.poolVal.ToString( "#0" )+ ub.Get("SiteBz")) );
-                    //this.mainPage.builder.Append( string.Format( "<a href=\"" + Utils.getUrl( "SSE.aspx?act=prizepool&amp;ptype=1&amp;pSseNo=" + n.sseNo ) + "\">系统当前奖池<b style=\"color:#ff0000\">(第{0}期)</b></a><b style=\"color:#ff0000\"> | 结余：{1} | 猜涨：{2} | 猜跌：{3}</b>", n.sseNo.ToString(), n.poolVal.ToString( "#0.00" ), sumUpVal.ToString( "#0" ), sumDownVal.ToString( "#0" ) ) );
+                        this.mainPage.builder.Append( string.Format( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=prizepool&amp;ptype=1&amp;pSseNo=" + n.sseNo ) + "\">系统当前奖池<b style=\"color:#ff0000\">(第{0}期)</b></a><b style=\"color:#ff0000\"> | 结余：{1} </b>", n.sseNo.ToString(), n.poolVal.ToString( "#0" )+ this.mSseVersionMgr.account.name) );
+                    //this.mainPage.builder.Append( string.Format( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=prizepool&amp;ptype=1&amp;pSseNo=" + n.sseNo ) + "\">系统当前奖池<b style=\"color:#ff0000\">(第{0}期)</b></a><b style=\"color:#ff0000\"> | 结余：{1} | 猜涨：{2} | 猜跌：{3}</b>", n.sseNo.ToString(), n.poolVal.ToString( "#0.00" ), sumUpVal.ToString( "#0" ), sumDownVal.ToString( "#0" ) ) );
                     k++;
                    
                     this.mainPage.builder.Append( Out.Tab( "</div>", "" ) );
@@ -1142,7 +1170,7 @@ namespace SSEManagePage
 
             string strEmpt = "true,true,false";
             string strIdea = "/";
-            string strOthe = "马上查询,sse.aspx?act=prizepool&amp;ptype=" + ptype + ",post,1,red";
+            string strOthe = "马上查询,"+this.mSseVersionMgr.pageName+"act=prizepool&amp;ptype=" + ptype + ",post,1,red";
             this.mainPage.builder.Append( Out.wapform( strText, strName, strType, strValu, strEmpt, strIdea, strOthe ) );     
 
         }
@@ -1152,6 +1180,8 @@ namespace SSEManagePage
         {
             DateTime _time;
             string _sTime;
+
+            strWhere = "1=1 and poolType=" + this.mSseVersionMgr.versionId;
 
             string sseNo = Utils.GetRequest( "pSseNo", "get", 1, "", "" );
 
@@ -1189,10 +1219,10 @@ namespace SSEManagePage
                 //获取总奖池值
                 decimal sumBeforeOpenPrizeVal = new BCW.SSE.BLL.SsePrizePoolChang().GetBeforeOpenPrizeVal( int.Parse( sseNo ) );
                 //获取本期猜涨总额
-                decimal sumUpVal = new BCW.SSE.BLL.SseOrder().GetGuessMoney( int.Parse( sseNo ), 1 );
-                decimal sumDownVal = new BCW.SSE.BLL.SseOrder().GetGuessMoney( int.Parse( sseNo ), 0 );
+                decimal sumUpVal = new BCW.SSE.BLL.SseOrder().GetGuessMoney(this.mSseVersionMgr.versionId, int.Parse( sseNo ), 1 );
+                decimal sumDownVal = new BCW.SSE.BLL.SseOrder().GetGuessMoney( this.mSseVersionMgr.versionId, int.Parse( sseNo ), 0 );
 
-                this.mainPage.builder.Append( string.Format( "<b style=\"color:#ff0000\">第{0}期 | 总奖池：{1} | 猜涨：{2} | 猜跌：{3}</b><br />", sseNo, sumBeforeOpenPrizeVal.ToString( "#0" ) + ub.Get( "SiteBz" ), sumUpVal.ToString( "#0" ) + ub.Get( "SiteBz" ), sumDownVal.ToString( "#0" ) + ub.Get( "SiteBz" ) ) );
+                this.mainPage.builder.Append( string.Format( "<b style=\"color:#ff0000\">第{0}期 | 总奖池：{1} | 猜涨：{2} | 猜跌：{3}</b><br />", sseNo, sumBeforeOpenPrizeVal.ToString( "#0" ) + this.mSseVersionMgr.account.name, sumUpVal.ToString( "#0" ) + this.mSseVersionMgr.account.name, sumDownVal.ToString( "#0" ) + this.mSseVersionMgr.account.name ) );
                         
                 foreach( BCW.SSE.Model.SsePrizePoolChang n in lstSsePrizePoolChang )
                 {
@@ -1206,27 +1236,27 @@ namespace SSEManagePage
                             this.mainPage.builder.Append( Out.Tab( "<div>", "<br />" ) );
                     }
 
-                    string coinName = n.poolType == 0 ? ub.Get("SiteBz"):"金币"; 
+                    string coinName = this.mSseVersionMgr.account.name; 
                     switch( n.operType )
                     {
                         //0下单/1系统退注(开奖为平)/2人工退注/3系统开平局退注/4本期滚存到下期/5下期得到本期滚存
                         case 0:
-                            this.mainPage.builder.Append( string.Format( "{0}、<a href=\"/bbs/uinfo.aspx?uid=" + n.OperId + "\">{1}</a>在第{2}期<b style=\"color:#06A545\">消费{3}{4}</b>|<b style=\"color:#ff0000\">结余：{5}</b>({6})",k+((pageIndex-1)*pageSize), new BCW.BLL.User().GetUsName( n.OperId ) + "(" + n.OperId + ")", n.sseNo, n.changeMoney.ToString( "#0" ), coinName, n.totalMoney.ToString( "#0" ) + ub.Get( "SiteBz" ), n.changeTime ) );
+                            this.mainPage.builder.Append( string.Format( "{0}、<a href=\"/bbs/uinfo.aspx?uid=" + n.OperId + "\">{1}</a>在第{2}期<b style=\"color:#06A545\">消费{3}{4}</b>|<b style=\"color:#ff0000\">结余：{5}</b>({6})",k+((pageIndex-1)*pageSize), new BCW.BLL.User().GetUsName( n.OperId ) + "(" + n.OperId + ")", n.sseNo, n.changeMoney.ToString( "#0" ), coinName, n.totalMoney.ToString( "#0" ) + this.mSseVersionMgr.account.name, n.changeTime ) );
                             break;
                         case 1:
-                            this.mainPage.builder.Append( string.Format( "{0}、系统在第{1}期开出平局<b style=\"color:#06A545\">退回投注{2}{3}</b>|<b style=\"color:#ff0000\">结余：{4}</b>", k + ( ( pageIndex - 1 ) * pageSize ), n.sseNo, n.changeMoney.ToString( "#0" ), coinName, n.totalMoney.ToString( "#0" ) + ub.Get( "SiteBz" ), n.changeTime ) );                             
+                            this.mainPage.builder.Append( string.Format( "{0}、系统在第{1}期开出平局<b style=\"color:#06A545\">退回投注{2}{3}</b>|<b style=\"color:#ff0000\">结余：{4}</b>", k + ( ( pageIndex - 1 ) * pageSize ), n.sseNo, n.changeMoney.ToString( "#0" ), coinName, n.totalMoney.ToString( "#0" ) + this.mSseVersionMgr.account.name, n.changeTime ) );                             
                             break;
                         case 2:
-                            this.mainPage.builder.Append( string.Format( "{0}、<a href=\"/bbs/uinfo.aspx?uid=" + n.OperId + "\">{1}</a>在第{2}期<b style=\"color:#06A545\">申请退注{3}{4}</b>|<b style=\"color:#ff0000\">结余：{5}</b>({6})", k + ( ( pageIndex - 1 ) * pageSize ), new BCW.BLL.User().GetUsName( n.OperId ) + "(" + n.OperId + ")", n.sseNo, n.changeMoney.ToString( "#0" ), coinName, n.totalMoney.ToString( "#0" ) + ub.Get( "SiteBz" ), n.changeTime ) );
+                            this.mainPage.builder.Append( string.Format( "{0}、<a href=\"/bbs/uinfo.aspx?uid=" + n.OperId + "\">{1}</a>在第{2}期<b style=\"color:#06A545\">申请退注{3}{4}</b>|<b style=\"color:#ff0000\">结余：{5}</b>({6})", k + ( ( pageIndex - 1 ) * pageSize ), new BCW.BLL.User().GetUsName( n.OperId ) + "(" + n.OperId + ")", n.sseNo, n.changeMoney.ToString( "#0" ), coinName, n.totalMoney.ToString( "#0" ) + this.mSseVersionMgr.account.name, n.changeTime ) );
                              break;
                         case 3:
-                             this.mainPage.builder.Append( string.Format( "{0}、系统第{1}期<b style=\"color:#06A545\">派奖{2}{3}</b>|<b style=\"color:#ff0000\">结余：{4}{5}</b>({6})", k + ( ( pageIndex - 1 ) * pageSize ), n.sseNo, n.changeMoney.ToString( "#0" ), coinName, n.bz, n.totalMoney.ToString( "#0" ) + ub.Get( "SiteBz" ), n.changeTime ) );             
+                             this.mainPage.builder.Append( string.Format( "{0}、系统第{1}期<b style=\"color:#06A545\">派奖{2}{3}</b>|<b style=\"color:#ff0000\">结余：{4}{5}</b>({6})", k + ( ( pageIndex - 1 ) * pageSize ), n.sseNo, n.changeMoney.ToString( "#0" ), coinName, n.bz, n.totalMoney.ToString( "#0" ) + this.mSseVersionMgr.account.name, n.changeTime ) );             
                             break;
                         case 4:
                             this.mainPage.builder.Append( string.Format( "{0}、第{1}期<b style=\"color:#06A545\">滚存{2}{3}</b>到第{4}期|<b style=\"color:#ff0000\">结余：{5}</b>({6})", k + ( ( pageIndex - 1 ) * pageSize ), n.sseNo, n.totalMoney.ToString( "#0" ), coinName, n.bz, 0, n.changeTime ) );   
                             break;
                         case 5:
-                            this.mainPage.builder.Append( string.Format( "{0}、第{1}期得到第{2}期<b style=\"color:#06A545\">滚存{3}{4}</b>|<b style=\"color:#ff0000\">结余：{5}</b>({6})", k + ( ( pageIndex - 1 ) * pageSize ), n.sseNo, n.bz, n.changeMoney.ToString( "#0" ), coinName, n.totalMoney.ToString( "#0" ) + ub.Get( "SiteBz" ), n.changeTime ) );
+                            this.mainPage.builder.Append( string.Format( "{0}、第{1}期得到第{2}期<b style=\"color:#06A545\">滚存{3}{4}</b>|<b style=\"color:#ff0000\">结余：{5}</b>({6})", k + ( ( pageIndex - 1 ) * pageSize ), n.sseNo, n.bz, n.changeMoney.ToString( "#0" ), coinName, n.totalMoney.ToString( "#0" ) + this.mSseVersionMgr.account.name, n.changeTime ) );
                             break;
                     }
 
@@ -1237,7 +1267,7 @@ namespace SSEManagePage
                 this.mainPage.builder.Append( "<br />" );
 
                 // 分页
-                this.mainPage.builder.Append( BasePage.MultiPage( pageIndex, pageSize, recordCount, Utils.getPageUrl(), pageValUrl, "page", 0 ) );
+                this.mainPage.builder.Append( BasePage.MultiPage( pageIndex, pageSize, recordCount,Utils.getPageUrl(), pageValUrl, "page", 0 ) );
 
             }
             else
@@ -1256,8 +1286,8 @@ namespace SSEManagePage
         private int includeRobot;
 
 
-        public SSEPageAnalyse( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster )
-            : base( _mainPage, _baseMaster )
+        public SSEPageAnalyse( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster, sseMgrBase _sseMgr )
+            : base( _mainPage, _baseMaster, _sseMgr )
         {
 
         }
@@ -1274,10 +1304,10 @@ namespace SSEManagePage
 
             //日期校验.
             if( beginTime != "" && Regex.IsMatch( beginTime, @"^\d{4}(\-)\d{1,2}\-\d{1,2}$" ) == false )
-                Utils.Error( "开始日期填写格式有误", "" );
+                Utils.Error( "开始日期填写格式有误", Utils.getUrl( this.mSseVersionMgr.pageName ) );
 
             if( endTime != "" && Regex.IsMatch( endTime, @"^\d{4}(\-)\d{1,2}\-\d{1,2}$" ) == false )
-                Utils.Error( "结束日期填写格式有误", "" );     
+                Utils.Error( "结束日期填写格式有误", Utils.getUrl( this.mSseVersionMgr.pageName ) );     
 
             if (string.IsNullOrEmpty(beginTime))
                beginTime = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
@@ -1297,14 +1327,14 @@ namespace SSEManagePage
             _parameters[ 0 ].Value = includeRobot;
             _parameters[ 1 ].Value = DateTime.Parse( beginTime );
             _parameters[ 2 ].Value = DateTime.Parse( endTime );
-            _parameters[ 3 ].Value = "0";
+            _parameters[ 3 ].Value = this.mSseVersionMgr.versionId;
             SqlDataReader _reader = BCW.Data.SqlHelper.RunProcedure( "sp_SseCalcProfit", _parameters );
             while( _reader.Read() )
             {
                 this.mainPage.builder.Append("【"+ _reader.GetString( 0 ) + "】<br />" );
-                this.mainPage.builder.Append( string.Format( "总收入：{0} (销售收入：{1}+ 手续费收入：{2})<br />", _reader.GetDecimal( 1 ).ToString( "0" ) + ub.Get( "SiteBz" ), _reader.GetDecimal( 2 ).ToString( "0" ) + ub.Get( "SiteBz" ), _reader.GetDecimal( 3 ).ToString( "0" ) + ub.Get( "SiteBz" ) ) );
-                this.mainPage.builder.Append( string.Format( "总支出：{0} <br />", _reader.GetDecimal( 4 ).ToString( "0" ) + ub.Get( "SiteBz" ) ) );
-                this.mainPage.builder.Append( string.Format( "总盈利：{0} <br />", _reader.GetDecimal( 5 ).ToString( "0" ) + ub.Get( "SiteBz" ) ) );
+                this.mainPage.builder.Append( string.Format( "总收入：{0} (销售收入：{1}+ 手续费收入：{2})<br />", _reader.GetDecimal( 1 ).ToString( "0" ) + this.mSseVersionMgr.account.name, _reader.GetDecimal( 2 ).ToString( "0" ) + this.mSseVersionMgr.account.name, _reader.GetDecimal( 3 ).ToString( "0" ) + this.mSseVersionMgr.account.name ) );
+                this.mainPage.builder.Append( string.Format( "总支出：{0} <br />", _reader.GetDecimal( 4 ).ToString( "0" ) + this.mSseVersionMgr.account.name ) );
+                this.mainPage.builder.Append( string.Format( "总盈利：{0} <br />", _reader.GetDecimal( 5 ).ToString( "0" ) + this.mSseVersionMgr.account.name ) );
                 this.mainPage.builder.Append( "<br />" ); 
             }
 
@@ -1318,7 +1348,7 @@ namespace SSEManagePage
 
             string strEmpt = "0|不包含|1|包含,true,true,false";
             string strIdea = "/";
-            string strOthe = "马上查询,sse.aspx?act=analyse,post,1,red";
+            string strOthe = "马上查询,"+this.mSseVersionMgr.pageName+"act=analyse,post,1,red";
             this.mainPage.builder.Append( Out.wapform( strText, strName, strType, strValu, strEmpt, strIdea, strOthe ) );
 
             base.ShowPage();
@@ -1328,8 +1358,8 @@ namespace SSEManagePage
     //配置中心
     public class SSEPageSetting : SseManagePageBase
     {
-        public SSEPageSetting( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster )
-            : base( _mainPage, _baseMaster )
+        public SSEPageSetting( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster, sseMgrBase _sseMgr )
+            : base( _mainPage, _baseMaster, _sseMgr )
         {
 
         }
@@ -1365,11 +1395,11 @@ namespace SSEManagePage
                 string SSEOpenDefault = Utils.GetRequest( "SSEOpenDefault", "post", 1, "", "" );
 
                 if( Regex.IsMatch( SSEBeginDefault, @"^\d{2}:\d{2}:\d{2}$" ) == false )
-                    Utils.Error( "开盘时间格式填写错误" ,"");
+                    Utils.Error( "开盘时间格式填写错误", Utils.getUrl( this.mSseVersionMgr.pageName ) );
                 if( Regex.IsMatch( SSEEndDefault, @"^\d{2}:\d{2}:\d{2}$" ) == false )
-                    Utils.Error( "截止时间格式填写错误", "" );
+                    Utils.Error( "截止时间格式填写错误", Utils.getUrl( this.mSseVersionMgr.pageName ) );
                 if( Regex.IsMatch( SSEOpenDefault, @"^\d{2}:\d{2}:\d{2}$" ) == false )
-                    Utils.Error( "开奖时间格式填写错误", "" );
+                    Utils.Error( "开奖时间格式填写错误", Utils.getUrl( this.mSseVersionMgr.pageName ) );
 
 
                 xml.dss[ "SSEMin" ] = SSEMin;
@@ -1390,7 +1420,7 @@ namespace SSEManagePage
                 xml.dss[ "SSEOpenDefault" ] = SSEOpenDefault;
 
                 System.IO.File.WriteAllText( this.mainPage.Server.MapPath( xmlPath ), xml.Post( xml.dss ), System.Text.Encoding.UTF8 );
-                Utils.Success( "上证指数设置", "设置成功，正在返回..", Utils.getUrl( "sse.aspx" ), "1" );
+                Utils.Success( "上证指数设置", "设置成功，正在返回..", Utils.getUrl( this.mSseVersionMgr.pageName ), "1" );
 
 
                 return;
@@ -1404,7 +1434,7 @@ namespace SSEManagePage
             string strValu = "" + xml.dss[ "SSEMin" ] + "'" + xml.dss[ "SSEMax" ] + "'" + xml.dss[ "SSEBig" ] + "'" + xml.dss[ "SSEPrizeCalcRate" ] + "'" + xml.dss[ "SSEPrizePoundageRate" ] + "'" + xml.dss[ "SSEGetPrizeTimeLimit" ] + "'" + xml.dss[ "SSEPageSize" ] + "'" + xml.dss[ "SSEManagePageSize" ] + "'" + xml.dss[ "DefaultFastVal" ] + "'" + xml.dss[ "SSEBuyExpir" ] + "'" + xml.dss[ "SFrule" ] + "'" + xml.dss[ "SSEBeginDefault" ] + "'" + xml.dss[ "SSEEndDefault" ] + "'" + xml.dss[ "SSEOpenDefault" ] + "'" + Utils.getPage( 0 ) + "";
             string strEmpt = "false,false,false,false,false,false,false,false,false,false,false,false,false,false,false";
             string strIdea = "/";
-            string strOthe = "确定修改,sse.aspx?act=setting,post,1,red";
+            string strOthe = "确定修改,"+this.mSseVersionMgr.pageName+"act=setting,post,1,red";
             this.mainPage.builder.Append( Out.wapform( strText, strName, strType, strValu, strEmpt, strIdea, strOthe ) );
             this.mainPage.builder.Append( Out.Tab( "<div>", "<br />" ) );
             this.mainPage.builder.Append( "温馨提示:<br />游戏开放时间填写格式为:09:00:00<br />" );
@@ -1419,8 +1449,8 @@ namespace SSEManagePage
     {
         private int ptype;
 
-        public SSEPageOrderQuery( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster )
-            : base( _mainPage, _baseMaster )
+        public SSEPageOrderQuery( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster, sseMgrBase _sseMgr )
+            : base( _mainPage, _baseMaster, _sseMgr )
         {
 
         }
@@ -1438,19 +1468,19 @@ namespace SSEManagePage
     {
         private int ptype;
 
-        public SSEPageGameReset( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster )
-            : base( _mainPage, _baseMaster )
+        public SSEPageGameReset( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster, sseMgrBase _sseMgr )
+            : base( _mainPage, _baseMaster, _sseMgr )
         {
 
         }
 
         public override void ShowPage()
         {
-            int ManageId = new BCW.User.Manage().IsManageLogin();
-            if( ManageId != 1 && ManageId != 9 )
-            {
-                Utils.Error( "权限不足", "" );
-            }
+            //int ManageId = new BCW.User.Manage().IsManageLogin();
+            //if( ManageId != 1 && ManageId != 9 )
+            //{
+            //    Utils.Error( "权限不足", "" );
+            //}
                 
 
             //IncludePage( new SSEPageHeader( this.mainPage, this.baseMaster ) );
@@ -1478,7 +1508,7 @@ namespace SSEManagePage
                     SetNextSseTime();
                        
 
-                Utils.Success( "重置游戏", "重置成功", Utils.getUrl( "sse.aspx" ), "1" );
+                Utils.Success( "重置游戏", "重置成功", Utils.getUrl( this.mSseVersionMgr.pageName ), "1" );
                // this.mainPage.builder.Append( "重置成功<br />" );
                 return;
             }
@@ -1489,10 +1519,10 @@ namespace SSEManagePage
             string strValu = "" + "1'" + Utils.getPage( 0 ) + "";
             string strEmpt = "false,false";
             string strIdea = "/";
-            string strOthe = "确定重置/,sse.aspx?act=reset,post,1,red";
+            string strOthe = "确定重置/,"+this.mSseVersionMgr.pageName+"act=reset,post,1,red";
             this.mainPage.builder.Append( Out.wapform( strText, strName, strType, strValu, strEmpt, strIdea, strOthe ) );
 
-            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( "sse.aspx?act=main" ) + "\">以后再说吧</a> <br />" );
+            this.mainPage.builder.Append( "<a href=\"" + Utils.getUrl( this.mSseVersionMgr.pageName+"act=main" ) + "\">以后再说吧</a> <br />" );
             this.mainPage.builder.Append( Out.Tab( "</div>", "<br />" ) );
             base.ShowPage();
         }
@@ -1539,8 +1569,8 @@ namespace SSEManagePage
         protected string strIdea = string.Empty;
         protected string strOthe = string.Empty;
 
-        public SSEPageGetPirzeConfirm( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster )
-            : base( _mainPage, _baseMaster )
+        public SSEPageGetPirzeConfirm( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster, sseMgrBase _sseMgr )
+            : base( _mainPage, _baseMaster, _sseMgr )
         {
 
         }
@@ -1548,7 +1578,7 @@ namespace SSEManagePage
 
         public override void ShowPage()
         {
-            this.IncludePage( new SSEPageHeader( this.mainPage, this.baseMaster ) );
+            this.IncludePage( new SSEPageHeader( this.mainPage, this.baseMaster,this.mSseVersionMgr ) );
 
             this.baseMaster.Title = "确认兑奖";
 
@@ -1566,14 +1596,14 @@ namespace SSEManagePage
             {
                 if( _ds.Tables[ 0 ].Rows[ 0 ][ "isGet" ].ToString().Trim() == "True" )
                 {
-                    Utils.Error( "该会员已经兑过奖了", "" );
+                    Utils.Error( "该会员已经兑过奖了", Utils.getUrl( this.mSseVersionMgr.pageName ) );
                     this.mainPage.builder.Append( Out.Tab( "</div>", "<br />" ) );
                 }
 
                 this.mainPage.builder.Append( "请您确认以下兑奖信息 <br />" );
 
                 string _sseNo = _ds.Tables[ 0 ].Rows[ 0 ][ "sseNo" ].ToString();
-                int _buyType = int.Parse( _ds.Tables[ 0 ].Rows[ 0 ][ "sseNo" ].ToString() );
+                bool _buyType = bool.Parse( _ds.Tables[ 0 ].Rows[ 0 ][ "buyType" ].ToString() );
                 long _buyMoney = ( long ) decimal.Parse( _ds.Tables[ 0 ].Rows[ 0 ][ "buyMoney" ].ToString() );
                 long _getPrize = ( long ) decimal.Parse( _ds.Tables[ 0 ].Rows[ 0 ][ "prizeVal" ].ToString() );
                 long _poundage = ( long ) decimal.Parse( _ds.Tables[ 0 ].Rows[ 0 ][ "poundage" ].ToString() );
@@ -1581,11 +1611,11 @@ namespace SSEManagePage
                 DateTime _lastGetDateTime = DateTime.Parse( _ds.Tables[ 0 ].Rows[ 0 ][ "openDateTime" ].ToString() ).AddDays( int.Parse( ub.GetSub( "SSEGetPrizeTimeLimit", xmlPath ) ) );
 
                 this.mainPage.builder.Append( string.Format( "第【{0}】期<br />", _sseNo ) );
-                this.mainPage.builder.Append( string.Format( "投注类型：【{0}】<br />", _buyType == 1 ? "猜涨" : "猜跌" ) );
-                this.mainPage.builder.Append( string.Format( "投注金额：{0}{1}<br />", _buyMoney.ToString( "#0" ), ub.Get( "SiteBz" ) ) );
-                this.mainPage.builder.Append( string.Format( "中奖金额：{0}{1}<br />", _getPrize.ToString( "#0" ), ub.Get( "SiteBz" ) ) );
-                this.mainPage.builder.Append( string.Format( "兑奖手费费：{0}{1}<br />", _poundage.ToString( "#0" ), ub.Get( "SiteBz" ) ) );
-                this.mainPage.builder.Append( string.Format( "实发金额：{0}{1}<br />", _getRealPrize.ToString( "#0" ), ub.Get( "SiteBz" ) ) );
+                this.mainPage.builder.Append( string.Format( "投注类型：【{0}】<br />", _buyType == true ? "猜涨" : "猜跌" ) );
+                this.mainPage.builder.Append( string.Format( "投注金额：{0}{1}<br />", _buyMoney.ToString( "#0" ), this.mSseVersionMgr.account.name ) );
+                this.mainPage.builder.Append( string.Format( "中奖金额：{0}{1}<br />", _getPrize.ToString( "#0" ), this.mSseVersionMgr.account.name ) );
+                this.mainPage.builder.Append( string.Format( "兑奖手费费：{0}{1}<br />", _poundage.ToString( "#0" ), this.mSseVersionMgr.account.name ) );
+                this.mainPage.builder.Append( string.Format( "实发金额：{0}{1}<br />", _getRealPrize.ToString( "#0" ), this.mSseVersionMgr.account.name ) );
                 this.mainPage.builder.Append( string.Format( "最后兑奖期限：{0}<br />", _lastGetDateTime ) );
                 this.mainPage.builder.Append( Out.Tab( "</div>", "<br />" ) );
 
@@ -1598,18 +1628,18 @@ namespace SSEManagePage
                 strValu = "" + _sseNo + "'" + this.id + "'" + _getRealPrize.ToString() + "'" + _buyType + "'" + _poundage + "'getPirzeSubMit'" + Utils.PostPage( 1 ) + "";
                 strEmpt = "false,false,false,false,false,false";
                 strIdea = "";
-                strOthe = string.Format( " 确认兑奖,{0},post,4,other", Utils.getUrl( "SSE.aspx" ) );
+                strOthe = string.Format( " 确认兑奖,{0},post,4,other", Utils.getUrl( this.mSseVersionMgr.pageName ) );
                 this.mainPage.builder.Append( ( Out.wapform( strText, strName, strType, strValu, strEmpt, strIdea, strOthe ) ).Replace( "<form ", "<form style=\"display: inline\"; " ) + "<br />" );
 
             }
             else
             {
-                Utils.Error( "兑奖信息无效或已过期", "" );
+                Utils.Error( "兑奖信息无效或已过期", Utils.getUrl( this.mSseVersionMgr.pageName ) );
             }
 
             this.mainPage.builder.Append( Out.Tab( "</div>", "" ) );
 
-            this.IncludePage( new SSEPageFooter( this.mainPage, this.baseMaster ) );
+            this.IncludePage( new SSEPageFooter( this.mainPage, this.baseMaster ,this.mSseVersionMgr) );
         }
     }
     #endregion
@@ -1619,8 +1649,8 @@ namespace SSEManagePage
     public class SSEPageGetPirzeSubmit : SseManagePageBase
     {
 
-        public SSEPageGetPirzeSubmit( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster )
-            : base( _mainPage, _baseMaster )
+        public SSEPageGetPirzeSubmit( Manage_game_sse _mainPage, BCW.Common.BaseMaster _baseMaster, sseMgrBase _sseMgr )
+            : base( _mainPage, _baseMaster, _sseMgr )
         {
 
         }
@@ -1635,7 +1665,7 @@ namespace SSEManagePage
             int _prizeId = int.Parse( Utils.GetRequest( "prizeId", "post", 4, @"^[0-9]\d*$", "找不到兑奖信息" ) );
             long _getMoney = ( long ) decimal.Parse( Utils.GetRequest( "getMoney", "post", 1, "", "" ) );
 
-            int _buyType = int.Parse( Utils.GetRequest( "buyType", "post", 1, "", "0" ) );
+            bool _buyType = bool.Parse( Utils.GetRequest( "buyType", "post", 1, "", "" ) );
             long _poundage = ( long ) decimal.Parse( Utils.GetRequest( "poundage", "post", 1, "", "" ) );
 
             //注册手工注册防刷
@@ -1644,7 +1674,7 @@ namespace SSEManagePage
             object getObjCacheTime = DataCache.GetCache( CacheKey );
             if( getObjCacheTime != null )
             {
-                Utils.Error( ub.GetSub( "BbsGreet", "/Controls/bbs.xml" ), "" );
+                Utils.Error( ub.GetSub( "BbsGreet", "/Controls/bbs.xml" ), Utils.getUrl( this.mSseVersionMgr.pageName ) );
             }
             object ObjCacheTime = DateTime.Now;
             DataCache.SetCache( CacheKey, ObjCacheTime, DateTime.Now.AddSeconds( Expir ), TimeSpan.Zero );
@@ -1660,14 +1690,16 @@ namespace SSEManagePage
             {
 
                 //扣币
-                new BCW.BLL.User().UpdateiGold( _modGetPrize.userId, _getMoney, string.Format( "上证【{0}】期兑奖|标识({1})", _sseNo, _id ) );
+                this.mSseVersionMgr.account.UpdateiGold( _modGetPrize.userId, _getMoney, string.Format( "上证【{0}】期兑奖|标识({1})", _sseNo, _id ) );
 
-                //Utils.Success( "下注", "下注成功，花费了" + _money + "" + ub.Get( "SiteBz" ) + "<br />", Utils.getUrl( "SSE.aspx?act=myOrder" ), "2" );
-                Utils.Success( "兑奖", "兑奖成功，获得了" + _getMoney.ToString( "#0" ) + "" + ub.Get( "SiteBz" ) + "<br />", Utils.getUrl( "sse.aspx?act=orderQuery" ), "2" );
+               // new BCW.BLL.User().UpdateiGold( _modGetPrize.userId, _getMoney, string.Format( "上证【{0}】期兑奖|标识({1})", _sseNo, _id ) );
+
+                //Utils.Success( "下注", "下注成功，花费了" + _money + "" + this.mSseVersionMgr.account.name + "<br />", Utils.getUrl( this.mSseVersionMgr.pageName+"act=myOrder" ), "2" );
+                Utils.Success( "兑奖", "兑奖成功，获得了" + _getMoney.ToString( "#0" ) + "" + this.mSseVersionMgr.account.name + "<br />", Utils.getUrl( this.mSseVersionMgr.pageName+"act=orderQuery" ), "2" );
 
             }
             else
-                Utils.Error( "兑奖失败", "sse.aspx?act=orderQuery" );
+                Utils.Error( "兑奖失败", Utils.getUrl(this.mSseVersionMgr.pageName+"act=orderQuery") );
 
 
             this.mainPage.builder.Append( Out.Tab( "<div class=\"text\">", "" ) );

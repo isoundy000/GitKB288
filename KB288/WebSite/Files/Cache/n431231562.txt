@@ -643,17 +643,7 @@ function showTurnAD144(basenum){
 if (basenum==1){
 if (typeof has_topAd == "undefined" || has_topAd==0) {
 //以上为topnews代码，投放时请带上，轮换代码从下面开始替换
-require(["sjs/matrix/ad/passion"], function (passion) {
-    var _C = "#TurnAD144",_ID = "10028",_W = 970,_H = 90,_T = 1,_F=201;
-    if(_C){jQuery(_C).attr('id','beans_'+_ID).css({'width' : _W + 'px', 'height' : _H + 'px'});}
-    passion.ones({itemspaceid : _ID,width:_W,height:_H,adsrc : _F,turn : _T,defbeans : !0});
-    });
-//轮换代码结束
-}}
-else{
-if (typeof has_topAd == "undefined" || has_topAd==0) {
-//以上为topnews代码，投放时请带上，轮换代码从下面开始替换
-document.getElementById('TurnAD144').innerHTML ='<iframe width=970 height=90 marginwidth=0 marginheight=0 hspace=0 frameborder=0 scrolling=no bordercolor=#000000 src=http://x.jd.com/exsites?spread_type=2&ad_ids=932:5&location_info=0&callback=getjjsku_callback></iframe>';
+document.getElementById('TurnAD144').innerHTML ='<iframe width=970 height=90 marginwidth=0 marginheight=0 hspace=0 frameborder=0 scrolling=no bordercolor=#000000 src= http://static-alias-1.360buyimg.com/jzt/tpl/sspPic.html?ad_ids=2427:5&adflag=0&clkmn=&expose=></iframe>';
 //轮换代码结束
 }
 function addImp(adobj){
@@ -664,6 +654,16 @@ function addImp(adobj){
 				img.src = adobj;
 			}
 addImp("http://imp.optaim.com/201507/9613d5ba8f97474f83901795d19d2686.php?a=0");}
+else{
+if (typeof has_topAd == "undefined" || has_topAd==0) {
+//以上为topnews代码，投放时请带上，轮换代码从下面开始替换
+require(["sjs/matrix/ad/passion"], function (passion) {
+    var _C = "#TurnAD144",_ID = "10028",_W = 970,_H = 90,_T = 2,_F=201;
+    if(_C){jQuery(_C).attr('id','beans_'+_ID).css({'width' : _W + 'px', 'height' : _H + 'px'});}
+    passion.ones({itemspaceid : _ID,width:_W,height:_H,adsrc : _F,turn : _T,defbeans : !0});
+    });
+//轮换代码结束
+}}
 }
 showTurnAD144(intTurnAD144);
 }catch(e){}
@@ -1004,7 +1004,7 @@ addImp("http://imp.optaim.com/201507/9c21da63769d55542c77e7d98c9c4531.php?a=0");
 </SOHUADCODE></div>
 			</div>
 			<!-- 20130121 st -->
-			<div class="lottery-box clear" id="sougocaipiao1"><a href="http://caipiao.sohu.com" target="_blank" rel="nofollow">中奖票被调老板拿2万收买民警</a>&nbsp;&nbsp;<a href="http://caipiao.sohu.com" target="_blank" rel="nofollow">双色球3注1000万</a>&nbsp;&nbsp;<a  href="http://caipiao.sohu.com" target="_blank" rel="nofollow">男子诈骗离异女性150万买彩</a>&nbsp;&nbsp;<a href="http://caipiao.sohu.com/video/tycpkj/index.shtml" target="_blank" rel="nofollow">体彩开奖</a></div	
+			<div class="lottery-box clear" id="sougocaipiao1"><a href="http://caipiao.sohu.com" target="_blank" rel="nofollow">福彩公益助学授人以渔</a>&nbsp;&nbsp;<a href="http://caipiao.sohu.com" target="_blank" rel="nofollow">双色球143期：头奖5注900万</a>&nbsp;&nbsp;<a  href="http://caipiao.sohu.com" target="_blank" rel="nofollow">冠军回乡助力快乐操场</a>&nbsp;&nbsp;<a href="http://caipiao.sohu.com/video/tycpkj/index.shtml" target="_blank" rel="nofollow">体彩摇奖</a></div	
 			<!-- 20130121 end -->
 			<div class="mutu clear">
 				<div class="mutu-title">
@@ -1076,11 +1076,11 @@ try{
 			</div>
 			<div class="hotword">
 				<p>热词：
-<a href="http://www.sogou.com/sogou?pid=sogou-inse-c5ab6cebaca97f71&query=%E5%A4%AE%E8%A7%86%E6%98%A5%E6%99%9A%E8%81%94%E6%8E%92" target="_blank" rel="nofollow">春晚联排</a>
-<a href="http://www.sogou.com/sogou?pid=sogou-inse-c5ab6cebaca97f71&query=%E9%A3%9F%E5%93%81%E8%BA%AB%E4%BB%BD%E8%AF%81" target="_blank" rel="nofollow">食品身份证</a>
-<a href="http://www.sogou.com/sogou?pid=sogou-inse-c5ab6cebaca97f71&query=%E5%85%BB%E8%80%81%E7%A1%95%E5%A3%AB%E5%AD%A6%E4%BD%8D" target="_blank" rel="nofollow">养老硕士</a>
-<a href="http://www.sogou.com/sogou?pid=sogou-inse-c5ab6cebaca97f71&query=%E6%81%8B%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%99%96" target="_blank" rel="nofollow">恋机器人癖</a></p>
-				<p>热剧：<a href="http://tv.sohu.com/s2015/zfst/" target="_blank">煮妇神探</a> <a href="http://tv.sohu.com/s2016/wstzbzplh/" target="_blank">特种兵霹雳火</a> <a href="http://tv.sohu.com/s2015/dsjccnn2/" target="_blank">匆匆那年</a> <a href="http://tv.sohu.com/s2014/qsmy/" target="_blank">秦时明月</a> <a href="http://tv.sohu.com/s2015/thestrain2/" target="_blank">血族</a> </p>
+<a href="http://www.sogou.com/sogou?pid=sogou-inse-c5ab6cebaca97f71&query=%E8%BF%90%E5%8A%A8%E9%9E%8B%E8%97%8F4%E6%96%A4%E9%BB%84%E9%87%91" target="_blank" rel="nofollow">藏金神鞋</a>
+<a href="http://www.sogou.com/sogou?pid=sogou-inse-c5ab6cebaca97f71&query=%E7%94%B7%E5%AD%90%E7%94%A8%E8%84%9A%E6%8E%8C%E5%BC%80%E8%BD%A6" target="_blank" rel="nofollow">用脚掌开车</a>
+<a href="http://www.sogou.com/sogou?pid=sogou-inse-c5ab6cebaca97f71&query=%E6%AF%8D%E7%8C%AA%E7%AB%9F%E7%84%B6%E7%94%9F%E4%B8%8B%E7%8C%B4%E5%B4%BD" target="_blank" rel="nofollow">猴脸猪身</a>
+<a href="http://www.sogou.com/sogou?pid=sogou-inse-c5ab6cebaca97f71&query=%E5%88%98%E6%B6%9B%E5%A4%B1%E7%9C%A0%E6%B1%82%E5%81%8F%E6%96%B9" target="_blank" rel="nofollow">刘涛求偏方</a></p>
+				<p>热剧：<a href="http://tv.sohu.com/s2016/fyqm/" target="_blank">法医秦明</a> <a href="http://tv.sohu.com/s2016/dsjmrsfc/" target="_blank">美人私房菜</a> <a href="http://tv.sohu.com/s2016/dsjqiling/" target="_blank">器灵</a> <a href="http://tv.sohu.com/s2016/mjpcjm5/" target="_blank">破产姐妹</a> <a href="http://tv.sohu.com/s2016/xldsy/" target="_blank">心里的声音</a></p>
 			</div>
 		</div>
         <script type="text/javascript">
@@ -1194,22 +1194,22 @@ showTurnAD481(intTurnAD481);
 		<!-- 手机看新闻 -->
 		<script src="http://a1.itc.cn/pv/js/pvcode.1312101227.js"></script>
 <div class="phone_rss">
-   <a href="http://k.sohu.com" onclick="_pv.send('5af69b5503b22dd5')" target="_blank"><img src="http://i2.itc.cn/20160122/a75_355d1060_ed57_12d7_b338_00776c7db726_1.jpg" width="300" height="92"></a></div>
+   <a href="http://k.sohu.com" onclick="_pv.send('5af69b5503b22dd5')" target="_blank"><img src="http://i0.itc.cn/20160913/a75_6b415468_0160_9d9d_2462_6621521fdc30_1.jpg" width="300" height="92"></a></div>
 <div class="blank5B"></div>		
 		<!-- 相关微博 -->
 		
 		<div class="news-frag clear">
 		 <h2><span>军事热点推荐</span><a href="http://mil.sohu.com/" target="_blank">更多&gt;&gt;</a></h2>
 <div class="list12">
-<h4><a href="http://mil.sohu.com/" target="_blank">中美上将口头激烈交锋 美方撂话再闯南海</a></h4>				
+<h4><a href="http://mil.sohu.com/" target="_blank">特朗普蔡英文越过大陆红线 还要陪笑脸？</a></h4>				
 <ul>
-<li><a href="http://mil.sohu.com/20160121/n435288067.shtml" target="_blank">002型航母上电磁弹射？国宝级少将笑答</a></li>
+<li><a href="http://mil.sohu.com/20161207/n475177467.shtml" target="_blank">朴槿惠即将下台美日跟着着急 萨德部署或生变</a></li>
 
-<li><a href="http://mil.sohu.com/20160121/n435303166.shtml" target="_blank">台媒称挪威承认台湾是“国家” 惨遭打脸</a></li>
+<li><a href="http://mil.sohu.com/20161207/n475130168.shtml" target="_blank">解放军导弹致缅战机坠中国领空?军方否认(图)</a></li>
 
-<li><a href="http://mil.sohu.com/20160121/n435309258.shtml" target="_blank">美军航母“闹饥荒” 中方少将：美国不行了</a></li>	
+<li><a href="http://mil.sohu.com/20161207/n475130606.shtml" target="_blank">国产航母清晰全貌卫星照流出 与辽宁舰差别大</a></li>
 
-<li><a href="http://mil.sohu.com/20160121/n435291690.shtml " target="_blank">外媒：中国摸透美最大死穴 两大招耗尽美国</a></li>
+<li><a href="http://mil.sohu.com/20161207/n475156751.shtml" target="_blank">解放军不再用木柄手榴弹 新手雷造型奇特(图)</a></li>
 
 
 
@@ -1219,16 +1219,16 @@ showTurnAD481(intTurnAD481);
 		 <div class="clk-today clear">
   <h3><span>历史回顾</span><a href="http://mil.sohu.com/" target="_blank">更多&gt;&gt;</a></h3>
   <div class="pic-text">
-    <div><a target="_blank" href="http://history.sohu.com/"><img src="http://i0.itc.cn/20160119/3484_dad586c4_831e_dd54_1892_2b00c830e9de_1.jpg" alt="" width="115" height="75" border="0"></a></div>
-    <h4><a target="_blank" href="http://history.sohu.com/20160119/n435008147.shtml">
-周永康泄密细节曝光：<br>
-5份绝密情报给了他</a></h4>
-    <p>    周永康泄露5份绝密级和1份机密级文件…[<a target="_blank" href="http://history.sohu.com/20160119/n435008147.shtml">详细</a>]</p>
+    <div><a target="_blank" href="http://history.sohu.com/"><img src="http://i1.itc.cn/20160411/3484_c2131f72_430c_0366_fbe3_544f8961d55b_1.jpg" alt="" width="115" height="75" border="0"></a></div>
+    <h4><a target="_blank" href="http://history.sohu.com/20160411/n443823983.shtml">
+令计划用违纪手段<br>
+处理儿子车祸</a></h4>
+    <p>    令计划的独生子令谷在车祸中当场死亡…[<a target="_blank" href="http://history.sohu.com/20160411/n443823983.shtml">详细</a>]</p>
   </div>
   <div class="list12">
     <ul> 
-<li><a href="http://history.sohu.com/20160119/n434895828.shtml" target="_blank">周恩来上海差点被捕阵亡 对他发出"绝杀令"</a></li>    
-   <li><a href="http://history.sohu.com/20160119/n434909516.shtml">薄一波这样评价毛泽东和邓小平：太到位了！</a></li>
+<li><a href="http://history.sohu.com/20160407/n443488551.shtml" target="_blank">张子强绑架李嘉诚之子:谈判细节披露 令人震惊</a></li>    
+   <li><a href="http://history.sohu.com/20160318/n440826996.shtml">谁看了都得自杀！一个日本人写给中国的劝降书</a></li>
 
   
 
@@ -1296,17 +1296,17 @@ showTurnAD482(intTurnAD482);
 			<div class="pic-group">
 				<ul>
 
-<li><a href="http://history.sohu.com/20160108/n433933088.shtml" target="_blank" rel="nofollow"><img 
-src="http://i2.itc.cn/20160111/404_26b2ca98_fd3a_399d_3b03_1281a279f9ab_1.jpg" width="125" height="85" alt="" /><span>巨型主席雕像竟是违建</span></a></li>
+<li><a href="http://mil.sohu.com/20161025/n471217312.shtml" target="_blank" rel="nofollow"><img 
+src="http://i0.itc.cn/20161025/3724_a7bd57ec_73cb_6904_c82c_b9b3b98be3d4_1.jpg" width="125" height="85" alt="" /><span>大批上将现身送别此人</span></a></li>
 
-<li><a href="http://history.sohu.com/20160111/n434095010.shtml" target="_blank" rel="nofollow"><img 
-src="http://i0.itc.cn/20160111/404_3a296383_6fd7_d5a1_2d9c_ad7eb0108a1c_1.jpg" width="125" height="85" alt="" /><span>它竟让高速公路改线</span></a></li>
+<li><a href="http://mil.sohu.com/20161024/n471095178.shtml" target="_blank" rel="nofollow"><img 
+src="http://i1.itc.cn/20161025/3724_ca117d44_e402_a19d_272e_b1804ec5f8ec_1.jpg" width="125" height="85" alt="" /><span>俄航母出征一路喷黑烟</span></a></li>
 
-<li><a href="http://history.sohu.com/20160112/n434225966.shtml" target="_blank" rel="nofollow"><img 
-src="http://i3.itc.cn/20160113/404_3e7f7cd4_17f2_8c94_9741_1d0d52081b17_1.jpg" width="125" height="85" alt="" /><span>世界第二大佛竟在中国</span></a></li>
+<li><a href="http://mil.sohu.com/20161020/n470754812.shtml" target="_blank" rel="nofollow"><img 
+src="http://i2.itc.cn/20161025/3724_5fd8800c_7076_9c91_380c_b7e4eb195502_1.jpg" width="125" height="85" alt="" /><span>菲总统在北京吃烤鸭</span></a></li>
 
-<li><a href="http://history.sohu.com/20160114/n434505499.shtml" target="_blank" rel="nofollow"><img 
-src="http://i0.itc.cn/20160114/404_60542df1_fb31_0af3_7a15_665870e25d18_1.jpg" width="125" height="85" alt="" /><span>张曼玉早年罕见言情剧</span></a></li>
+<li><a href="http://mil.sohu.com/20161019/n470621491.shtml" target="_blank" rel="nofollow"><img 
+src="http://i1.itc.cn/20161025/3724_eb538fcf_6b51_0b2d_0475_4e2a789765a9_1.jpg" width="125" height="85" alt="" /><span>东风-2试射失败画面</span></a></li>
 
 				</ul>
 			</div>
@@ -1341,7 +1341,41 @@ addImp("http://imp.optaim.com/201507/32f6f843b7342a720cb81048acd8fc90.php?a=0");
 		<SOHUADCODE>
 </SOHUADCODE>		
 		<div class="rightbar-foot"></div>		
-		<SOHUADCODE></SOHUADCODE>
+		<SOHUADCODE><div class="ad300">
+<table width=300 height=250 border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td width=300 height=250 align=middle>
+<div id=TurnAD123 width=300 height=250>
+ <script type=text/javascript>
+var TurnAD123=new Cookie(document,"TurnAD123",24);
+TurnAD123.load();
+TurnAD123.visit=(TurnAD123.visit==null)?parseInt(Math.random()*2+1):TurnAD123.visit;
+if(TurnAD123.visit!=0)var intTurnAD123=TurnAD123.visit;
+TurnAD123.visit++;
+TurnAD123.visit=(TurnAD123.visit>2)?1:TurnAD123.visit;
+TurnAD123.store();
+function showTurnAD123(basenum){
+if (basenum==1){
+						require(["sjs/matrix/ad/passion"], function (passion) {
+    var _C = "#TurnAD123",_ID = "10121",_W = 300,_H = 250,_T = 1,_F=201;
+    if(_C){jQuery(_C).attr('id','beans_'+_ID).css({'width' : _W + 'px', 'height' : _H + 'px','margin' : '0 auto'});}
+    passion.ones({itemspaceid : _ID,width:_W,height:_H,adsrc : _F,turn : _T,defbeans : !0});
+    });}
+else{
+						require(["sjs/matrix/ad/passion"], function (passion) {
+    var _C = "#TurnAD123",_ID = "10121",_W = 300,_H = 250,_T = 2,_F=201;
+    if(_C){jQuery(_C).attr('id','beans_'+_ID).css({'width' : _W + 'px', 'height' : _H + 'px','margin' : '0 auto'});}
+    passion.ones({itemspaceid : _ID,width:_W,height:_H,adsrc : _F,turn : _T,defbeans : !0});
+    });}
+}
+showTurnAD123(intTurnAD123);
+</script>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</SOHUADCODE>
 		<!-- 影视视频 -->
 		<div class="kind-video video-kink clear pvblock1" id="kind-video">
 			<div class="video-menu">
@@ -1355,14 +1389,12 @@ addImp("http://imp.optaim.com/201507/32f6f843b7342a720cb81048acd8fc90.php?a=0");
 			</div>
 			<div class="scroll-box">
 				<div class="scroll-con">
+                        
+                         <div class="picA"><a href="http://tv.sohu.com/20161117/n473475569.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i1.itc.cn/20161208/3823_ea1382f2_9f39_06bd_cb63_3cfd764a85ec_3.jpg" width="278" height="144" alt="法医秦明" /><em class="layer-txt"><i></i><b>法医秦明 | 罗钥被杀秦明成头号嫌疑人</b></em><em></em></a></div>
 
-                        	
-                        <div class="picA"><a href="http://tv.sohu.com/20160122/n435545800.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i1.itc.cn/20160123/3602_56766f7b_5fa8_4e43_266c_908be9ca9b18_1.jpg" width="278" height="144" alt="对口型大作战" /><em class="layer-txt"><i></i><b>对口型大作战 | 柳岩彩排妩媚热舞</b></em><em ></em></a></div>
-                                
-                        <div class="picA"><a href="http://tv.sohu.com/20160123/n435555850.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i3.itc.cn/20160123/3602_25a5c89d_2056_c90c_5182_146fee2608e5_1.jpg" width="278" height="144" alt="煮妇神探" /><em class="layer-txt"><i></i><b>煮妇神探 | 儒毅和吉祥感情路遇挫折</b></em><em></em></a></div>
-		
-                        <div class="picA"><a href="http://tv.sohu.com/20160122/n435494241.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i3.itc.cn/20160123/3602_f3eddc96_f358_56b0_7df4_30ed35f4f28c_1.jpg" width="278" height="144" alt="煮妇神探" /><em class="layer-txt"><i></i><b>闪亮的爸爸 | 闪爸带娃入寺修行</b></em><em></em></a></div>
+                        <div class="picA"><a href="http://tv.sohu.com/20161129/n474486114.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i2.itc.cn/20161208/3823_ea1382f2_9f39_06bd_cb63_3cfd764a85ec_5.jpg" width="278" height="144" alt="器灵" /><em class="layer-txt"><i></i><b>器灵 | 白天洛接种血清成为御灵师</b></em><em></em></a></div>
 
+                        <div class="picA"><a href="http://tv.sohu.com/20161109/n472747244.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i3.itc.cn/20161208/3823_319810e9_5c67_5b75_0d6b_4ebdc74a959a_1.jpg" width="278" height="144" alt="破产姐妹" /><em class="layer-txt"><i></i><b>破产姐妹 | 两姐妹变展场辣妹迷倒宅男</b></em><em></em></a></div>
 				</div>
 			</div>
 			<div class="scroll-btns"><a href="javascript:void(0)" class="up uN"></a><a href="javascript:void(0)" class="down"></a></div>
@@ -1378,22 +1410,22 @@ addImp("http://imp.optaim.com/201507/32f6f843b7342a720cb81048acd8fc90.php?a=0");
 			</script>
 			<div class="pic-group">
 				<ul>
+<li><a href="http://tv.sohu.com/20161208/n475238287.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i3.itc.cn/20161208/3823_192d6ad7_5138_2b93_7011_35b5e953305a_3.jpg" width="134" height="86" alt="巴基斯坦载48人客机坠毁" /><span>巴基斯坦载48人客机坠毁</span><em></em></a></li>
 
-<li><a href="http://tv.sohu.com/20160122/n435455941.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i1.itc.cn/20160123/3602_85c43429_3bbf_e3c9_7c99_61253badaadc_1.jpg" width="134" height="86" alt="男子撞17车遭车主堵截" /><span>男子撞17车遭众车主堵截</span><em ></em></a></li>
+<li class="end"><a href="http://tv.sohu.com/20161208/n475238264.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i3.itc.cn/20161208/3823_192d6ad7_5138_2b93_7011_35b5e953305a_1.jpg" width="134" height="86" alt="景海鹏陈冬返回后首亮相" /><span>景海鹏陈冬返回后首亮相</span><em ></em></a></li>
 
-<li class="end"><a href="http://tv.sohu.com/20160122/n435465268.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i3.itc.cn/20160123/3602_1e62c317_059d_4cf5_90d7_9de5d345e715_1.jpg" width="134" height="86" alt="女子阻止小偷扒窃反被吐口水" /><span>女子阻止扒窃反被吐口水</span><em></em></a></li>
+<li><a href="http://tv.sohu.com/20161208/n475246412.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i0.itc.cn/20161208/3823_192d6ad7_5138_2b93_7011_35b5e953305a_2.jpg" width="134" height="86" alt="医生晒万元羽绒服惹争议" /><span>医生晒万元羽绒服惹争议</span><em ></em></a></li>
 
-<li><a href="http://tv.sohu.com/20160123/n435576153.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i3.itc.cn/20160123/3602_63dfca74_12d7_bc10_f725_235e969dac9e_1.jpg" width="134" height="86" alt="两男子把烧烤摊分批偷回家 " /><span>2男为吃羊肉串偷烧烤摊</span><em ></em></a></li>
+<li class="end"><a href="http://tv.sohu.com/20161207/n475233453.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i3.itc.cn/20161208/3823_d87d6903_9215_5892_ab3e_211a6cb8db0b_1.jpg" width="134" height="86" alt="餐厅天降老鼠抓伤食客脸" /><span>餐厅天降老鼠抓伤食客脸</span><em ></em></a></li>
 
-<li class="end"><a href="http://tv.sohu.com/20160123/n435580863.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i1.itc.cn/20160123/3602_daad9c8a_c281_b1a3_5f16_cc9aaae5971f_1.jpg" width="134" height="86" alt="裁判搭讪女足队员被拒变黑哨" /><span>裁判搭讪队员被拒变黑哨</span><em></em></a></li>
+<li><a href="http://tv.sohu.com/20161208/n475249505.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i2.itc.cn/20161208/3823_192d6ad7_5138_2b93_7011_35b5e953305a_4.jpg" width="134" height="86" alt="女子参加婚礼到场变新娘" /><span>女子参加婚礼到场变新娘</span><em ></em></a></li>
 
-<li><a href="http://tv.sohu.com/20160123/n435578133.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i3.itc.cn/20160123/3602_f3a205b1_0e5b_70e6_1b39_a9df3f4141aa_1.jpg" width="134" height="86" alt="寒潮来袭看动物们怎么取暖" /><span>寒潮来袭看动物怎么取暖</span><em ></em></a></li>                                                                              
+<li class="end"><a href="http://tv.sohu.com/20161207/n475222483.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i3.itc.cn/20161208/3823_11ed06f5_88af_8538_8e9f_497ee40bf80f_1.jpg" width="134" height="86" alt="瘦身男女因减肥结缘结婚"/><span>瘦身男女因减肥结缘结婚</span><em ></em></a></li>
 
-<li class="end"><a href="http://tv.sohu.com/20160123/n435580755.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i2.itc.cn/20160123/3602_4e0cc9ae_ae47_b3db_5f7d_6da69b086283_1.jpg" width="134" height="86" alt="湖北一箱青枣内藏3斤湿报纸" /><span>一箱青枣内藏3斤湿报纸</span><em></em></a></li>
+<li><a href="http://tv.sohu.com/20161121/n473684145.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i1.itc.cn/20161208/3823_ea1382f2_9f39_06bd_cb63_3cfd764a85ec_1.jpg" width="134" height="86" alt="心里的声音-赵石摆拍秀" /><span>心里的声音-赵石摆拍秀</span><em ></em></a></li> 
 
-<li><a href="http://tv.sohu.com/20160121/n435353294.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i1.itc.cn/20160122/330c_f0744024_f3b6_07f0_032a_67eb9a1b9402_1.jpg" height="86" alt="山洞惊现15尊全身舍利子" /><span>山洞惊现15尊全身舍利子</span><em ></em></a></li> 
+<li class="end"><a href="http://tv.sohu.com/20161207/n475236641.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i0.itc.cn/20161208/3823_ea1382f2_9f39_06bd_cb63_3cfd764a85ec_2.jpg" width="134" height="86" alt="美人私房菜-李马遭逼供" /><span>美人私房菜-李马遭逼供</span><em ></em></a></li>
 
-<li class="end"><a href="http://tv.sohu.com/20100726/n273780295.shtml?txid=f2ed2da12b7aaef378cc10866b4f4e79" target="_blank"><img src="http://i3.itc.cn/20160122/330c_6d5a131d_fd76_1d3d_11c2_0e816bb849f1_1.jpg" width="134" height="86" alt="预知911事件的神秘画家" /><span>预知911事件的神秘画家</span><em ></em></a></li>
 				</ul>
 			</div>
 		</div>
@@ -1432,11 +1464,23 @@ function addImp(adobj){
 			}
 addImp("http://imp.optaim.com/201507/2335dd35a7246956fea8dfb9055eeed8.php?a=0");}
 else{
-require(["sjs/matrix/ad/passion"], function (passion) {
-    var _C = "#TurnAD483",_ID = "10121",_W = 300,_H = 250,_T = 2,_F=201;
-    if(_C){jQuery(_C).attr('id','beans_'+_ID).css({'width' : _W + 'px', 'height' : _H + 'px','margin' : '0 auto'});}
-    passion.ones({itemspaceid : _ID,width:_W,height:_H,adsrc : _F,turn : _T,defbeans : !0});
-    });}
+document.write('<a style="display:none!important" id="tanx-a-mm_17187609_2273741_14706573"></a>');
+     tanx_s = document.createElement("script");
+     tanx_s.type = "text/javascript";
+     tanx_s.charset = "gbk";
+     tanx_s.id = "tanx-s-mm_17187609_2273741_14706573";
+     tanx_s.async = true;
+     tanx_s.src = "http://p.tanx.com/ex?i=mm_17187609_2273741_14706573";
+     tanx_h = document.getElementsByTagName("head")[0];
+     if(tanx_h)tanx_h.insertBefore(tanx_s,tanx_h.firstChild);
+function addImp(adobj){
+				var img = new Image();
+				img.onload = function(){
+					img = null;
+				};
+				img.src = adobj;
+			}
+addImp("http://imp.optaim.com/201507/2335dd35a7246956fea8dfb9055eeed8.php?a=0");}
 }
 showTurnAD483(intTurnAD483);
 </script>
@@ -1447,7 +1491,17 @@ showTurnAD483(intTurnAD483);
 </div>
 </SOHUADCODE>
 		<!-- 中视网盟 -->
-		<SOHUADCODE>
+		<SOHUADCODE><div class="ad300">
+<div>
+<div id=beans_14174 width=300 height=250 align="center"></div>
+<script type="text/javascript">
+require(["sjs/matrix/ad/passion"], function (passion) {
+    var _ID = "14174",_W = 300,_H = 250,_T =1,_F=201;
+    if(_ID){jQuery('#beans_'+_ID).css({'width' : _W + 'px', 'height' : _H + 'px','margin' : '0 auto'});}
+    passion.ones({itemspaceid : _ID,width:_W,height:_H,adsrc : _F,turn : _T,defbeans : !0});
+    });
+</script></div>
+</div>
 </SOHUADCODE>
 		<!-- 彩票 st -->
 		
@@ -1462,11 +1516,11 @@ showTurnAD483(intTurnAD483);
     
     <dl>
         <dt>
-            <a href="http://pinglun.sohu.com/s9000710029.html" target="_blank">943</a>
+            <a href="http://pinglun.sohu.com/s475237119.html" target="_blank">614</a>
         </dt>
         <dd>
-            <a href="http://pic.news.sohu.com/group-710029.shtml" target="_blank">两荤两素一汤15元 普快列车盒饭这样来</a>
-            [<em class="red"><a href="http://pinglun.sohu.com/s9000710029.html" target="_blank">评</a></em>]
+            <a href="http://news.sohu.com/20161208/n475237119.shtml" target="_blank">成都医生晒“万元羽绒服”否认炒作：给年轻人打气</a>
+            [<em class="red"><a href="http://pinglun.sohu.com/s475237119.html" target="_blank">评</a></em>]
         </dd>
     </dl>
     
@@ -1475,11 +1529,11 @@ showTurnAD483(intTurnAD483);
     
     <dl>
         <dt>
-            <a href="http://pinglun.sohu.com/s435614068.html" target="_blank">437</a>
+            <a href="http://pinglun.sohu.com/s475240486.html" target="_blank">589</a>
         </dt>
         <dd>
-            <a href="http://news.sohu.com/20160123/n435614068.shtml" target="_blank">乘客称不扔垃圾你下岗 列车员：火葬场职工也闲-搜狐新闻</a>
-            [<em class="red"><a href="http://pinglun.sohu.com/s435614068.html" target="_blank">评</a></em>]
+            <a href="http://news.sohu.com/20161208/n475240486.shtml" target="_blank">女大学生深陷“裸贷” 借4000元还10万都没还完</a>
+            [<em class="red"><a href="http://pinglun.sohu.com/s475240486.html" target="_blank">评</a></em>]
         </dd>
     </dl>
     
@@ -1488,11 +1542,11 @@ showTurnAD483(intTurnAD483);
     
     <dl>
         <dt>
-            <a href="http://pinglun.sohu.com/s435636383.html" target="_blank">401</a>
+            <a href="http://pinglun.sohu.com/s475240093.html" target="_blank">83</a>
         </dt>
         <dd>
-            <a href="http://news.sohu.com/20160124/n435636383.shtml" target="_blank">周星驰做广东政协委员4年无1提案 不迟到就早退</a>
-            [<em class="red"><a href="http://pinglun.sohu.com/s435636383.html" target="_blank">评</a></em>]
+            <a href="http://news.sohu.com/20161208/n475240093.shtml" target="_blank">人民日报谈医生“炫富”：用真本事换干净钱 点赞</a>
+            [<em class="red"><a href="http://pinglun.sohu.com/s475240093.html" target="_blank">评</a></em>]
         </dd>
     </dl>
     
@@ -1501,11 +1555,11 @@ showTurnAD483(intTurnAD483);
     
     <dl>
         <dt>
-            <a href="http://pinglun.sohu.com/s435606115.html" target="_blank">272</a>
+            <a href="http://pinglun.sohu.com/s475238252.html" target="_blank">364</a>
         </dt>
         <dd>
-            <a href="http://yule.sohu.com/20160123/n435606115.shtml" target="_blank">郭敬明不满被喊像女孩 呼吁尊重女性平等</a>
-            [<em class="red"><a href="http://pinglun.sohu.com/s435606115.html" target="_blank">评</a></em>]
+            <a href="http://news.sohu.com/20161208/n475238252.shtml" target="_blank">中国富豪向美大学捐1.15亿美元 帮人类接受死亡</a>
+            [<em class="red"><a href="http://pinglun.sohu.com/s475238252.html" target="_blank">评</a></em>]
         </dd>
     </dl>
     
@@ -1514,41 +1568,87 @@ showTurnAD483(intTurnAD483);
     
     <dl>
         <dt>
-            <a href="http://pinglun.sohu.com/s435625638.html" target="_blank">222</a>
+            <a href="http://pinglun.sohu.com/s475239598.html" target="_blank">425</a>
         </dt>
         <dd>
-            <a href="http://auto.sohu.com/20160123/n435625638.shtml" target="_blank">男子遭女司机追尾放弃索赔 1年半后成夫妻-搜狐汽车</a>
-            [<em class="red"><a href="http://pinglun.sohu.com/s435625638.html" target="_blank">评</a></em>]
+            <a href="http://news.sohu.com/20161208/n475239598.shtml" target="_blank">种水稻也能当“土豪”？稻农组团横扫房地产市场</a>
+            [<em class="red"><a href="http://pinglun.sohu.com/s475239598.html" target="_blank">评</a></em>]
+        </dd>
+    </dl>
+    
+    <div class="broken-line"></div>
+    
+    
+    <dl>
+        <dt>
+            <a href="http://pinglun.sohu.com/s475157741.html" target="_blank">2095</a>
+        </dt>
+        <dd>
+            <a href="http://quan.sohu.com/pinglun/cyqemw6s1/475157741" target="_blank">广东湛江现416斤大海龟惨遭屠宰 龟肉被抢购一空-搜狐新闻</a>
+            [<em class="red"><a href="http://pinglun.sohu.com/s475157741.html" target="_blank">评</a></em>]
+        </dd>
+    </dl>
+    
+    <div class="broken-line"></div>
+    
+    
+    <dl>
+        <dt>
+            <a href="http://pinglun.sohu.com/s475242306.html" target="_blank">296</a>
+        </dt>
+        <dd>
+            <a href="http://quan.sohu.com/pinglun/cyqemw6s1/475242306" target="_blank">黑龙江稻农收入暴涨组团买房 有人一买十多套-搜狐财经!!!</a>
+            [<em class="red"><a href="http://pinglun.sohu.com/s475242306.html" target="_blank">评</a></em>]
+        </dd>
+    </dl>
+    
+    <div class="broken-line"></div>
+    
+    
+    <dl>
+        <dt>
+            <a href="http://pinglun.sohu.com/s475244843.html" target="_blank">292</a>
+        </dt>
+        <dd>
+            <a href="http://news.sohu.com/20161208/n475244843.shtml" target="_blank">泰坦尼克号复制记：落地四川 能体验撞冰山</a>
+            [<em class="red"><a href="http://pinglun.sohu.com/s475244843.html" target="_blank">评</a></em>]
+        </dd>
+    </dl>
+    
+    <div class="broken-line"></div>
+    
+    
+    <dl>
+        <dt>
+            <a href="http://pinglun.sohu.com/s474887183.html" target="_blank">86</a>
+        </dt>
+        <dd>
+            <a href="http://news.sohu.com/20161204/n474887183.shtml" target="_blank">习近平：普及宪法知识增强宪法意识-搜狐新闻</a>
+            [<em class="red"><a href="http://pinglun.sohu.com/s474887183.html" target="_blank">评</a></em>]
+        </dd>
+    </dl>
+    
+    <div class="broken-line"></div>
+    
+    
+    <dl>
+        <dt>
+            <a href="http://pinglun.sohu.com/s475239689.html" target="_blank">202</a>
+        </dt>
+        <dd>
+            <a href="http://news.sohu.com/20161208/n475239689.shtml" target="_blank">媒体：恢复6天上学 要不然减负就是死路一条</a>
+            [<em class="red"><a href="http://pinglun.sohu.com/s475239689.html" target="_blank">评</a></em>]
         </dd>
     </dl>
     
     
 </div>
 		<div class="rightbar-foot"></div>		
-		<div class="leisure clear">
-<h2><span>社区热帖推荐</span></h2>
-<div class="pic-text">
-<div><a href="http://club.news.sohu.com/zz2284/thread/3sfdhvbr15a" target="_blank"><img 
-src="http://i2.itc.cn/20160122/2db9_fc6b8b80_2b8a_b08f_cf78_a6d098667083_1.jpg" width="125" height="85" alt="" /></a></div>
-<h4><a href="http://club.news.sohu.com/zz2284/thread/3sfdhvbr15a" target="_blank">中国第五大发明横空出世？</a></h4>
-<p>谈谈表情包的背后……[<a href="http://club.news.sohu.com/zz2284/thread/3sfdhvbr15a" target="_blank">详细</a>]</p>
-</div>
-<div class="broken-line"></div><div class="list12">
-<ul>
-<li><a href="http://club.news.sohu.com/zz2284/thread/3ria7mblrs8" target="_blank">美女记者做直播时下海嬉戏 结果发生意外</a></li>
-<li><a href="http://club.news.sohu.com/zz2284/thread/3rilflpabob" target="_blank">3岁男童竟练出六块腹肌！你让叔叔的脸往哪搁</a></li>
-<li><a href="http://club.news.sohu.com/zz2284/thread/3rijtz71pcg" target="_blank">土豪包养“男宠”攀比：刚满10岁男童都不放过</a></li>
-<li><a href="http://club.news.sohu.com/zz2284/thread/3riovhxdpfv" target="_blank">备胎做成这样也是醉了 感天动地也感动不了你</a></li>
-<li><a href="http://club.news.sohu.com/zz2284/thread/3rimxp4clzk" target="_blank">妹子分享马甲线美照 网友惊呼：这线条好细长</a></li>
-</ul></div></div>
-
-<div class="rightbar-foot"></div>		
+		
+		
 		<!-- 广告 -->
 		<SOHUADCODE><div class="ad300">
 <div>
-<script src="http://images.sohu.com/saf/static/8/13568.shtml"></script>
-
-
 <div id=beans_13568 width=300 height=90 align="center"></div>
 <script type="text/javascript">
 require(["sjs/matrix/ad/passion"], function (passion) {
@@ -1696,10 +1796,34 @@ document.write(dns_requrl);
 			pos : "left"
 		}
 	});
+//多媒体视窗
+special.wait({
+	itemspaceid :15028,
+	form : "mediapop",
+	adsrc : 200,	
+	max_turn : 2,
+	order : 5,
+	spec:{
+	time_limit:2//两个轮换时此处写2 单投时此处写要求的次数限制
+	}
+});	 
+//摩天楼
+special.wait({
+  itemspaceid :15070,
+  form:"skyscraper",
+  adsrc : 200,	
+  max_turn : 2,
+  order : 6,
+  spec:{
+	time_limit:2//两个轮换时此处写2 单投时此处写要求的次数限制
+	}
+});
 
-	special.start();
-	});
-</script>
+
+	
+special.start();
+});</script>
+
 <Script language="Javascript" src="http://images.sohu.com/bill/s2013/PVJS/adm2012-20130926min.js"></Script>
 <!—不能删除 投飞行广告时也必须带上—>
 <script type="text/javascript">

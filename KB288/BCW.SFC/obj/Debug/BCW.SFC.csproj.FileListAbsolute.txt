@@ -6,3 +6,11 @@ F:\Work\KB288\BCW.SFC\bin\Debug\BCW.Data.pdb
 F:\Work\KB288\BCW.SFC\obj\Debug\ResolveAssemblyReference.cache
 F:\Work\KB288\BCW.SFC\obj\Debug\BCW.SFC.dll
 F:\Work\KB288\BCW.SFC\obj\Debug\BCW.SFC.pdb
+F:\Work\GitKB288\KB288\BCW.SFC\bin\Debug\BCW.SFC.dll
+F:\Work\GitKB288\KB288\BCW.SFC\bin\Debug\BCW.SFC.pdb
+F:\Work\GitKB288\KB288\BCW.SFC\bin\Debug\BCW.Common.dll
+F:\Work\GitKB288\KB288\BCW.SFC\bin\Debug\BCW.Data.dll
+F:\Work\GitKB288\KB288\BCW.SFC\bin\Debug\BCW.Data.pdb
+F:\Work\GitKB288\KB288\BCW.SFC\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\GitKB288\KB288\BCW.SFC\obj\Debug\BCW.SFC.dll
+F:\Work\GitKB288\KB288\BCW.SFC\obj\Debug\BCW.SFC.pdb

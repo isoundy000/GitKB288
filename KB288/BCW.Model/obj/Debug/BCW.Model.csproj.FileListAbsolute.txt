@@ -28,3 +28,8 @@ F:\Work\KB288\BCW.Model\bin\Debug\BCW.Model.pdb
 F:\Work\KB288\BCW.Model\obj\Debug\ResolveAssemblyReference.cache
 F:\Work\KB288\BCW.Model\obj\Debug\BCW.Model.dll
 F:\Work\KB288\BCW.Model\obj\Debug\BCW.Model.pdb
+F:\Work\GitKB288\KB288\BCW.Model\bin\Debug\BCW.Model.dll
+F:\Work\GitKB288\KB288\BCW.Model\bin\Debug\BCW.Model.pdb
+F:\Work\GitKB288\KB288\BCW.Model\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\GitKB288\KB288\BCW.Model\obj\Debug\BCW.Model.dll
+F:\Work\GitKB288\KB288\BCW.Model\obj\Debug\BCW.Model.pdb
