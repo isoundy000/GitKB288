@@ -779,6 +779,37 @@ namespace SSEPage
 
                 this.mSseVersionMgr.account.UpdateiGold( -_money, string.Format( "上证|{0}期|标识:{1}|【{2}】", _sseNo, _id, _buyType == 1 ? "猜涨" : "猜跌" ) );
 
+                #region 活跃抽奖入口
+                //活跃抽奖入口_20161212 啊光
+                try
+                {
+                    string gamename = "新上证指数";//游戏名字 可修改成变量
+                    //表中存在gamename记录
+                    if( new BCW.BLL.tb_WinnersGame().ExistsGameName( gamename ) )
+                    {
+                        //投注是否大于设定的限额，是则有抽奖机会
+                        if( _money > new BCW.BLL.tb_WinnersGame().GetPrice( gamename ) )
+                        {
+                            string TextForUbb = ( ub.GetSub( "TextForUbb", "/Controls/winners.xml" ) );//设置内线提示的文字
+                            string WinnersGuessOpen = ( ub.GetSub( "WinnersGuessOpen", "/Controls/winners.xml" ) );//1发内线2不发内线 
+                            int hit = new BCW.winners.winners().CheckActionForAll( 1, _id, meid, new BCW.BLL.User().GetUsName( meid ), gamename, 3 );
+                            if( hit == 1 )//返回1中奖
+                            {
+                                //内线开关 1开
+                                if( WinnersGuessOpen == "1" )
+                                {
+                                    //发内线到该ID
+                                    new BCW.BLL.Guest().Add( 0, meid, new BCW.BLL.User().GetUsName( meid ), TextForUbb );
+                                }
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+                }
+                #endregion
+
                 //new BCW.BLL.User().UpdateiGold( meid, -_money, string.Format( "上证|{0}期|标识:{1}|【{2}】", _sseNo, _id, _buyType == 1 ? "猜涨" : "猜跌" ) );
 
                 Utils.Success("下注", "下注成功，花费了" + _money + "" + this.mSseVersionMgr.account.name + "<br />", Utils.getUrl( this.mSseVersionMgr.pageName + "act=myOrder"), "2");
