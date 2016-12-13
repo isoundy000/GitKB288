@@ -114,7 +114,17 @@ public partial class bbs_game_dzpk : System.Web.UI.Page
         IList<BCW.dzpk.Model.DzpkRooms> listRooms = new BCW.dzpk.BLL.DzpkRooms().GetDzpkRoomss(pageIndex, pageSize, strWhere, out recordCount);
         builder.Append(Out.Tab("<div>", ""));
         builder.Append("房间数量:" + listRooms.Count.ToString() + " 在线游戏人数：" + dz.ShowPlayerCount() + " |<a href=\"" + Utils.getUrl("dzpk.aspx") + "\">刷新</a><br />");
-        builder.Append("奖池总额:" + dz.ShowRoomPotALL() + " 今日总赢币:" + dz.ShowWinPotAll_Today(GameState) + "<br />");
+        builder.Append("奖池总额:" + dz.ShowRoomPotALL() + " 今日总赢币:" + dz.ShowWinPotAll_Today(GameState) + "<br />");         
+        builder.Append( "奖池总额:" + dz.ShowRoomPotALL() + " 今日总赢币:" + dz.ShowWinPotAll_Today( GameState ) + "<br />" );
+
+
+        string[] _arryCard = BCW.dzpk.Card.BubbleSort( new string[] { "410", "310", "207", "407", "413" } );
+        string[] _arryCard2 = BCW.dzpk.Card.BubbleSort( new string[] { "410", "411", "412", "413", "414" } );
+
+        builder.Append( "<br />牌型:" + BCW.dzpk.Card.toTypeName(BCW.dzpk.Card.GetCardType( _arryCard ) ));
+        builder.Append( "<br />牌型2:" + BCW.dzpk.Card.toTypeName(BCW.dzpk.Card.GetCardType( _arryCard2 ) ));
+        
+
         builder.Append(Out.Tab("</div>", ""));
 
         builder.Append(Out.Tab("<div>", ""));
@@ -126,6 +136,7 @@ public partial class bbs_game_dzpk : System.Web.UI.Page
         BCW.dzpk.Model.DzpkPlayRanks CurPlayerRank = dz.chkPlayerRanks(meid);
         if (CurPlayerRank != null)
         {
+            builder.Append( "CurPlayerRank>>" + CurPlayerRank.RmID );
             //获得房间信息
             BCW.dzpk.Model.DzpkRooms DzpkRoom = new BCW.dzpk.BLL.DzpkRooms().GetDzpkRooms(CurPlayerRank.RmID);
             if (DzpkRoom != null)
@@ -640,13 +651,32 @@ public partial class bbs_game_dzpk : System.Web.UI.Page
         builder.Append(Out.Tab("</div>", "<br />"));
         if (ub.GetSub("GameStatus", xmlPath) == "2")
         {
-            builder.Append(Out.Div("div", "在线玩家:" + dt_Ranks.Rows.Count + "/" + DzpkRoom.GMaxUser + "<br />奖池金额:" + Utils.ConvertGold(DzpkRoom.GSidePot) + ub.GetSub("DzCoin", xmlPath) + " <br />大小盲注:" + Utils.ConvertGold(DzpkRoom.GSmallb) + ub.GetSub("DzCoin", xmlPath) + "/" + Utils.ConvertGold(DzpkRoom.GBigb) + ub.GetSub("DzCoin", xmlPath) + "<br />下注限额:" + (DzpkRoom.GMinb) + ub.GetSub("DzCoin", xmlPath) + "/" + Utils.ConvertGold(DzpkRoom.GMaxb) + ub.GetSub("DzCoin", xmlPath) + "<br />当前流程:" + DzpkRoom.GActID.ToString()));
+            builder.Append(Out.Div("div", "在线玩家:" + dt_Ranks.Rows.Count + "/" + DzpkRoom.GMaxUser +  " <br />大小盲注:" + Utils.ConvertGold(DzpkRoom.GSmallb) + ub.GetSub("DzCoin", xmlPath) + "/" + Utils.ConvertGold(DzpkRoom.GBigb) + ub.GetSub("DzCoin", xmlPath) + "<br />下注限额:" + (DzpkRoom.GMinb) + ub.GetSub("DzCoin", xmlPath) + "/" + Utils.ConvertGold(DzpkRoom.GMaxb) + ub.GetSub("DzCoin", xmlPath) + "<br />当前流程:" + DzpkRoom.GActID.ToString()));
         }
         else
         {
-            builder.Append(Out.Div("div", "在线玩家:" + dt_Ranks.Rows.Count + "/" + DzpkRoom.GMaxUser + "<br />奖池金额:" + Utils.ConvertGold(DzpkRoom.GSidePot) + ub.Get("SiteBz") + " <br />大小盲注:" + Utils.ConvertGold(DzpkRoom.GSmallb) + ub.Get("SiteBz") + "/" + Utils.ConvertGold(DzpkRoom.GBigb) + ub.Get("SiteBz") + "<br />下注限额:" + (DzpkRoom.GMinb) + ub.Get("SiteBz") + "/" + Utils.ConvertGold(DzpkRoom.GMaxb) + ub.Get("SiteBz") + "<br />当前流程:" + DzpkRoom.GActID.ToString()));
+            builder.Append(Out.Div("div", "在线玩家:" + dt_Ranks.Rows.Count + "/" + DzpkRoom.GMaxUser + " <br />大小盲注:" + Utils.ConvertGold(DzpkRoom.GSmallb) + ub.Get("SiteBz") + "/" + Utils.ConvertGold(DzpkRoom.GBigb) + ub.Get("SiteBz") + "<br />下注限额:" + (DzpkRoom.GMinb) + ub.Get("SiteBz") + "/" + Utils.ConvertGold(DzpkRoom.GMaxb) + ub.Get("SiteBz") + "<br />当前流程:" + DzpkRoom.GActID.ToString()));
         }
         builder.Append(Out.Div("div", ""));
+        #endregion
+
+        #region   荷官及奖池
+        builder.Append( Out.Tab( "<div class=\"text\">", Out.Hr() ) );
+        builder.Append( "【荷官1】 <a href=\"" + Utils.getUrl( "dzpk.aspx?act=PGame&amp;GKeyStr=" + GKeyStr ) + "\">打赏荷官</a>" );
+        builder.Append( "<a href=\"" + Utils.getUrl( "dzpk.aspx?act=PGame&amp;GKeyStr=" + GKeyStr ) + "\"> 补充筹码</a>" );
+        builder.Append( Out.Tab( "</div>", "" ) );
+
+        builder.Append( Out.Tab( "<div>", "<br />" ) );
+        if( ub.GetSub( "GameStatus", xmlPath ) == "2" )
+        {
+            builder.Append( Out.Div( "div", "<b style=\"color:#ff0000\">池底:</b>" + Utils.ConvertGold( DzpkRoom.GSidePot ) + ub.GetSub( "DzCoin", xmlPath )));
+        }
+        else
+        {
+            builder.Append( Out.Div( "div", "<b style=\"color:#ff0000\">池底:</b>" + Utils.ConvertGold( DzpkRoom.GSidePot ) + ub.Get( "SiteBz" ) + "</b>" ) );
+        }
+        builder.Append( Out.Tab( "</div>", "" ) );
+
         #endregion
 
         #region 玩家列表 tmHtml 生成
@@ -698,7 +728,7 @@ public partial class bbs_game_dzpk : System.Web.UI.Page
                             Master.Refresh = DzpkRoom.GSetTime;
                         }
                     }
-                    RankMake = "→";
+                    RankMake = "<b style=\"color:#ff0000\">→【思考中】</b>";
 
                 }
                 else
