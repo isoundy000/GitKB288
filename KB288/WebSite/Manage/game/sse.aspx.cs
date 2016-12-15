@@ -1680,6 +1680,16 @@ namespace SSEManagePage
             DataCache.SetCache( CacheKey, ObjCacheTime, DateTime.Now.AddSeconds( Expir ), TimeSpan.Zero );
 
 
+            DataSet _ds = BCW.Data.SqlHelper.Query( string.Format( "select * from  ve_SseGetPrize where id={0}", _prizeId ) );
+            if( _ds.Tables[ 0 ].Rows.Count > 0 )
+            {
+                if( _ds.Tables[ 0 ].Rows[ 0 ][ "isGet" ].ToString().Trim() == "True" )
+                {
+                    Utils.Error( "该会员已经兑过奖了", Utils.getUrl( "sse.aspx" ) );
+                    this.mainPage.builder.Append( Out.Tab( "</div>", "<br />" ) );
+                }
+            }
+
             //执行兑奖.
             int _id = BCW.SSE.SSE.Instance().GetPrize( _prizeId, _getMoney );
 
