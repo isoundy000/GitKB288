@@ -118,64 +118,73 @@ public partial class bbs_game_dzpk : System.Web.UI.Page
         builder.Append( "奖池总额:" + dz.ShowRoomPotALL() + " 今日总赢币:" + dz.ShowWinPotAll_Today( GameState ) + "<br />" );
 
 
-        string[] _arryCard = BCW.dzpk.Card.BubbleSort( new string[] { "201", "310", "310", "313", "413" } );
-        string[] _arryCard2 = BCW.dzpk.Card.BubbleSort( new string[] { "410", "411", "412", "413", "414" } );
+          
 
         builder.Append( "<br />测试区============================<br />" );
-        string r = "";
+
+        string[] iCards = { "107", "207", "308", "108", "208","307","105" };
+        string[] newCards = Card.BubbleSort( iCards );
         int num = 0;
+        string r = "";
 
-        string[] newCards = { "7", "6", "5", "0", "0", "0", "0" };
-        //string[] newCards = Card.BubbleSort( iCards );
-
-        builder.Append("排列后====");
-        foreach (string _n in newCards)
-        {
-            builder.Append( _n+"," );
-        }
-        builder.Append( "<br />" );
+        builder.Append( "手牌" + ShowPokerByUs( newCards ) );
 
         //当前最大牌型
-        string[] big_Cards = new string[ 5 ]; 
-        for( int a = 0; a < 3; a++ )
-        {
-            for( int b = a + 1; b < 4; b++ )
+        string[] big_Cards = new string[ 5 ];
+
+        int _len = iCards.Length;
+
+
+            for( int a = 0; a < 3; a++ )
             {
-                for( int c = b + 1; c < 5; c++ )
+                for( int b = a + 1; b <4; b++ )
                 {
-                    for( int d = c + 1; d < 6; d++ )
+                    for( int c = b + 1; c < 5; c++ )
                     {
-                        for( int e = d + 1; e < 7; e++ )
+                        for( int d = c + 1; d < 6; d++ )
                         {
-                            string[] tm_Cards = new string[ 5 ];
-                            tm_Cards.SetValue( newCards[ a ], 0 );
-                            tm_Cards.SetValue( newCards[ b ], 1 );
-                            tm_Cards.SetValue( newCards[ c ], 2 );
-                            tm_Cards.SetValue( newCards[ d ], 3 );
-                            tm_Cards.SetValue( newCards[ e ], 4 );
-                            //类型判断
-                            if( num == 0 )
+                            for( int e = d + 1; e < 7; e++ )
                             {
-                                big_Cards = tm_Cards;
-                            }
-                            else
-                            {
-                                string CC = new BCW.dzpk.Card().CompareCard( tm_Cards, big_Cards );
-                                if( CC ==Card.CC_BIG_CARD.ToString() )
+
+                                string[] tm_Cards = new string[ 5 ];
+                                tm_Cards.SetValue( newCards[ a ], 0 );
+                                tm_Cards.SetValue( newCards[ b ], 1 );
+                                tm_Cards.SetValue( newCards[ c ], 2 );
+                                tm_Cards.SetValue( newCards[ d ], 3 );
+                                tm_Cards.SetValue( newCards[ e ], 4 );
+
+
+                                //类型判断
+                                if( num == 0 )
                                 {
                                     big_Cards = tm_Cards;
                                 }
+                                else
+                                {
+                                    string CC = new BCW.dzpk.Card().CompareCard( tm_Cards, big_Cards );
+                                    if( CC == BCW.dzpk.Card.CC_BIG_CARD.ToString() )
+                                    {
+                                        big_Cards = tm_Cards;
+                                    }
+                                }
                             }
-                            r = big_Cards[ 0 ] + "," + big_Cards[ 1 ] + "," + big_Cards[ 2 ] + "," + big_Cards[ 3 ] + "," + big_Cards[ 4 ];
-                            num++;
-
-                            builder.Append( tm_Cards[ 0 ] + "," + tm_Cards[ 1 ] + "," + tm_Cards[ 2 ] + "," + tm_Cards[ 3 ] + "," + tm_Cards[ 4 ] + "<br />" );
-                           
                         }
                     }
                 }
             }
+
+
+        
+
+        builder.Append( "<br />big_Cards="  );
+        foreach( string _n in big_Cards )
+        {
+            builder.Append( _n +"," );
         }
+
+        builder.Append( "<br />组合" + ShowPokerByUs( big_Cards ) );
+
+
         builder.Append( "<br />测试区============================" );
         
 
@@ -745,13 +754,6 @@ public partial class bbs_game_dzpk : System.Web.UI.Page
           }
           string[] _cards = _lstCards.ToArray(); 
          builder.Append( Out.Div( "div","<b style=\"color:#ff0000\">公共牌：</b>"+ShowPokerByUs( _cards )));
-         Card _cardTemp = new Card();
-         string[] _temp = { "308", "207", "408" };
-         builder.Append( ShowPokerByUs( Card.BubbleSort( _temp ) ) );
-
-         //builder.Append("haha>>>>"+_cardTemp.FiveFromSeven(
-        
-         builder.Append( Card.toTypeName( Card.GetCardType(( Card.BubbleSort( _temp ))) ) );
         }
         #endregion
 
@@ -851,8 +853,9 @@ public partial class bbs_game_dzpk : System.Web.UI.Page
                 }
                 //显示玩家的扑克牌
                 tmHtml += ("<br />&emsp;&emsp;&emsp;" + ShowPokerByUs(Ranks, DzpkRoom));
-                //显示玩家当前的牌型                 
-                tmHtml += ( "[" + Card.toTypeName( Card.GetCardType( Card.BubbleSort(Ranks.PokerCards.Split( ',' ) )) ) + "]" );
+                //显示玩家当前的牌型  
+                if( Ranks.UsID == meid )
+                    tmHtml += ( "[" + Card.toTypeName( Card.GetCardType( Card.BubbleSort(Ranks.PokerCards.Split( ',' ) )) ) + "]" );
                 //返回玩家下注信息 
                 tmHtml += ("<br />&emsp;&emsp;&emsp;" + ShowChipByUs(Ranks));
                 #endregion
