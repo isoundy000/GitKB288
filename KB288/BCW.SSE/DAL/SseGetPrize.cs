@@ -212,7 +212,7 @@ namespace BCW.SSE.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-            strSql.Append( "select id,orderId,userId,isGet,getDateTime,openDateTime,prizeVal " );
+            strSql.Append( "select id,orderId,userId,isGet,getDateTime,openDateTime,prizeVal,orderType " );
 			strSql.Append(" FROM tb_SseGetPrize ");
 			if(strWhere.Trim()!="")
 			{

@@ -2582,7 +2582,7 @@ namespace BCW.dzpk
 
         private static String[] RANK_NAMES = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
         private static String[] SUIT_NAMES = { "方块", "梅花", "红桃", "黑桃", "" };
-        public static String[] TYPE_NAMES = { "错误类型", "高牌", "对子", "两对", "三条", "顺子", "同花", "葫芦", "铁支", "同花顺", "皇家同花顺" };
+        public static String[] TYPE_NAMES = { "错误类型", "高牌", "一对", "两对", "三条", "顺子", "同花", "葫芦", "四条", "同花顺", "皇家同花顺" };
 
         // 覆盖Object 类的toStirng() 方法. 实现对象的文本描述
         public String toString()
@@ -2648,58 +2648,74 @@ namespace BCW.dzpk
         /// <summary>
         /// 获取牌型
         /// </summary>
-        /// <param name="crCards"></param>
+        /// <param name="crCards">传入参数要求已经做大小排序</param>
         /// <returns></returns>
         public static int GetCardType(string[] crCards)
         {
-            if (crCards.Length != 5) return CT_ERROR;
 
             bool tmSameColor = true;    //定义颜色是否一样
             bool tmLineCard = true;     //是否连续的值，判断同花顺
             string tmFirstSuit = GetSuit(crCards[0]);     //第一只牌的花色
             string tmFirstRank = GetRank(crCards[0]);     //第一只牌的点数
 
-            #region 由第二只牌开始分析
-            int i = 1;
-            //由第二只牌开始分析
-            for (i = 1; i < crCards.Length; i++)
+            int i = 1; 
+            if( crCards.Length == 5 )
             {
-                //判断花色是否相同 如果牌面里面只要有一个不同，则定义为不相同的花色，排除同花类型
-                if (GetSuit(crCards[i]) != tmFirstSuit) tmSameColor = false;
-                //判断是否有连续的值
-                if ((int.Parse(GetRank(crCards[i])) + i) != int.Parse(tmFirstRank)) tmLineCard = false;
-                //都为False则退出循环    
-                if (!tmSameColor && !tmLineCard) break;
-            }
-            #endregion
-
-            #region 判断是同花顺或顺子
-            i = 1;
-            //判断是否最小同花顺        
-            if (!tmLineCard && int.Parse(tmFirstRank) == ACE)
-            {
-                for (i = 1; i < crCards.Length; i++)
+                #region 由第二只牌开始分析               
+                //由第二只牌开始分析
+                for( i = 1; i < crCards.Length; i++ )
                 {
-                    if ((int.Parse(GetRank(crCards[i])) + i + 8) != int.Parse(tmFirstRank)) break;
+                    //判断花色是否相同 如果牌面里面只要有一个不同，则定义为不相同的花色，排除同花类型
+                    if( GetSuit( crCards[ i ] ) != tmFirstSuit )
+                        tmSameColor = false;
+                    //判断是否有连续的值
+                    if( ( int.Parse( GetRank( crCards[ i ] ) ) + i ) != int.Parse( tmFirstRank ) )
+                        tmLineCard = false;
+                    //都为False则退出循环    
+                    if( !tmSameColor && !tmLineCard )
+                        break;
                 }
-                if (i == crCards.Length) { tmLineCard = true; }
-            }
+                 #endregion
 
-            //皇家同花顺 A K Q J 10
-            if (tmSameColor && tmLineCard && (int.Parse(GetRank(crCards[1])) == KING)) return CT_KING_TONG_HUA_SHUN;
-            //顺子类型
-            if (!tmSameColor && tmLineCard) return CT_SHUN_ZI;
-            //同花类型
-            if (tmSameColor && !tmLineCard) return CT_TONG_HUA;
-            //同花顺类型
-            if (tmSameColor && tmLineCard) return CT_TONG_HUA_SHUN;
-            #endregion
+                #region 判断是同花顺或顺子
+                i = 1;
+                //判断是否最小同花顺        
+                if( !tmLineCard && int.Parse( tmFirstRank ) == ACE )
+                {
+                    for( i = 1; i < crCards.Length; i++ )
+                    {
+                        if( ( int.Parse( GetRank( crCards[ i ] ) ) + i + 8 ) != int.Parse( tmFirstRank ) )
+                            break;
+                    }
+                    if( i == crCards.Length )
+                    {
+                        tmLineCard = true;
+                    }
+                }
+
+                //皇家同花顺 A K Q J 10
+                if( tmSameColor && tmLineCard && ( int.Parse( GetRank( crCards[ 1 ] ) ) == KING ) )
+                    return CT_KING_TONG_HUA_SHUN;
+                //顺子类型
+                if( !tmSameColor && tmLineCard )
+                    return CT_SHUN_ZI;
+                //同花类型
+                if( tmSameColor && !tmLineCard )
+                    return CT_TONG_HUA;
+                //同花顺类型
+                if( tmSameColor && tmLineCard )
+                    return CT_TONG_HUA_SHUN;
+                #endregion
+            }
+           
+
+
 
             #region 判断其他牌型
             //相同点数的牌数
             int tmSameCount = 0;
             //单只的数量,两只的数量,三只的数量
-            int tmSignedCount = 0, tmTwoCount = 0, tmThreeCount = 0, tmFourCount = 0;
+            int tmSignedCount = 0, tmTwoCount = 0, tmThreeCount = 0, tmFourCount = 0 ;
 
             for (i = 0; i < crCards.Length; i++)
             {
@@ -2707,13 +2723,14 @@ namespace BCW.dzpk
 
                 for (int j = i + 1; j < crCards.Length; j++)
                 {
+                    
                     if (GetRank(crCards[i]) != GetRank(crCards[j]))
                     {
-                        if (j + 1 < crCards.Length)
+                        if( j + 1 < crCards.Length )
                         {
-                            if (GetRank(crCards[j]) == GetRank(crCards[j + 1]))
+                            if( GetRank( crCards[ j ] ) == GetRank( crCards[ j + 1 ] ) )
                             {
-                                if (tmSameCount > 1)
+                                if( tmSameCount > 1 )
                                 {
                                     tmTwoCount++;
                                 }
@@ -2722,6 +2739,7 @@ namespace BCW.dzpk
                         break;
                     }
                     tmSameCount++;
+         
                 }
                 switch (tmSameCount)
                 {
@@ -2779,6 +2797,13 @@ namespace BCW.dzpk
             return tmCards;
         }
         #endregion
+
+
+        public string FiveFromSeven( string[] iCards, )
+        {
+            //return 0;
+        }
+
 
         #region 用户最大牌型 FiveFromSeven()
         /// <summary>

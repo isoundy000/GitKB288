@@ -1123,10 +1123,10 @@ namespace SSEPage
  
                 string _sseNo = _ds.Tables[ 0 ].Rows[ 0 ][ "sseNo" ].ToString();
                 bool _buyType = bool.Parse( _ds.Tables[ 0 ].Rows[ 0 ][ "buyType" ].ToString() );
-                long _buyMoney = (long) decimal.Parse( _ds.Tables[ 0 ].Rows[ 0 ][ "buyMoney" ].ToString() );
-                long _getPrize = ( long ) decimal.Parse( _ds.Tables[ 0 ].Rows[ 0 ][ "prizeVal" ].ToString() );
-                long _poundage = ( long ) decimal.Parse( _ds.Tables[ 0 ].Rows[ 0 ][ "poundage" ].ToString() );
-                long _getRealPrize = _getPrize - _poundage;
+                decimal _buyMoney = decimal.Parse( _ds.Tables[ 0 ].Rows[ 0 ][ "buyMoney" ].ToString() );
+                decimal _getPrize =  decimal.Parse( _ds.Tables[ 0 ].Rows[ 0 ][ "prizeVal" ].ToString() );
+                decimal _poundage =  decimal.Parse( _ds.Tables[ 0 ].Rows[ 0 ][ "poundage" ].ToString() );
+                decimal _getRealPrize = _getPrize - _poundage;
                 DateTime _lastGetDateTime = DateTime.Parse( _ds.Tables[ 0 ].Rows[ 0 ][ "openDateTime" ].ToString() ).AddDays( int.Parse( ub.GetSub( "SSEGetPrizeTimeLimit", xmlPath ) ) );
 
                 this.mainPage.builder.Append( string.Format( "第【{0}】期<br />", _sseNo ) );
@@ -1144,7 +1144,7 @@ namespace SSEPage
                 strText = ",,,,,,";
                 strName = "sseNo,prizeId,getMoney,buyType,poundage,act,backurl";
                 strType = "hidden,hidden,hidden,hidden,hidden,hidden,hidden";
-                strValu = "" + _sseNo + "'" + this.id + "'" + _getRealPrize.ToString() + "'" + _buyType + "'" + _poundage + "'getPirzeSubMit'" + Utils.PostPage( 1 ) + "";
+                strValu = "" + _sseNo + "'" + this.id + "'" + _getRealPrize.ToString("#0") + "'" + _buyType + "'" + _poundage + "'getPirzeSubMit'" + Utils.PostPage( 1 ) + "";
                 strEmpt = "false,false,false,false,false,false";
                 strIdea = "";
                 strOthe = string.Format( " 确认兑奖,{0},post,4,red", Utils.getUrl( this.mSseVersionMgr.pageName ) );
