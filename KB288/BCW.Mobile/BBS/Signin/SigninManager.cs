@@ -32,7 +32,7 @@ namespace BCW.Mobile.BBS.Signin
             }
 
             //检查是否登录状态
-            if (BCW.Mobile.Common.CheckLogin(_reqData.userId, _reqData.userKey) == 0)
+            if (Common.Common.CheckLogin(_reqData.userId, _reqData.userKey) == 0)
             {
                 _rspData.header.status = ERequestResult.faild;
                 _rspData.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;

@@ -57,9 +57,11 @@
   <ItemGroup>
     <Compile Include="API.cs" />
     <Compile Include="BBS\Signin\SigninManager.cs" />
+    <Compile Include="BBS\Thread\Reply.cs" />
     <Compile Include="BBS\Thread\Thread.cs" />
     <Compile Include="BLL\MobileSlider.cs" />
     <Compile Include="BLL\UserPlatform.cs" />
+    <Compile Include="Common\Common.cs" />
     <Compile Include="DAL\UserPlatform.cs" />
     <Compile Include="Error\ErrorCodeManager.cs" />
     <Compile Include="Error\ErrorDefind.cs" />
@@ -79,6 +81,7 @@
     </Compile>
     <Compile Include="Protocol\Notices.cs" />
     <Compile Include="Protocol\ProtocolBase.cs" />
+    <Compile Include="Protocol\Reply.cs" />
     <Compile Include="Protocol\Signin.cs" />
     <Compile Include="Protocol\Thread.cs" />
     <Compile Include="Reg\Reg.cs" />

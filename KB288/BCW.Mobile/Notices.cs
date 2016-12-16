@@ -29,7 +29,8 @@ namespace BCW.Mobile
         public long posttime;      //发布时间
         public long expire;        //过期时间
         public int userId;                //发布者ID
-        public string nickname;           //发布者名称     
+        public string nickname;           //发布者名称   
+        public string authorImg;           //发布者头像URL
     }
 
     public class NoticesBase
@@ -64,7 +65,8 @@ namespace BCW.Mobile
                     string _str = _ds.Tables[ 0 ].Rows[ i ][ "Content" ].ToString();
                     _noticeData.content = Out.SysUBB(_str);//.Replace( "\\", "\\\\" ).Replace( "\"", "\\\"" ).Replace( "\n", "\\n" ).Replace( "\r", "\\r" );
                     _noticeData.userId = int.Parse( _ds.Tables[ 0 ].Rows[ i ][ "UsID" ].ToString() );
-                    _noticeData.nickname = _ds.Tables[ 0 ].Rows[ i ][ "UsName" ].ToString(); 
+                    _noticeData.nickname = _ds.Tables[ 0 ].Rows[ i ][ "UsName" ].ToString();
+                    _noticeData.authorImg = _noticeData.userId >0 ? "http://" + Utils.GetDomain() + new BCW.BLL.User().GetPhoto(_noticeData.userId):"";
                     System.DateTime _startTime = TimeZone.CurrentTimeZone.ToLocalTime( new System.DateTime( 1970, 1, 1 ) );
                     _noticeData.posttime = ( long ) ( DateTime.Parse( _ds.Tables[ 0 ].Rows[ i ][ "addTime" ].ToString() ) - _startTime ).TotalSeconds;  
                     _noticeData.expire =( long ) ( DateTime.Parse( _ds.Tables[ 0 ].Rows[ i ][ "OverTime" ].ToString() ) - _startTime ).TotalSeconds;
@@ -162,7 +164,7 @@ namespace BCW.Mobile
             }
 
             //检查是否登录状态
-            if (BCW.Mobile.Common.CheckLogin(_reqData.userId, _reqData.userKey) == 0)
+            if (Common.Common.CheckLogin(_reqData.userId, _reqData.userKey) == 0)
             {
                 _rspAddSuona.header.status = ERequestResult.faild;
                 _rspAddSuona.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;

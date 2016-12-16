@@ -159,7 +159,7 @@ namespace BCW.Mobile.BBS.Thread
         }
 
         /// <summary>
-        /// 
+        /// 发贴
         /// </summary>
         /// <param name="ForumId"></param>
         /// <returns>发表贴子结果类</returns>
@@ -211,7 +211,7 @@ namespace BCW.Mobile.BBS.Thread
 
 
             //检查是否登录状态
-            if (BCW.Mobile.Common.CheckLogin(_reqData.userId, _reqData.userKey) == 0)
+            if (Common.Common.CheckLogin(_reqData.userId, _reqData.userKey) == 0)
             {
                 _rspAddThread.header.status = ERequestResult.faild;
                 _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;
@@ -235,7 +235,7 @@ namespace BCW.Mobile.BBS.Thread
             }
 
             //板块权限不足
-            if (Common.CheckUserFLimit(User.FLimits.enumRole.Role_Text,_reqData.userId,_reqData.forumId))
+            if (Common.Common.CheckUserFLimit(User.FLimits.enumRole.Role_Text,_reqData.userId,_reqData.forumId))
             {
                 _rspAddThread.header.status = ERequestResult.faild;
                 _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH;
@@ -261,7 +261,7 @@ namespace BCW.Mobile.BBS.Thread
             //论坛限制性
             //BCW.User.Users.ShowForumLimit(_reqData.userId, model.Gradelt, model.Visitlt, model.VisitId, model.IsPc);      //浏览限制
             //发贴限制
-            Error.MOBILE_ERROR_CODE _result = BCW.Mobile.Common.ShowAddThread(_reqData.userId, model.Postlt);
+            Error.MOBILE_ERROR_CODE _result = Common.Common.ShowAddThread(_reqData.userId, model.Postlt);
             if (_result != Error.MOBILE_ERROR_CODE.MOBILE_MSG_NONE)
             {
                 _rspAddThread.header.status = ERequestResult.faild;
@@ -359,6 +359,11 @@ namespace BCW.Mobile.BBS.Thread
 
         }
 
+        /// <summary>
+        /// 编辑帖子
+        /// </summary>
+        /// <param name="_reqData"></param>
+        /// <returns></returns>
         public RspEditThread EditThread(ReqEditThread _reqData)
         {
             RspEditThread _rspEditThread =new RspEditThread();
@@ -390,7 +395,7 @@ namespace BCW.Mobile.BBS.Thread
             }
 
             //检查是否登录状态
-            if (BCW.Mobile.Common.CheckLogin(_reqData.userId, _reqData.userKey) == 0)
+            if (Common.Common.CheckLogin(_reqData.userId, _reqData.userKey) == 0)
             {
                 _rspEditThread.header.status = ERequestResult.faild;
                 _rspEditThread.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;
@@ -449,6 +454,11 @@ namespace BCW.Mobile.BBS.Thread
             return _rspEditThread;
         }
 
+        /// <summary>
+        /// 删除帖子
+        /// </summary>
+        /// <param name="_reqData"></param>
+        /// <returns></returns>
         public RspDelThread DelThread(ReqDelThread _reqData)
         {
             RspDelThread _rspdelThread = new RspDelThread();
@@ -457,7 +467,7 @@ namespace BCW.Mobile.BBS.Thread
             int bid = _reqData.threadId;
 
             //检查是否登录状态
-            if (BCW.Mobile.Common.CheckLogin(uid, _reqData.userKey) == 0)
+            if (Common.Common.CheckLogin(uid, _reqData.userKey) == 0)
             {
                 _rspdelThread.header.status = ERequestResult.faild;
                 _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;
@@ -565,6 +575,11 @@ namespace BCW.Mobile.BBS.Thread
             return _rspdelThread;
         }
 
+        /// <summary>
+        /// 置顶帖子
+        /// </summary>
+        /// <param name="_reqData"></param>
+        /// <returns></returns>
         public RspTopThread SetTopThread(ReqTopThread _reqData)
         {
             RspTopThread _rspTopThread = new RspTopThread();
@@ -573,7 +588,7 @@ namespace BCW.Mobile.BBS.Thread
             int bid = _reqData.threadId;
 
             //检查是否登录状态
-            if (BCW.Mobile.Common.CheckLogin(uid, _reqData.userKey) == 0)
+            if (Common.Common.CheckLogin(uid, _reqData.userKey) == 0)
             {
                 _rspTopThread.header.status = ERequestResult.faild;
                 _rspTopThread.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;
@@ -663,6 +678,11 @@ namespace BCW.Mobile.BBS.Thread
             return _rspTopThread;
         }
 
+        /// <summary>
+        /// 设置精华贴
+        /// </summary>
+        /// <param name="_reqData"></param>
+        /// <returns></returns>
         public RspGoodThread SetGoodThread(ReqGoodThread _reqData)
         {
             RspGoodThread _rspGoodThread = new RspGoodThread();
@@ -671,7 +691,7 @@ namespace BCW.Mobile.BBS.Thread
             int bid = _reqData.threadId;
 
             //检查是否登录状态
-            if (BCW.Mobile.Common.CheckLogin(uid, _reqData.userKey) == 0)
+            if (Common.Common.CheckLogin(uid, _reqData.userKey) == 0)
             {
                 _rspGoodThread.header.status = ERequestResult.faild;
                 _rspGoodThread.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;
@@ -738,6 +758,8 @@ namespace BCW.Mobile.BBS.Thread
             _rspGoodThread.header.status = ERequestResult.success;
             return _rspGoodThread;
         }
+               
 
+        
     }
  }

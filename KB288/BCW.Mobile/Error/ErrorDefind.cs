@@ -245,6 +245,56 @@ namespace BCW.Mobile.Error
         /// </summary>
         BBS_SIGNIN_HAS_TODAY = 10021,
 
+        /// <summary>
+        /// 不存在该圈子
+        /// </summary>
+        BBS_GROUP_NOT_EXISTS = 10022,
+
+        /// <summary>
+        /// 圈子已经过期
+        /// </summary>
+        BBS_GROUP_EXPIRE = 10023,
+
+        /// <summary>
+        /// 圈子论坛已关闭
+        /// </summary>
+        BBS_GROUP_CLOSED = 10024,
+
+        /// <summary>
+        /// 非成员不能访问该圈子
+        /// </summary>
+        BBS_GROUP_VISIT_NO_LIMIT = 10025,
+
+        /// <summary>
+        /// 访问等级不足
+        /// </summary>
+        BBS_FORUM_VISIT_LIMIT_LEVEL = 10026,
+        
+        /// <summary>
+        /// 本论坛限VIP会员才可以浏览
+        /// </summary>
+        BBS_FORUM_VISIT_LIMIT_VIP = 10027,
+
+        /// <summary>
+        /// 本论坛限版主和管理员才可以浏览
+        /// </summary>
+        BBS_FORUM_VISIT_LIMIT_BBS_MODERATOR = 10028,
+
+        /// <summary>
+        /// 本论坛限管理员才可以浏览
+        /// </summary>
+        BBS_FORUM_VISIT_LIMIT_ADMIN = 10029,
+
+        /// <summary>
+        /// 本论坛限指定ID进入，您的ID不在指定ID中
+        /// </summary>
+        BBS_FORUM_VISIT_LIMIT_IP = 10030,
+
+        /// <summary>
+        /// 本论坛限手机才能访问
+        /// </summary>
+        BBS_FORUM_VISIT_LIMIT_MOBILE = 10031,
+
         #endregion
 
         #region  公告、喇叭错误码

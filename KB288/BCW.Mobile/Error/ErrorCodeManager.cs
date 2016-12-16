@@ -60,6 +60,13 @@ namespace BCW.Mobile.Error
             #region 论坛
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_FORUM_NOT_FOUND, "找不到该论坛或该论坛已暂停使用");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH, "论坛权限不足");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_FORUM_VISIT_LIMIT_LEVEL, "访问等级不足");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_FORUM_VISIT_LIMIT_VIP, "本论坛限VIP会员才可以浏览");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_FORUM_VISIT_LIMIT_BBS_MODERATOR, "本论坛限版主和管理员才可以浏览");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_FORUM_VISIT_LIMIT_ADMIN, "本论坛限管理员才可以浏览");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_FORUM_VISIT_LIMIT_IP, "本论坛限指定ID进入，您的ID不在指定ID中");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_FORUM_VISIT_LIMIT_MOBILE, "本论坛限手机才能访问");
+
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_TYPE_ERROR, "帖子类型错误");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_FORUM_ID_ERROR, "论坛ID错误");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_TITLE_LENGTH_ERROR, "标题限{0}-{1}字");
@@ -77,6 +84,14 @@ namespace BCW.Mobile.Error
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_DEL_FORBID, "本版帖子不能删除");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_OPER_MYSELF, "不能操作自己的帖子");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_SIGNIN_HAS_TODAY, "今天已经签过到");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_GROUP_NOT_EXISTS, "不存在该圈子");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_GROUP_EXPIRE, "圈子已经过期");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_GROUP_CLOSED, "圈子论坛已关闭");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_GROUP_VISIT_NO_LIMIT, "非成员不能访问该圈子");
+
+
+
+
             #endregion
 
             #region 公告、喇叭
