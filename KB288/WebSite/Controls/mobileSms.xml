@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data>
+  <set name="smsUsid" value="000379" />
+  <set name="smsUsPwd" value="123456" />
+  <set name="smsAccount" value="1069032239089369" />
+  <set name="expireTime" value="5" />
+  <set name="dayCount" value="50" />
+  <set name="IPCount" value="20" />
+  <set name="phoneCount" value="10" />
+  <set name="msgremain" value="100" />
+  <set name="callID" value="0" />
+</data>

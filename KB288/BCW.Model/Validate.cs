@@ -18,6 +18,7 @@ namespace BCW.Model
         private DateTime _codetime;
         private string _mescode;
         private int _type;
+        private int _source;
         /// <summary>
         /// 
         /// </summary>
@@ -81,6 +82,15 @@ namespace BCW.Model
         {
             set { _type = value; }
             get { return _type; }
+        }
+
+        /// <summary>
+        /// 获取来源   0  PC端   1 手机端
+        /// </summary>
+        public int source
+       {
+            set { _source = value; }
+            get { return _source; }
         }
         #endregion Model
 

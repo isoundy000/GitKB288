@@ -66,9 +66,9 @@ namespace BCW.DAL
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into tb_Validate(");
-            strSql.Append("Phone,IP,Time,Flag,codeTime,mesCode,type)");
+            strSql.Append( "Phone,IP,Time,Flag,codeTime,mesCode,type,source)" );
             strSql.Append(" values (");
-            strSql.Append("@Phone,@IP,@Time,@Flag,@codeTime,@mesCode,@type)");
+            strSql.Append("@Phone,@IP,@Time,@Flag,@codeTime,@mesCode,@type,@source)");
             strSql.Append(";select @@IDENTITY");
             SqlParameter[] parameters = {
                     new SqlParameter("@Phone", SqlDbType.NVarChar,50),
@@ -77,7 +77,8 @@ namespace BCW.DAL
                     new SqlParameter("@Flag", SqlDbType.Int,4),
                     new SqlParameter("@codeTime", SqlDbType.DateTime),
                     new SqlParameter("@mesCode", SqlDbType.NVarChar,50),
-                    new SqlParameter("@type", SqlDbType.Int,4)};
+                    new SqlParameter("@type", SqlDbType.Int,4),
+                     new SqlParameter("@source", SqlDbType.Int,4)};
             parameters[0].Value = model.Phone;
             parameters[1].Value = model.IP;
             parameters[2].Value = model.Time;
@@ -85,6 +86,7 @@ namespace BCW.DAL
             parameters[4].Value = model.codeTime;
             parameters[5].Value = model.mesCode;
             parameters[6].Value = model.type;
+            parameters[7].Value = model.source;
 
             object obj = SqlHelper.GetSingle(strSql.ToString(), parameters);
             if (obj == null)
@@ -127,6 +129,7 @@ namespace BCW.DAL
             strSql.Append("codeTime=@codeTime,");
             strSql.Append("mesCode=@mesCode,");
             strSql.Append("type=@type");
+            strSql.Append("source=@source" );
             strSql.Append(" where ID=@ID ");
             SqlParameter[] parameters = {
                     new SqlParameter("@ID", SqlDbType.Int,4),
@@ -136,7 +139,8 @@ namespace BCW.DAL
                     new SqlParameter("@Flag", SqlDbType.Int,4),
                     new SqlParameter("@codeTime", SqlDbType.DateTime),
                     new SqlParameter("@mesCode", SqlDbType.NVarChar,50),
-                    new SqlParameter("@type", SqlDbType.Int,4)};
+                    new SqlParameter("@type", SqlDbType.Int,4),
+                    new SqlParameter("@source", SqlDbType.Int,4)};
             parameters[0].Value = model.ID;
             parameters[1].Value = model.Phone;
             parameters[2].Value = model.IP;
@@ -145,6 +149,7 @@ namespace BCW.DAL
             parameters[5].Value = model.codeTime;
             parameters[6].Value = model.mesCode;
             parameters[7].Value = model.type;
+            parameters[8].Value = model.source;
 
             SqlHelper.ExecuteSql(strSql.ToString(), parameters);
         }
@@ -172,7 +177,7 @@ namespace BCW.DAL
         public BCW.Model.tb_Validate Gettb_Validate(string Phone,int type)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select  top 1 ID,Phone,IP,Time,Flag,codeTime,mesCode from tb_Validate ");
+            strSql.Append( "select  top 1 ID,Phone,IP,Time,Flag,codeTime,mesCode,source from tb_Validate " );
             strSql.Append(" where Phone=@Phone and type=@type order by Time desc ");
             SqlParameter[] parameters = {
                 new SqlParameter("@Phone", SqlDbType.NVarChar,50),
@@ -192,6 +197,7 @@ namespace BCW.DAL
                     model.Flag = reader.GetInt32(4);
                     model.codeTime = reader.GetDateTime(5);
                     model.mesCode = reader.GetString(6);
+                    model.source = reader.GetInt32( 7 );
                     return model;
                 }
                 else
@@ -207,7 +213,7 @@ namespace BCW.DAL
         {
 
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select  top 1 ID,Phone,IP,Time,Flag,codeTime,mesCode,type from tb_Validate ");
+            strSql.Append( "select  top 1 ID,Phone,IP,Time,Flag,codeTime,mesCode,type,source from tb_Validate " );
             strSql.Append(" where ID=@ID ");
             SqlParameter[] parameters = {
                     new SqlParameter("@ID", SqlDbType.Int,4)};
@@ -227,6 +233,7 @@ namespace BCW.DAL
                     model.codeTime = reader.GetDateTime(5);
                     model.mesCode = reader.GetString(6);
                     model.type = reader.GetInt32(7);
+                    model.source = reader.GetInt32( 8 );
                     return model;
                 }
                 else
@@ -264,7 +271,7 @@ namespace BCW.DAL
             IList<BCW.Model.tb_Validate> listtb_Validates = new List<BCW.Model.tb_Validate>();
             string sTable = "tb_Validate";
             string sPkey = "id";
-            string sField = "ID,Phone,IP,Time,Flag,codeTime,mesCode,type";
+            string sField = "ID,Phone,IP,Time,Flag,codeTime,mesCode,type,source";
             string sCondition = strWhere;
             string sOrder = "ID Desc";
             int iSCounts = 0;
@@ -290,6 +297,7 @@ namespace BCW.DAL
                     objtb_Validate.codeTime = reader.GetDateTime(5);
                     objtb_Validate.mesCode = reader.GetString(6);
                     objtb_Validate.type = reader.GetInt32(7);
+                    objtb_Validate.source = reader.GetInt32( 8 );
                     listtb_Validates.Add(objtb_Validate);
                 }
             }

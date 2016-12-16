@@ -22,7 +22,64 @@ namespace BCW.Mobile
         eHome,
         eBbs
     }
-       
+
+
+
+    /// <summary>
+    /// 错误码定义类
+    /// </summary>
+    public static class MOBILE_ERROR_CODE
+    {
+        /// <summary>
+        /// 注册手机号码为空值 
+        /// </summary>
+        public const string MOBILE_PHONE_ISNULL = "手机号码不能为空";
+
+        /// <summary>
+        /// 手机号码格式不正确
+        /// </summary>
+        public const string MOBILE_PHONE_VERIFY = "请输入正确格式的11位数手机号码";  
+
+
+        #region 短信验证码
+
+                /// <summary>
+        /// 今日获取短信太频繁，已达本日上限，请明天再试
+        /// </summary>
+        public const string SMS_FREQUENTLY_TODAY = "今日获取短信太频繁，已达本日上限，请明天再试";
+
+       /// <summary>
+        ///  之前存在频繁获取短信，请明天再试
+       /// </summary>
+        public const string SMS_FREQUENTLY_FLAG = "之前存在频繁获取短信，请明天再试";
+
+        /// <summary>
+        ///  同一IP由于频繁获取短信，请明天再试
+        /// </summary>
+        public const string SMS_FREQUENTLY_IP = "该IP获取短信太频繁，请明天再试";
+
+        /// <summary>
+        /// 该号码由于频繁获取短信，请明天再试
+        /// </summary>
+        public const string SMS_FREQUENTLY_PHONE = "该号码获取短信太频繁，请明天再试"; 
+
+        #endregion
+
+
+        #region  会员注册
+        
+        /// <summary>
+        ///  手机号码已经注册
+        /// </summary>
+        public const string REGEDIT_MOBILE_EXISTS = "手机号码已经注册";   
+        
+        /// <summary>
+        /// 验证码已过期
+        /// </summary>
+        public const string REGEDIT_VERIFYCODE_EXPIRE = "验证码已过期";    
+            
+        #endregion
+    }
 
     /// <summary>
     /// 轮播内容. 
