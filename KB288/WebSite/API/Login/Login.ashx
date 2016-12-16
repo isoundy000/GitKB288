@@ -122,7 +122,6 @@ public class Login : IHttpHandler
     public void BingingPlatFormId()
     {
         string _userId = mContext.Request.Form["userId"];   //帐号
-        string _pwd = mContext.Request.Form[ "pwd" ];     //密码
         string _bingType = mContext.Request.Form[ "platformType" ];     //绑定平台类型
         string _assessToken = mContext.Request.Form[ "platformId" ];     //绑定平台唯一AssessToken
         LoginData _loginData = new LoginData();
@@ -132,31 +131,14 @@ public class Login : IHttpHandler
         BCW.Mobile.Model.UserPlatform _userPlatform = new BCW.Mobile.BLL.UserPlatform().GetModel( _assessToken, int.Parse(_bingType ));
         if (_userPlatform == null)
         {
-            //检查用户密码是否正确
-            int _userRow = 0;
-            string _md5Pwd = Utils.MD5Str(_pwd);
-
-            BCW.Model.User _user = new BCW.Model.User();
-            _user.UsPwd = _md5Pwd;
-            if (_userId.ToString().Length == 11)
-            {
-                _user.Mobile = _userId;
-                _userRow = new BCW.BLL.User().GetRowByMobile(_user);
-            }
-            else
-            {
-                _user.ID = int.Parse(_userId);
-                _userRow = new BCW.BLL.User().GetRowByID(_user);
-            }
-
-            if (_userRow <= 0)
+            //检查帐户信息
+            BCW.Model.User _user = new BCW.BLL.User().GetBasic(int.Parse(_userId));
+            if (_user  == null)
             {
                 _loginData.header.status = ERequestResult.faild;
-                _loginData.header.statusCode = MOBILE_ERROR_CODE.LOGIN_USER_PWD_ERROR;
+                _loginData.header.statusCode = MOBILE_ERROR_CODE.LOGIN_ACCOUNT_NOTFOUND;
                 return;
             }
-
-            _user = new BCW.BLL.User().GetKey(_userRow);
 
             BCW.Mobile.Model.UserPlatform _newUserPlatform = new BCW.Mobile.Model.UserPlatform();
             _newUserPlatform.platformId = _assessToken;
