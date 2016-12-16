@@ -42,7 +42,7 @@ public class notices : IHttpHandler {
         RspNoticAll _rspData = new RspNoticAll();
         int pNoticeId = int.Parse( Utils.GetRequest( "pNoticeId", "all", 1, @"^\d*$", "-1" ) );
         int pType = int.Parse( Utils.GetRequest( "pType", "all", 1, @"^\d*$", "0" ) );              //类型
-        int pUsId = int.Parse( Utils.GetRequest( "pUsId", "all", 1, @"^\d*$", "-1" ) );
+        int pUsId = int.Parse( Utils.GetRequest( "pUserId", "all", 1, @"^\d*$", "-1" ) );
         int pExpire = int.Parse( Utils.GetRequest( "pExpire", "all", 1, @"^\d*$", "-1" ) );        //不填:包含过期和未过期  0：未过期  1：已过期
 
         switch( (ENoticeType) pType )

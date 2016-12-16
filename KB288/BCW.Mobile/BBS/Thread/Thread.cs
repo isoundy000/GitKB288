@@ -196,6 +196,7 @@ namespace BCW.Mobile.BBS.Thread
             {
                 _rspAddThread.header.status = ERequestResult.faild;
                 _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_TITLE_LENGTH_ERROR;
+                _rspAddThread.header.statusMsg = string.Format(_rspAddThread.header.statusMsg, ub.GetSub("BbsThreadMin", xmlPath), ub.GetSub("BbsThreadMax", xmlPath));
                 return _rspAddThread;
             }
 
@@ -204,6 +205,7 @@ namespace BCW.Mobile.BBS.Thread
             {
                 _rspAddThread.header.status = ERequestResult.faild;
                 _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_CONTENT_LENGTH_ERROR;
+                _rspAddThread.header.statusMsg = string.Format(_rspAddThread.header.statusMsg, ub.GetSub("BbsContentMin", xmlPath), ub.GetSub("BbsContentMax", xmlPath));
                 return _rspAddThread;
             }
 
@@ -374,6 +376,7 @@ namespace BCW.Mobile.BBS.Thread
             {
                 _rspEditThread.header.status = ERequestResult.faild;
                 _rspEditThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_TITLE_LENGTH_ERROR;
+                _rspEditThread.header.statusMsg = string.Format(_rspEditThread.header.statusMsg, ub.GetSub("BbsThreadMin", xmlPath), ub.GetSub("BbsThreadMax", xmlPath));
                 return _rspEditThread;
             }
 
@@ -382,6 +385,7 @@ namespace BCW.Mobile.BBS.Thread
             {
                 _rspEditThread.header.status = ERequestResult.faild;
                 _rspEditThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_CONTENT_LENGTH_ERROR;
+                _rspEditThread.header.statusMsg = string.Format(_rspEditThread.header.statusMsg, ub.GetSub("BbsContentMin", xmlPath), ub.GetSub("BbsContentMax", xmlPath));
                 return _rspEditThread;
             }
 

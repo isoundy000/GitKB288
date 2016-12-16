@@ -38,10 +38,8 @@ namespace BCW.Mobile.Home
                 statusMsg = ErrorCodeManager.Instance().GetErrorMsg( mStatusCode );
             }
         }
-
-        [JsonProperty]
-        private string statusMsg;
-
+              
+        public string statusMsg;
         public string clientIP;
         public string domainIP;
 

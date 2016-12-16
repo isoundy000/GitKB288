@@ -182,6 +182,7 @@ namespace BCW.Mobile
                     {
                         _rspAddSuona.header.status = ERequestResult.faild;
                         _rspAddSuona.header.statusCode = Error.MOBILE_ERROR_CODE.NETWORK_SUONA_REGDAY_NOT_ENOUGH;
+                        _rspAddSuona.header.statusMsg = string.Format(_rspAddSuona.header.statusMsg, (ub.GetSub("NetworkRegDay", xmlPath)));
                         return _rspAddSuona;
                     }
 
@@ -189,6 +190,7 @@ namespace BCW.Mobile
                     {
                         _rspAddSuona.header.status = ERequestResult.faild;
                         _rspAddSuona.header.statusCode = Error.MOBILE_ERROR_CODE.NETWORK_SUONA_LEVEL_NOT_ENOUGH;
+                        _rspAddSuona.header.statusMsg = string.Format(_rspAddSuona.header.statusMsg, ub.GetSub("NetworkGrade", xmlPath));
                         return _rspAddSuona;  
                     }
                 }
@@ -213,6 +215,7 @@ namespace BCW.Mobile
             {
                 _rspAddSuona.header.status = ERequestResult.faild;
                 _rspAddSuona.header.statusCode = Error.MOBILE_ERROR_CODE.NETWORK_SUONA_CONTENT_LENGTH_ERROR;
+                _rspAddSuona.header.statusMsg = string.Format(_rspAddSuona.header.statusMsg, ub.GetSub("NetworksLength", xmlPath), ub.GetSub("NetworkbLength", xmlPath));
                 return _rspAddSuona;
             }
 
@@ -221,6 +224,7 @@ namespace BCW.Mobile
             {
                 _rspAddSuona.header.status = ERequestResult.faild;
                 _rspAddSuona.header.statusCode = Error.MOBILE_ERROR_CODE.NETWORK_SUONA_TIME_LENGTH_ERROR;
+                _rspAddSuona.header.statusMsg = string.Format(_rspAddSuona.header.statusMsg, ub.GetSub("NetworkbMinute", xmlPath));
                 return _rspAddSuona;
             }
 
@@ -228,6 +232,7 @@ namespace BCW.Mobile
             {
                 _rspAddSuona.header.status = ERequestResult.faild;
                 _rspAddSuona.header.statusCode = Error.MOBILE_ERROR_CODE.NETWORK_SUONA_TIME_LENGTH_ERROR;
+                _rspAddSuona.header.statusMsg = string.Format(_rspAddSuona.header.statusMsg, ub.GetSub("NetworkbMinute", xmlPath));
                 return _rspAddSuona;
             }
 

@@ -8,8 +8,6 @@ namespace BCW.Mobile.Error
     public class ErrorCodeManager
     {
         private static ErrorCodeManager mInstance;
-        private string xmlPath = "../../Controls/bbs.xml";
-        private string netWorkXmlPath = "../../Controls/network.xml";
 
         private Dictionary<MOBILE_ERROR_CODE, string> dctErrorCode;
 
@@ -64,8 +62,8 @@ namespace BCW.Mobile.Error
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH, "论坛权限不足");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_TYPE_ERROR, "帖子类型错误");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_FORUM_ID_ERROR, "论坛ID错误");
-            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_TITLE_LENGTH_ERROR, "标题限" + ub.GetSub("BbsThreadMin", xmlPath) + "-" + ub.GetSub("BbsThreadMax", xmlPath) + "字");
-            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_CONTENT_LENGTH_ERROR, "请输入" + ub.GetSub("BbsContentMin", xmlPath) + "-" + ub.GetSub("BbsContentMax", xmlPath) + "字的内容");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_TITLE_LENGTH_ERROR, "标题限{0}-{1}字");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_CONTENT_LENGTH_ERROR, "请输入{0}-{1}字的内容");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_THREAD_NUM, "每天发贴的数量超过系统限制");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_ADD_VIP, "本论坛限VIP会员才可以发帖");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_ADD_IS_ALLMODE, "本论坛限版主和管理员才可以发帖");
@@ -79,20 +77,14 @@ namespace BCW.Mobile.Error
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_DEL_FORBID, "本版帖子不能删除");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_OPER_MYSELF, "不能操作自己的帖子");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_SIGNIN_HAS_TODAY, "今天已经签过到");
-            
-
             #endregion
 
             #region 公告、喇叭
-            dctErrorCode.Add(MOBILE_ERROR_CODE.NETWORK_SUONA_REGDAY_NOT_ENOUGH, "注册不到" + Utils.ParseInt(ub.GetSub("NetworkRegDay", netWorkXmlPath) + "天不能发布广播"));
-            dctErrorCode.Add(MOBILE_ERROR_CODE.NETWORK_SUONA_LEVEL_NOT_ENOUGH, "发布广播需要等级" + ub.GetSub("NetworkGrade", netWorkXmlPath) + "级");
-            dctErrorCode.Add(MOBILE_ERROR_CODE.NETWORK_SUONA_CONTENT_LENGTH_ERROR, "内容限" + ub.GetSub("NetworksLength", netWorkXmlPath) + "-" + ub.GetSub("NetworkbLength", netWorkXmlPath) + "字");
-            dctErrorCode.Add(MOBILE_ERROR_CODE.NETWORK_SUONA_TIME_LENGTH_ERROR, "显示时长限1-" + ub.GetSub("NetworkbMinute", netWorkXmlPath) + "分钟");
-
-
+            dctErrorCode.Add(MOBILE_ERROR_CODE.NETWORK_SUONA_REGDAY_NOT_ENOUGH, "注册不到{0}天不能发布广播");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.NETWORK_SUONA_LEVEL_NOT_ENOUGH, "发布广播需要等级{0}级");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.NETWORK_SUONA_CONTENT_LENGTH_ERROR, "内容限{0}-{1}字");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.NETWORK_SUONA_TIME_LENGTH_ERROR, "显示时长限1-{0}分钟");
             #endregion
-
-
         }
 
         public static ErrorCodeManager Instance()
