@@ -28,6 +28,11 @@ namespace BCW.Mobile.Protocol
         /// </summary>
         public int cobi;
 
+        /// <summary>
+        /// 当前剩余酷币
+        /// </summary>
+        public long totalCobi;
+
     }
 
     public class RspNoticAll : RspProtocolBase
