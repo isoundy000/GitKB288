@@ -30,6 +30,5 @@ F:\Work\KB288\BCW.Update\obj\Debug\BCW.Update.dll
 F:\Work\KB288\BCW.Update\obj\Debug\BCW.Update.pdb
 F:\Work\GitKB288\KB288\BCW.Update\bin\Debug\BCW.Update.dll
 F:\Work\GitKB288\KB288\BCW.Update\bin\Debug\BCW.Update.pdb
-F:\Work\GitKB288\KB288\BCW.Update\obj\Debug\ResolveAssemblyReference.cache
 F:\Work\GitKB288\KB288\BCW.Update\obj\Debug\BCW.Update.dll
 F:\Work\GitKB288\KB288\BCW.Update\obj\Debug\BCW.Update.pdb

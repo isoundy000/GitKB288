@@ -57,7 +57,7 @@ F:\Work\GitKB288\KB288\BCW.Files\bin\Debug\BCW.Files.pdb
 F:\Work\GitKB288\KB288\BCW.Files\bin\Debug\BCW.Common.dll
 F:\Work\GitKB288\KB288\BCW.Files\bin\Debug\BCW.SharpZipLib.dll
 F:\Work\GitKB288\KB288\BCW.Files\bin\Debug\BCW.SharpZipLib.pdb
-F:\Work\GitKB288\KB288\BCW.Files\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\GitKB288\KB288\BCW.Files\obj\Debug\BCW.Files.csprojResolveAssemblyReference.cache
 F:\Work\GitKB288\KB288\BCW.Files\obj\Debug\BCW.Files.csproj.ResolveComReference.cache
 F:\Work\GitKB288\KB288\BCW.Files\obj\Debug\BCW.Files.dll
 F:\Work\GitKB288\KB288\BCW.Files\obj\Debug\BCW.Files.pdb

@@ -90,7 +90,7 @@ namespace BCW.Mobile
             }
 
             //检查手机验证码是否过期
-            if( DateTime.Now > _validate.codeTime )
+            if( DateTime.Now > _validate.codeTime ||_validate.Flag == 0 )
             {
                 header.status = ERequestResult.faild;
                 header.statusCode = MOBILE_ERROR_CODE.REGEDIT_VERIFYCODE_EXPIRE;
@@ -142,7 +142,7 @@ namespace BCW.Mobile
 
                 //注册成令验证码失效
                 _validate.type = 0;
-                new BCW.BLL.tb_Validate().Update( _validate );
+                new BCW.BLL.tb_Validate().UpdateFlag(0,_validate.ID);
 
                 header.status = ERequestResult.success;
                 userId = maxId;
@@ -150,7 +150,7 @@ namespace BCW.Mobile
             catch (Exception e)
             {
                 header.status = ERequestResult.faild;
-                header.statusCode = MOBILE_ERROR_CODE.MOBILE_SYS_ERROR; 
+                header.statusCode = MOBILE_ERROR_CODE.MOBILE_SYS_ERROR;
             }
         }
 

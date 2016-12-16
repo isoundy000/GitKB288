@@ -732,12 +732,13 @@ namespace BCW.DAL
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update tb_User set ");
 
-            string UsIP = Utils.DelLastChar(Utils.GetUsIP(), ".");
-            UsIP = Utils.DelLastChar(UsIP, ".");
-            if (UsIP != "121.14")
-            {
-                strSql.Append("EndIP='" + Utils.GetUsIP() + "', ");
-            }
+            //string UsIP = Utils.DelLastChar(Utils.GetUsIP(), ".");
+            //UsIP = Utils.DelLastChar(UsIP, ".");            
+            //if (UsIP != "121.14")
+            //{
+                strSql.Append("EndIP='192.168.1.116', ");
+            //}
+
             strSql.Append("EndTime='" + DateTime.Now + "',");
 
             strSql.Append("EndTime2=");

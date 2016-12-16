@@ -117,7 +117,7 @@ namespace BCW.Mobile
         /// <summary>
         /// 绑定第三方帐号失败
         /// </summary>
-        LOGIN_BINDPLATFORM_FAILD,
+        LOGIN_BINDPLATFORM_FAILD,       
 
         /// <summary>
         /// 用户名或密码不正确
@@ -128,6 +128,11 @@ namespace BCW.Mobile
         /// 帐号格式错误(必须是数字)
         /// </summary>
         MOBILE_USERID_VERIFY,
+
+        /// <summary>
+        /// 该帐号已被其它帐号绑定
+        /// </summary>
+        LOGIN_BINDPLATFORM_USE,
 
 
         MAX
@@ -175,6 +180,7 @@ namespace BCW.Mobile
             dctErrorCode.Add(MOBILE_ERROR_CODE.LOGIN_BINDPLATFORM_FAILD,"绑定第三方帐号失败");   
             dctErrorCode.Add(MOBILE_ERROR_CODE.LOGIN_USER_PWD_ERROR,"用户名或密码不正确"); 
             dctErrorCode.Add(MOBILE_ERROR_CODE.MOBILE_USERID_VERIFY,"帐号格式错误(必须是数字)");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.LOGIN_BINDPLATFORM_USE, "该帐号已被其它帐号绑定");
             #endregion
 
         }

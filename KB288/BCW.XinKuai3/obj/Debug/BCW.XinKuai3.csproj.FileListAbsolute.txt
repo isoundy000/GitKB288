@@ -35,6 +35,5 @@ F:\Work\GitKB288\KB288\BCW.XinKuai3\bin\Debug\BCW.XinKuai3.pdb
 F:\Work\GitKB288\KB288\BCW.XinKuai3\bin\Debug\BCW.Common.dll
 F:\Work\GitKB288\KB288\BCW.XinKuai3\bin\Debug\BCW.Data.dll
 F:\Work\GitKB288\KB288\BCW.XinKuai3\bin\Debug\BCW.Data.pdb
-F:\Work\GitKB288\KB288\BCW.XinKuai3\obj\Debug\ResolveAssemblyReference.cache
 F:\Work\GitKB288\KB288\BCW.XinKuai3\obj\Debug\BCW.XinKuai3.dll
 F:\Work\GitKB288\KB288\BCW.XinKuai3\obj\Debug\BCW.XinKuai3.pdb

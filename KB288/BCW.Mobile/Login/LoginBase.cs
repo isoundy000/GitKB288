@@ -59,11 +59,11 @@ namespace BCW.Mobile.Login
 
         public abstract void Init();
 
-        public void Login(string _account,string _pwd)
+        public void Login(string _account,string _pwd,bool platform = false)
         {
            //检查用户密码是否正确
             int _userRow = 0;
-            string _md5Pwd = Utils.MD5Str(_pwd);
+            string _md5Pwd = platform == true ? _pwd : Utils.MD5Str(_pwd);
             BCW.Model.User _user = new BCW.Model.User();             
             _user.UsPwd = _md5Pwd;
             if( _account.ToString().Length == 11 )
@@ -161,7 +161,7 @@ namespace BCW.Mobile.Login
             }
 
             rspLoginData.user.platformId = _userPlatform.platformId;
-            base.Login(_userPlatform.userId.ToString(),new BCW.BLL.User().GetUsPwd(_userPlatform.userId));               //执行普通帐号密码登录
+            base.Login(_userPlatform.userId.ToString(),new BCW.BLL.User().GetUsPwd(_userPlatform.userId),true);               //执行普通帐号密码登录
         }
 
         public override void Init()

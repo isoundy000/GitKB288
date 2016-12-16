@@ -16,9 +16,9 @@ F:\Work\GitKB288\KB288\BCW.winners\bin\Debug\BCW.Common.dll
 F:\Work\GitKB288\KB288\BCW.winners\bin\Debug\BCW.DAL.dll
 F:\Work\GitKB288\KB288\BCW.winners\bin\Debug\BCW.Data.dll
 F:\Work\GitKB288\KB288\BCW.winners\bin\Debug\BCW.Model.dll
-F:\Work\GitKB288\KB288\BCW.winners\bin\Debug\BCW.Data.pdb
 F:\Work\GitKB288\KB288\BCW.winners\bin\Debug\BCW.DAL.pdb
+F:\Work\GitKB288\KB288\BCW.winners\bin\Debug\BCW.Data.pdb
 F:\Work\GitKB288\KB288\BCW.winners\bin\Debug\BCW.Model.pdb
-F:\Work\GitKB288\KB288\BCW.winners\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\GitKB288\KB288\BCW.winners\obj\Debug\BCW.winners.csprojResolveAssemblyReference.cache
 F:\Work\GitKB288\KB288\BCW.winners\obj\Debug\BCW.winners.dll
 F:\Work\GitKB288\KB288\BCW.winners\obj\Debug\BCW.winners.pdb

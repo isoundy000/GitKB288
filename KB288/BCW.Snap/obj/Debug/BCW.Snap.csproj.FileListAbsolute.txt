@@ -51,6 +51,6 @@ F:\Work\GitKB288\KB288\BCW.Snap\bin\Debug\BCW.Snap.pdb
 F:\Work\GitKB288\KB288\BCW.Snap\bin\Debug\BCW.Common.dll
 F:\Work\GitKB288\KB288\BCW.Snap\bin\Debug\BCW.Graph.dll
 F:\Work\GitKB288\KB288\BCW.Snap\bin\Debug\BCW.Graph.pdb
-F:\Work\GitKB288\KB288\BCW.Snap\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\GitKB288\KB288\BCW.Snap\obj\Debug\BCW.Snap.csprojResolveAssemblyReference.cache
 F:\Work\GitKB288\KB288\BCW.Snap\obj\Debug\BCW.Snap.dll
 F:\Work\GitKB288\KB288\BCW.Snap\obj\Debug\BCW.Snap.pdb

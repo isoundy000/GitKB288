@@ -13,35 +13,52 @@ using BCW.Mobile;
 
 public class Login : IHttpHandler
 {
+    private HttpContext mContext;
 
     public void ProcessRequest(HttpContext context)
     {
         context.Response.ContentType = "text/plain";
+        mContext = context;
+
+        string pAct = context.Request.Form["pAct"];   //操作类型
+
+        if (string.IsNullOrEmpty(pAct) == false)
+        {
+            switch (pAct)
+            {
+                case "dsBingPlatform":
+                    DesBingingPlatFormId();
+                    break;
+                case "bingPlatform":
+                    BingingPlatFormId();
+                    break;
+            }
+            return;
+        }
 
         string _userId = context.Request.Form["userId"];   //帐号
         string _pwd = context.Request.Form[ "pwd" ];     //密码
         string _bingType = context.Request.Form[ "platformType" ];     //绑定平台类型
         string _assessToken = context.Request.Form[ "platformId" ];     //绑定平台唯一AssessToken
 
-        if( Regex.IsMatch( _userId, @"^\d*" ) == false )
+        if( string.IsNullOrEmpty( _userId ) == false && Regex.IsMatch( _userId, @"^\d*" ) == false )
         {
             LoginData _loginData = LoginManager.instance().Error( MOBILE_ERROR_CODE.MOBILE_USERID_VERIFY);
-            context.Response.Write( JsonConvert.SerializeObject( _loginData ) );  
+            JsonSerializerSettings _seting = new JsonSerializerSettings();
+            _seting.NullValueHandling = NullValueHandling.Ignore;
+            context.Response.Write( JsonConvert.SerializeObject( _loginData,Formatting.Indented,_seting ) );
             return;
         }
-        
-       
+
         LoginBase _loginBase = null;
         try
-        {                     
-              
-            
+        {
             if( string.IsNullOrEmpty( _userId ) == false && string.IsNullOrEmpty( _bingType ) == false )
                 _loginBase = LoginManager.instance().Login( _userId, _pwd, ( EMobileLoginType ) ( int.Parse( _bingType ) ), _assessToken );
             else if( string.IsNullOrEmpty( _userId ) == false )
                 _loginBase = LoginManager.instance().Login(_userId, _pwd );
             else if( string.IsNullOrEmpty( _bingType ) ==false )
-               _loginBase = LoginManager.instance().Login( ( EMobileLoginType ) ( int.Parse( _bingType ) ), _assessToken );
+                _loginBase = LoginManager.instance().Login( ( EMobileLoginType ) ( int.Parse( _bingType ) ), _assessToken );
 
             if( _loginBase != null )
             {
@@ -78,7 +95,7 @@ public class Login : IHttpHandler
                 }
 
                 JsonSerializerSettings _seting = new JsonSerializerSettings();
-                _seting.NullValueHandling = NullValueHandling.Ignore;                
+                _seting.NullValueHandling = NullValueHandling.Ignore;
                 context.Response.Write( JsonConvert.SerializeObject( _loginBase.rspLoginData,Formatting.Indented,_seting ) );
             }
 
@@ -86,7 +103,9 @@ public class Login : IHttpHandler
         catch( Exception e )
         {
             LoginData _loginData = LoginManager.instance().Error( MOBILE_ERROR_CODE.LOGIN_PARAMS_ERROR );
-            context.Response.Write( JsonConvert.SerializeObject( _loginData ) );
+            JsonSerializerSettings _seting = new JsonSerializerSettings();
+            _seting.NullValueHandling = NullValueHandling.Ignore;
+            context.Response.Write( JsonConvert.SerializeObject( _loginData,Formatting.Indented,_seting ) );
         }
 
     }
@@ -99,58 +118,100 @@ public class Login : IHttpHandler
         }
     }
 
-    #region 登录判断
-    public static string LoginStatue(int i, string a, string b, string c, string d, string e, string f, string g)
+    #region 绑定第三方平台
+    public void BingingPlatFormId()
     {
-        //{"status":"1", msg:"success"}
-        if (i == 1)//登录成功
+        string _userId = mContext.Request.Form["userId"];   //帐号
+        string _pwd = mContext.Request.Form[ "pwd" ];     //密码
+        string _bingType = mContext.Request.Form[ "platformType" ];     //绑定平台类型
+        string _assessToken = mContext.Request.Form[ "platformId" ];     //绑定平台唯一AssessToken
+        LoginData _loginData = new LoginData();
+        _loginData.user = null;
+
+        //绑定第三方登录
+        BCW.Mobile.Model.UserPlatform _userPlatform = new BCW.Mobile.BLL.UserPlatform().GetModel( _assessToken, int.Parse(_bingType ));
+        if (_userPlatform == null)
         {
-            StringBuilder jsonBuilder = new StringBuilder();
-            jsonBuilder.Append("{" + "");
-            jsonBuilder.Append("\"" + "status" + "\"" + ": " + "\"" + "SUCCESS" + "\"");
-            jsonBuilder.Append(",");
-            jsonBuilder.Append("\"" + "status_msg" + "\"" + ":" + "\"" + "" + "\"");
-            jsonBuilder.Append(",");
-            jsonBuilder.Append("\"" + "accesstoken" + "\"" + ":" + "\"" + a + "\"");//身份识别字符串u
-            jsonBuilder.Append(",");
-            jsonBuilder.Append("\"" + "servertime" + "\"" + ":" + "\"" + b + "\"");//当前服务器时间
-            jsonBuilder.Append(",");
-            jsonBuilder.Append("\"" + "accesstoken_expire" + "\"" + ":" + "\"" + c + "\"");//accesstoken到期时间
-            jsonBuilder.Append(",");
-            jsonBuilder.Append("\"" + "userInfo" + "\"" + ":");
-            jsonBuilder.Append("{");
-            jsonBuilder.Append("\"" + "uid" + "\"" + ":" + "\"" + d + "\"");//用户id
-            jsonBuilder.Append(",");
-            jsonBuilder.Append("\"" + "face" + "\"" + ":" + "\"" + e + "\"");//头像url
-            jsonBuilder.Append(",");
-            jsonBuilder.Append("\"" + "nickname" + "\"" + ":" + "\"" + f + "\"");//昵称
-            jsonBuilder.Append(",");
-            jsonBuilder.Append("\"" + "level" + "\"" + ":" + "\"" + g + "\"");//等级数字
-            jsonBuilder.Append("}");
-            jsonBuilder.Append("}");
-            return jsonBuilder.ToString();
-        }
-        else if (i == 2)//登录失败
-        {
-            StringBuilder jsonBuilder = new StringBuilder();
-            jsonBuilder.Append("{");
-            jsonBuilder.Append("\"" + "status" + "\"" + ":" + "\"" + "FAIL" + "\"");
-            jsonBuilder.Append(",");
-            jsonBuilder.Append("\"" + "status_msg" + "\"" + ":" + "\"" + "账号或密码错误" + "\"");
-            jsonBuilder.Append(",");
-            jsonBuilder.Append("\"" + "err_code" + "\"" + ":" + "\"" + "701" + "\"");
-            jsonBuilder.Append("}");
-            return jsonBuilder.ToString();
+            //检查用户密码是否正确
+            int _userRow = 0;
+            string _md5Pwd = Utils.MD5Str(_pwd);
+
+            BCW.Model.User _user = new BCW.Model.User();
+            _user.UsPwd = _md5Pwd;
+            if (_userId.ToString().Length == 11)
+            {
+                _user.Mobile = _userId;
+                _userRow = new BCW.BLL.User().GetRowByMobile(_user);
+            }
+            else
+            {
+                _user.ID = int.Parse(_userId);
+                _userRow = new BCW.BLL.User().GetRowByID(_user);
+            }
+
+            if (_userRow <= 0)
+            {
+                _loginData.header.status = ERequestResult.faild;
+                _loginData.header.statusCode = MOBILE_ERROR_CODE.LOGIN_USER_PWD_ERROR;
+                return;
+            }
+
+            _user = new BCW.BLL.User().GetKey(_userRow);
+
+            BCW.Mobile.Model.UserPlatform _newUserPlatform = new BCW.Mobile.Model.UserPlatform();
+            _newUserPlatform.platformId = _assessToken;
+            _newUserPlatform.platformType = int.Parse(_bingType);
+            _newUserPlatform.userId = _user.ID;
+            new BCW.Mobile.BLL.UserPlatform().Add(_newUserPlatform);
+            _loginData.header.status = ERequestResult.success;
+            JsonSerializerSettings _seting = new JsonSerializerSettings();
+            _seting.NullValueHandling = NullValueHandling.Ignore;
+            mContext.Response.Write( JsonConvert.SerializeObject( _loginData,Formatting.Indented,_seting ) );
         }
         else
         {
-            StringBuilder jsonBuilder = new StringBuilder();
-            jsonBuilder.Append("{");
-            jsonBuilder.Append("\"" + "status" + "\"" + ":" + "\"" + 3 + "\"");
-            jsonBuilder.Append(",");
-            jsonBuilder.Append("\"" + "msg" + "\"" + ":" + "\"" + "error" + "\"");
-            jsonBuilder.Append("}");
-            return jsonBuilder.ToString();
+            _loginData.header.status = ERequestResult.faild;
+            _loginData.header.statusCode = MOBILE_ERROR_CODE.LOGIN_BINDPLATFORM_USE;
+            JsonSerializerSettings _seting = new JsonSerializerSettings();
+            _seting.NullValueHandling = NullValueHandling.Ignore;
+            mContext.Response.Write( JsonConvert.SerializeObject( _loginData,Formatting.Indented,_seting ) );
+        }
+
+    }
+    #endregion
+
+    #region 解除第三方绑定
+    public void DesBingingPlatFormId()
+    {
+        string _bingType = mContext.Request.Form[ "platformType" ];     //绑定平台类型
+        string _assessToken = mContext.Request.Form[ "platformId" ];     //绑定平台唯一AssessToken
+        LoginData _loginData = new LoginData();
+        _loginData.user = null;
+
+        if( string.IsNullOrEmpty( _assessToken ) == true)
+        {
+            _loginData = LoginManager.instance().Error( MOBILE_ERROR_CODE.MOBILE_PARAMS_ERROR);
+            JsonSerializerSettings _seting = new JsonSerializerSettings();
+            _seting.NullValueHandling = NullValueHandling.Ignore;
+            mContext.Response.Write( JsonConvert.SerializeObject( _loginData,Formatting.Indented,_seting ) );
+            return;
+        }
+
+        //执行解绑
+        if (new BCW.Mobile.BLL.UserPlatform().Delete(_assessToken, int.Parse(_bingType)))
+        {
+            _loginData.header.status = ERequestResult.success;
+            JsonSerializerSettings _seting = new JsonSerializerSettings();
+            _seting.NullValueHandling = NullValueHandling.Ignore;
+            mContext.Response.Write( JsonConvert.SerializeObject( _loginData,Formatting.Indented,_seting ) );
+        }
+        else
+        {
+            _loginData.header.status = ERequestResult.faild;
+            _loginData.header.statusCode = MOBILE_ERROR_CODE.LOGIN_PLATFORM_USER_NOTFOUND;
+            JsonSerializerSettings _seting = new JsonSerializerSettings();
+            _seting.NullValueHandling = NullValueHandling.Ignore;
+            mContext.Response.Write( JsonConvert.SerializeObject( _loginData,Formatting.Indented,_seting ) );
         }
     }
     #endregion

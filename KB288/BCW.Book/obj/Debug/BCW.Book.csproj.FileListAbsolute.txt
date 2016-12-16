@@ -55,6 +55,6 @@ F:\Work\GitKB288\KB288\BCW.Book\bin\Debug\BCW.Data.dll
 F:\Work\GitKB288\KB288\BCW.Book\bin\Debug\BCW.Draw.dll
 F:\Work\GitKB288\KB288\BCW.Book\bin\Debug\BCW.Data.pdb
 F:\Work\GitKB288\KB288\BCW.Book\bin\Debug\BCW.Draw.pdb
-F:\Work\GitKB288\KB288\BCW.Book\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\GitKB288\KB288\BCW.Book\obj\Debug\BCW.Book.csprojResolveAssemblyReference.cache
 F:\Work\GitKB288\KB288\BCW.Book\obj\Debug\BCW.Book.dll
 F:\Work\GitKB288\KB288\BCW.Book\obj\Debug\BCW.Book.pdb
