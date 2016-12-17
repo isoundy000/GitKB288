@@ -89,7 +89,7 @@ namespace BCW.Mobile.BBS.Thread
             }
 
             if (_reqData.replyId > 0)
-                strWhere += " and ID > " + _reqData.replyId + "";
+                strWhere += " and ID < " + _reqData.replyId + "";
 
             strOrder = " Order by Istop Desc,AddTime Desc";
 
@@ -108,6 +108,8 @@ namespace BCW.Mobile.BBS.Thread
                     _data.floor = int.Parse(_ds.Tables[0].Rows[i]["Floor"].ToString());
                     _data.content = BCW.Common.Out.SysUBB(_ds.Tables[0].Rows[i]["Content"].ToString());
                     _data.ReplyId = int.Parse(_ds.Tables[0].Rows[i]["ReplyId"].ToString());
+                    _data.addTime = Common.Common.GetLongTime(System.DateTime.Parse(_ds.Tables[0].Rows[i]["AddTime"].ToString()));
+                    _data.praise = 0;
                     _data.replyContent = _data.ReplyId > 0 ? BCW.Common.Out.SysUBB(new BCW.BLL.Reply().GetContent(_reqData.threadId, _data.ReplyId)) : "";
                     _rspData.lstReplyData.Add(_data);
                 }

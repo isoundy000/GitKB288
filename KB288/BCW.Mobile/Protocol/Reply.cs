@@ -65,6 +65,16 @@ namespace BCW.Mobile.Protocol
         /// 被回复楼层的原评论内容
         /// </summary>
         public string replyContent;
+
+        /// <summary>
+        /// 发表时间
+        /// </summary>
+        public long addTime;
+
+        /// <summary>
+        /// 点赞数
+        /// </summary>
+        public int praise;
     }
 
     /// <summary>

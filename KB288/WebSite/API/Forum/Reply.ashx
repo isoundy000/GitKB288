@@ -29,12 +29,12 @@ public class Signin : IHttpHandler {
     {
         ReqReplyList _reqData = new ReqReplyList();
 
-        _reqData.userId = int.Parse(Utils.GetRequest("pUserId", "all", 1, @"^\d*$", "-1"));
-        _reqData.userKey = Utils.GetRequest("pUsKey", "all", 0, "", "");
-        _reqData.threadId = int.Parse(Utils.GetRequest("pThreadId", "all", 1, @"^\d*$", "-1"));
-        _reqData.showType = int.Parse(Utils.GetRequest("pType", "all", 1, @"^\d*$", "-1"));
-        _reqData.authorId = int.Parse(Utils.GetRequest("pAuthor", "all", 1, @"^\d*$", "-1"));
-        _reqData.replyId = int.Parse(Utils.GetRequest("pReplyId", "all", 1, @"^\d*$", "-1"));
+        _reqData.userId = int.Parse(Utils.GetRequest("pUserId", "post", 1, @"^\d*$", "-1"));
+        _reqData.userKey = Utils.GetRequest("pUsKey", "post", 0, "", "");
+        _reqData.threadId = int.Parse(Utils.GetRequest("pThreadId", "post", 1, @"^\d*$", "-1"));
+        _reqData.showType = int.Parse(Utils.GetRequest("pType", "post", 1, @"^\d*$", "-1"));
+        _reqData.authorId = int.Parse(Utils.GetRequest("pAuthor", "post", 1, @"^\d*$", "-1"));
+        _reqData.replyId = int.Parse(Utils.GetRequest("pReplyId", "post", 1, @"^\d*$", "-1"));
 
         RspReplyList _rspData = ReplyManager.Instance().GetReplyList(_reqData);
         httpContext.Response.Write(_rspData.SerializeObject());
