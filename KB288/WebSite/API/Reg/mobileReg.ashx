@@ -21,17 +21,21 @@ public class MobileRegHandler : IHttpHandler {
     public void ProcessRequest (HttpContext context) {
         context.Response.ContentType = "text/plain";
 
-        string mobile = context.Request.Form[ "mobile" ];
-        string verifyCode = context.Request.Form[ "verifycode" ];
-        string pwd = context.Request.Form[ "pwd" ];
-        string pwdr = context.Request.Form[ "pwdr" ];
+        string act = context.Request["pAct"];
 
-        JsonSerializerSettings _setting = new JsonSerializerSettings();
-        _setting.NullValueHandling = NullValueHandling.Ignore;
-        
-        objMobileReg.Register( mobile, verifyCode, pwd, pwdr );
-        context.Response.Write( JsonConvert.SerializeObject( objMobileReg,Formatting.Indented,_setting) );
-        
+        if( act == "register" )
+        {
+            string mobile = context.Request.Form[ "mobile" ];
+            string verifyCode = context.Request.Form[ "verifycode" ];
+            string pwd = context.Request.Form[ "pwd" ];
+            string pwdr = context.Request.Form[ "pwdr" ];
+
+            JsonSerializerSettings _setting = new JsonSerializerSettings();
+            _setting.NullValueHandling = NullValueHandling.Ignore;
+
+            objMobileReg.Register( mobile, verifyCode, pwd, pwdr );
+            context.Response.Write( JsonConvert.SerializeObject( objMobileReg, Formatting.Indented, _setting ) );
+        }
     }
  
     public bool IsReusable {
