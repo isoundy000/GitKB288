@@ -228,7 +228,7 @@ namespace BCW.Mobile.BBS.Thread
 
 
             //检查是否登录状态
-            if (BCW.Mobile.Common.CheckLogin(_reqData.userId, _reqData.userKey) > 0)
+            if (BCW.Mobile.Common.CheckLogin(_reqData.userId, _reqData.userKey) == 0)
             {
                 _rspAddThread.header.status = ERequestResult.faild;
                 _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;
@@ -251,8 +251,8 @@ namespace BCW.Mobile.BBS.Thread
                 return _rspAddThread;
             }
 
-            //论坛权限不足
-            if (new BCW.User.Role().IsUserRole(User.Role.enumRole.Role_Text, _reqData.userId, _reqData.forumId) == false)
+            //板块权限不足
+            if (Common.CheckUserFLimit(User.FLimits.enumRole.Role_Text,_reqData.userId,_reqData.forumId))
             {
                 _rspAddThread.header.status = ERequestResult.faild;
                 _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH;

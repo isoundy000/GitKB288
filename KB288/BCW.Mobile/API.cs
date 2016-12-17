@@ -14,7 +14,7 @@ namespace BCW.Mobile
     {
         public static int CheckLogin(int _userId, string _userKey)
         {
-            BCW.Model.User _user = new BCW.BLL.User().GetBasic(_userId);
+            BCW.Model.User _user = new BCW.BLL.User().GetKey(_userId);
             if (_user != null && _user.UsKey == _userKey)
                 return _user.ID;
             return 0;
@@ -57,6 +57,32 @@ namespace BCW.Mobile
             return _result;
         }
 
+        public static bool CheckUserFLimit(BCW.User.FLimits.enumRole objEnumRole, int uid, int forumid)
+        {
+            string text = string.Empty;
+            bool flag = false;
+            if (uid <= 0)
+                return flag;
+            //
+            text = new BCW.BLL.Blacklist().GetRole(uid, forumid);
+            if (string.IsNullOrEmpty(text))
+                return flag;
+            //
+            
+            switch (objEnumRole)
+            {
+                case BCW.User.FLimits.enumRole.Role_Text:
+                    flag = text.Contains("a");
+                    break;
+                case BCW.User.FLimits.enumRole.Role_Reply:
+                    flag = text.Contains("b");
+                    break;
+                default:
+                    break;
+            }
+            return (flag);
+        }
+
 
     }
 
@@ -72,6 +98,7 @@ namespace BCW.Mobile
         eHome,
         eBbs
     }
+
 
 
     /// <summary>
