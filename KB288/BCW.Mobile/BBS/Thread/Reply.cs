@@ -78,7 +78,7 @@ namespace BCW.Mobile.BBS.Thread
 
             //查询条件
             if (_reqData.threadId > 0)
-                strWhere = " and Bid=" + _reqData.threadId;           
+                strWhere += " and Bid=" + _reqData.threadId;           
 
             switch (_reqData.showType)
             {
