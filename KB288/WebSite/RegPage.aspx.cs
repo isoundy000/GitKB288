@@ -35,7 +35,7 @@ public partial class RegPage : System.Web.UI.Page
     {
 
         //自动清空7七前的未验证ID(不包括2012年10月之前未验证的ID)
-        //BCW.Data.SqlHelper.ExecuteSql("delete from tb_user where IsVerify=0 and RegTime>'2012-10-1 00:00:00' and RegTime<'" + DateTime.Now.AddDays(-7) + "'");
+        BCW.Data.SqlHelper.ExecuteSql("delete from tb_user where IsVerify=0 and RegTime>'2012-10-1 00:00:00' and RegTime<'" + DateTime.Now.AddDays(-7) + "'");
 
 
         builder.Append(Out.Tab("<div class=\"title\">免费注册会员</div>", ""));

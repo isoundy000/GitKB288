@@ -220,10 +220,13 @@ public partial class Manage_MobileSlider : System.Web.UI.Page
 
         if( ac == "上传" )
         {
-            BCW.User.Users.ShowVerifyRole( "f", meid );//非验证会员提示
-            new BCW.User.Limits().CheckUserLimit( BCW.User.Limits.enumRole.Role_Upfile, meid );//会员上传权限
-
-
+            //int ManageId = new BCW.User.Manage().IsManageLogin();
+            //if( ManageId != 1 && ManageId != 9 )
+            //{
+            //    BCW.User.Users.ShowVerifyRole( "f", meid );//非验证会员提示
+            //    new BCW.User.Limits().CheckUserLimit( BCW.User.Limits.enumRole.Role_Upfile, meid );//会员上传权限 
+            //}
+                
             this.SaveFiles(_contentType,_params);  
             Utils.Success( "上传成功", "上传成功,正在返回...", Utils.getUrl( "Slider.aspx?ptype=" + pType ), "2" );
             //Utils.Success( "文件回帖", "回复文件成功！" "2222", ReplaceWap( Utils.getUrl( "reply.aspx?forumid=" + forumid + "&amp;bid=" + bid + "" ) ), "2" );

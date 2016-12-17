@@ -25,7 +25,7 @@ public class MobileRegHandler : IHttpHandler {
         string pwdr = context.Request.Form[ "pwdr" ];
 
         context.Response.Write( Utils.GetUsIP() );
-
+           
         
         
         //objMobileReg.Register( mobile, verifyCode, pwd, pwdr ); 
