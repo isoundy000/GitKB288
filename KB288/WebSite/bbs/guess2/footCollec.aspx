@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="footCollec.aspx.cs" Inherits="bbs_guess2_footCollec" %>

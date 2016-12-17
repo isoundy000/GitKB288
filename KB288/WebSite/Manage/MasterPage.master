@@ -1,4 +1,0 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="Manage_MasterPage" %>
-<asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-</asp:ContentPlaceHolder>
-<%= FootResult %>

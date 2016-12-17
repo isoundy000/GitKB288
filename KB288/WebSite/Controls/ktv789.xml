@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<data>
-	<set name="Ktv789Notes" value="" />
-	<set name="Ktv789Rule" value="Ktv789游戏是根据ktv里骰子的玩法演变而成，3人PK，玩法非常刺激！[br]  游戏使用两粒色子作为道具，开出的色子点数相加则产生输赢结果[br]  开色由系统随机产生给用户，规则如下：[br]  骰子相加等于7--上一家全输,币由上下桌得到，各得一半[br]  骰子相加等于8--输一半币  币由上下桌得到，各得一半[br]  骰子相加等于9--输币，币由上下桌得到，各得一半[br]  骰子同色--赢上下桌的币[br]  另:色子相加在7、8、9之外--则轮一位出色[br]  一轮结束后，下一轮将由输的一方（包括全输和输半）或全赢的一方先开色[br]  还愣着干吗,快来[url=ktv789.aspx]赌一把[/url]吧？" />
-	<set name="Ktv789Name" value="Ktv789" />
-	<set name="Ktv789Logo" value="/files/sys/game/ktv789.gif" />
-	<set name="Ktv789Status" value="0" />
-	<set name="Ktv789Tax" value="5" />
-</data>

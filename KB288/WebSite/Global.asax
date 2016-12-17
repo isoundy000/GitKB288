@@ -1,1 +1,0 @@
-﻿<%@ Application Codebehind="Global.asax.cs" src="Global.asax.cs" Inherits="Global.Global" Language="C#" %> 
