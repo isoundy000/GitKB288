@@ -2716,45 +2716,39 @@ namespace BCW.dzpk
             int tmSameCount = 0;
             //单只的数量,两只的数量,三只的数量
             int tmSignedCount = 0, tmTwoCount = 0, tmThreeCount = 0, tmFourCount = 0 ;
-
-            for (i = 0; i < crCards.Length; i++)
+                                                                                       
+            for( i = 0; i < crCards.Length; i++ )
             {
                 tmSameCount = 0;
-
-                for (int j = i + 1; j < crCards.Length; j++)
+                for( int j = i + 1; j < crCards.Length; j++ )
                 {
-                    
-                    if (GetRank(crCards[i]) != GetRank(crCards[j]))
+                    if( Card.GetRank( crCards[ i ] ) != Card.GetRank( crCards[ j ] ) )
                     {
-                        if( j + 1 < crCards.Length )
-                        {
-                            if( GetRank( crCards[ j ] ) == GetRank( crCards[ j + 1 ] ) )
-                            {
-                                if( tmSameCount > 1 )
-                                {
-                                    tmTwoCount++;
-                                }
-                            }
-                        }
+                        i = j - 1;
                         break;
                     }
+
+                    if( j == crCards.Length - 1 )
+                        i = crCards.Length - 1;
+
                     tmSameCount++;
-         
                 }
-                switch (tmSameCount)
+
+                switch( tmSameCount )
                 {
                     case 0: { tmSignedCount++; }; break;    //单只
                     case 1: { tmTwoCount++; }; break;       //两张
                     case 2: { tmThreeCount++; }; break;     //三张
-                    case 3: { tmFourCount++; }; break;      //四张
+                    case 3: { tmFourCount++; }; break;      //四张                 
                 }
-
-                if (tmFourCount == 1) return CT_TIE_ZHI;                            //铁枝牌 四条
-                if (tmTwoCount == 2) return CT_TWO_LONG;                            //两对牌
-                if (tmTwoCount == 1 && tmThreeCount == 1) return CT_HU_LU;          //葫芦牌
-                if (tmTwoCount == 0 && tmThreeCount == 1) return CT_THREE_TIAO;     //三条牌
-                if (tmTwoCount == 1 && tmSignedCount == 3) return CT_ONE_LONG;      //一对牌            
             }
+
+            if (tmFourCount == 1) return CT_TIE_ZHI;                            //铁枝牌 四条
+            if (tmTwoCount == 2) return CT_TWO_LONG;                            //两对牌
+            if (tmTwoCount == 1 && tmThreeCount == 1) return CT_HU_LU;          //葫芦牌
+            if (tmTwoCount == 0 && tmThreeCount == 1) return CT_THREE_TIAO;     //三条牌
+            if (tmTwoCount == 1 ) return CT_ONE_LONG;                            //一对牌
+
 
             return CT_SINGLE;                                                       //高牌
             #endregion
@@ -2799,15 +2793,42 @@ namespace BCW.dzpk
         #endregion
 
 
-        public string FiveFromSeven( string[] iCards, )
+        #region  用户最大牌型（组合方式计算） GetMaxCardType()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="iCards"></param>
+        /// <returns></returns>
+        public string[] GetMaxCardType( string[] iCards )
         {
-            //return 0;
+            string r = "";
+          
+            #region 由大到小排列扑克牌
+            //由大到小排列扑克牌
+            string[] newCards = BubbleSort( iCards ); 
+            #endregion
+
+            //C(n,m)
+            int m = newCards.Length <= 5 ? newCards.Length : 5;
+            List<string[]> lst_Combination = Algorithms.PermutationAndCombination<string>.GetCombination( newCards, m );
+            string[] big_Cards = lst_Combination[ 0 ];
+            foreach( string[] _arry in lst_Combination )
+            {
+                //类型判断
+                string CC = CompareCard( _arry, big_Cards );
+                if( CC == CC_BIG_CARD.ToString() )
+                    big_Cards = _arry;                   
+            }
+
+            return big_Cards;
         }
+
+        #endregion
 
 
         #region 用户最大牌型 FiveFromSeven()
         /// <summary>
-        /// 用户最大牌型
+        /// 7个牌中用户最大牌型
         /// </summary>
         /// <param name="Cards">用户扑克列表，7个</param>
         /// <returns></returns>
