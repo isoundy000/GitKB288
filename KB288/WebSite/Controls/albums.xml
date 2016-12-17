@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="AlbumsTopNum" value="5" />
+	<set name="AlbumsExpir" value="10" />
+	<set name="AlbumsStatus" value="0" />
+	<set name="AlbumsLogo" value="" />
+	<set name="AlbumsNewNum" value="5" />
+	<set name="AlbumsName" value="燃点相册" />
+</data>

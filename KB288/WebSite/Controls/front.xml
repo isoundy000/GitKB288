@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="FtCommentIsUser" value="0" />
+	<set name="FtFileIsUser" value="0" />
+	<set name="FtFileListFoot" value="" />
+	<set name="FtFileDetailTop" value="" />
+	<set name="FtTextDetailTop" value="" />
+	<set name="FtPicDetailTop" value="" />
+	<set name="FtPicCover" value="0" />
+	<set name="FtPicListFoot" value="" />
+	<set name="FtGNset" value="0" />
+	<set name="FtCKset" value="0" />
+	<set name="FtTextDetailFoot" value="" />
+	<set name="FtKCset" value="支持#反对#路过" />
+	<set name="FtShopListTop" value="" />
+	<set name="FtPicListTop" value="" />
+	<set name="FtFileListTop" value="" />
+	<set name="FtTextListTop" value="" />
+	<set name="FtTextCover" value="0" />
+	<set name="FtCommentLength" value="200" />
+	<set name="FtTextDetailNum" value="500" />
+	<set name="FtPicListNum" value="3" />
+	<set name="FtTextListFoot" value="" />
+	<set name="FtShopDetailTop" value="" />
+	<set name="FtShopDetailFoot" value="" />
+	<set name="FtFileDetailFoot" value="" />
+	<set name="FtCommentAdmin" value="1108" />
+	<set name="FtCommentExpir" value="10" />
+	<set name="FtShopListFoot" value="" />
+	<set name="FtShopCover" value="0" />
+	<set name="FtPicDetailFoot" value="" />
+	<set name="FtFileCover" value="0" />
+</data>

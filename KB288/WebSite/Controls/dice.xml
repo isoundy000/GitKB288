@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="DiceStatus" value="0" />
+	<set name="DiceBigPay2" value="2" />
+	<set name="DiceZD3" value="0" />
+	<set name="DiceZD12" value="0" />
+	<set name="DiceFoot" value="" />
+	<set name="DiceDs" value="1.9" />
+	<set name="DiceDx" value="1.9" />
+	<set name="DiceBigPay" value="10000" />
+	<set name="DiceOnTime" value="" />
+	<set name="DiceSum9012" value="5" />
+	<set name="DiceBz2" value="100" />
+	<set name="DiceSum813" value="7" />
+	<set name="DiceSum417" value="50" />
+	<set name="DiceSmallPay2" value="1" />
+	<set name="DiceCycleMin" value="6" />
+	<set name="DiceOpenType" value="0" />
+	<set name="DiceZD9" value="0" />
+	<set name="DiceName" value="挖宝" />
+	<set name="DiceDtPay" value="100" />
+	<set name="DiceLogo" value="" />
+	<set name="DiceSum714" value="10" />
+	<set name="DiceSum516" value="25" />
+	<set name="DiceZD7" value="0" />
+	<set name="DiceZD6" value="0" />
+	<set name="DiceZD5" value="0" />
+	<set name="DiceZD4" value="0" />
+	<set name="DiceDz" value="8" />
+	<set name="DiceZD2" value="0" />
+	<set name="DiceZD1" value="0" />
+	<set name="DiceIsBot" value="1" />
+	<set name="DiceGuestSet" value="0" />
+	<set name="DiceSum615" value="15" />
+	<set name="DiceZD8" value="0" />
+	<set name="DiceTax" value="5" />
+	<set name="DiceZD11" value="0" />
+	<set name="DiceSmallPay" value="100" />
+	<set name="DiceZD10" value="0" />
+	<set name="DiceBz" value="25" />
+	<set name="DiceNotes" value="" />
+	<set name="DiceExpir" value="10" />
+	<set name="DiceIDMaxPay" value="3" />
+</data>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="FinanceBzTar2" value="1" />
+	<set name="FinanceSZXPass" value="" />
+	<set name="FinanceStatus" value="0" />
+	<set name="FinanceSZXTar" value="2" />
+	<set name="FinanceBankType" value="1" />
+	<set name="FinanceBankKh" value="100" />
+	<set name="FinanceBzMoveSet" value="1" />
+	<set name="FinanceSZXNo" value="" />
+	<set name="FinanceBzTar" value="500" />
+	<set name="FinanceBankTar" value="2" />
+	<set name="FinancePaybig" value="100000000" />
+	<set name="FinanceAmtType" value="0" />
+	<set name="FinancePayTar2" value="10" />
+	<set name="FinanceSZXType" value="1" />
+	<set name="FinanceSysID" value="11" />
+	<set name="FinancePayExpir" value="0" />
+	<set name="FinancePayTar" value="0" />
+	<set name="FinanceAmt2" value="20#30#40#100#300" />
+	<set name="FinanceSysID2" value="11" />
+	<set name="FinanceAmt3" value="50#100" />
+	<set name="FinanceAmt1" value="10#30#50#100#300" />
+</data>

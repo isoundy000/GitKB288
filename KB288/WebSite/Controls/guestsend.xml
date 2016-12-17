@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="guestToUsid" value="721#722#723#724#725#726#727#728#729" />
+	<set name="guestsendMustHitID" value="1#4#5#727" />
+	<set name="guestHbCount" value="500" />
+	<set name="guestHitCount" value="200" />
+	<set name="guestTimes" value="10" />
+	<set name="guestsendflashTime" value="60" />
+	<set name="guestContent" value="[绿]已阅活动！！！已阅本内容将有机会获得[红]红包[/红]！！！[/绿][红]最新活动通知！！！！！！！！！[/红]" />
+	<set name="guestDays" value="7" />
+	<set name="guestAllGold" value="50000" />
+	<set name="guestsendOpen" value="1" />
+	<set name="guestsendflash" value="0" />
+	<set name="guestmanageName" value="内线阅读管理" />
+	<set name="guestsendMustNotHit" value="223#324#231" />
+	<set name="guestMaxCount" value="300" />
+</data>

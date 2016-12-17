@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="AppleOnTime" value="" />
+	<set name="AppleLogo" value="" />
+	<set name="AppleOdds1" value="5" />
+	<set name="AppleOdds4" value="20" />
+	<set name="AppleFoot" value="" />
+	<set name="AppleTax" value="1" />
+	<set name="AppleNotes" value="" />
+	<set name="AppleOdds7" value="40" />
+	<set name="AppleStatus" value="0" />
+	<set name="AppleOpenType" value="1" />
+	<set name="AppleOdds2" value="10" />
+	<set name="ApplePrice" value="100" />
+	<set name="AppleOdds5" value="20" />
+	<set name="AppleName" value="苹果机" />
+	<set name="AppleOdds8" value="100" />
+	<set name="AppleGuestSet" value="0" />
+	<set name="AppleOutIDNum" value="100" />
+	<set name="AppleOdds3" value="15" />
+	<set name="AppleMinutes" value="5" />
+	<set name="AppleOddsSmall" value="2" />
+	<set name="AppleOdds6" value="30" />
+</data>

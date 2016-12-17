@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="NetworkGrade" value="1" />
+	<set name="NetworkTypes" value="1" />
+	<set name="NetworkbMinute" value="60" />
+	<set name="NetworkLogo" value="" />
+	<set name="NetworkiGold" value="10" />
+	<set name="NetworkStatus" value="0" />
+	<set name="NetworkbLength" value="50" />
+	<set name="NetworkName" value="社区广播" />
+	<set name="NetworkNotes" value="" />
+	<set name="NetworkRegDay" value="1" />
+	<set name="NetworksLength" value="5" />
+	<set name="NetworkExpir" value="10" />
+</data>

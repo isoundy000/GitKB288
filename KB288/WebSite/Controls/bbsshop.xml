@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+  <set name="BbsshopStatus" value="0" />
+  <set name="BbsshopMaxnum" value="3" />
+  <set name="BbsshopVipSec" value="9" />
+  <set name="BbsshopNewNum" value="1" />
+  <set name="BbsshopMfTotal" value="1" />
+  <set name="BbsshopActNum" value="3" />
+  <set name="BbsshopName" value="社区商城" />
+  <set name="BbsshopReceiveTime" value="15" />
+  <set name="BbsshopHotNum" value="2" />
+  <set name="BbsshopGoodNum" value="1" />
+  <set name="BbsshopLogo" value="" />
+  <set name="BbsshopBgTotal" value="2" />
+</data>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="DzCoin" value="小德币" />
+	<set name="RmType" value="初级|中级|高级" />
+	<set name="GMinb" value="500|1000|10000" />
+	<set name="GsetTime" value="60|60|60" />
+	<set name="RUnits" value="房" />
+	<set name="GSmallb" value="100|25|250" />
+	<set name="DemoIDS" value="10000#10001#10002#10003#10004#10005" />
+	<set name="GetGoldTime" value="300" />
+	<set name="GMaxUser" value="2|8|10" />
+	<set name="HisGameCount" value="1" />
+	<set name="GetGold" value="10000" />
+	<set name="GSerCharge" value="1|2|3" />
+	<set name="GameStatus" value="2" />
+	<set name="Dzpk_img" value="bbs/game/img/dzpk_img/" />
+	<set name="GMaxb" value="2000|10000|100000" />
+	<set name="GBigb" value="200|50|500" />
+	<set name="DzpkName" value="德州扑克1" />
+</data>

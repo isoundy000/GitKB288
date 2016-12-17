@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="baccaratpercent6" value="1.98" />
+	<set name="baccaratHigherPay" value="100000000" />
+	<set name="BaccaratIsBot" value="0" />
+	<set name="baccaratLowerPay" value="200000" />
+	<set name="baccaratpercent13" value="15" />
+	<set name="baccaratpercent2" value="1.98" />
+	<set name="baccaratFirstHigherBet" value="1000000" />
+	<set name="baccaratpercent" value="0.981" />
+	<set name="baccaratpercent5" value="1.98" />
+	<set name="baccarattop" value="" />
+	<set name="baccarattextID" value="110#52784#53212#701#702#703#708#709#" />
+	<set name="baccaratName" value="百家乐" />
+	<set name="baccaratRoomTime2" value="10000" />
+	<set name="baccaratRoomTime1" value="1" />
+	<set name="baccaratSecondLowerBet" value="10000" />
+	<set name="baccaratpercent1" value="1.98" />
+	<set name="baccaratpercent10" value="8" />
+	<set name="baccaratpercent11" value="8" />
+	<set name="baccaratpercent12" value="5" />
+	<set name="baccaratLogo" value="" />
+	<set name="PokerTimes" value="60" />
+	<set name="baccaratSecondHigherBet" value="200000" />
+	<set name="baccaratNotes" value="" />
+	<set name="baccaratPercent" value="10" />
+	<set name="baccaratFoot" value="" />
+	<set name="baccarat_img" value="bbs/game/img/baccarat_img" />
+	<set name="baccaratpercent9" value="2.45" />
+	<set name="baccaratpercent4" value="1.98" />
+	<set name="roomtimes" value="10" />
+	<set name="baccaratpercent8" value="1.58" />
+	<set name="baccaratpercent7" value="1.98" />
+	<set name="baccaratStatus" value="0" />
+	<set name="baccaratfoot" value="" />
+	<set name="baccaratFirstLowerBet" value="100000" />
+	<set name="baccaratpercent3" value="8" />
+</data>

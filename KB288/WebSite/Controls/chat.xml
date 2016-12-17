@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="ChatCbSmall" value="2" />
+	<set name="ChatExpir" value="5" />
+	<set name="APIKEY" value="139deae1b7771302fc95a6ac9562dea7" />
+	<set name="ChatContentNum" value="500" />
+	<set name="ChatMost" value="10" />
+	<set name="ChatCbText" value="我要抢币" />
+	<set name="ChatStatus" value="0" />
+	<set name="ChatCbBig" value="20" />
+	<set name="ChatOutText" value="17:25蒙多医生在红包群发言获得482酷币" />
+	<set name="ChatHID" value="131420#110#19611#" />
+	<set name="ChatAddPrice" value="5000" />
+	<set name="ChatiPrice" value="200" />
+	<set name="ChatIsAdd" value="0" />
+	<set name="ChatCentTime" value="2016/4/5 17:25:18" />
+	<set name="ChatLogo" value="" />
+	<set name="ChatName" value="开心红包群" />
+	<set name="ChatAddLeven" value="0" />
+</data>
