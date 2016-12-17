@@ -103,6 +103,7 @@ public partial class Manage_Default : System.Web.UI.Page
             builder.Append("<a href=\"" + Utils.getUrl("votes.aspx") + "\">投票系统</a><br />");
             builder.Append("<a href=\"" + Utils.getUrl("advert.aspx") + "\">广告管理</a>" + Tab + "");
             builder.Append("<a href=\"" + Utils.getUrl("shopbuy.aspx") + "\">商品订单</a><br />");
+            builder.Append( "<a href=\"" + Utils.getUrl( "Mobile/Default.aspx" ) + "\">APP管理</a><br />" );
             builder.Append(Out.Tab("</div>", ""));
             builder.Append(Out.Tab("<div class=\"text\">", ""));
             builder.Append("~~快速功能~~");
