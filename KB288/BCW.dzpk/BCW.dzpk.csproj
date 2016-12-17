@@ -61,6 +61,8 @@
     <Compile Include="BLL\DzpkPlayRanks.cs" />
     <Compile Include="BLL\DzpkRankList.cs" />
     <Compile Include="BLL\DzpkRooms.cs" />
+    <Compile Include="Class\Algorithms.cs" />
+    <Compile Include="Class\dzEnum.cs" />
     <Compile Include="DAL\DzpkAct.cs" />
     <Compile Include="DAL\DzpkCard.cs" />
     <Compile Include="DAL\DzpkHistory.cs" />

@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using BCW.Common;
 using BCW.dzpk;
+using BCW.TexasPoker;
 
 public partial class Manage_game_dzpk : System.Web.UI.Page
 {
@@ -169,6 +170,16 @@ public partial class Manage_game_dzpk : System.Web.UI.Page
             }
         }
         builder.Append("·<a href=\"" + Utils.getUrl("dzpk.aspx") + "\">刷新</a>");
+        builder.Append( "<br />测试区============================<br />" );
+
+        foreach( KeyValuePair<int, Room> _keyVal in TexasPokerGame.Instance().roomMgr.dctRooms )
+        {
+            builder.Append( "<br />房间ID：" + _keyVal.Value.id );
+        }
+
+        builder.Append( "<br />测试区============================" );
+
+        builder.Append( "<br />测试区============================" );
         builder.Append(Out.Tab("</div>", "<br />"));
         #endregion
 

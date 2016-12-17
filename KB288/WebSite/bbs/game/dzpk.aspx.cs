@@ -14,6 +14,7 @@ using BCW.Common;
 using BCW.dzpk;
 using System.Threading;
 using BCW.Data;
+using BCW.TexasPoker;
 
 /// <summary>
 /// 2016德州扑克 黄国军20160330
@@ -122,68 +123,15 @@ public partial class bbs_game_dzpk : System.Web.UI.Page
 
         builder.Append( "<br />测试区============================<br />" );
 
-        string[] iCards = { "107", "207", "308", "108", "208","307","105" };
-        string[] newCards = Card.BubbleSort( iCards );
-        int num = 0;
-        string r = "";
-
-        builder.Append( "手牌" + ShowPokerByUs( newCards ) );
-
-        //当前最大牌型
-        string[] big_Cards = new string[ 5 ];
-
-        int _len = iCards.Length;
 
 
-            for( int a = 0; a < 3; a++ )
-            {
-                for( int b = a + 1; b <4; b++ )
-                {
-                    for( int c = b + 1; c < 5; c++ )
-                    {
-                        for( int d = c + 1; d < 6; d++ )
-                        {
-                            for( int e = d + 1; e < 7; e++ )
-                            {
+        //TexasPokerGame.Instance().roomMgr.CreateRoom();
+        //TexasPokerGame.Instance().roomMgr.CreateRoom();
 
-                                string[] tm_Cards = new string[ 5 ];
-                                tm_Cards.SetValue( newCards[ a ], 0 );
-                                tm_Cards.SetValue( newCards[ b ], 1 );
-                                tm_Cards.SetValue( newCards[ c ], 2 );
-                                tm_Cards.SetValue( newCards[ d ], 3 );
-                                tm_Cards.SetValue( newCards[ e ], 4 );
-
-
-                                //类型判断
-                                if( num == 0 )
-                                {
-                                    big_Cards = tm_Cards;
-                                }
-                                else
-                                {
-                                    string CC = new BCW.dzpk.Card().CompareCard( tm_Cards, big_Cards );
-                                    if( CC == BCW.dzpk.Card.CC_BIG_CARD.ToString() )
-                                    {
-                                        big_Cards = tm_Cards;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-
-        
-
-        builder.Append( "<br />big_Cards="  );
-        foreach( string _n in big_Cards )
+        foreach( KeyValuePair<int, Room> _keyVal in TexasPokerGame.Instance().roomMgr.dctRooms )
         {
-            builder.Append( _n +"," );
+            builder.Append( "<br />房间ID：" + _keyVal.Value.id);  
         }
-
-        builder.Append( "<br />组合" + ShowPokerByUs( big_Cards ) );
-
 
         builder.Append( "<br />测试区============================" );
         
@@ -855,7 +803,10 @@ public partial class bbs_game_dzpk : System.Web.UI.Page
                 tmHtml += ("<br />&emsp;&emsp;&emsp;" + ShowPokerByUs(Ranks, DzpkRoom));
                 //显示玩家当前的牌型  
                 if( Ranks.UsID == meid )
-                    tmHtml += ( "[" + Card.toTypeName( Card.GetCardType( Card.BubbleSort(Ranks.PokerCards.Split( ',' ) )) ) + "]" );
+                {
+                    string[] _arry = Ranks.PokerCards.Split( ',' ); 
+                    tmHtml += ( "[" + Card.toTypeName( Card.GetCardType( new BCW.dzpk.Card().GetMaxCardType( _arry ) ) ) + "]" );
+                }
                 //返回玩家下注信息 
                 tmHtml += ("<br />&emsp;&emsp;&emsp;" + ShowChipByUs(Ranks));
                 #endregion
