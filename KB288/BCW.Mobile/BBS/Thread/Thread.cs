@@ -1,0 +1,379 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using BCW.Mobile;
+using System.Data;
+using BCW.Mobile.Home;
+using BCW.Common;
+using System.Text.RegularExpressions;
+
+namespace BCW.Mobile.BBS.Thread
+{
+    /// <summary>
+    /// 贴子内容
+    /// </summary>
+    public class EssencePostItem
+    {
+        public int threadId;                 //贴子ID
+        public int authorId;                //作者id
+        public string author;                //作者
+        public string authorImg;             //作者头像   
+        public int forumId;                  //论坛栏目ID
+        public string title;                 //帖子标题
+        public string content;               //贴子内容
+        public string preview;               //预览图
+        public string forum;                 //论坛栏目名称
+        public int views;                    //阅读数
+        public int replys;                   //评论数
+        public int likes;                    //喜欢数 
+        public long addTime;            //发贴时间
+        public int IsGood;                  //是否精华
+        public int IsRecom;                 //是否推荐
+        public int IsLock;                  //是否锁定
+        public int IsTop;                   //是否置顶
+    }
+
+    public class ReqAddThread
+    {
+        public int userId;
+        public string userKey;
+        public int forumId;
+        public int pType;
+        public string title;
+        public string content;
+
+    }
+
+    public class RspAddThread
+    {
+        public Header header;
+        /// <summary>
+        /// 返回的贴子ID
+        /// </summary>
+        public int threadId;
+
+        public RspAddThread()
+        {
+            header = new Header();
+        }          
+    }
+
+    /// <summary>
+    /// 论坛精华贴
+    /// </summary>
+    public class EssencePost
+    {
+        public List<EssencePostItem> items;
+        public bool finish;
+        public const int RECORD_COUNT = 10;
+
+        public EssencePost()
+        {
+            items = new List<EssencePostItem>();
+        }
+
+        public void InitData(int ForumId, int postId, int ptype)
+        {
+
+            this.finish = true;
+            items.Clear();
+
+            string strWhere = string.Empty;
+            string strOrder = string.Empty;
+            string[] pageValUrl = { "act", "forumid", "tsid", "ptype", "backurl" };
+
+            strWhere = "IsDel=0 and HideType<>9";
+
+            if (ptype == 1)
+                strWhere += " and IsGood=1";
+            else if (ptype == 2)
+                strWhere += " and IsRecom=1";
+            if (ptype == 3)
+                strWhere += " and AddTime>='" + DateTime.Now.AddDays(-2) + "'";
+            else if (ptype == 4)
+                strWhere += " and IsLock=1";
+            else if (ptype == 5)
+                strWhere += " and IsTop=-1";
+
+            if (ForumId > 0)
+                strWhere += " and ForumId=" + ForumId.ToString();
+
+            if (postId >= 0)
+                strWhere += " and 1=1";
+
+            //排序条件
+            if (ForumId > 0 && postId < 0)
+                strOrder += "IsTop desc,";
+            strOrder += "ID Desc";
+
+            DataSet _ds = new BCW.BLL.Text().GetList(string.Format("TOP {0} ID,ForumId,Types,LabelId,Title,Content,UsID,UsName,ReplyNum,ReadNum,IsGood,IsRecom,IsLock,IsTop,IsOver,AddTime,Gaddnum,Gwinnum,GoodSmallIcon", RECORD_COUNT), strWhere.Replace("1=1", "ID<" + postId) + " Order by " + strOrder);
+            if (_ds.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < _ds.Tables[0].Rows.Count; i++)
+                {
+                    EssencePostItem _essencePostItem = new EssencePostItem();
+                    _essencePostItem.threadId = int.Parse(_ds.Tables[0].Rows[i]["ID"].ToString());
+                    _essencePostItem.authorId = int.Parse(_ds.Tables[0].Rows[i]["UsID"].ToString());
+                    _essencePostItem.author = _ds.Tables[0].Rows[i]["UsName"].ToString();
+                    _essencePostItem.authorImg = "http://" + Utils.GetDomain() + new BCW.BLL.User().GetPhoto(int.Parse(_ds.Tables[0].Rows[i]["UsID"].ToString()));
+                    _essencePostItem.forumId = int.Parse(_ds.Tables[0].Rows[i]["ForumId"].ToString());
+                    _essencePostItem.title = _ds.Tables[0].Rows[i]["Title"].ToString().Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n").Replace("\r", "\\r");
+                    _essencePostItem.content = Out.SysUBB(_ds.Tables[0].Rows[i]["Content"].ToString()).Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n").Replace("\r", "\\r");
+                    _essencePostItem.preview = string.IsNullOrEmpty(_ds.Tables[0].Rows[i]["GoodSmallIcon"].ToString()) ? "http://" + Utils.GetDomain() + "/Files/threadImg/def.png" : _ds.Tables[0].Rows[i]["GoodSmallIcon"].ToString();
+                    BCW.Model.Forum _forummodel = new BCW.BLL.Forum().GetForum(_essencePostItem.forumId);
+                    _essencePostItem.forum = _forummodel != null ? _forummodel.Title : "";
+                    _essencePostItem.views = int.Parse(_ds.Tables[0].Rows[i]["ReadNum"].ToString());
+                    _essencePostItem.replys = int.Parse(_ds.Tables[0].Rows[i]["ReplyNum"].ToString());
+                    System.DateTime _startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
+                    _essencePostItem.addTime = (long)(DateTime.Parse(_ds.Tables[0].Rows[i]["AddTime"].ToString()) - _startTime).TotalSeconds;
+
+                    //打赏
+                    DataSet _dsCent = new BCW.BLL.Textcent().GetList("isnull(SUM(Cents),0)cents", "BID='" + _essencePostItem.threadId + "'");
+                    _essencePostItem.likes = int.Parse(_dsCent.Tables[0].Rows[0]["cents"].ToString());
+
+                    _essencePostItem.IsGood = int.Parse(_ds.Tables[0].Rows[i]["IsGood"].ToString());
+                    _essencePostItem.IsRecom = int.Parse(_ds.Tables[0].Rows[i]["IsRecom"].ToString());
+                    _essencePostItem.IsLock = int.Parse(_ds.Tables[0].Rows[i]["IsLock"].ToString());
+                    _essencePostItem.IsTop = int.Parse(_ds.Tables[0].Rows[i]["IsTop"].ToString());
+
+                    items.Add(_essencePostItem);
+
+                    //检查是否到底
+                    if (i == _ds.Tables[0].Rows.Count - 1)
+                    {
+                        if (strWhere.Contains("1=1") == false)
+                            strWhere += " and 1=1";
+                        DataSet _dsCheck = new BCW.BLL.Text().GetList("TOP 1 * ", strWhere.Replace("1=1", "ID<" + _essencePostItem.threadId) + " Order by " + strOrder);
+                        finish = _dsCheck.Tables[0].Rows.Count <= 0;
+                    }
+                }
+            }
+
+        }
+    }
+
+
+    public class BestInfo
+    {
+        public Header header;
+        public EssencePost bests;    //论坛精华贴  
+        
+        private string xmlPath = "../../Controls/bbs.xml";
+
+        public BestInfo()
+        {
+            bests = new EssencePost();
+            header = new Header();
+        }
+
+        /// <summary>
+        /// 获取贴子列表
+        /// </summary>
+        /// <param name="ForumId">板块ID</param>
+        /// <param name="_pIndex">分页ID</param>
+        /// <param name="pType">贴子类型(1:精华  2：推荐  3：两日前  4：锁定  5：置顶)</param>
+        public void InitData(int ForumId, int _pIndex, int pType)
+        {
+            bests.InitData(ForumId, _pIndex, pType);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ForumId"></param>
+        /// <returns>发表贴子结果类</returns>
+        public RspAddThread AddThread(ReqAddThread _reqData)
+        {
+            RspAddThread _rspAddThread = new RspAddThread();
+
+            //验证用户ID格式
+            if (_reqData.userId < 0)
+            {
+                _rspAddThread.header.status = ERequestResult.faild;
+                _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.MOBILE_PARAMS_ERROR;
+                return _rspAddThread;
+            }
+
+            //验证帖子类型
+            if (Regex.IsMatch(_reqData.pType.ToString(), @"^[0-4]$|^6$|^7$|^8$") == false)
+            {
+                _rspAddThread.header.status = ERequestResult.faild;
+                _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_TYPE_ERROR;
+                return _rspAddThread;
+            }
+
+            //验证帖子类型
+            if (Regex.IsMatch(_reqData.forumId.ToString(), @"^[0-9]\d*$") == false)
+            {
+                _rspAddThread.header.status = ERequestResult.faild;
+                _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_TYPE_ERROR;
+                return _rspAddThread;
+            }
+
+            //验证贴子标题长度
+            if (Regex.IsMatch(_reqData.title, @"^[\s\S]{" + ub.GetSub("BbsThreadMin", xmlPath) + "," + ub.GetSub("BbsThreadMax", xmlPath) + "}$") == false)
+            {
+                _rspAddThread.header.status = ERequestResult.faild;
+                _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_TITLE_LENGTH_ERROR;
+                return _rspAddThread;
+            }
+
+            //验证内容长度
+            if (Regex.IsMatch(_reqData.content, @"^[\s\S]{" + ub.GetSub("BbsContentMin", xmlPath) + "," + ub.GetSub("BbsContentMax", xmlPath) + "}$") == false)
+            {
+                _rspAddThread.header.status = ERequestResult.faild;
+                _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_TITLE_LENGTH_ERROR;
+                return _rspAddThread;
+            }
+
+
+            //检查是否登录状态
+            if (BCW.Mobile.Common.CheckLogin(_reqData.userId, _reqData.userKey) > 0)
+            {
+                _rspAddThread.header.status = ERequestResult.faild;
+                _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;
+                return _rspAddThread;
+            }
+
+            //版块是否可用
+            if (!new BCW.BLL.Forum().Exists2(_reqData.forumId))
+            {
+                _rspAddThread.header.status = ERequestResult.faild;
+                _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_FORUM_NOT_FOUND;
+                return _rspAddThread;
+            }
+
+            //自身权限不足
+            if (new BCW.User.Limits().IsUserLimit(User.Limits.enumRole.Role_Text, _reqData.userId) == true)
+            {
+                _rspAddThread.header.status = ERequestResult.faild;
+                _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_LIMIT_NOT_ENOUGH ;
+                return _rspAddThread;
+            }
+
+            //论坛权限不足
+            if (new BCW.User.Role().IsUserRole(User.Role.enumRole.Role_Text, _reqData.userId, _reqData.forumId) == false)
+            {
+                _rspAddThread.header.status = ERequestResult.faild;
+                _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH;
+                return _rspAddThread;
+            }
+
+            string mename = new BCW.BLL.User().GetUsName(_reqData.userId);
+
+            int ThreadNum = Utils.ParseInt(ub.GetSub("BbsThreadNum", xmlPath));
+            if (ThreadNum > 0)
+            {
+                int ToDayCount = new BCW.BLL.Forumstat().GetCount(_reqData.userId, 1);//今天发布帖子数
+                if (ToDayCount >= ThreadNum)
+                {
+                    _rspAddThread.header.status = ERequestResult.faild;
+                    _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_THREAD_NUM;
+                    return _rspAddThread;
+                }
+            }
+
+            BCW.Model.Forum model = new BCW.BLL.Forum().GetForum(_reqData.forumId);
+
+            //论坛限制性
+            //BCW.User.Users.ShowForumLimit(_reqData.userId, model.Gradelt, model.Visitlt, model.VisitId, model.IsPc);      //浏览限制
+            //发贴限制
+            Error.MOBILE_ERROR_CODE _result = BCW.Mobile.Common.ShowAddThread(_reqData.userId, model.Postlt);
+            if (_result != Error.MOBILE_ERROR_CODE.MOBILE_MSG_NONE)
+            {
+                _rspAddThread.header.status = ERequestResult.faild;
+                _rspAddThread.header.statusCode = _result;
+                return _rspAddThread;
+            }
+            
+            string Hide = string.Empty;
+            int Price = 0;
+            int Price2 = 0;
+            long Prices = 0;
+            int BzType = 0;
+
+            int HideType = 0;
+            int IsSeen = 0;
+            string PayCi = string.Empty;
+            string Vote = string.Empty;
+
+            DateTime VoteExTime = DateTime.Now;
+
+            int LabelId = 0;
+
+            BCW.Model.Text addmodel = new BCW.Model.Text();
+            addmodel.ForumId = _reqData.forumId;
+            addmodel.Types = _reqData.pType;
+            addmodel.LabelId = LabelId;
+            addmodel.Title = _reqData.title;
+            addmodel.Content = _reqData.content;
+            addmodel.HideContent = Hide;
+            addmodel.UsID = _reqData.userId;
+            addmodel.UsName = mename;
+            addmodel.Price = Price;
+            addmodel.Price2 = Price2;
+            addmodel.Prices = Prices;
+            addmodel.HideType = HideType;
+            addmodel.BzType = BzType;
+            addmodel.PayCi = PayCi;
+            addmodel.IsSeen = IsSeen;
+            addmodel.IsDel = 0;
+            addmodel.AddTime = DateTime.Now;
+            addmodel.ReTime = DateTime.Now;
+            addmodel.PricesLimit = "";
+
+            addmodel.Gaddnum = 0;
+            addmodel.Gqinum = 0;
+
+            int k = 0;
+            k = new BCW.BLL.Text().Add(addmodel);
+
+            //论坛统计
+            BCW.User.Users.UpdateForumStat(1, _reqData.userId, mename, _reqData.forumId);
+            //动态记录
+            if (model.GroupId > 0)
+            {
+                new BCW.BLL.Action().Add(-2, 0, _reqData.userId, mename, "在圈坛-" + model.Title + "发表了[URL=/bbs/topic.aspx?forumid=" + _reqData.forumId + "&amp;bid=" + k + "]" + _reqData.title + "[/URL]的帖子");
+            }
+            else
+            {
+                new BCW.BLL.Action().Add(-1, 0, _reqData.userId, mename, "在" + model.Title + "发表了[URL=/bbs/topic.aspx?forumid=" + _reqData.forumId + "&amp;bid=" + k + "]" + _reqData.title + "[/URL]的帖子");
+            }
+            //积分操作/论坛统计/圈子论坛不进行任何奖励
+            int GroupId = new BCW.BLL.Forum().GetGroupId(_reqData.forumId);
+            int IsAcc = -1;
+            if (GroupId == 0)
+            {
+                IsAcc = new BCW.User.Cent().UpdateCent2(BCW.User.Cent.enumRole.Cent_Text, _reqData.userId, true);
+            }
+            else
+            {
+                if (!Utils.GetDomain().Contains("th"))
+                    IsAcc = new BCW.User.Cent().UpdateCent2(BCW.User.Cent.enumRole.Cent_Text, _reqData.userId, false);
+            }
+            #region  这里开始修改提醒ID 发内线
+            string remind = ub.GetSub("remindid" + _reqData.forumId, xmlPath);//获取XML的值
+            if (remind != "")  //如果有提醒ID
+            {
+                string[] IDS = remind.Split('#');
+                for (int i = 0; i < IDS.Length; i++)
+                {
+                    if (model.GroupId > 0)
+                    {
+                        new BCW.BLL.Guest().Add(0, int.Parse(IDS[i]), new BCW.BLL.User().GetUsName(int.Parse(IDS[i])), "请注意!用户[url=/bbs/uinfo.aspx?uid=" + _reqData.userId + "]" + mename + "(" + _reqData.userId + ")[/url]在圈坛-" + model.Title + "发表了[URL=/bbs/topic.aspx?forumid=" + _reqData.forumId + "&amp;bid=" + k + "]" + _reqData.title + "[/URL]的帖子");
+                    }
+                    else
+                    {
+                        new BCW.BLL.Guest().Add(0, int.Parse(IDS[i]), new BCW.BLL.User().GetUsName(int.Parse(IDS[i])), "请注意!用户[url=/bbs/uinfo.aspx?uid=" + _reqData.userId + "]" + mename + "(" + _reqData.userId + ")[/url]在" + model.Title + "发表了[URL=/bbs/topic.aspx?forumid=" + _reqData.forumId + "&amp;bid=" + k + "]" + _reqData.title + "[/URL]的帖子");
+                    }
+                }
+            }
+            #endregion
+
+            _rspAddThread.header.status = ERequestResult.success;
+            _rspAddThread.threadId = k;
+            return _rspAddThread;
+
+        }
+    }
+}

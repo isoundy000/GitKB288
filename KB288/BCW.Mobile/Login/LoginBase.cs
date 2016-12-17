@@ -7,6 +7,7 @@ using BCW.Common;
 using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using BCW.Mobile.Error;
 
 
 namespace BCW.Mobile.Login

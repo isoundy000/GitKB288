@@ -56,9 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API.cs" />
+    <Compile Include="BBS\Thread\Thread.cs" />
     <Compile Include="BLL\MobileSlider.cs" />
     <Compile Include="BLL\UserPlatform.cs" />
     <Compile Include="DAL\UserPlatform.cs" />
+    <Compile Include="Error\ErrorCodeManager.cs" />
+    <Compile Include="Error\ErrorDefind.cs" />
     <Compile Include="Forum.cs" />
     <Compile Include="Home.cs" />
     <Compile Include="DAL\MobileSlider.cs" />

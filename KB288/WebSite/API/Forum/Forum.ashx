@@ -8,6 +8,7 @@ using BCW.Mobile.BBS;
 using BCW.Mobile;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using BCW.Mobile.Error;
 
 
 public class text : IHttpHandler {

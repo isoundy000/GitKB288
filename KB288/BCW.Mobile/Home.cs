@@ -4,6 +4,8 @@ using System.Text;
 using BCW.Common;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using BCW.Mobile.Error;
+using BCW.Mobile.BBS.Thread;
 
 namespace BCW.Mobile.Home
 {

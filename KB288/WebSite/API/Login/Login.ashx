@@ -9,6 +9,7 @@ using BCW.Mobile.Login;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using BCW.Mobile;
+using BCW.Mobile.Error;
 
 
 public class Login : IHttpHandler
@@ -20,7 +21,7 @@ public class Login : IHttpHandler
         context.Response.ContentType = "text/plain";
         mContext = context;
 
-        string pAct = context.Request.Form["pAct"];   //操作类型
+        string pAct = context.Request.Form["pAct"];   //操作类型          
 
         if (string.IsNullOrEmpty(pAct) == false)
         {

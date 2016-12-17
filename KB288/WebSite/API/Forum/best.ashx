@@ -9,6 +9,8 @@ using BCW.Common;
 using BCW.Mobile.Home;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using BCW.Mobile.BBS.Thread;
+using BCW.Mobile.Error;
 
 public class best : IHttpHandler {
     private BestInfo bestInfo;
@@ -18,8 +20,8 @@ public class best : IHttpHandler {
     public best()
     {
         bestInfo = new BestInfo();
-    }    
-    
+    }
+
     public void ProcessRequest (HttpContext context) {
         context.Response.ContentType = "text/plain";
         httpContext = context;
@@ -32,15 +34,16 @@ public class best : IHttpHandler {
                 ShowThreadList();
                 break;
             case "addThread":       //发新贴
+                AddThread();
                 break;
             default:
                 bestInfo.header.status = ERequestResult.faild;
                 bestInfo.header.statusCode = MOBILE_ERROR_CODE.MOBILE_PARAMS_ERROR;
-                context.Response.Write( JsonConvert.SerializeObject( bestInfo ) ); 
+                context.Response.Write( JsonConvert.SerializeObject( bestInfo ) );
                 break;
-               
-        }     
-            
+
+        }
+
     }
 
     /// <summary>
@@ -55,7 +58,7 @@ public class best : IHttpHandler {
         bestInfo.header.status = ERequestResult.success;
 
         bestInfo.InitData( pForumId, pThreadId, pType );
-        httpContext.Response.Write( JsonConvert.SerializeObject( bestInfo ) ); 
+        httpContext.Response.Write( JsonConvert.SerializeObject( bestInfo ) );
     }
 
     /// <summary>
@@ -63,14 +66,19 @@ public class best : IHttpHandler {
     /// </summary>
     private void AddThread()
     {
-        int pForumId = int.Parse( Utils.GetRequest( "pForumId", "all", 1, @"^\d*$", "0" ) );
-  
-        
-        //bestInfo.header.status = ERequestResult.success;
-        //httpContext.Response.Write( JsonConvert.SerializeObject( bestInfo ) );
+        ReqAddThread _reqAddThread = new ReqAddThread();
+        _reqAddThread.userId =  int.Parse( Utils.GetRequest( "pUserId", "all", 1, @"^\d*$", "-1" ) );
+        _reqAddThread.userKey = Utils.GetRequest( "pUsKey", "all", 0, "", "" );
+        _reqAddThread.forumId = int.Parse( Utils.GetRequest( "pForumId", "all", 1, @"^\d*$", "-1" ) );
+        _reqAddThread.pType = int.Parse(Utils.GetRequest("ptype", "all", 1, @"^[0-4]$|^6$|^7$|^8$", "-1"));
+        _reqAddThread.title= Utils.GetRequest("pTitle", "all", 0, "","");
+        _reqAddThread.content = Utils.GetRequest("pContent", "all",  0, "","");
+
+        RspAddThread _rspData =  bestInfo.AddThread(_reqAddThread);
+        httpContext.Response.Write( JsonConvert.SerializeObject( _rspData ) );
     }
-    
- 
+
+
     public bool IsReusable {
         get {
             return false;

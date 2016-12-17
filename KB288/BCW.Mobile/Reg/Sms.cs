@@ -9,6 +9,7 @@ using BCW.Mobile.WebReference;
 using System.Data;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using BCW.Mobile.Error;
 
 
 namespace BCW.Mobile.SMS

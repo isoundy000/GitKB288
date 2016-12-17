@@ -4,6 +4,7 @@ using System.Text;
 using BCW.Mobile.Home;
 using System.Text.RegularExpressions;
 using BCW.Common;
+using BCW.Mobile.Error;
 
 
 namespace BCW.Mobile
