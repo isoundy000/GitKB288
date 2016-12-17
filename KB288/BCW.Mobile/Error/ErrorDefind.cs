@@ -295,6 +295,31 @@ namespace BCW.Mobile.Error
         /// </summary>
         BBS_FORUM_VISIT_LIMIT_MOBILE = 10031,
 
+        /// <summary>
+        /// 此贴已结束
+        /// </summary>
+        BBS_THREAD_IS_OVER = 10032,
+
+        /// <summary>
+        /// 此贴已固底
+        /// </summary>
+        BBS_THREAD_IS_BOTTOM = 10033,
+
+        /// <summary>
+        /// 每天回贴的数量超过系统限制
+        /// </summary>
+        BBS_THREAD_REPLY_NUM = 10034,
+
+        /// <summary>
+        /// 该论坛不允许删除评论
+        /// </summary>
+        BBS_FORUM_FORBID_DEL_REPLY = 10035,
+
+        /// <summary>
+        /// 找不到对应评论
+        /// </summary>
+        BBS_REPLY_NOT_FOUND = 10036,
+
         #endregion
 
         #region  公告、喇叭错误码

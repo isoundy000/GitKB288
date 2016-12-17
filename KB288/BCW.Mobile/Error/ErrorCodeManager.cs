@@ -72,15 +72,17 @@ namespace BCW.Mobile.Error
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_TITLE_LENGTH_ERROR, "标题限{0}-{1}字");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_CONTENT_LENGTH_ERROR, "请输入{0}-{1}字的内容");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_THREAD_NUM, "每天发贴的数量超过系统限制");
-            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_ADD_VIP, "本论坛限VIP会员才可以发帖");
-            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_ADD_IS_ALLMODE, "本论坛限版主和管理员才可以发帖");
-            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_ADD_IS_ADMIN, "本论坛限管理员才可以发帖");
-            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_ADD_STOP, "本论坛禁止发帖");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_REPLY_NUM, "每天回贴的数量超过系统限制");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_ADD_VIP, "本论坛限VIP会员才可以操作");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_ADD_IS_ALLMODE, "本论坛限版主和管理员才可以操作");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_ADD_IS_ADMIN, "本论坛限管理员才可以操作");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_ADD_STOP, "本论坛已禁止该操作");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_NOT_FOUND, "找不到对应帖子");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_IS_LOCK, "帖子已被锁定");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_IS_TOP, "帖子已被置顶");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_IS_GOOD, "帖子已被加精");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_IS_RECOM, "帖子已被推荐");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_IS_OVER, "帖子已结帖");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_DEL_FORBID, "本版帖子不能删除");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_OPER_MYSELF, "不能操作自己的帖子");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_SIGNIN_HAS_TODAY, "今天已经签过到");
@@ -88,9 +90,10 @@ namespace BCW.Mobile.Error
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_GROUP_EXPIRE, "圈子已经过期");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_GROUP_CLOSED, "圈子论坛已关闭");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_GROUP_VISIT_NO_LIMIT, "非成员不能访问该圈子");
-
-
-
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_FORUM_FORBID_DEL_REPLY, "该论坛不允许删除评论");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_REPLY_NOT_FOUND, "找不到该条评论");
+            
+            
 
             #endregion
 

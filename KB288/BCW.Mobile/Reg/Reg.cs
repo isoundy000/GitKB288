@@ -133,7 +133,7 @@ namespace BCW.Mobile
                 model.Birth = DateTime.Parse( "1980-1-1" );
                 model.Sign = "未设置签名";
                 model.InviteNum = 0;
-                model.IsVerify = 0;
+                model.IsVerify = 1; //默认已验证
                 model.Email = "";
                 new BCW.BLL.User().Add( model );
                 //发送内线

@@ -26,11 +26,17 @@ namespace BCW.Mobile.Protocol
         /// 评论ID（分页用）
         /// </summary>
         public int replyId;
+
     }
 
 
     public class RspReplyData
     {
+        /// <summary>
+        /// ID
+        /// </summary>
+        public int id;
+
         /// <summary>
         /// 是否置顶
         /// </summary>
@@ -67,6 +73,22 @@ namespace BCW.Mobile.Protocol
         public string replyContent;
 
         /// <summary>
+        /// 引用评论人ID
+        /// </summary>
+        public int replyAuthorId;
+
+        /// <summary>
+        /// 引用评论人名称
+        /// </summary>
+        public string replyAuthorName;
+
+        /// <summary>
+        /// 引用评论人头像
+        /// </summary>
+        public long replyAddTime;
+
+
+        /// <summary>
         /// 发表时间
         /// </summary>
         public long addTime;
@@ -75,6 +97,21 @@ namespace BCW.Mobile.Protocol
         /// 点赞数
         /// </summary>
         public int praise;
+
+        /// <summary>
+        /// 评论人ID
+        /// </summary>
+        public int authorId;
+
+        /// <summary>
+        /// 评论人名称
+        /// </summary>
+        public string authorName;
+
+        /// <summary>
+        /// 评论人头像
+        /// </summary>
+        public string authorImg;
     }
 
     /// <summary>
@@ -82,10 +119,13 @@ namespace BCW.Mobile.Protocol
     /// </summary>
     public class RspReplyList : RspProtocolBase
     {
+        public bool isFinish;       //是否到底了
+        public long serverTime;     //服务器时间
         public List<RspReplyData> lstReplyData;
 
         public RspReplyList():base()
         {
+            
             lstReplyData = new List<RspReplyData>();
         }
     }
@@ -96,6 +136,9 @@ namespace BCW.Mobile.Protocol
     public class ReqAddReplyThread : ReqProtocolBase
     {
         public int threadId;     //帖子ID
+        public string replyContent; //回复内容
+        public int replyId;     //回复某条评论的ID
+        public int Remind;    //回复提醒:0|不提醒|1|帖子作者|2|回帖作者|3|全部提醒
 
     }
 
@@ -104,6 +147,25 @@ namespace BCW.Mobile.Protocol
     /// </summary>
     public class RspAddReplyThread : RspProtocolBase
     {
+       public string rewardItem;
+    }
+
+    /// <summary>
+    /// 评论请求
+    /// </summary>
+    public class ReqDelReply : ReqProtocolBase
+    {
+        public int threadId;  //帖子ID
+        public int reid;        //评论的楼层ID
 
     }
+
+    /// <summary>
+    /// 评论请求返回
+    /// </summary>
+    public class RspDelReply : RspProtocolBase
+    {
+        
+    }
+
 }
