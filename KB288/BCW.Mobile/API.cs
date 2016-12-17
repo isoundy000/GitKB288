@@ -31,6 +31,16 @@ namespace BCW.Mobile
     public static class MOBILE_ERROR_CODE
     {
         /// <summary>
+        ///  系统出现未知错误，请稍候再试...
+        /// </summary>
+        public const string MOBILE_SYS_ERROR = "系统出现未知错误，请稍候再试...";
+
+        /// <summary>
+        /// 服务器繁忙，请稍候再试...
+        /// </summary>
+        public const string MOBILE_SYS_BUSY = "服务器繁忙，请稍候再试...";
+
+        /// <summary>
         /// 注册手机号码为空值 
         /// </summary>
         public const string MOBILE_PHONE_ISNULL = "手机号码不能为空";
@@ -71,12 +81,33 @@ namespace BCW.Mobile
         /// <summary>
         ///  手机号码已经注册
         /// </summary>
-        public const string REGEDIT_MOBILE_EXISTS = "手机号码已经注册";   
+        public const string REGEDIT_MOBILE_EXISTS = "该手机号码已经注册";
+
+       /// <summary>
+        /// 密码限6-20位,必须由字母或数字组成
+       /// </summary>
+        public const string REGEDIT_PWD_VERIFY = "密码限6-20位,必须由字母或数字组成";
+
+        /// <summary>
+        /// 确认密码限6-20位,必须由字母或数字组成
+        /// </summary>
+        public const string REGEDIT_PWDR_VERIFY = "确认密码限6-20位,必须由字母或数字组成";
+
+        /// <summary>
+        /// 两次密码输入不一致
+        /// </summary>
+        public const string REGEDIT_PWD_DIFF = "两次密码输入不一致"; 
+
         
         /// <summary>
         /// 验证码已过期
         /// </summary>
-        public const string REGEDIT_VERIFYCODE_EXPIRE = "验证码已过期";    
+        public const string REGEDIT_VERIFYCODE_EXPIRE = "验证码已过期，请重新获取";
+
+        /// <summary>
+        /// 请输入正确的验证码
+        /// </summary>
+        public const string REGEDIT_VERIFYCODE_DIFF = "请输入正确的验证码"; 
             
         #endregion
     }

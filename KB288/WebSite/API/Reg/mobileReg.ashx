@@ -5,6 +5,8 @@ using System.Web;
 using System.Text.RegularExpressions;
 using BCW.Mobile;
 using BCW.Common;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 
 public class MobileRegHandler : IHttpHandler {
@@ -24,20 +26,11 @@ public class MobileRegHandler : IHttpHandler {
         string pwd = context.Request.Form[ "pwd" ];
         string pwdr = context.Request.Form[ "pwdr" ];
 
-        context.Response.Write( Utils.GetUsIP() );
-           
+        JsonSerializerSettings _setting = new JsonSerializerSettings();
+        _setting.NullValueHandling = NullValueHandling.Ignore;
         
-        
-        //objMobileReg.Register( mobile, verifyCode, pwd, pwdr ); 
-            
-       // if (Regex.IsMatch(mobile,@"^(?:11|12|13|14|15|16|17|18|19)\d{9}$") == false)
-           
-             
-        
-        
-        
-        //Utils.GetRequest( "mobile", "post", 2, @"^(?:11|12|13|14|15|16|17|18|19)\d{9}$", "请正确输入十一位数的手机号码" );
-        //string code = Utils.GetRequest( "code", "post", 2, @"^[0-9]{4}$", "请输入验证码!" );  //界面图形验证码   
+        objMobileReg.Register( mobile, verifyCode, pwd, pwdr );
+        context.Response.Write( JsonConvert.SerializeObject( objMobileReg,Formatting.Indented,_setting) );
         
     }
  
