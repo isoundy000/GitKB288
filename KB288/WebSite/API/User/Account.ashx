@@ -58,10 +58,10 @@ public class UserAccount : IHttpHandler {
     private void ModifyPwd()
     {
         ReqUserModifyPwd _reqData = new ReqUserModifyPwd();
-        _reqData.userId =  int.Parse(Utils.GetRequest("pUserId", "all", 1, @"^\d*$", "-1"));
-        _reqData.userKey =  Utils.GetRequest("pUsKey", "all", 0, "", "");
-        _reqData.oldPwd =   Utils.GetRequest("pOldPwd", "all", 0, "", "");
-        _reqData.newPwd =   Utils.GetRequest("pNewPwd", "all", 0, "", "");   
+        _reqData.userId =  int.Parse(Utils.GetRequest("pUserId", "post", 1, @"^\d*$", "-1"));
+        _reqData.userKey =  Utils.GetRequest("pUsKey", "post", 0, "", "");
+        _reqData.oldPwd =   Utils.GetRequest("pOldPwd", "post", 0, "", "");
+        _reqData.newPwd =   Utils.GetRequest("pNewPwd", "post", 0, "", "");   
         RspUserModifyPwd _rspData = PasswordManager.Instance().UserModifyPwd(_reqData);
         httpContext.Response.Write(_rspData.SerializeObject());      
     }
@@ -72,9 +72,9 @@ public class UserAccount : IHttpHandler {
     private void ResetPwd()
     {
         ReqUserResetPwd _reqData = new ReqUserResetPwd();
-        _reqData.userId =  int.Parse(Utils.GetRequest("pUserId", "all", 1, @"^\d*$", "-1"));
-        _reqData.ValidateCode = int.Parse(Utils.GetRequest("pVerifycode", "all", 1, @"^\d*$", "-1"));
-        _reqData.newPwd =   Utils.GetRequest("pNewPwd", "all", 0, "", "");   
+        _reqData.accountId =  Utils.GetRequest("pAccount", "post", 1, @"^\d*$", "");
+        _reqData.ValidateCode = int.Parse(Utils.GetRequest("pVerifycode", "post", 1, @"^\d*$", "-1"));
+        _reqData.newPwd =   Utils.GetRequest("pNewPwd", "post", 0, "", "");   
         RspUserResetPwd _rspData = PasswordManager.Instance().UserResetPwd(_reqData);
         httpContext.Response.Write(_rspData.SerializeObject());  
     }

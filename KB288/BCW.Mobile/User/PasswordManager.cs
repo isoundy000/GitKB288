@@ -66,18 +66,10 @@ namespace BCW.Mobile.User
         {
             RspUserResetPwd _rspData = new RspUserResetPwd();
             
-            //检查用户ID或手机号码是否为空
-            if (string.IsNullOrEmpty(_reqData.userId.ToString()))
-            {
-                _rspData.header.status = ERequestResult.faild;
-                _rspData.header.statusCode = MOBILE_ERROR_CODE.MOBILE_PHONE_ISNULL;
-                return _rspData;
-            }
-
-            if (_reqData.userId.ToString().Length == 11)
+            if (_reqData.accountId.Length == 11)
             {
                 //检查手机号码是否合法
-                if (Regex.IsMatch(_reqData.userId.ToString(), @"^(?:11|12|13|14|15|16|17|18|19)\d{9}$") == false)
+                if (Regex.IsMatch(_reqData.accountId.ToString(), @"^(?:11|12|13|14|15|16|17|18|19)\d{9}$") == false)
                 {
                     _rspData.header.status = ERequestResult.faild;
                     _rspData.header.statusCode = MOBILE_ERROR_CODE.MOBILE_PHONE_VERIFY;
@@ -85,7 +77,7 @@ namespace BCW.Mobile.User
                 }
 
                 //检查帐号(手机)是否存在
-                if (!new BCW.BLL.User().Exists(_reqData.userId.ToString()))
+                if (!new BCW.BLL.User().Exists(_reqData.accountId.ToString()))
                 {
                     _rspData.header.status = ERequestResult.faild;
                     _rspData.header.statusCode = MOBILE_ERROR_CODE.LOGIN_ACCOUNT_NOTFOUND;
@@ -95,7 +87,7 @@ namespace BCW.Mobile.User
             else
             {
                 //检查用户ID是否合法
-                if (Regex.IsMatch(_reqData.userId.ToString(), @"^[0-9]\d*$") == false)
+                if (Regex.IsMatch(_reqData.accountId.ToString(), @"^[0-9]\d*$") == false)
                 {
                     _rspData.header.status = ERequestResult.faild;
                     _rspData.header.statusCode = MOBILE_ERROR_CODE.SYS_USER_ACCOUNT_VERIFY;
@@ -103,7 +95,7 @@ namespace BCW.Mobile.User
                 }
 
                 //检查帐号(ID)是否存在
-                if (!new BCW.BLL.User().Exists(_reqData.userId))
+                if (!new BCW.BLL.User().Exists(int.Parse(_reqData.accountId)))
                 {
                     _rspData.header.status = ERequestResult.faild;
                     _rspData.header.statusCode = MOBILE_ERROR_CODE.LOGIN_ACCOUNT_NOTFOUND;
@@ -111,7 +103,7 @@ namespace BCW.Mobile.User
                 }
 
                 //将ID变更为手机
-                _reqData.userId = int.Parse(new BCW.BLL.User().GetMobile(_reqData.userId));
+                _reqData.accountId = new BCW.BLL.User().GetMobile(int.Parse(_reqData.accountId));
             }
 
             
@@ -125,11 +117,11 @@ namespace BCW.Mobile.User
             
 
             //检查手机验证码是否正确
-            BCW.Model.tb_Validate _validate = new BCW.BLL.tb_Validate().Gettb_Validate(_reqData.userId.ToString(), 2);
+            BCW.Model.tb_Validate _validate = new BCW.BLL.tb_Validate().Gettb_Validate(_reqData.accountId, 5);
             if (_validate == null)
             {
                 _rspData.header.status = ERequestResult.faild;
-                _rspData.header.statusCode = MOBILE_ERROR_CODE.REGEDIT_VERIFYCODE_EXPIRE;
+                _rspData.header.statusCode = MOBILE_ERROR_CODE.REGEDIT_VERIFYCODE_DIFF;
                 return _rspData;
             }
 
@@ -149,7 +141,7 @@ namespace BCW.Mobile.User
                 return _rspData;
             }
 
-            new BCW.BLL.User().UpdateUsPwd(_reqData.userId, Utils.MD5Str(_reqData.newPwd));
+            new BCW.BLL.User().UpdateUsPwd(_reqData.accountId, Utils.MD5Str(_reqData.newPwd));
 
             _rspData.header.status = ERequestResult.success;
             return _rspData;

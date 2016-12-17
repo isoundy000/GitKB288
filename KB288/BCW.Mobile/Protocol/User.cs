@@ -57,9 +57,9 @@ namespace BCW.Mobile.Protocol
     public class ReqUserResetPwd : ReqProtocolBase
     {
         /// <summary>
-        /// 用户ID或电话号码
+        /// 帐号：用户ID或电话号码
         /// </summary>
-        public int userId;
+        public string accountId;
 
         /// <summary>
         /// 手机验证码

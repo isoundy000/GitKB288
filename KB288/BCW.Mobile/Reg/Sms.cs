@@ -174,7 +174,7 @@ namespace BCW.Mobile.SMS
                        validate.Flag = 1;
                        validate.mesCode = mesCode;
                        validate.codeTime = DateTime.Now.AddMinutes( tm );
-                       validate.type = 1;
+                       validate.type = _type;
                        validate.source = 1;
                        Soap57ProviderService MesExt = new Soap57ProviderService();
                        string result = "";
@@ -204,7 +204,7 @@ namespace BCW.Mobile.SMS
                validate.Flag = 1;
                validate.mesCode = mesCode;
                validate.codeTime = DateTime.Now.AddMinutes( tm );
-               validate.type = 1;
+               validate.type = _type;
                validate.source = 1;
                Soap57ProviderService MesExt = new Soap57ProviderService();
                string result = "";
