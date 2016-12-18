@@ -51,7 +51,7 @@ public class home : IHttpHandler {
 
             //是否请求所有精华贴
             string _reqPost = Utils.GetRequest( "pReqPost", "all", 1, "", "" );
-            string  _threadId =Utils.GetRequest( "pthreadId", "all", 1, "", "-1" );
+            string  _threadId =Utils.GetRequest( "pthreadId", "all", 1, "", "" );
             if( _reqPost == "true" )
                 homePageInfo.InitEssencePost( _threadId == "" ? -1 : int.Parse(_threadId) );
             
