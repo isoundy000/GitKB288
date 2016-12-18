@@ -41,12 +41,12 @@ namespace BCW.Mobile.BBS.Thread
 
             //检查是否登录状态
             
-            if (Common.Common.CheckLogin(_reqData.userId, _reqData.userKey) == 0)
-            {
-                _rspData.header.status = ERequestResult.faild;
-                _rspData.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;
-                return _rspData;
-            }
+            //if (Common.Common.CheckLogin(_reqData.userId, _reqData.userKey) == 0)
+            //{
+            //    _rspData.header.status = ERequestResult.faild;
+            //    _rspData.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;
+            //    return _rspData;
+            //}
 
             //检查帖子有效性
             BCW.Model.Text threadModel = new BCW.BLL.Text().GetText(_reqData.threadId);//GetTextMe

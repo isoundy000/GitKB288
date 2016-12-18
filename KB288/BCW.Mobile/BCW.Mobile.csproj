@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Action\ActionManager.cs" />
     <Compile Include="API.cs" />
     <Compile Include="BBS\Signin\SigninManager.cs" />
     <Compile Include="BBS\Thread\Reply.cs" />
@@ -79,6 +80,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Protocol\Action.cs" />
     <Compile Include="Protocol\Notices.cs" />
     <Compile Include="Protocol\ProtocolBase.cs" />
     <Compile Include="Protocol\Reply.cs" />

@@ -12,10 +12,7 @@ namespace BCW.Mobile.Protocol
         
     }
 
-    /// <summary>
-    /// 发表帖子返回
-    /// </summary>
-    public class RspSignin : RspProtocolBase
+    public class RspSigninData : RspProtocolBase
     {
         /// <summary>
         /// 签到总天数
@@ -26,6 +23,18 @@ namespace BCW.Mobile.Protocol
         /// 连续签到天数
         /// </summary>
         public int keepDay;
+
+        /// <summary>
+        /// 已有酷币
+        /// </summary>
+        public long cobi;
+    }
+
+    /// <summary>
+    /// 发表帖子返回
+    /// </summary>
+    public class RspSignin : RspSigninData
+    {
 
         public string signinRewardStr;
 

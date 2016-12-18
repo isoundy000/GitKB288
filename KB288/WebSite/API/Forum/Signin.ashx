@@ -22,13 +22,37 @@ public class Signin : IHttpHandler {
         context.Response.ContentType = "text/plain";
         httpContext = context;
 
+        string pAct = Utils.GetRequest( "pAct", "all", 1, "", "" );
+
+        switch( pAct )
+        {
+            case "list":            //获取最新签到数据
+                GetSigninData();
+                break;
+            case "sign":
+                SetSignin();        //签到
+                break;
+        }
+    }
+
+    private void GetSigninData()
+    {
+        ReqSignin _reqSigninData = new ReqSignin();
+        _reqSigninData.userId =  int.Parse( Utils.GetRequest( "pUserId", "post", 1, @"^\d*$", "-1" ) );
+        _reqSigninData.userKey = Utils.GetRequest( "pUsKey", "post", 0, "", "" );
+
+        RspSigninData _rspSigninData = SigninManager.Instance().GetSinginData(_reqSigninData);
+        httpContext.Response.Write(_rspSigninData.SerializeObject());
+    }
+
+    private void SetSignin()
+    {
         ReqSignin _reqSigninData = new ReqSignin();
         _reqSigninData.userId =  int.Parse( Utils.GetRequest( "pUserId", "post", 1, @"^\d*$", "-1" ) );
         _reqSigninData.userKey = Utils.GetRequest( "pUsKey", "post", 0, "", "" );
 
         RspSignin _rspSigninData = SigninManager.Instance().UserSignin(_reqSigninData);
-        context.Response.Write(_rspSigninData.SerializeObject());
-
+        httpContext.Response.Write(_rspSigninData.SerializeObject());
     }
 
     public bool IsReusable

@@ -19,6 +19,41 @@ namespace BCW.Mobile.BBS.Signin
         }
 
 
+        public RspSigninData GetSinginData(ReqSignin _reqData)
+        {
+            RspSigninData _rspData = new RspSigninData();
+
+            //验证用户ID格式
+            if (_reqData.userId < 0)
+            {
+                _rspData.header.status = ERequestResult.faild;
+                _rspData.header.statusCode = Error.MOBILE_ERROR_CODE.MOBILE_PARAMS_ERROR;
+                return _rspData;
+            }
+
+            //检查是否登录状态
+            if (Common.Common.CheckLogin(_reqData.userId, _reqData.userKey) == 0)
+            {
+                _rspData.header.status = ERequestResult.faild;
+                _rspData.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;
+                return _rspData;
+            }
+
+            BCW.Model.User model = new BCW.BLL.User().GetSignData(_reqData.userId);
+            int SignKeep = 0;
+            if (model.SignTime >= DateTime.Parse(DateTime.Now.ToLongDateString()).AddDays(-1))
+            {
+                SignKeep = model.SignKeep;
+            }
+
+            _rspData.keepDay = SignKeep;
+            _rspData.totalDay = model.SignTotal;
+            _rspData.cobi = new BCW.BLL.User().GetGold(_reqData.userId);
+
+            _rspData.header.status = ERequestResult.success;
+            return _rspData;
+        }
+
         public RspSignin UserSignin(ReqSignin _reqData)
         {
             RspSignin _rspData = new RspSignin();
@@ -60,6 +95,7 @@ namespace BCW.Mobile.BBS.Signin
             new BCW.BLL.User().UpdateSingData(_reqData.userId, SignTotal, SignKeep);
             _rspData.signinRewardStr = BCW.User.Users.GetWinCent(12, _reqData.userId);
 
+            _rspData.cobi = new BCW.BLL.User().GetGold(_reqData.userId);
             _rspData.header.status = ERequestResult.success;
 
             //积分操作
@@ -89,6 +125,7 @@ namespace BCW.Mobile.BBS.Signin
             }
 
             _rspData.keepDay = SignKeep;
+            _rspData.totalDay = SignTotal;
 
             //银行利息更新
             string ForumSet = new BCW.BLL.User().GetForumSet(_reqData.userId);

@@ -26,6 +26,7 @@ namespace BCW.Mobile.Protocol
     {
         public int userId;
         public string userKey;
+        public int actionId;
     }
 
     public abstract class RspProtocolBase : ProtocolBase
