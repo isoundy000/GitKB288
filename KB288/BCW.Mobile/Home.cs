@@ -82,7 +82,7 @@ namespace BCW.Mobile.Home
         public void InitEssencePost(int _threadId)
         {
             bests = new EssencePost();
-            bests.InitData( 0, _threadId, 1 );
+            bests.InitData( 0, _threadId, 1,-1 );
         }
   
         

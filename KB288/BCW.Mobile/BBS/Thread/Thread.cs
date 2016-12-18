@@ -48,7 +48,7 @@ namespace BCW.Mobile.BBS.Thread
             items = new List<EssencePostItem>();
         }
 
-        public void InitData(int ForumId, int postId, int ptype)
+        public void InitData(int ForumId, int postId, int ptype,int _userId)
         {
 
             this.finish = true;
@@ -73,6 +73,9 @@ namespace BCW.Mobile.BBS.Thread
 
             if (ForumId > 0)
                 strWhere += " and ForumId=" + ForumId.ToString();
+
+            if (_userId >0)
+                strWhere += " and UsID=" + _userId.ToString();
 
             if (postId >= 0)
                 strWhere += " and 1=1";
@@ -148,9 +151,9 @@ namespace BCW.Mobile.BBS.Thread
         /// <param name="ForumId">板块ID</param>
         /// <param name="_pIndex">分页ID</param>
         /// <param name="pType">贴子类型(1:精华  2：推荐  3：两日前  4：锁定  5：置顶)</param>
-        public void InitData(int ForumId, int _pIndex, int pType)
+        public void InitData(int ForumId, int _pIndex, int pType,int _userId)
         {
-            bests.InitData(ForumId, _pIndex, pType);
+            bests.InitData(ForumId, _pIndex, pType,_userId);
         }
 
         /// <summary>

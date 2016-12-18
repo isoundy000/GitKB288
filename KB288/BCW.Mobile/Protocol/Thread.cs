@@ -5,7 +5,6 @@ using BCW.Mobile.Home;
 
 namespace BCW.Mobile.Protocol
 {
-  
 
     /// <summary>
     /// 请求发表新贴
@@ -51,6 +50,21 @@ namespace BCW.Mobile.Protocol
     }
 
     public class RspEditThread : RspAddThread
+    {
+
+    }
+
+    /// <summary>
+    /// 删除帖子
+    /// </summary>
+    public class ReqDelThread : ProtocolBase
+    {
+        public int userId;       //用户ID
+        public string userKey;   //用户密钥
+        public int threadId;     //帖子ID
+    }
+
+    public class RspDelThread : RspAddThread
     {
 
     }

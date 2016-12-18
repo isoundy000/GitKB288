@@ -27,7 +27,7 @@ public class best : IHttpHandler {
         context.Response.ContentType = "text/plain";
         httpContext = context;
 
-        string pAct = Utils.GetRequest( "pAct", "post", 1, "", "" );
+        string pAct = Utils.GetRequest( "pAct", "all", 1, "", "" );
 
         switch( pAct )
         {
@@ -39,6 +39,9 @@ public class best : IHttpHandler {
                 break;
             case "editThread":      //编辑贴子
                 EditThread();
+                break;
+            case "delThread":      //删除贴
+                DelThread();
                 break;
             default:
                 bestInfo.header.status = ERequestResult.faild;
@@ -58,10 +61,10 @@ public class best : IHttpHandler {
         int pThreadId = int.Parse( Utils.GetRequest( "pThreadId", "all", 1, @"^\d*$", "-1" ) );
         int pForumId = int.Parse( Utils.GetRequest( "pForumId", "all", 1, @"^\d*$", "0" ) );
         int pType = int.Parse( Utils.GetRequest( "pType", "all", 1, @"^\d*$", "0" ) );
+        int pUserId = int.Parse( Utils.GetRequest( "pUserId", "all", 1, @"^\d*$", "-1" ) );
 
         bestInfo.header.status = ERequestResult.success;
-
-        bestInfo.InitData( pForumId, pThreadId, pType );
+        bestInfo.InitData( pForumId, pThreadId, pType,pUserId );
         httpContext.Response.Write( JsonConvert.SerializeObject( bestInfo ) );
     }
 
@@ -93,6 +96,19 @@ public class best : IHttpHandler {
 
         RspEditThread _rspData =  bestInfo.EditThread(_reqEditThread);
         httpContext.Response.Write(_rspData.SerializeObject());
+    }
+
+    private void DelThread()
+    {
+        //ReqEditThread _reqEditThread = new ReqEditThread();
+        //_reqEditThread.userId = int.Parse( Utils.GetRequest( "pUserId", "post", 1, @"^\d*$", "-1" ) );
+        //_reqEditThread.userKey = Utils.GetRequest( "pUsKey", "post", 0, "", "" );
+        //_reqEditThread.threadId = int.Parse( Utils.GetRequest( "pThreadId", "post", 1, @"^\d*$", "-1" ) );
+        //_reqEditThread.title= Utils.GetRequest("pTitle", "post", 0, "","");
+        //_reqEditThread.content = Utils.GetRequest("pContent", "post",  0, "","");
+
+        //RspEditThread _rspData =  bestInfo.EditThread(_reqEditThread);
+        //httpContext.Response.Write(_rspData.SerializeObject());
     }
 
 
