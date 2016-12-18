@@ -199,6 +199,21 @@ namespace BCW.Mobile.Error
         /// </summary>
         BBS_THREAD_ADD_STOP = 10011,
 
+        /// <summary>
+        /// 找不到对应帖子
+        /// </summary>
+        BBS_THREAD_NOT_FOUND = 10012,
+
+        /// <summary>
+        /// 帖子已锁定
+        /// </summary>
+        BBS_THREAD_EDIT_LOCKED = 10013,
+
+        /// <summary>
+        /// 帖子已置顶
+        /// </summary>
+        BBS_THREAD_EDIT_ISTOP = 10014,
+
         #endregion
 
 

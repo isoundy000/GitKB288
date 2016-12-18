@@ -65,7 +65,9 @@ namespace BCW.Mobile.Error
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_ADD_IS_ALLMODE, "本论坛限版主和管理员才可以发帖");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_ADD_IS_ADMIN, "本论坛限管理员才可以发帖");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_ADD_STOP, "本论坛禁止发帖");
-
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_NOT_FOUND, "找不到对应帖子");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_EDIT_LOCKED, "帖子已锁定，不能编辑");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_EDIT_ISTOP, "帖子已被置顶,不能编辑");
             #endregion
 
         }

@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using BCW.Mobile.BBS.Thread;
 using BCW.Mobile.Error;
+using BCW.Mobile.Protocol;
 
 public class best : IHttpHandler {
     private BestInfo bestInfo;
@@ -33,8 +34,11 @@ public class best : IHttpHandler {
             case "list":            //帖子列表
                 ShowThreadList();
                 break;
-            case "addThread":       //发新贴
+            case "addThread":       //发新贴子
                 AddThread();
+                break;
+            case "editThread":      //编辑贴子
+                EditThread();
                 break;
             default:
                 bestInfo.header.status = ERequestResult.faild;
@@ -75,7 +79,20 @@ public class best : IHttpHandler {
         _reqAddThread.content = Utils.GetRequest("pContent", "all",  0, "","");
 
         RspAddThread _rspData =  bestInfo.AddThread(_reqAddThread);
-        httpContext.Response.Write( JsonConvert.SerializeObject( _rspData ) );
+        httpContext.Response.Write( _rspData.SerializeObject());
+    }
+
+    private void EditThread()
+    {
+        ReqEditThread _reqEditThread = new ReqEditThread();
+        _reqEditThread.userId = int.Parse( Utils.GetRequest( "pUserId", "all", 1, @"^\d*$", "-1" ) );
+        _reqEditThread.userKey = Utils.GetRequest( "pUsKey", "all", 0, "", "" );
+        _reqEditThread.threadId = int.Parse( Utils.GetRequest( "pThreadId", "all", 1, @"^\d*$", "-1" ) );
+        _reqEditThread.title= Utils.GetRequest("pTitle", "all", 0, "","");
+        _reqEditThread.content = Utils.GetRequest("pContent", "all",  0, "","");
+
+        RspEditThread _rspData =  bestInfo.EditThread(_reqEditThread);
+        httpContext.Response.Write(_rspData.SerializeObject());
     }
 
 

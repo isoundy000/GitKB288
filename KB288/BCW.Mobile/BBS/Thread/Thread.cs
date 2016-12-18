@@ -6,6 +6,7 @@ using System.Data;
 using BCW.Mobile.Home;
 using BCW.Common;
 using System.Text.RegularExpressions;
+using BCW.Mobile.Protocol;
 
 namespace BCW.Mobile.BBS.Thread
 {
@@ -31,31 +32,6 @@ namespace BCW.Mobile.BBS.Thread
         public int IsRecom;                 //是否推荐
         public int IsLock;                  //是否锁定
         public int IsTop;                   //是否置顶
-    }
-
-    public class ReqAddThread
-    {
-        public int userId;
-        public string userKey;
-        public int forumId;
-        public int pType;
-        public string title;
-        public string content;
-
-    }
-
-    public class RspAddThread
-    {
-        public Header header;
-        /// <summary>
-        /// 返回的贴子ID
-        /// </summary>
-        public int threadId;
-
-        public RspAddThread()
-        {
-            header = new Header();
-        }          
     }
 
     /// <summary>
@@ -222,7 +198,7 @@ namespace BCW.Mobile.BBS.Thread
             if (Regex.IsMatch(_reqData.content, @"^[\s\S]{" + ub.GetSub("BbsContentMin", xmlPath) + "," + ub.GetSub("BbsContentMax", xmlPath) + "}$") == false)
             {
                 _rspAddThread.header.status = ERequestResult.faild;
-                _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_TITLE_LENGTH_ERROR;
+                _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_CONTENT_LENGTH_ERROR;
                 return _rspAddThread;
             }
 
@@ -375,5 +351,96 @@ namespace BCW.Mobile.BBS.Thread
             return _rspAddThread;
 
         }
+
+        public RspEditThread EditThread(ReqEditThread _reqData)
+        {
+            RspEditThread _rspEditThread =new RspEditThread();
+
+            //验证用户ID格式
+            if (_reqData.userId < 0)
+            {
+                _rspEditThread.header.status = ERequestResult.faild;
+                _rspEditThread.header.statusCode = Error.MOBILE_ERROR_CODE.MOBILE_PARAMS_ERROR;
+                return _rspEditThread;
+            }
+
+            //验证贴子标题长度
+            if (Regex.IsMatch(_reqData.title, @"^[\s\S]{" + ub.GetSub("BbsThreadMin", xmlPath) + "," + ub.GetSub("BbsThreadMax", xmlPath) + "}$") == false)
+            {
+                _rspEditThread.header.status = ERequestResult.faild;
+                _rspEditThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_TITLE_LENGTH_ERROR;
+                return _rspEditThread;
+            }
+
+            //验证内容长度
+            if (Regex.IsMatch(_reqData.content, @"^[\s\S]{" + ub.GetSub("BbsContentMin", xmlPath) + "," + ub.GetSub("BbsContentMax", xmlPath) + "}$") == false)
+            {
+                _rspEditThread.header.status = ERequestResult.faild;
+                _rspEditThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_CONTENT_LENGTH_ERROR;
+                return _rspEditThread;
+            }
+
+            //检查是否登录状态
+            if (BCW.Mobile.Common.CheckLogin(_reqData.userId, _reqData.userKey) == 0)
+            {
+                _rspEditThread.header.status = ERequestResult.faild;
+                _rspEditThread.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;
+                return _rspEditThread;
+            }
+
+            BCW.Model.Text model = new BCW.BLL.Text().GetText(_reqData.threadId);
+            if (model == null)
+            {
+                _rspEditThread.header.status = ERequestResult.faild;
+                _rspEditThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_NOT_FOUND;
+                return _rspEditThread;
+            }
+
+            if (model.UsID != _reqData.userId && new BCW.User.Role().IsUserRole(BCW.User.Role.enumRole.Role_EditText, _reqData.userId, model.ForumId) == false)
+            {                
+                _rspEditThread.header.status = ERequestResult.faild;
+                _rspEditThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH;
+                return _rspEditThread;
+            }
+
+            if (model.IsLock == 1)
+            {
+                _rspEditThread.header.status = ERequestResult.faild;
+                _rspEditThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_EDIT_LOCKED;
+                return _rspEditThread;
+            }
+            if (model.IsTop == -1)
+            {
+                _rspEditThread.header.status = ERequestResult.faild;
+                _rspEditThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_EDIT_ISTOP;
+                return _rspEditThread;
+            }
+
+            BCW.Model.Text model2 = new BCW.Model.Text();
+            model2.ID = _reqData.threadId;
+            model2.Title = _reqData.title;
+            model2.Content = _reqData.content;
+            new BCW.BLL.Text().Update(model2);
+
+            //记录日志
+            string strLog = string.Empty;
+            if (model.UsID != _reqData.userId)
+            {
+                strLog = "[url=/bbs/uinfo.aspx?uid=" + model.UsID + "]" + model.UsName + "[/url]的主题[url=/bbs/topic.aspx?forumid=" + model.ForumId + "&amp;bid=" + _reqData.threadId + "]《" + model.Title + "》[/url]被[url=/bbs/uinfo.aspx?uid=" + _reqData.userId + "]" + new BCW.BLL.User().GetUsName(_reqData.userId) + "[/url]编辑!";
+                new BCW.BLL.Guest().Add(0, model.UsID, model.UsName, "您的主题[url=/bbs/topic.aspx?forumid=" + model.ForumId + "&amp;bid=" + _reqData.threadId + "]《" + model.Title + "》[/url]被[url=/bbs/uinfo.aspx?uid=" + _reqData.userId + "]" + new BCW.BLL.User().GetUsName(_reqData.userId) + "[/url]编辑!");
+            }
+            else
+            {
+                strLog = "[url=/bbs/uinfo.aspx?uid=" + model.UsID + "]" + model.UsName + "[/url]编辑自己的主题[url=/bbs/topic.aspx?forumid=" + model.ForumId + "&amp;bid=" + _reqData.threadId + "]《" + model.Title + "》[/url]!";
+            }
+            new BCW.BLL.Forumlog().Add(7, model.ForumId, _reqData.threadId, strLog);
+
+            _rspEditThread.header.status = ERequestResult.success;
+            _rspEditThread.threadId = _reqData.threadId;
+            return _rspEditThread;
+        }
+
+
+
     }
 }
