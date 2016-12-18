@@ -27,7 +27,7 @@ public class best : IHttpHandler {
         context.Response.ContentType = "text/plain";
         httpContext = context;
 
-        string pAct = Utils.GetRequest( "pAct", "all", 1, "", "" );
+        string pAct = Utils.GetRequest( "pAct", "post", 1, "", "" );
 
         switch( pAct )
         {
@@ -71,12 +71,12 @@ public class best : IHttpHandler {
     private void AddThread()
     {
         ReqAddThread _reqAddThread = new ReqAddThread();
-        _reqAddThread.userId =  int.Parse( Utils.GetRequest( "pUserId", "all", 1, @"^\d*$", "-1" ) );
-        _reqAddThread.userKey = Utils.GetRequest( "pUsKey", "all", 0, "", "" );
-        _reqAddThread.forumId = int.Parse( Utils.GetRequest( "pForumId", "all", 1, @"^\d*$", "-1" ) );
-        _reqAddThread.pType = int.Parse(Utils.GetRequest("ptype", "all", 1, @"^[0-4]$|^6$|^7$|^8$", "-1"));
-        _reqAddThread.title= Utils.GetRequest("pTitle", "all", 0, "","");
-        _reqAddThread.content = Utils.GetRequest("pContent", "all",  0, "","");
+        _reqAddThread.userId =  int.Parse( Utils.GetRequest( "pUserId", "post", 1, @"^\d*$", "-1" ) );
+        _reqAddThread.userKey = Utils.GetRequest( "pUsKey", "post", 0, "", "" );
+        _reqAddThread.forumId = int.Parse( Utils.GetRequest( "pForumId", "post", 1, @"^\d*$", "-1" ) );
+        _reqAddThread.pType = int.Parse(Utils.GetRequest("ptype", "post", 1, @"^[0-4]$|^6$|^7$|^8$", "-1"));
+        _reqAddThread.title= Utils.GetRequest("pTitle", "post", 0, "","");
+        _reqAddThread.content = Utils.GetRequest("pContent", "post",  0, "","");
 
         RspAddThread _rspData =  bestInfo.AddThread(_reqAddThread);
         httpContext.Response.Write( _rspData.SerializeObject());
@@ -85,11 +85,11 @@ public class best : IHttpHandler {
     private void EditThread()
     {
         ReqEditThread _reqEditThread = new ReqEditThread();
-        _reqEditThread.userId = int.Parse( Utils.GetRequest( "pUserId", "all", 1, @"^\d*$", "-1" ) );
-        _reqEditThread.userKey = Utils.GetRequest( "pUsKey", "all", 0, "", "" );
-        _reqEditThread.threadId = int.Parse( Utils.GetRequest( "pThreadId", "all", 1, @"^\d*$", "-1" ) );
-        _reqEditThread.title= Utils.GetRequest("pTitle", "all", 0, "","");
-        _reqEditThread.content = Utils.GetRequest("pContent", "all",  0, "","");
+        _reqEditThread.userId = int.Parse( Utils.GetRequest( "pUserId", "post", 1, @"^\d*$", "-1" ) );
+        _reqEditThread.userKey = Utils.GetRequest( "pUsKey", "post", 0, "", "" );
+        _reqEditThread.threadId = int.Parse( Utils.GetRequest( "pThreadId", "post", 1, @"^\d*$", "-1" ) );
+        _reqEditThread.title= Utils.GetRequest("pTitle", "post", 0, "","");
+        _reqEditThread.content = Utils.GetRequest("pContent", "post",  0, "","");
 
         RspEditThread _rspData =  bestInfo.EditThread(_reqEditThread);
         httpContext.Response.Write(_rspData.SerializeObject());
