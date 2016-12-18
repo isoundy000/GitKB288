@@ -7,7 +7,7 @@ using BCW.Mobile.Home;
 
 namespace BCW.Mobile.Protocol
 {
-    public class ProtocolBase
+    public abstract class ProtocolBase
     {
         public string SerializeObject()
         {
@@ -22,17 +22,17 @@ namespace BCW.Mobile.Protocol
         }
     }
 
-     public abstract class ReqBase
+     public abstract class ReqProtocolBase
     {
         public int userId;
         public string userKey;
     }
 
-    public class RspBase : ProtocolBase
+    public abstract class RspProtocolBase : ProtocolBase
     {
         public Header header;
 
-        public RspBase()
+        public RspProtocolBase()
         {
             header = new Header();
         }

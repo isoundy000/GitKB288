@@ -150,7 +150,7 @@ namespace BCW.Mobile.Error
         BBS_FORUM_NOT_FOUND = 10001,
 
         /// <summary>
-        ///板块内权限不足
+        ///权限不足
         /// </summary>
         BBS_FORUM_LIMIT_NOT_ENOUGH = 10002,        
 
@@ -213,6 +213,32 @@ namespace BCW.Mobile.Error
         /// 帖子已置顶
         /// </summary>
         BBS_THREAD_EDIT_ISTOP = 10014,
+
+        /// <summary>
+        /// 帖子已加精，不能删除
+        /// </summary>
+        BBS_THREAD_DEL_ISGOOD = 10015,
+
+        /// <summary>
+        /// 帖子已推荐，不能删除
+        /// </summary>
+        BBS_THREAD_DEL_ISRECOM = 10016,
+
+        /// <summary>
+        /// 帖子已锁定，不能删除
+        /// </summary>
+        BBS_THREAD_DEL_ISLOCK = 10017,
+
+        /// <summary>
+        /// 帖子已置顶，不能删除
+        /// </summary>
+        BBS_THREAD_DEL_ISTOP = 10018,
+
+        /// <summary>
+        /// 本版帖子不能删除
+        /// </summary>
+        BBS_THREAD_DEL_FORBID = 10019,
+            
 
         #endregion
 

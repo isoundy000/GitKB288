@@ -100,15 +100,13 @@ public class best : IHttpHandler {
 
     private void DelThread()
     {
-        //ReqEditThread _reqEditThread = new ReqEditThread();
-        //_reqEditThread.userId = int.Parse( Utils.GetRequest( "pUserId", "post", 1, @"^\d*$", "-1" ) );
-        //_reqEditThread.userKey = Utils.GetRequest( "pUsKey", "post", 0, "", "" );
-        //_reqEditThread.threadId = int.Parse( Utils.GetRequest( "pThreadId", "post", 1, @"^\d*$", "-1" ) );
-        //_reqEditThread.title= Utils.GetRequest("pTitle", "post", 0, "","");
-        //_reqEditThread.content = Utils.GetRequest("pContent", "post",  0, "","");
+        ReqDelThread _reqDelThread = new ReqDelThread();
+        _reqDelThread.userId = int.Parse(Utils.GetRequest("pUserId", "post", 1, @"^\d*$", "-1"));
+        _reqDelThread.userKey = Utils.GetRequest("pUsKey", "post", 0, "", "");
+        _reqDelThread.threadId = int.Parse(Utils.GetRequest("pThreadId", "post", 1, @"^\d*$", "-1"));
 
-        //RspEditThread _rspData =  bestInfo.EditThread(_reqEditThread);
-        //httpContext.Response.Write(_rspData.SerializeObject());
+        RspDelThread _rspData = bestInfo.DelThread(_reqDelThread);
+        httpContext.Response.Write(_rspData.SerializeObject());
     }
 
 

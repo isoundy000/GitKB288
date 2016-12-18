@@ -443,7 +443,122 @@ namespace BCW.Mobile.BBS.Thread
             return _rspEditThread;
         }
 
+        public RspDelThread DelThread(ReqDelThread _reqData)
+        {
+            RspDelThread _rspdelThread = new RspDelThread();
+
+            int uid = _reqData.userId;
+            int bid = _reqData.threadId;
+
+            //检查是否登录状态
+            if (BCW.Mobile.Common.CheckLogin(uid, _reqData.userKey) == 0)
+            {
+                _rspdelThread.header.status = ERequestResult.faild;
+                _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;
+                return _rspdelThread;
+            }
 
 
-    }
+            BCW.Model.Text model = new BCW.BLL.Text().GetText(uid);//GetTextMe
+            if (model == null)
+            {
+                _rspdelThread.header.status = ERequestResult.faild;
+                _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_NOT_FOUND;
+                return _rspdelThread;
+            }
+
+            int forumid = model.ForumId;
+            
+
+            if (ub.GetSub("BbsThreadDel", xmlPath) == "0")
+            {
+                if (model.UsID != _reqData.userId && new BCW.User.Role().IsUserRole(BCW.User.Role.enumRole.Role_DelText, uid, model.ForumId) == false)
+                {
+                    _rspdelThread.header.status = ERequestResult.faild;
+                    _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH;
+                    return _rspdelThread;
+                }
+            }
+            else
+            {
+                if (new BCW.User.Role().IsUserRole(BCW.User.Role.enumRole.Role_DelText, uid, forumid) == false)
+                {
+                    _rspdelThread.header.status = ERequestResult.faild;
+                    _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH;
+                    return _rspdelThread;
+                }
+            }
+
+            if (model.IsGood == 1)
+            {
+                _rspdelThread.header.status = ERequestResult.faild;
+                _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_DEL_ISGOOD;
+                return _rspdelThread;
+            }
+            if (model.IsRecom == 1)
+            {
+                _rspdelThread.header.status = ERequestResult.faild;
+                _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_DEL_ISRECOM;
+                return _rspdelThread;
+            }
+            if (model.IsLock == 1)
+            {
+                _rspdelThread.header.status = ERequestResult.faild;
+                _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_DEL_ISLOCK;
+                return _rspdelThread;
+            }
+            if (model.IsTop == -1)
+            {
+                _rspdelThread.header.status = ERequestResult.faild;
+                _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_DEL_ISTOP;
+                return _rspdelThread;
+            }
+            if (model.ForumId == 1)
+            {
+                _rspdelThread.header.status = ERequestResult.faild;
+                _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_DEL_FORBID;
+                return _rspdelThread;
+            }
+
+            new BCW.BLL.Text().UpdateIsDel(bid, 1);
+            new BCW.BLL.Forumstat().Update2(1, model.UsID, forumid, model.AddTime);//更新统计表发帖
+            DataSet ds = new BCW.BLL.Reply().GetList("ID,AddTime,UsID,IsDel", "forumid=" + forumid + " and bid=" + bid + "");  //更新统计表回帖
+            {
+                if (ds != null && ds.Tables[0].Rows.Count > 0)
+                {
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        if (int.Parse(ds.Tables[0].Rows[i]["IsDel"].ToString()) == 0)//如果回帖没有删除
+                        {
+                            new BCW.BLL.Forumstat().Update2(2, int.Parse(ds.Tables[0].Rows[i]["UsID"].ToString()), forumid, DateTime.Parse(ds.Tables[0].Rows[i]["AddTime"].ToString()));
+                        }
+
+                    }
+                }
+            }
+            new BCW.BLL.Reply().UpdateIsDel(bid, 1);
+
+            //记录日志
+            string strLog = string.Empty;
+            if (model.UsID != uid)
+            {
+                //积分操作
+                new BCW.User.Cent().UpdateCent(BCW.User.Cent.enumRole.Cent_DelText, model.UsID);
+                strLog = "[url=/bbs/uinfo.aspx?uid=" + model.UsID + "]" + model.UsName + "[/url]的主题《" + model.Title + "》被[url=/bbs/uinfo.aspx?uid=" + uid + "]" + new BCW.BLL.User().GetUsName(uid) + "[/url]删除!";
+                new BCW.BLL.Guest().Add(0, model.UsID, model.UsName, "您的主题《" + model.Title + "》被[url=/bbs/uinfo.aspx?uid=" + uid + "]" + new BCW.BLL.User().GetUsName(uid) + "[/url]删除!");
+            }
+            else
+            {
+                //积分操作
+                new BCW.User.Cent().UpdateCent(BCW.User.Cent.enumRole.Cent_MeDelText, model.UsID);
+                strLog = "[url=/bbs/uinfo.aspx?uid=" + model.UsID + "]" + model.UsName + "[/url]删除自己的主题《" + model.Title + "》";
+            }
+
+            new BCW.BLL.Forumlog().Add(6, forumid, strLog);
+
+            _rspdelThread.header.status = ERequestResult.success;
+            return _rspdelThread;
+        }
+
+     }
 }
