@@ -10,14 +10,14 @@ namespace BCW.Mobile.BBS
     /// <summary>
     /// 论坛板块
     /// </summary>
-    public class Forum : HomeBaseInfo
+    public class Forum
     {
-        public Dictionary<string,List<ForumItem>> dctForumItem;        //论坛版块列表
+        public Dictionary<string,List<ForumItem>> items;        //论坛版块列表
         private string xmlPath = "/Controls/AppConfig.xml";
 
         public Forum()
         {
-            dctForumItem = new Dictionary<string, List<ForumItem>>();
+            items = new Dictionary<string, List<ForumItem>>();
         }
 
         //初始化数据
@@ -60,76 +60,31 @@ namespace BCW.Mobile.BBS
 
                 if( _lstForumItem.Count > 0 )
                 {
-                    dctForumItem.Add( _arrForumAreaName[ _index ], _lstForumItem );
+                    items.Add( _arrForumAreaName[ _index ], _lstForumItem );
                 }  
             }
 
  
-        }
-
-        private string GetLstForumItemStr()
-        {
-            string _str = "";
-            foreach( KeyValuePair<string, List<ForumItem>> _keyVal in dctForumItem )
-            {
-                _str += "{\"areaName\":\"" + _keyVal.Key +"\",";
-                _str += "\"items\":[";
-                foreach( ForumItem _item in _keyVal.Value )
-                {
-                    _str += _item.OutPutJsonStr() + ",";
-                }
-
-                if( _str != "" )
-                    _str = _str.Substring( 0, _str.Length - 1 );
-
-                _str += "]},";
-
-            }
-
-            if( _str != "" )
-                _str = _str.Substring( 0, _str.Length - 1 );
-
-            return _str;
-        }
-
-        public override string OutPutJsonStr()
-        {
-            jsonBuilder.Append( "\"forums\":[" + this.GetLstForumItemStr()+"]");
-            return jsonBuilder.ToString();
-        }
+        } 
     }
 
 
-    public class ForumItem : HomeBaseInfo
+    public class ForumItem
     {
         public int forumId;             //板块ID
         public string forumName;        //板块名称
         public int themeAmount;         //主题数量            
         public int postAmount;          //贴子数量
         public string forumLogo;        //论坛Logo
-        public int todayPostAmount;     //今日贴子数
-
-        public override string OutPutJsonStr()
-        {
-            jsonBuilder.Append( "{" );
-            jsonBuilder.Append( string.Format( "\"forumId\":{0},", this.forumId ) );
-            jsonBuilder.Append( string.Format( "\"forumName\":\"{0}\",", this.forumName ) );
-            jsonBuilder.Append( string.Format( "\"themeAmount\":{0},", this.themeAmount ) );
-            jsonBuilder.Append( string.Format( "\"postAmount\":{0},", this.postAmount ) );
-            jsonBuilder.Append( string.Format( "\"forumLogo\":\"{0}\",", this.forumLogo ) );
-            jsonBuilder.Append( string.Format( "\"todayPostAmount\":{0}", this.todayPostAmount ) );
-            jsonBuilder.Append( "}" );
-
-            return jsonBuilder.ToString();
-        }
+        public int todayPostAmount;     //今日贴子数   
     }
 
 
-    public class ForumInfo : HomeBaseInfo
+    public class ForumInfo
     {
         public Forum forum;  
         public Header header;
-        public sliderPic sliderPic;
+        public sliderPic slider;
         public Notices notices;
 
         public ForumInfo()
@@ -142,33 +97,15 @@ namespace BCW.Mobile.BBS
         //初始化轮播.
         public void InitSlider()
         {
-            sliderPic = new sliderPic();
-            sliderPic.InitData( EPageType.eBbs );
+            slider = new sliderPic();
+            slider.InitData( EPageType.eBbs );
         }
 
         //初始化喇叭及公告
         public void InitNotice()
         {
             notices = new Notices( ENoticeType.e_all );
-            ( ( NoticesAllItem ) notices.noticesItem ).InitData( 0 );
-        }
-
-        public override string OutPutJsonStr()
-        {
-            jsonBuilder.Append( "{" );
-            jsonBuilder.Append(header.OutPutJsonStr());      
-
-            if( sliderPic != null )
-                jsonBuilder.Append( "," + sliderPic.OutPutJsonStr() );
-
-            if( notices != null )
-                jsonBuilder.Append( "," + notices.OutPutJsonStr() );
-
-            jsonBuilder.Append( ","+this.forum.OutPutJsonStr() );   
-
-            jsonBuilder.Append( "}" );
-
-            return jsonBuilder.ToString();
+            ( ( NoticesAllItem ) notices.noticeData).InitData( 0 );
         }
     }
 }

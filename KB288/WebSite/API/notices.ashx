@@ -7,6 +7,8 @@ using System.Text;
 using BCW.Common;
 using System.Data;
 using BCW.Mobile;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 public class notices : IHttpHandler {
     private Notices mNotices;    
@@ -23,17 +25,15 @@ public class notices : IHttpHandler {
         {
             case ENoticeType.e_all:                 //公告与喇叭混合数据
                 mNotices = new Notices( ENoticeType.e_all );
-                ( ( NoticesAllItem ) mNotices.noticesItem ).InitData( pNoticeId );
+                ( ( NoticesAllItem ) mNotices.noticeData ).InitData( pNoticeId );
                 break;
             case ENoticeType.e_suona:               //纯喇叭数据
                 mNotices = new Notices( ENoticeType.e_suona );
-                ( ( NoticesSuonaItem ) mNotices.noticesItem ).InitData( pNoticeId, pExpire, pUsId );
+                ( ( NoticesSuonaItem ) mNotices.noticeData ).InitData( pNoticeId, pExpire, pUsId );
                 break;
         }
        
-        context.Response.Write( "{" ); 
-        context.Response.Write( mNotices.OutPutJsonStr() );
-        context.Response.Write( "}" );   
+        context.Response.Write(JsonConvert.SerializeObject(mNotices));
     }
  
     public bool IsReusable {

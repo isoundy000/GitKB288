@@ -4,6 +4,8 @@ using System.Text;
 using BCW.Common;
 using System.Data;
 using BCW.Mobile.Home;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace BCW.Mobile
 {
@@ -17,44 +19,28 @@ namespace BCW.Mobile
         e_suona,  //所有喇叭数据(包含已过期的)
     }
 
-    public class NoticeData : HomeBaseInfo
+    public class NoticeData
     {
         public int id;                  //ID
         public string title;           //标题
         public string content;         //内容
-        public DateTime addTime;        //发布时间
-        public DateTime expireTime;     //过期时间
-        public int usId;                //发布者ID
-        public string usName;           //发布者名称
-
-        //简要信息(不带内容)
-        public override string OutPutJsonStr()
-        {
-            jsonBuilder.Append( "{" );
-            jsonBuilder.Append( string.Format( "\"id\":{0},", this.id ) );
-            jsonBuilder.Append( string.Format( "\"userId\":{0},", this.usId ) );
-            jsonBuilder.Append( string.Format( "\"nickname\":\"{0}\",", this.usName ) );
-            jsonBuilder.Append( string.Format( "\"title\":\"{0}\",", this.title ) );
-            jsonBuilder.Append( string.Format( "\"content\":\"{0}\",", this.content ) );
-            jsonBuilder.Append( string.Format( "\"posttime\":{0},", this.addTime.Ticks ) );
-            jsonBuilder.Append( string.Format( "\"expire\":{0}", this.expireTime.Ticks ) );
-            jsonBuilder.Append( "}" );
-
-            return jsonBuilder.ToString();
-        }
+        public long posttime;      //发布时间
+        public long expire;        //过期时间
+        public int userId;                //发布者ID
+        public string nickname;           //发布者名称     
     }
 
     public class NoticesBase
     {
         protected bool mFinish;
-        public List<NoticeData> lstNoticesItem;   //公告或喇叭信息
+        public List<NoticeData> items;   //公告或喇叭信息
         protected string strWhere;
         protected string strSql;
 
 
         public NoticesBase()
         {
-            lstNoticesItem = new List<NoticeData>();
+            items = new List<NoticeData>();
             strWhere = "";
         }
 
@@ -75,12 +61,12 @@ namespace BCW.Mobile
                     _noticeData.title = _ds.Tables[ 0 ].Rows[ i ][ "Title" ].ToString().Replace( "\\", "\\\\" ).Replace( "\"", "\\\"" );
                     string _str = _ds.Tables[ 0 ].Rows[ i ][ "Content" ].ToString();
                     _noticeData.content = Out.SysUBB( _str ).Replace( "\\", "\\\\" ).Replace( "\"", "\\\"" ).Replace( "\n", "\\n" ).Replace( "\r", "\\r" );
-                    _noticeData.usId = int.Parse( _ds.Tables[ 0 ].Rows[ i ][ "UsID" ].ToString() );
-                    _noticeData.usName = _ds.Tables[ 0 ].Rows[ i ][ "UsName" ].ToString();
-                    _noticeData.addTime = DateTime.Parse(_ds.Tables[ 0 ].Rows[ i ][ "addTime" ].ToString());
-                    _noticeData.expireTime = DateTime.Parse(_ds.Tables[ 0 ].Rows[ i ][ "OverTime" ].ToString());
+                    _noticeData.userId = int.Parse( _ds.Tables[ 0 ].Rows[ i ][ "UsID" ].ToString() );
+                    _noticeData.nickname = _ds.Tables[ 0 ].Rows[ i ][ "UsName" ].ToString();
+                    _noticeData.posttime = DateTime.Parse(_ds.Tables[ 0 ].Rows[ i ][ "addTime" ].ToString()).Ticks;
+                    _noticeData.expire = DateTime.Parse(_ds.Tables[ 0 ].Rows[ i ][ "OverTime" ].ToString()).Ticks;
 
-                    lstNoticesItem.Add( _noticeData );
+                    items.Add( _noticeData );
 
                     //检查是否到底
                     if( i == _ds.Tables[ 0 ].Rows.Count - 1 )
@@ -114,9 +100,7 @@ namespace BCW.Mobile
     /// 公告或喇叭内容
     /// </summary>
     public class NoticesAllItem : NoticesBase
-    {
-
-       
+    {          
         public void InitData( int noticeId )
         {
 
@@ -162,50 +146,30 @@ namespace BCW.Mobile
     /// <summary>
     /// 公告或喇叭正文
     /// </summary>
-    public class Notices : HomeBaseInfo
+    public class Notices
     {
-        public bool finish;                 //是否到底
-        public DateTime serverTime;             //服务器当前时间 
-        public ENoticeType noticeType;      
-        public NoticesBase noticesItem;   //数据对象
+        public long serverTime;         //服务器当前时间 
+        [JsonIgnore]
+        public ENoticeType noticeType;
+        public NoticesBase noticeData;      //数据对象
 
 
         public Notices( ENoticeType _type )
         {
             noticeType = _type;
-            noticesItem = new NoticesBase();
+            noticeData = new NoticesBase();
             switch( _type )
             {
                 case ENoticeType.e_all:
-                    noticesItem = new NoticesAllItem();
+                    noticeData = new NoticesAllItem();
                     break;
                 case ENoticeType.e_suona:
-                    noticesItem = new NoticesSuonaItem();
+                    noticeData = new NoticesSuonaItem();
                     break;
             }
-        }
+            serverTime = DateTime.Now.Ticks;
+        } 
 
-
-        private string GetLstNoticesItemStr()
-        {
-            string _str = "";
-            foreach( NoticeData _item in noticesItem.lstNoticesItem )
-                _str += _item.OutPutJsonStr() + ",";
-
-            if( _str != "" )
-                _str = _str.Substring( 0, _str.Length - 1 );
-
-            return _str;
-        }
-
-        public override string OutPutJsonStr()
-        {
-            jsonBuilder.Append( "\"notices\":{" );
-            jsonBuilder.Append( "\"finish\":" + this.finish.ToString().ToLower() + "," );
-            jsonBuilder.Append( "\"serverTime\":" + DateTime.Now.Ticks.ToString() + "," );  
-            jsonBuilder.Append( "\"items\":[" + this.GetLstNoticesItemStr() );
-            jsonBuilder.Append( "]}" );
-            return jsonBuilder.ToString();
-        }
+        //
     }
 }

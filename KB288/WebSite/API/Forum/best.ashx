@@ -7,6 +7,8 @@ using System.Text;
 using BCW.Mobile;
 using BCW.Common;
 using BCW.Mobile.Home;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 public class best : IHttpHandler {
     private BestInfo bestInfo;
@@ -28,17 +30,17 @@ public class best : IHttpHandler {
             int pForumId = int.Parse( Utils.GetRequest( "pForumId", "all", 1, @"^\d*$", "0" ) );
             int pType = int.Parse( Utils.GetRequest( "pType", "all", 1, @"^\d*$", "0" ) );
             
-            bestInfo.header.status = ERequestResult.eSuccess;
+            bestInfo.header.status = ERequestResult.success;
             bestInfo.header.statusMsg = "";
             
             bestInfo.InitData( pForumId, pThreadId, pType );
-            context.Response.Write( bestInfo.OutPutJsonStr() );
+            context.Response.Write(JsonConvert.SerializeObject(bestInfo));
         }
         else
         {
-            bestInfo.header.status = ERequestResult.eFail;
+            bestInfo.header.status = ERequestResult.faild;
             bestInfo.header.statusMsg = "页面请求参数错误";
-            context.Response.Write( bestInfo.OutPutJsonStr() ); 
+            context.Response.Write(JsonConvert.SerializeObject(bestInfo)); 
         }
             
     }

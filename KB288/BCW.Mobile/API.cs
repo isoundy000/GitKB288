@@ -4,14 +4,17 @@ using System.Text;
 using BCW.Common;
 using System.Data;
 using BCW.Mobile.Home;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+ 
 
 namespace BCW.Mobile
 {
 
-    public enum ERequestResult
+    public enum ERequestResult                
     {
-        eSuccess,
-        eFail,
+        success,
+        faild,
     }
 
     public enum EPageType
@@ -24,44 +27,27 @@ namespace BCW.Mobile
     /// <summary>
     /// 轮播内容. 
     /// </summary>
-    public class sliderPicItem : HomeBaseInfo
+    public class sliderPicItem
     {
         public string url;
-        public string contentType;
-        public string[] arryParams;
-
-
-        private string GetLstParamsStr()
-        {
-            string _str = "";
-            foreach( string _param in arryParams )
-                _str += "\"" + _param + "\",";
-
-            if( _str != "" )
-                _str = _str.Substring( 0, _str.Length - 1 );
-
-            return _str;
-        }
-
-        public override string OutPutJsonStr()
-        {
-            jsonBuilder.Append( "{\"url\":\"" + this.url + "\",\"content_type\": \"" + this.contentType + "\", \"params\":[" + this.GetLstParamsStr() + "]}" );
-            return jsonBuilder.ToString();
-        }
+        public string content_type;
+        public string[] arryParams; 
     }
 
 
     /// <summary>
     /// 轮播对象
     /// </summary>
-    public class sliderPic : HomeBaseInfo
+    public class sliderPic
     {
         private int count;
-        private List<sliderPicItem> lstSliderPicItem;
+
+        [JsonProperty]
+        private List<sliderPicItem> items;
 
         public sliderPic()
         {
-            lstSliderPicItem = new List<sliderPicItem>();
+            items = new List<sliderPicItem>();
         }
 
         public void InitData(EPageType type)
@@ -72,30 +58,10 @@ namespace BCW.Mobile
             {
                 sliderPicItem _item = new sliderPicItem();
                 _item.url ="http://"+Utils.GetDomain()+_ds.Tables[ 0 ].Rows[ i ][ "url" ].ToString();
-                _item.contentType = _ds.Tables[ 0 ].Rows[ i ][ "contentType" ].ToString();
+                _item.content_type = _ds.Tables[ 0 ].Rows[ i ][ "contentType" ].ToString();
                 _item.arryParams = _ds.Tables[ 0 ].Rows[ i ][ "param" ].ToString().Split( '|' );
-                lstSliderPicItem.Add( _item );
+                items.Add( _item );
             }
-        }
-
-        private string GetLstSliderPicItemStr()
-        {
-            string _str = "";
-            foreach( sliderPicItem _item in lstSliderPicItem )
-                _str += _item.OutPutJsonStr() + ",";
-
-            if( _str != "" )
-                _str = _str.Substring( 0, _str.Length - 1 );
-
-            return _str;
-        }
-
-
-        public override string OutPutJsonStr()
-        {
-
-            jsonBuilder.Append( "\"slider\":{\"items\":[" + this.GetLstSliderPicItemStr() + "]}" );
-            return jsonBuilder.ToString();
         }
     }
 
@@ -105,7 +71,7 @@ namespace BCW.Mobile
     /// <summary>
     /// 贴子内容
     /// </summary>
-    public class EssencePostItem : HomeBaseInfo
+    public class EssencePostItem
     {
         public int threadId;                 //贴子ID
         public int authorId;                //作者id
@@ -119,58 +85,32 @@ namespace BCW.Mobile
         public int views;                    //阅读数
         public int replys;                   //评论数
         public int likes;                    //喜欢数 
-        public DateTime addTime;            //发贴时间
+        public long addTime;            //发贴时间
         public int IsGood;                  //是否精华
         public int IsRecom;                 //是否推荐
         public int IsLock;                  //是否锁定
         public int IsTop;                   //是否置顶
-
- 
-        public override string OutPutJsonStr()
-        {
-            jsonBuilder.Append( "{" );
-            jsonBuilder.Append( string.Format( "\"threadId\":{0},", this.threadId ) );
-            jsonBuilder.Append( string.Format( "\"authorId\":{0},", this.authorId ) );
-            jsonBuilder.Append( string.Format( "\"author\":\"{0}\",", this.author ) );
-            jsonBuilder.Append( string.Format( "\"authorImg\":\"{0}\",", this.authorImg ) );
-            jsonBuilder.Append( string.Format( "\"forumId\":{0},", this.forumId ) );
-            jsonBuilder.Append( string.Format( "\"title\":\"{0}\",", this.title ) );
-            jsonBuilder.Append( string.Format( "\"content\":\"{0}\",", this.content ) );
-            jsonBuilder.Append( string.Format( "\"preview\":\"{0}\",", this.preview ) );
-            jsonBuilder.Append( string.Format( "\"forum\":\"{0}\",", this.forum ) );
-            jsonBuilder.Append( string.Format( "\"views\":{0},", this.views ) );
-            jsonBuilder.Append( string.Format( "\"replys\":{0},", this.replys ) );
-            jsonBuilder.Append( string.Format( "\"likes\":{0},", this.likes ) );
-            jsonBuilder.Append( string.Format( "\"addTime\":{0},", this.addTime.Ticks ) );
-            jsonBuilder.Append( string.Format( "\"IsGood\":{0},", this.IsGood ) );
-            jsonBuilder.Append( string.Format( "\"IsRecom\":{0},", this.IsRecom ) );
-            jsonBuilder.Append( string.Format( "\"IsLock\":{0},", this.IsLock ) );
-            jsonBuilder.Append( string.Format( "\"IsTop\":{0}", this.IsTop ) );
-            jsonBuilder.Append( "}" );
-
-            return jsonBuilder.ToString();
-        }
     }
 
     /// <summary>
     /// 论坛精华贴
     /// </summary>
-    public class EssencePost : HomeBaseInfo
+    public class EssencePost
     {
-        public List<EssencePostItem> lstEssencePostItem;
+        public List<EssencePostItem> items;
         public bool finish;
         public const int RECORD_COUNT = 10;
 
         public EssencePost()
         {
-            lstEssencePostItem = new List<EssencePostItem>();             
+            items = new List<EssencePostItem>();             
         }
                  
         public void InitData( int ForumId ,int postId, int ptype )
         {
 
             this.finish = true;
-            lstEssencePostItem.Clear();              
+            items.Clear();              
 
             string strWhere = string.Empty;
             string strOrder = string.Empty;
@@ -218,7 +158,7 @@ namespace BCW.Mobile
                     _essencePostItem.forum = _forummodel != null ? _forummodel.Title : "";
                     _essencePostItem.views = int.Parse( _ds.Tables[ 0 ].Rows[ i ][ "ReadNum" ].ToString() );
                     _essencePostItem.replys = int.Parse( _ds.Tables[ 0 ].Rows[ i ][ "ReplyNum" ].ToString() );
-                    _essencePostItem.addTime = DateTime.Parse(_ds.Tables[ 0 ].Rows[ i ][ "AddTime" ].ToString());
+                    _essencePostItem.addTime = DateTime.Parse(_ds.Tables[ 0 ].Rows[ i ][ "AddTime" ].ToString()).Ticks;
 
                     //打赏
                     DataSet _dsCent = new BCW.BLL.Textcent().GetList( "isnull(SUM(Cents),0)cents", "BID='" + _essencePostItem.threadId + "'" );
@@ -229,7 +169,7 @@ namespace BCW.Mobile
                     _essencePostItem.IsLock = int.Parse( _ds.Tables[ 0 ].Rows[ i ][ "IsLock" ].ToString() );
                     _essencePostItem.IsTop = int.Parse( _ds.Tables[ 0 ].Rows[ i ][ "IsTop" ].ToString() );
 
-                    lstEssencePostItem.Add( _essencePostItem );
+                    items.Add( _essencePostItem );
 
                     //检查是否到底
                     if( i == _ds.Tables[ 0 ].Rows.Count - 1 )
@@ -243,59 +183,27 @@ namespace BCW.Mobile
             }  
             
         }   
-
-
-        private string GetLstEssencePostItemStr()
-        {
-            string _str = "";
-            foreach( EssencePostItem _item in lstEssencePostItem )
-                _str += _item.OutPutJsonStr() + ",";
-
-            if( _str != "" )
-                _str = _str.Substring( 0, _str.Length - 1 );
-
-            return _str;
-        }
-
-        public override string OutPutJsonStr()
-        {
-            jsonBuilder.Append( "\"bests\":{" );
-            jsonBuilder.Append( "\"finish\":" + this.finish.ToString().ToLower() +",");
-            jsonBuilder.Append( "\"items\":[" + this.GetLstEssencePostItemStr() + "]" );
-            jsonBuilder.Append( "}" );
-            return jsonBuilder.ToString();
-        }
     }
       
 
-
-
-    public class BestInfo : HomeBaseInfo
+    public class BestInfo
     {
-        public EssencePost essencePost;    //论坛精华贴
         public Header header;
+        public EssencePost bests;    //论坛精华贴         
 
         public BestInfo()
         {
-            essencePost = new EssencePost();
+            bests = new EssencePost();
             header = new Header();
         }
 
 
         public void InitData( int ForumId, int _pIndex, int pType )
         {
-            essencePost.InitData(ForumId, _pIndex, pType );
+            bests.InitData( ForumId, _pIndex, pType );
         }
 
-        public override string OutPutJsonStr()
-        {
-            jsonBuilder.Append( "{" );
-            jsonBuilder.Append( header.OutPutJsonStr());
-            jsonBuilder.Append( ","+essencePost.OutPutJsonStr() );
-            jsonBuilder.Append( "}" );
 
-            return jsonBuilder.ToString();
-        }
     }
 
 

@@ -8,6 +8,8 @@ using BCW.Common;
 using System.Data;
 using BCW.Mobile;
 using BCW.Mobile.Home;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 
 public class home : IHttpHandler {
@@ -29,7 +31,7 @@ public class home : IHttpHandler {
 
         if( _act == "list" )
         {
-            homePageInfo.header.status = ERequestResult.eSuccess;
+            homePageInfo.header.status = ERequestResult.success;
             homePageInfo.header.statusMsg ="";
             
             //检查是否有内线消息
@@ -49,18 +51,20 @@ public class home : IHttpHandler {
 
             //是否请求所有精华贴
             string _reqPost = Utils.GetRequest( "pReqPost", "all", 1, "", "" );
+            string  _threadId =Utils.GetRequest( "pthreadId", "all", 1, "", "-1" );
             if( _reqPost == "true" )
-                homePageInfo.InitEssencePost();           
+                homePageInfo.InitEssencePost( _threadId == "" ? -1 : int.Parse(_threadId) );
+            
             
             
             //论坛精华       
-            context.Response.Write( homePageInfo.OutPutJsonStr() );
+            context.Response.Write(JsonConvert.SerializeObject(homePageInfo));
         }
         else
         {
-            homePageInfo.header.status = ERequestResult.eFail;
+            homePageInfo.header.status = ERequestResult.faild;
             homePageInfo.header.statusMsg = "页面请求参数错误";
-            context.Response.Write( homePageInfo.OutPutJsonStr()); 
+            context.Response.Write(JsonConvert.SerializeObject(homePageInfo.header)); 
         }      
          
     }

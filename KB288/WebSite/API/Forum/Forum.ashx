@@ -6,6 +6,9 @@ using BCW.Mobile.Home;
 using BCW.Common;
 using BCW.Mobile.BBS;
 using BCW.Mobile;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 
 public class text : IHttpHandler {
     private ForumInfo forumInfo;
@@ -24,7 +27,7 @@ public class text : IHttpHandler {
         {
             //论坛精华 
 
-            forumInfo.header.status = ERequestResult.eSuccess;
+            forumInfo.header.status = ERequestResult.success;
             forumInfo.header.statusMsg = "";
 
             //是否请求轮播
@@ -37,14 +40,14 @@ public class text : IHttpHandler {
             if( _reqNotice == "true" )
                 forumInfo.InitNotice();
 
-            context.Response.Write( forumInfo.OutPutJsonStr() );
+            context.Response.Write( JsonConvert.SerializeObject(forumInfo) );
 
         }
         else
         {
-            forumInfo.header.status = ERequestResult.eFail;
+            forumInfo.header.status = ERequestResult.faild;
             forumInfo.header.statusMsg = "页面请求参数错误";
-            context.Response.Write( forumInfo.header.OutPutJsonStr() );
+            context.Response.Write( JsonConvert.SerializeObject(forumInfo.header));
         }  
     }
  
