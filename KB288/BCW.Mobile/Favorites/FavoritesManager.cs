@@ -115,7 +115,7 @@ namespace BCW.Mobile.Favorites
             }
 
             //检查帖子有效性
-            BCW.Model.Text model = new BCW.BLL.Text().GetText(_reqData.userId);//GetTextMe
+            BCW.Model.Text model = new BCW.BLL.Text().GetText(_reqData.threadId);//GetTextMe
             if (model == null)
             {
                 _rspData.header.status = ERequestResult.faild;

@@ -28,35 +28,38 @@ namespace BCW.Mobile.BBS
 
             for( int _index = 0; _index < _arrForumAreaName.Length; _index++ )
             {
+                string[] _arrForumId = _arrForumAreaId[_index].Split(',');
+
                 List<ForumItem> _lstForumItem = new List<ForumItem>();  
-                DataSet _ds = new BCW.BLL.Forum().GetList( "ID,Title,Logo", string.Format( "ID in ({0})", _arrForumAreaId[ _index ] ) );
-                if( _ds.Tables[ 0 ].Rows.Count > 0 )
+
+                for( int i = 0; i < _arrForumId.Length; i++ )
                 {
-                    for( int i = 0; i < _ds.Tables[ 0 ].Rows.Count; i++ )
+                    BCW.Model.Forum _forum = new BCW.BLL.Forum().GetForum(int.Parse(_arrForumId[i]));
+                    if (_forum == null)
+                        continue;
+
+                    ForumItem _forumItem = new ForumItem();
+                    _forumItem.forumId = _forum.ID;
+                    _forumItem.forumName =_forum.Title;
+                    _forumItem.forumLogo = "http://" + Utils.GetDomain() + _forum.Logo;
+
+                    DataSet _ds2 = new BCW.BLL.Forumstat().GetList( "ISNULL(SUM(tTotal),0)tTotal,ISNULL((SUM(tTotal)+ sum(rTotal)),0)rTotal", "ForumID=" + _forumItem.forumId );
+                    if( _ds2.Tables[ 0 ].Rows.Count > 0 )
                     {
-                        ForumItem _forumItem = new ForumItem();
-                        _forumItem.forumId = int.Parse( _ds.Tables[ 0 ].Rows[ i ][ "ID" ].ToString() );
-                        _forumItem.forumName = _ds.Tables[ 0 ].Rows[ i ][ "Title" ].ToString();
-                        _forumItem.forumLogo = _ds.Tables[ 0 ].Rows[ i ][ "Logo" ].ToString();
-
-                        DataSet _ds2 = new BCW.BLL.Forumstat().GetList( "ISNULL(SUM(tTotal),0)tTotal,ISNULL((SUM(tTotal)+ sum(rTotal)),0)rTotal", "ForumID=" + _forumItem.forumId );
-                        if( _ds2.Tables[ 0 ].Rows.Count > 0 )
-                        {
-                            _forumItem.themeAmount = int.Parse( _ds2.Tables[ 0 ].Rows[ 0 ][ "tTotal" ].ToString() );
-                            _forumItem.postAmount = int.Parse( _ds2.Tables[ 0 ].Rows[ 0 ][ "rTotal" ].ToString() );
-                        }
-
-                        DataSet _ds3 = new BCW.BLL.Forumstat().GetList( "COUNT(*)todayPost", "ForumId=" + _forumItem.forumId + " and CONVERT(VARCHAR(10),AddTime,120)= CONVERT(VARCHAR(10),GETDATE(),120)" );
-                        if( _ds3.Tables[ 0 ].Rows.Count > 0 )
-                        {
-                            _forumItem.todayPostAmount = int.Parse( _ds3.Tables[ 0 ].Rows[ 0 ][ "todayPost" ].ToString() );
-                        }
-
-                        _lstForumItem.Add( _forumItem );
-
+                        _forumItem.themeAmount = int.Parse( _ds2.Tables[ 0 ].Rows[ 0 ][ "tTotal" ].ToString() );
+                        _forumItem.postAmount = int.Parse( _ds2.Tables[ 0 ].Rows[ 0 ][ "rTotal" ].ToString() );
                     }
 
+                    DataSet _ds3 = new BCW.BLL.Forumstat().GetList( "COUNT(*)todayPost", "ForumId=" + _forumItem.forumId + " and CONVERT(VARCHAR(10),AddTime,120)= CONVERT(VARCHAR(10),GETDATE(),120)" );
+                    if( _ds3.Tables[ 0 ].Rows.Count > 0 )
+                    {
+                        _forumItem.todayPostAmount = int.Parse( _ds3.Tables[ 0 ].Rows[ 0 ][ "todayPost" ].ToString() );
+                    }
+
+                    _lstForumItem.Add( _forumItem );
+
                 }
+                
 
                 if( _lstForumItem.Count > 0 )
                 {
