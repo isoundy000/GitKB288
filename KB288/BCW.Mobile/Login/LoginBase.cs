@@ -8,6 +8,7 @@ using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using BCW.Mobile.Error;
+using System.Data;
 
 
 namespace BCW.Mobile.Login
@@ -28,8 +29,15 @@ namespace BCW.Mobile.Login
         public string userKey;      //用户U值(尾巴)
         public string platformId;   //第三方平台ID
 
+        public List<int> lstFLimit;    //管理版块
+
         [JsonIgnore]
         public string keys;
+
+        public LoginUserInfo()
+        {
+            lstFLimit = new List<int>();           
+        }
         
     }
 
@@ -60,71 +68,85 @@ namespace BCW.Mobile.Login
 
         public abstract void Init();
 
-        public void Login(string _account,string _pwd,bool platform = false)
+        public void Login(string _account, string _pwd, bool platform = false)
         {
-           //检查用户密码是否正确
+            //检查用户密码是否正确
             int _userRow = 0;
             string _md5Pwd = platform == true ? _pwd : Utils.MD5Str(_pwd);
-            BCW.Model.User _user = new BCW.Model.User();             
+            BCW.Model.User _user = new BCW.Model.User();
             _user.UsPwd = _md5Pwd;
-            if( _account.ToString().Length == 11 )
+            if (_account.ToString().Length == 11)
             {
                 _user.Mobile = _account;
-                _userRow = new BCW.BLL.User().GetRowByMobile( _user );
+                _userRow = new BCW.BLL.User().GetRowByMobile(_user);
             }
             else
             {
                 _user.ID = int.Parse(_account);
-                _userRow = new BCW.BLL.User().GetRowByID( _user );
+                _userRow = new BCW.BLL.User().GetRowByID(_user);
             }
 
-            if( _userRow <=0)
+            if (_userRow <= 0)
             {
                 rspLoginData.header.status = ERequestResult.faild;
                 rspLoginData.header.statusCode = MOBILE_ERROR_CODE.LOGIN_USER_PWD_ERROR;
                 return;
             }
 
-            _user = new BCW.BLL.User().GetKey( _userRow );
+            _user = new BCW.BLL.User().GetKey(_userRow);
 
 
             int UsId = _user.ID;
             string UsKey = _user.UsKey;
             string UsPwd = _user.UsPwd;
 
-            BCW.Model.User modelgetbasic = new BCW.BLL.User().GetBasic( _user.ID );
+            BCW.Model.User modelgetbasic = new BCW.BLL.User().GetBasic(_user.ID);
 
             //设置keys
             string keys = "";
-            keys = BCW.User.Users.SetUserKeys( UsId, UsPwd, UsKey );
+            keys = BCW.User.Users.SetUserKeys(UsId, UsPwd, UsKey);
             string bUrl = string.Empty;
-            if( Utils.getPage( 1 ) != "" )
+            if (Utils.getPage(1) != "")
             {
-                bUrl = Utils.getUrl( Utils.removeUVe( Utils.getPage( 1 ) ) );
+                bUrl = Utils.getUrl(Utils.removeUVe(Utils.getPage(1)));
             }
             else
             {
-                bUrl = Utils.getUrl( "/default.aspx" );
+                bUrl = Utils.getUrl("/default.aspx");
             }
             //更新识别串
-            string SID = ConfigHelper.GetConfigString( "SID" );
-            bUrl = UrlOper.UpdateParam( bUrl, SID, keys );
+            string SID = ConfigHelper.GetConfigString("SID");
+            bUrl = UrlOper.UpdateParam(bUrl, SID, keys);
 
 
             //----------------------写入日志文件作永久保存
-            new BCW.BLL.User().UpdateTime( UsId );
+            new BCW.BLL.User().UpdateTime(UsId);
             //APP全部在线登录
-            new BCW.BLL.User().UpdateState( UsId, 0 );
+            new BCW.BLL.User().UpdateState(UsId, 0);
 
-            TimeSpan timediff = DateTime.Now - Convert.ToDateTime( "1970-01-01 00:00:00" );
-            long stt = ( Int64 ) timediff.TotalMilliseconds;
+            TimeSpan timediff = DateTime.Now - Convert.ToDateTime("1970-01-01 00:00:00");
+            long stt = (Int64)timediff.TotalMilliseconds;
 
             rspLoginData.header.status = ERequestResult.success;
             rspLoginData.user.keys = keys;
             rspLoginData.user.userId = UsId;
             rspLoginData.user.userName = modelgetbasic.UsName;
-            rspLoginData.user.userImg = "http://"+ Utils.GetDomain()+modelgetbasic.Photo;
-            rspLoginData.user.userKey = UsKey; 
+            rspLoginData.user.userImg = "http://" + Utils.GetDomain() + modelgetbasic.Photo;
+            rspLoginData.user.userKey = UsKey;
+
+            //获取用户管理版块
+            int GroupId = new BCW.BLL.Group().GetID(UsId);
+            DataSet ds = new BCW.BLL.Role().GetList("ID,UsName,RoleName,ForumID,ForumName,Include", "UsID=" + UsId + " and (OverTime>='" + DateTime.Now + "' OR OverTime='1990-1-1 00:00:00') and Status=0 ORDER BY FORUMID ASC");
+            if (ds != null && ds.Tables[0].Rows.Count > 0 || GroupId > 0)
+            {
+                if (ds != null && ds.Tables[0].Rows.Count > 0)
+                {
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        rspLoginData.user.lstFLimit.Add(int.Parse(ds.Tables[0].Rows[i]["ForumID"].ToString()));
+                    }
+                }
+            }
         }
     }
     #endregion           
