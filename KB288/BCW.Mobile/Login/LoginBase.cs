@@ -26,8 +26,10 @@ namespace BCW.Mobile.Login
         public int userId;          //用户ID
         public string userName;     //用户昵称
         public string userImg;      //用户头像
-        public string userKey;      //用户U值(尾巴)
+        public string userKey;      //用户key
         public string platformId;   //第三方平台ID
+        public string userU;        //网站U值
+        public string userVe;        //网站U值
 
         public List<int> lstFLimit;    //管理版块
 
@@ -72,8 +74,10 @@ namespace BCW.Mobile.Login
         {
             //检查用户密码是否正确
             int _userRow = 0;
+            
             string _md5Pwd = platform == true ? _pwd : Utils.MD5Str(_pwd);
             BCW.Model.User _user = new BCW.Model.User();
+
             _user.UsPwd = _md5Pwd;
             if (_account.ToString().Length == 11)
             {
@@ -92,6 +96,7 @@ namespace BCW.Mobile.Login
                 rspLoginData.header.statusCode = MOBILE_ERROR_CODE.LOGIN_USER_PWD_ERROR;
                 return;
             }
+            
 
             _user = new BCW.BLL.User().GetKey(_userRow);
 
@@ -103,7 +108,7 @@ namespace BCW.Mobile.Login
             BCW.Model.User modelgetbasic = new BCW.BLL.User().GetBasic(_user.ID);
 
             //设置keys
-            string keys = "";
+            string keys = "";            
             keys = BCW.User.Users.SetUserKeys(UsId, UsPwd, UsKey);
             string bUrl = string.Empty;
             if (Utils.getPage(1) != "")
