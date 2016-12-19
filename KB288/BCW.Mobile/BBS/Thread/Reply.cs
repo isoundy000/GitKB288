@@ -102,7 +102,7 @@ namespace BCW.Mobile.BBS.Thread
             strOrder = " Order by Istop Desc,AddTime Desc";
 
             // 开始读取列表
-            DataSet _ds = new BCW.BLL.Reply().GetList(" TOP 10 ID,Floor,UsName,Content,FileNum,ReplyId,AddTime,UsID,IsTop,IsGood ", strWhere + strOrder );
+            DataSet _ds = new BCW.BLL.Reply().GetList(" TOP 10 ID,Floor,UsName,Content,FileNum,ReplyId,AddTime,UsID,IsTop,IsGood,ForumId,Bid ", strWhere + strOrder );
             if (_ds.Tables[0].Rows.Count > 0)
             {
                 int k = 1;
@@ -118,7 +118,9 @@ namespace BCW.Mobile.BBS.Thread
                     _data.content = BCW.Common.Out.SysUBB(_ds.Tables[0].Rows[i]["Content"].ToString());
                     _data.ReplyId = int.Parse(_ds.Tables[0].Rows[i]["ReplyId"].ToString());
 
-                    BCW.Model.Reply _replyData = new BCW.BLL.Reply().GetReplyMe(_reqData.threadId, _data.ReplyId);
+                    int _bid = int.Parse(_ds.Tables[0].Rows[i]["Bid"].ToString());
+
+                    BCW.Model.Reply _replyData = new BCW.BLL.Reply().GetReplyMe(_bid, _data.ReplyId);
                     if (_replyData != null)
                     {
                         _data.replyContent = _data.ReplyId > 0 ? BCW.Common.Out.SysUBB(_replyData.Content) : "";
@@ -140,7 +142,7 @@ namespace BCW.Mobile.BBS.Thread
                     {
                         if (strWhere.Contains("1=1") == false)
                             strWhere += " and 1=1";
-                        DataSet _dsCheck = new BCW.BLL.Reply().GetList(" TOP 10 ID,Floor,UsName,Content,FileNum,ReplyId,AddTime,UsID,IsTop,IsGood ", strWhere.Replace("1=1", "ID<" + _data.id) + strOrder);
+                        DataSet _dsCheck = new BCW.BLL.Reply().GetList(" TOP 10 ID,Floor,UsName,Content,FileNum,ReplyId,AddTime,UsID,IsTop,IsGood,ForumId,Bid ", strWhere.Replace("1=1", "ID<" + _data.id) + strOrder);
                             _rspData.isFinish = _dsCheck.Tables[0].Rows.Count <= 0;
 
                         _rspData.serverTime = Common.Common.GetLongTime(DateTime.Now);

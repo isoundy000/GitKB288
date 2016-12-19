@@ -52,12 +52,16 @@ namespace BCW.Mobile.Favorites
             if (_reqData.favoritesId > 0)
                 strWhere += " and ID<" + _reqData.favoritesId;    //因为是倒序显示，所以是<
 
+            _rspData.isFinish = true;
+
             DataSet _ds = new BCW.BLL.Favorites().GetList("TOP 10 ID,Types,NodeId,UsID,Title,PUrl,AddTime", strWhere + strOrder);
             if (_ds.Tables[0].Rows.Count > 0)
             {
                 for (int i = 0; i < _ds.Tables[0].Rows.Count; i++)
                 {
+                    FavoritesData _favoritesData = new FavoritesData();
 
+                    _favoritesData.favoritesId = int.Parse(_ds.Tables[0].Rows[i]["ID"].ToString());
                     string _url = _ds.Tables[0].Rows[i]["PUrl"].ToString();
                     if (!_url.Contains("bid="))
                         continue;
@@ -75,8 +79,9 @@ namespace BCW.Mobile.Favorites
 
 
                     BCW.Model.Text _text = new BCW.BLL.Text().GetText(_threadId);
-                    EssencePostItem _item = EssencePost.AssembleItem(_text);
-                    _rspData.lstThread.Add(_item);
+                    _favoritesData.threadItem = EssencePost.AssembleItem(_text);
+                    _rspData.lstFavorites.Add(_favoritesData);
+
 
                     //检查是否到底
                     if (i == _ds.Tables[0].Rows.Count - 1)

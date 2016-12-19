@@ -45,9 +45,9 @@ public class Favorites : IHttpHandler {
     private void GetFavoritesData()
     {
         ReqFavoritesList _reqData = new ReqFavoritesList();
-        _reqData.userId = int.Parse(Utils.GetRequest("pUserId", "all", 1, @"^\d*$", "-1"));
-        _reqData.userKey = Utils.GetRequest("pUsKey", "all", 0, "", "");
-        _reqData.favoritesId = int.Parse(Utils.GetRequest("pFavoritesId", "all", 1, @"^\d*$", "-1"));
+        _reqData.userId = int.Parse(Utils.GetRequest("pUserId", "post", 1, @"^\d*$", "-1"));
+        _reqData.userKey = Utils.GetRequest("pUsKey", "post", 0, "", "");
+        _reqData.favoritesId = int.Parse(Utils.GetRequest("pFavoritesId", "post", 1, @"^\d*$", "-1"));
 
         RspFavoritesList _rspData = FavoritesManager.Instance().GetFavoritesList(_reqData);
         httpContext.Response.Write(_rspData.SerializeObject());
@@ -56,9 +56,9 @@ public class Favorites : IHttpHandler {
     private void AddFavoritesData()
     {
         ReqAddFavorites _reqData = new ReqAddFavorites();
-        _reqData.userId = int.Parse(Utils.GetRequest("pUserId", "all", 1, @"^\d*$", "-1"));
-        _reqData.userKey = Utils.GetRequest("pUsKey", "all", 0, "", "");
-        _reqData.threadId = int.Parse(Utils.GetRequest("pThreadId", "all", 1, @"^\d*$", "-1"));
+        _reqData.userId = int.Parse(Utils.GetRequest("pUserId", "post", 1, @"^\d*$", "-1"));
+        _reqData.userKey = Utils.GetRequest("pUsKey", "post", 0, "", "");
+        _reqData.threadId = int.Parse(Utils.GetRequest("pThreadId", "post", 1, @"^\d*$", "-1"));
 
         RspAddFavorites _rspData = FavoritesManager.Instance().AddFavorites(_reqData);
         httpContext.Response.Write(_rspData.SerializeObject());
@@ -67,9 +67,9 @@ public class Favorites : IHttpHandler {
     private void DelFavoritesData()
     {
         ReqDelFavorites _reqData = new ReqDelFavorites();
-        _reqData.userId = int.Parse(Utils.GetRequest("pUserId", "all", 1, @"^\d*$", "-1"));
-        _reqData.userKey = Utils.GetRequest("pUsKey", "all", 0, "", "");
-        _reqData.threadId = int.Parse(Utils.GetRequest("pThreadId", "all", 1, @"^\d*$", "-1"));
+        _reqData.userId = int.Parse(Utils.GetRequest("pUserId", "post", 1, @"^\d*$", "-1"));
+        _reqData.userKey = Utils.GetRequest("pUsKey", "post", 0, "", "");
+        _reqData.threadId = int.Parse(Utils.GetRequest("pThreadId", "post", 1, @"^\d*$", "-1"));
 
         RspDelFavorites _rspData = FavoritesManager.Instance().DelFavorites(_reqData);
         httpContext.Response.Write(_rspData.SerializeObject());

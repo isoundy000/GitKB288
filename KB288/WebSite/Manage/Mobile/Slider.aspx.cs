@@ -31,7 +31,7 @@ public partial class Manage_MobileSlider : System.Web.UI.Page
         builder.Append( Out.Tab( "<div class=\"text\">", "" ) );
         builder.Append( pType == 0 ? "主页" : "<a href=\"" + Utils.getUrl( "Slider.aspx?ptype=0" ) + "\">主页</a>" );
         builder.Append( "|" );
-        builder.Append( pType == 1 ? "论坛页" : "<a href=\"" + Utils.getUrl( "Slider.aspx?ptype=1" ) + "\">论坛页</a>" );
+        builder.Append( pType == 1 ? "论坛页<br />" : "<a href=\"" + Utils.getUrl( "Slider.aspx?ptype=1" ) + "\">论坛页</a><br />");
         builder.Append( Out.Tab( "</div>", "" ) );
 
 
@@ -92,7 +92,7 @@ public partial class Manage_MobileSlider : System.Web.UI.Page
          sType = "text,text,file,hidden";
          sValu = "" + "'''";
          sEmpt = "false,false,false,";
-         strOthe = "上传,"+Utils.getUrl("Slider.aspx?ptype="+pType+"&act=UploadFile")+",post,2,blue";
+         strOthe = "上传,"+Utils.getUrl("Slider.aspx?ptype="+pType+ "&amp;act=UploadFile") +",post,2,blue";
 
          builder.Append( Out.wapform( sText, sName, sType, sValu, sEmpt, strIdea, strOthe ) );
 
@@ -128,12 +128,12 @@ public partial class Manage_MobileSlider : System.Web.UI.Page
         sType = "hidden,text,text,hidden";
         sValu = ""+_data.id+"'" + _data .contentType+ "'"+_data.param+"'";
         sEmpt = "false,false,false,";
-        strOthe = "确定修改," + Utils.getUrl( "Slider.aspx?ptype=" + pType + "&act=SaveFile" ) + ",post,2,blue";
+        strOthe = "/确定修改,/" + Utils.getUrl( "Slider.aspx?ptype=" + pType + "&amp;act=SaveFile") + ",post,2,blue";
 
         builder.Append( Out.wapform( sText, sName, sType, sValu, sEmpt, strIdea, strOthe ) );
 
         builder.Append( Out.Tab( "<div>", "" ) );
-        builder.Append( "<a href=\""+Utils.getUrl( "Slider.aspx?ptype=" + pType)+"\">取消修改</a>" );
+        builder.Append( "<a href=\""+Utils.getUrl( "Slider.aspx?ptype=" + pType)+"\"> 取消修改</a><br />" );
         builder.Append( Out.Tab( "</div>", "" ) );
     }
 
@@ -182,26 +182,26 @@ public partial class Manage_MobileSlider : System.Web.UI.Page
     private void ListFile()
     {
         builder.Append( Out.Tab( "<div class=\"text\">", "" ) );
-        builder.Append( "<a href=\"" + Utils.getUrl( "Slider.aspx?act=addFile&ptype="+pType ) + "\">添加文件...</a><br />" );
+        builder.Append( "<a href=\"" + Utils.getUrl("Slider.aspx?act=addFile&amp;ptype=" + pType )+"" + "\">添加文件...</a><br />" );
         builder.Append( Out.Tab( "</div>", "" ) );
 
-        builder.Append( Out.Tab( "<div>", "" ) );
-        DataSet _ds = new BCW.MobileSlider.BLL.MobileSlider().GetList( "ptype=" + ( int ) pType );
+        builder.Append(Out.Tab("<div>", ""));
+        DataSet _ds = new BCW.MobileSlider.BLL.MobileSlider().GetList("ptype=" + (int)pType);
 
-        for( int i = 0; i < _ds.Tables[ 0 ].Rows.Count; i++ )
-        {    
+        for (int i = 0; i < _ds.Tables[0].Rows.Count; i++)
+        {
 
-            builder.Append("url:"+_ds.Tables[ 0 ].Rows[ i ][ "url" ].ToString()+" <br />");
-            builder.Append( "contentType:" + _ds.Tables[ 0 ].Rows[ i ][ "contentType" ].ToString() + " <br />" );
-            builder.Append( "param:" + _ds.Tables[ 0 ].Rows[ i ][ "param" ].ToString() + " <br />" );
-            builder.Append( "<a href=\"" + Utils.getUrl( _ds.Tables[ 0 ].Rows[ i ][ "url" ].ToString()) + "\">查看图片</a>" );
-            builder.Append( "|" );
-            builder.Append( "<a href=\"" + Utils.getUrl( "Slider.aspx?act=EditFile&ptype=" + pType +"&id="+ _ds.Tables[ 0 ].Rows[ i ][ "id" ].ToString() ) + "\">编辑参数</a>" );
-            builder.Append( "|" );
-            builder.Append( "<a href=\"" + Utils.getUrl( "Slider.aspx?act=delFile&ptype=" + pType + "&id=" + _ds.Tables[ 0 ].Rows[ i ][ "id" ].ToString() ) + "\">删除</a><br /><br />" );
+            builder.Append("url:" + _ds.Tables[0].Rows[i]["url"].ToString() + " <br />");
+            builder.Append("contentType:" + _ds.Tables[0].Rows[i]["contentType"].ToString() + " <br />");
+            builder.Append("param:" + _ds.Tables[0].Rows[i]["param"].ToString() + " <br />");
+            builder.Append("<a href=\"" + Utils.getUrl(_ds.Tables[0].Rows[i]["url"].ToString()) + "\">查看图片</a>");
+            builder.Append("|");
+            builder.Append("<a href=\"" + Utils.getUrl("Slider.aspx?act=EditFile&amp;ptype=" + pType + "&amp;id=" + _ds.Tables[0].Rows[i]["id"].ToString()) + "\">编辑参数</a>");
+            builder.Append("|");
+            builder.Append("<a href=\"" + Utils.getUrl("Slider.aspx?act=delFile&amp;ptype=" + pType + "&amp;id=" + _ds.Tables[0].Rows[i]["id"].ToString()) + "\">删除</a><br /><br />");
         }
 
-        builder.Append( Out.Tab( "</div>", "" ) );
+        builder.Append(Out.Tab("</div>", ""));
     }
 
     private void UploadFile()
