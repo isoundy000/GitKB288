@@ -22,6 +22,17 @@ paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <script src="respond.min.js"></script>
+<style>
+	#imgcover{
+    object-fit: cover;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px 30px 30px 30px;
+	max-width:60px;
+	max-height:60px;
+	margin:5px;
+}
+</style>
 </head>
 <body>
 
@@ -34,7 +45,7 @@ paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
       <tr>
 
 
-        <td width="12%" rowspan="2"  class="img"><img src="<%Response.Write(getPhoto(tbText.UsID));%>" /></td>
+        <td width="12%" rowspan="2"  class="img"><img id="imgcover" src="<%Response.Write(getPhoto(tbText.UsID));%>" /></td>
          <td width="3%" rowspan="2" >&nbsp;</td>
         <td colspan="3"  class="title"><%Response.Write(tbText.Title);%></td>
       </tr>

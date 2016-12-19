@@ -37,10 +37,10 @@ public class Login : IHttpHandler
             return;
         }
 
-        string _userId = context.Request["userId"];   //帐号
-        string _pwd = context.Request[ "pwd" ];     //密码
-        string _bingType = context.Request[ "platformType" ];     //绑定平台类型
-        string _assessToken = context.Request[ "platformId" ];     //绑定平台唯一AssessToken
+        string _userId = context.Request.Form["userId"];   //帐号
+        string _pwd = context.Request.Form[ "pwd" ];     //密码
+        string _bingType = context.Request.Form[ "platformType" ];     //绑定平台类型
+        string _assessToken = context.Request.Form[ "platformId" ];     //绑定平台唯一AssessToken
 
         if( string.IsNullOrEmpty( _userId ) == false && Regex.IsMatch( _userId, @"^\d*" ) == false )
         {
