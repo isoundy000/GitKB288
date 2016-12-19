@@ -241,12 +241,13 @@ namespace BCW.Mobile
                     _essencePostItem.forumId = int.Parse( _ds.Tables[ 0 ].Rows[ i ][ "ForumId" ].ToString() );
                     _essencePostItem.title = _ds.Tables[ 0 ].Rows[ i ][ "Title" ].ToString().Replace( "\\", "\\\\" ).Replace( "\"", "\\\"" ).Replace( "\n", "\\n" ).Replace( "\r", "\\r" );
                     _essencePostItem.content = Out.SysUBB( _ds.Tables[ 0 ].Rows[ i ][ "Content" ].ToString() ).Replace( "\\", "\\\\" ).Replace( "\"", "\\\"" ).Replace( "\n", "\\n" ).Replace( "\r", "\\r" );
-                    _essencePostItem.preview = string.IsNullOrEmpty( _ds.Tables[ 0 ].Rows[ i ][ "GoodSmallIcon" ].ToString() ) ? "http://www.topbar.cn/images/kb_logo.png" : "http://"+_ds.Tables[ 0 ].Rows[ i ][ "GoodSmallIcon" ].ToString();
+                    _essencePostItem.preview = string.IsNullOrEmpty( _ds.Tables[ 0 ].Rows[ i ][ "GoodSmallIcon" ].ToString() ) ? "http://" + Utils.GetDomain() + "/Files/threadImg/def.png" : "http://" + _ds.Tables[ 0 ].Rows[ i ][ "GoodSmallIcon" ].ToString();
                     BCW.Model.Forum _forummodel = new BCW.BLL.Forum().GetForum( _essencePostItem.forumId );
                     _essencePostItem.forum = _forummodel != null ? _forummodel.Title : "";
                     _essencePostItem.views = int.Parse( _ds.Tables[ 0 ].Rows[ i ][ "ReadNum" ].ToString() );
                     _essencePostItem.replys = int.Parse( _ds.Tables[ 0 ].Rows[ i ][ "ReplyNum" ].ToString() );
-                    _essencePostItem.addTime = DateTime.Parse(_ds.Tables[ 0 ].Rows[ i ][ "AddTime" ].ToString()).Ticks;
+                    System.DateTime _startTime = TimeZone.CurrentTimeZone.ToLocalTime( new System.DateTime( 1970, 1, 1 ) );          
+                    _essencePostItem.addTime = (long)(DateTime.Parse(_ds.Tables[ 0 ].Rows[ i ][ "AddTime" ].ToString()) - _startTime).TotalSeconds;
 
                     //打赏
                     DataSet _dsCent = new BCW.BLL.Textcent().GetList( "isnull(SUM(Cents),0)cents", "BID='" + _essencePostItem.threadId + "'" );

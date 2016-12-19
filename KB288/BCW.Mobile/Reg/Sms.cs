@@ -7,6 +7,8 @@ using BCW.Mobile.Home;
 using System.Text.RegularExpressions;
 using BCW.Mobile.WebReference;
 using System.Data;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 
 namespace BCW.Mobile.SMS
@@ -15,7 +17,9 @@ namespace BCW.Mobile.SMS
     {
         public Header header;    //头信息
 
+        [JsonIgnore]
         public string monbile;          //手机号码
+        [JsonIgnore]
         public string smsVerifyCode;    //验证码           
 
         public SmsData()

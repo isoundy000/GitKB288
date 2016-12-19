@@ -62,9 +62,10 @@ namespace BCW.Mobile
                     string _str = _ds.Tables[ 0 ].Rows[ i ][ "Content" ].ToString();
                     _noticeData.content = Out.SysUBB( _str ).Replace( "\\", "\\\\" ).Replace( "\"", "\\\"" ).Replace( "\n", "\\n" ).Replace( "\r", "\\r" );
                     _noticeData.userId = int.Parse( _ds.Tables[ 0 ].Rows[ i ][ "UsID" ].ToString() );
-                    _noticeData.nickname = _ds.Tables[ 0 ].Rows[ i ][ "UsName" ].ToString();
-                    _noticeData.posttime = DateTime.Parse(_ds.Tables[ 0 ].Rows[ i ][ "addTime" ].ToString()).Ticks;
-                    _noticeData.expire = DateTime.Parse(_ds.Tables[ 0 ].Rows[ i ][ "OverTime" ].ToString()).Ticks;
+                    _noticeData.nickname = _ds.Tables[ 0 ].Rows[ i ][ "UsName" ].ToString(); 
+                    System.DateTime _startTime = TimeZone.CurrentTimeZone.ToLocalTime( new System.DateTime( 1970, 1, 1 ) );
+                    _noticeData.posttime = ( long ) ( DateTime.Parse( _ds.Tables[ 0 ].Rows[ i ][ "addTime" ].ToString() ) - _startTime ).TotalSeconds;  
+                    _noticeData.expire =( long ) ( DateTime.Parse( _ds.Tables[ 0 ].Rows[ i ][ "OverTime" ].ToString() ) - _startTime ).TotalSeconds;
 
                     items.Add( _noticeData );
 
@@ -167,7 +168,9 @@ namespace BCW.Mobile
                     noticeData = new NoticesSuonaItem();
                     break;
             }
-            serverTime = DateTime.Now.Ticks;
+            System.DateTime _startTime = TimeZone.CurrentTimeZone.ToLocalTime( new System.DateTime( 1970, 1, 1 ) );
+            serverTime = ( long ) ( DateTime.Now - _startTime ).TotalSeconds;
+
         } 
 
         //
