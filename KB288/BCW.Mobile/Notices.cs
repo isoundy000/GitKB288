@@ -58,9 +58,9 @@ namespace BCW.Mobile
                 {
                     NoticeData _noticeData = new NoticeData();
                     _noticeData.id = int.Parse( _ds.Tables[ 0 ].Rows[ i ][ "ID" ].ToString() );
-                    _noticeData.title = _ds.Tables[ 0 ].Rows[ i ][ "Title" ].ToString().Replace( "\\", "\\\\" ).Replace( "\"", "\\\"" );
+                    _noticeData.title = _ds.Tables[0].Rows[i]["Title"].ToString();//.Replace( "\\", "\\\\" ).Replace( "\"", "\\\"" );
                     string _str = _ds.Tables[ 0 ].Rows[ i ][ "Content" ].ToString();
-                    _noticeData.content = Out.SysUBB( _str ).Replace( "\\", "\\\\" ).Replace( "\"", "\\\"" ).Replace( "\n", "\\n" ).Replace( "\r", "\\r" );
+                    _noticeData.content = Out.SysUBB(_str);//.Replace( "\\", "\\\\" ).Replace( "\"", "\\\"" ).Replace( "\n", "\\n" ).Replace( "\r", "\\r" );
                     _noticeData.userId = int.Parse( _ds.Tables[ 0 ].Rows[ i ][ "UsID" ].ToString() );
                     _noticeData.nickname = _ds.Tables[ 0 ].Rows[ i ][ "UsName" ].ToString(); 
                     System.DateTime _startTime = TimeZone.CurrentTimeZone.ToLocalTime( new System.DateTime( 1970, 1, 1 ) );

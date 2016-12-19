@@ -96,8 +96,8 @@ namespace BCW.Mobile.BBS.Thread
                     _essencePostItem.author = _ds.Tables[0].Rows[i]["UsName"].ToString();
                     _essencePostItem.authorImg = "http://" + Utils.GetDomain() + new BCW.BLL.User().GetPhoto(int.Parse(_ds.Tables[0].Rows[i]["UsID"].ToString()));
                     _essencePostItem.forumId = int.Parse(_ds.Tables[0].Rows[i]["ForumId"].ToString());
-                    _essencePostItem.title = _ds.Tables[0].Rows[i]["Title"].ToString().Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n").Replace("\r", "\\r");
-                    _essencePostItem.content = Out.SysUBB(_ds.Tables[0].Rows[i]["Content"].ToString()).Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n").Replace("\r", "\\r");
+                    _essencePostItem.title = _ds.Tables[0].Rows[i]["Title"].ToString();//.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n");
+                    _essencePostItem.content = Out.SysUBB(_ds.Tables[0].Rows[i]["Content"].ToString());//.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n");
                     _essencePostItem.preview = string.IsNullOrEmpty(_ds.Tables[0].Rows[i]["GoodSmallIcon"].ToString()) ? "http://" + Utils.GetDomain() + "/Files/threadImg/def.png" : _ds.Tables[0].Rows[i]["GoodSmallIcon"].ToString();
                     BCW.Model.Forum _forummodel = new BCW.BLL.Forum().GetForum(_essencePostItem.forumId);
                     _essencePostItem.forum = _forummodel != null ? _forummodel.Title : "";
@@ -459,7 +459,7 @@ namespace BCW.Mobile.BBS.Thread
             }
 
 
-            BCW.Model.Text model = new BCW.BLL.Text().GetText(uid);//GetTextMe
+            BCW.Model.Text model = new BCW.BLL.Text().GetText(bid);//GetTextMe
             if (model == null)
             {
                 _rspdelThread.header.status = ERequestResult.faild;
