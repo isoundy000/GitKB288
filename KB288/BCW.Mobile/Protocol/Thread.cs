@@ -57,4 +57,41 @@ namespace BCW.Mobile.Protocol
     {
 
     }
+
+    /// <summary>
+    /// 设置置顶
+    /// </summary>
+    public class ReqTopThread : ReqProtocolBase
+    {
+        public int threadId;     //帖子ID
+
+        /// <summary>
+        /// 置顶类型（0 : 取消置顶  1：版内置顶  2:全区置顶）
+        /// </summary>
+        public int topType=1;        
+    }
+
+    public class RspTopThread : RspProtocolBase
+    {
+
+    }
+
+    /// <summary>
+    /// 设置精华
+    /// </summary>
+    public class ReqGoodThread : ReqProtocolBase
+    {
+        public int threadId;     //帖子ID
+
+        /// <summary>
+        /// 置顶类型（0：取消精华  1：设为精华）
+        /// </summary>
+        public int goodType = 1;        
+    }
+
+    public class RspGoodThread : RspProtocolBase
+    {
+
+    }
+
 }

@@ -66,8 +66,15 @@ namespace BCW.Mobile.Error
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_ADD_IS_ADMIN, "本论坛限管理员才可以发帖");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_ADD_STOP, "本论坛禁止发帖");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_NOT_FOUND, "找不到对应帖子");
-            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_EDIT_LOCKED, "帖子已锁定，不能编辑");
-            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_EDIT_ISTOP, "帖子已被置顶,不能编辑");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_IS_LOCK, "帖子已被锁定");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_IS_TOP, "帖子已被置顶");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_IS_GOOD, "帖子已被加精");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_IS_RECOM, "帖子已被推荐");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_DEL_FORBID, "本版帖子不能删除");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_OPER_MYSELF, "不能操作自己的帖子");
+            
+
+
             #endregion
 
         }

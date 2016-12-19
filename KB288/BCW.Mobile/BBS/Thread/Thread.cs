@@ -409,13 +409,13 @@ namespace BCW.Mobile.BBS.Thread
             if (model.IsLock == 1)
             {
                 _rspEditThread.header.status = ERequestResult.faild;
-                _rspEditThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_EDIT_LOCKED;
+                _rspEditThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_IS_LOCK;
                 return _rspEditThread;
             }
             if (model.IsTop == -1)
             {
                 _rspEditThread.header.status = ERequestResult.faild;
-                _rspEditThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_EDIT_ISTOP;
+                _rspEditThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_IS_TOP;
                 return _rspEditThread;
             }
 
@@ -468,8 +468,7 @@ namespace BCW.Mobile.BBS.Thread
             }
 
             int forumid = model.ForumId;
-            
-
+                       
             if (ub.GetSub("BbsThreadDel", xmlPath) == "0")
             {
                 if (model.UsID != _reqData.userId && new BCW.User.Role().IsUserRole(BCW.User.Role.enumRole.Role_DelText, uid, model.ForumId) == false)
@@ -492,25 +491,25 @@ namespace BCW.Mobile.BBS.Thread
             if (model.IsGood == 1)
             {
                 _rspdelThread.header.status = ERequestResult.faild;
-                _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_DEL_ISGOOD;
+                _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_IS_GOOD;
                 return _rspdelThread;
             }
             if (model.IsRecom == 1)
             {
                 _rspdelThread.header.status = ERequestResult.faild;
-                _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_DEL_ISRECOM;
+                _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_IS_RECOM;
                 return _rspdelThread;
             }
             if (model.IsLock == 1)
             {
                 _rspdelThread.header.status = ERequestResult.faild;
-                _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_DEL_ISLOCK;
+                _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_IS_LOCK;
                 return _rspdelThread;
             }
             if (model.IsTop == -1)
             {
                 _rspdelThread.header.status = ERequestResult.faild;
-                _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_DEL_ISTOP;
+                _rspdelThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_IS_TOP;
                 return _rspdelThread;
             }
             if (model.ForumId == 1)
@@ -560,5 +559,179 @@ namespace BCW.Mobile.BBS.Thread
             return _rspdelThread;
         }
 
-     }
-}
+        public RspTopThread SetTopThread(ReqTopThread _reqData)
+        {
+            RspTopThread _rspTopThread = new RspTopThread();
+
+            int uid = _reqData.userId;
+            int bid = _reqData.threadId;
+
+            //检查是否登录状态
+            if (BCW.Mobile.Common.CheckLogin(uid, _reqData.userKey) == 0)
+            {
+                _rspTopThread.header.status = ERequestResult.faild;
+                _rspTopThread.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;
+                return _rspTopThread;
+            }
+
+            BCW.Model.Text model = new BCW.BLL.Text().GetText(bid);//GetTextMe
+
+            if (model == null)
+            {
+                _rspTopThread.header.status = ERequestResult.faild;
+                _rspTopThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_NOT_FOUND;
+                return _rspTopThread;
+            }
+
+            //是否总版权限
+            bool IsSuper = new BCW.User.Role().IsUserRole(BCW.User.Role.enumRole.Role_TopText, uid);
+
+            string sText = string.Empty;
+            if (_reqData.topType >0)
+                sText = "设置";               
+            else
+                sText = "去掉";            
+
+            //得到置顶类型
+            int threadTopType = new BCW.BLL.Text().GetIsTop(bid);
+
+            if (_reqData.topType  == 1 )    //版内置顶
+            {
+                //是否有置顶权限
+                if (IsSuper == false && new BCW.User.Role().IsUserRole(BCW.User.Role.enumRole.Role_TopText, uid, model.ForumId) == false)
+                {
+                    _rspTopThread.header.status = ERequestResult.faild;
+                    _rspTopThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH;
+                    return _rspTopThread;
+                }
+
+                if (threadTopType > 0)
+                {
+                    _rspTopThread.header.status = ERequestResult.faild;
+                    _rspTopThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_IS_TOP;
+                    return _rspTopThread;
+                }
+                new BCW.BLL.Text().UpdateIsTop(bid, 1);
+            }
+            else if (_reqData.topType == 2) //全区置顶
+            {
+                if (threadTopType == 2)
+                {
+                    _rspTopThread.header.status = ERequestResult.faild;
+                    _rspTopThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_IS_TOP;
+                    return _rspTopThread;
+                }
+                if (!IsSuper)
+                {
+                    _rspTopThread.header.status = ERequestResult.faild;
+                    _rspTopThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH;
+                    return _rspTopThread;
+                }
+                new BCW.BLL.Text().UpdateIsTop(bid, 2);
+                sText = "设置全版区";
+            }
+            else  //取消置顶
+            {
+                if (threadTopType == 2 && IsSuper == false)
+                {
+                    _rspTopThread.header.status = ERequestResult.faild;
+                    _rspTopThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH;
+                    return _rspTopThread;
+                }
+                if (_reqData.topType == 2)
+                {
+                    sText = "去掉全版区";
+                }
+                new BCW.BLL.Text().UpdateIsTop(bid, 0);
+
+            }
+
+            //加币与扣币(无)
+
+            //记录日志
+            string strLog = "主题[url=/bbs/topic.aspx?forumid=" + model.ForumId + "&amp;bid=" + bid + "]《" + model.Title + "》[/url]被[url=/bbs/uinfo.aspx?uid=" + uid + "]" + new BCW.BLL.User().GetUsName(uid) + "[/url]" + sText + "置顶!";
+            new BCW.BLL.Forumlog().Add(3, model.ForumId, bid, "[url=/bbs/uinfo.aspx?uid=" + model.UsID + "]" + model.UsName + "[/url]的" + strLog);
+            new BCW.BLL.Guest().Add(0, model.UsID, model.UsName, "您的" + strLog);
+
+            _rspTopThread.header.status = ERequestResult.success;
+            return _rspTopThread;
+        }
+
+        public RspGoodThread SetGoodThread(ReqGoodThread _reqData)
+        {
+            RspGoodThread _rspGoodThread = new RspGoodThread();
+
+            int uid = _reqData.userId;
+            int bid = _reqData.threadId;
+
+            //检查是否登录状态
+            if (BCW.Mobile.Common.CheckLogin(uid, _reqData.userKey) == 0)
+            {
+                _rspGoodThread.header.status = ERequestResult.faild;
+                _rspGoodThread.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;
+                return _rspGoodThread;
+            }
+
+            BCW.Model.Text model = new BCW.BLL.Text().GetText(bid);//GetTextMe
+
+            if (model == null)
+            {
+                _rspGoodThread.header.status = ERequestResult.faild;
+                _rspGoodThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_NOT_FOUND;
+                return _rspGoodThread;
+            }
+
+            string sText = string.Empty;
+            if (_reqData.goodType == 1)
+                sText = "加为";
+            else
+                sText = "解除";
+
+            int IsGood = new BCW.BLL.Text().GetIsGood(bid);
+            if (_reqData.goodType == 1 && IsGood == 1)
+            {
+                _rspGoodThread.header.status = ERequestResult.faild;
+                _rspGoodThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_IS_GOOD;
+                return _rspGoodThread;
+            }
+
+            //不能操作自己的
+            if (uid == model.UsID)
+            {
+                _rspGoodThread.header.status = ERequestResult.faild;
+                _rspGoodThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_OPER_MYSELF;
+                return _rspGoodThread;
+            }
+
+
+            //积分操作/论坛统计/圈子论坛不进行任何奖励
+            int GroupId = new BCW.BLL.Forum().GetGroupId(model.ForumId);
+            if (GroupId == 0)
+            {
+                //检查权限
+                if (_reqData.goodType == 1 && new BCW.User.Role().IsUserRole(BCW.User.Role.enumRole.Role_GoodText, uid, model.ForumId)== false)
+                {
+                    _rspGoodThread.header.status = ERequestResult.faild;
+                    _rspGoodThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH;
+                    return _rspGoodThread;
+                }
+                else if (_reqData.goodType == 0 && new BCW.User.Role().IsUserRole(BCW.User.Role.enumRole.Role_DelGoodText, uid, model.ForumId) == false)
+                {
+                    _rspGoodThread.header.status = ERequestResult.faild;
+                    _rspGoodThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH;
+                    return _rspGoodThread;
+                }
+            }
+            string strLog = "主题[url=/bbs/topic.aspx?forumid=" + model.ForumId + "&amp;bid=" + bid + "]《" + model.Title + "》[/url]被[url=/bbs/uinfo.aspx?uid=" + uid + "]" + new BCW.BLL.User().GetUsName(uid) + "[/url]" + sText + "精华!";
+
+            new BCW.BLL.Text().UpdateIsGood(bid, _reqData.goodType);
+
+            new BCW.BLL.Forumlog().Add(1, model.ForumId, bid, "[url=/bbs/uinfo.aspx?uid=" + model.UsID + "]" + model.UsName + "[/url]的" + strLog);
+            new BCW.BLL.Guest().Add(0, model.UsID, model.UsName, "您的" + strLog);
+
+            _rspGoodThread.header.status = ERequestResult.success;
+            return _rspGoodThread;
+        }
+
+    }
+ }

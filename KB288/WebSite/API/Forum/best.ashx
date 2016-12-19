@@ -43,6 +43,12 @@ public class best : IHttpHandler {
             case "delThread":      //删除贴
                 DelThread();
                 break;
+            case "setGood":          //设置精华
+                SetGood();
+                break;
+            case "setTop":          //设置置顶
+                SetTop();
+                break;
             default:
                 bestInfo.header.status = ERequestResult.faild;
                 bestInfo.header.statusCode = MOBILE_ERROR_CODE.MOBILE_PARAMS_ERROR;
@@ -106,6 +112,31 @@ public class best : IHttpHandler {
         _reqDelThread.threadId = int.Parse(Utils.GetRequest("pThreadId", "post", 1, @"^\d*$", "-1"));
 
         RspDelThread _rspData = bestInfo.DelThread(_reqDelThread);
+        httpContext.Response.Write(_rspData.SerializeObject());
+    }
+
+    private void SetTop()
+    {
+        ReqTopThread _reqTopThread = new ReqTopThread();
+        _reqTopThread.userId = int.Parse(Utils.GetRequest("pUserId", "post", 1, @"^\d*$", "-1"));
+        _reqTopThread.userKey = Utils.GetRequest("pUsKey", "post", 0, "", "");
+        _reqTopThread.threadId = int.Parse(Utils.GetRequest("pThreadId", "post", 1, @"^\d*$", "-1"));
+        _reqTopThread.topType = int.Parse(Utils.GetRequest("pTopType", "post", 1, @"^\d*$", "-1"));
+
+        RspTopThread _rspData = bestInfo.SetTopThread(_reqTopThread);
+        httpContext.Response.Write(_rspData.SerializeObject());
+    }
+
+    private void SetGood()
+    {
+        ReqGoodThread _reqGoodThread = new ReqGoodThread();
+        _reqGoodThread.userId = int.Parse(Utils.GetRequest("pUserId", "post", 1, @"^\d*$", "-1"));
+        _reqGoodThread.userKey = Utils.GetRequest("pUsKey", "post", 0, "", "");
+        _reqGoodThread.threadId = int.Parse(Utils.GetRequest("pThreadId", "post", 1, @"^\d*$", "-1"));
+       _reqGoodThread.goodType = int.Parse(Utils.GetRequest("pGoodType", "post", 1, @"^\d*$", "-1"));
+
+
+        RspGoodThread _rspData = bestInfo.SetGoodThread(_reqGoodThread);
         httpContext.Response.Write(_rspData.SerializeObject());
     }
 
