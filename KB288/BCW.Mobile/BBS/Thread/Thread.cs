@@ -27,12 +27,13 @@ namespace BCW.Mobile.BBS.Thread
         public string forum;                 //论坛栏目名称
         public int views;                    //阅读数
         public int replys;                   //评论数
-        public int likes;                    //喜欢数 
+        public int likes;                    //喜欢数(点赞数) 
         public long addTime;            //发贴时间
         public int IsGood;                  //是否精华
         public int IsRecom;                 //是否推荐
         public int IsLock;                  //是否锁定
         public int IsTop;                   //是否置顶
+        public bool isFavorites;             //是否收藏
     }
 
     /// <summary>
@@ -47,6 +48,42 @@ namespace BCW.Mobile.BBS.Thread
         public EssencePost()
         {
             items = new List<EssencePostItem>();
+        }
+
+        public static EssencePostItem AssembleItem(BCW.Model.Text _text)
+        {
+            EssencePostItem _item = new EssencePostItem();
+
+            _item.threadId = _text.ID; 
+            _item.authorId = _text.UsID; 
+            _item.author = _text.UsName; 
+            _item.authorImg = "http://" + Utils.GetDomain() + new BCW.BLL.User().GetPhoto(_text.UsID);
+            _item.forumId = _text.ForumId; 
+            _item.title = _text.Title; 
+            _item.content = Out.SysUBB(_text.Content); 
+            _item.ubb_content = _text.Content; 
+            _item.preview = string.IsNullOrEmpty(_text.GoodSmallIcon) ? "http://" + Utils.GetDomain() + "/Files/threadImg/def.png" : _text.GoodSmallIcon;
+            BCW.Model.Forum _forummodel = new BCW.BLL.Forum().GetForum(_item.forumId);
+            _item.forum = _forummodel != null ? _forummodel.Title : "";
+            _item.views = _text.ReadNum;
+            _item.replys = _text.ReplyNum;  
+            System.DateTime _startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
+            _item.addTime = (long)(_text.AddTime - _startTime).TotalSeconds;
+
+            //打赏
+            DataSet _dsCent = new BCW.BLL.Textcent().GetList("isnull(SUM(Cents),0)cents", "BID='" + _item.threadId + "'");
+            _item.likes = int.Parse(_dsCent.Tables[0].Rows[0]["cents"].ToString());
+
+            _item.IsGood = _text.IsGood;  
+            _item.IsRecom = _text.IsRecom; 
+            _item.IsLock = _text.IsLock; 
+            _item.IsTop = _text.IsTop;
+
+            //是否被收藏
+            _item.isFavorites = BCW.Data.SqlHelper.Exists(string.Format("select 1 from tb_Favorites where PUrl like '%bid={0}' and Types=1", _text.ID));           
+           
+            return _item;
+
         }
 
         public void InitData(int ForumId, int postId, int ptype,int _userId)
@@ -91,31 +128,33 @@ namespace BCW.Mobile.BBS.Thread
             {
                 for (int i = 0; i < _ds.Tables[0].Rows.Count; i++)
                 {
-                    EssencePostItem _essencePostItem = new EssencePostItem();
-                    _essencePostItem.threadId = int.Parse(_ds.Tables[0].Rows[i]["ID"].ToString());
-                    _essencePostItem.authorId = int.Parse(_ds.Tables[0].Rows[i]["UsID"].ToString());
-                    _essencePostItem.author = _ds.Tables[0].Rows[i]["UsName"].ToString();
-                    _essencePostItem.authorImg = "http://" + Utils.GetDomain() + new BCW.BLL.User().GetPhoto(int.Parse(_ds.Tables[0].Rows[i]["UsID"].ToString()));
-                    _essencePostItem.forumId = int.Parse(_ds.Tables[0].Rows[i]["ForumId"].ToString());
-                    _essencePostItem.title = _ds.Tables[0].Rows[i]["Title"].ToString();//.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n");
-                    _essencePostItem.content = Out.SysUBB(_ds.Tables[0].Rows[i]["Content"].ToString());//.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n");
-                    _essencePostItem.ubb_content =_ds.Tables[0].Rows[i]["Content"].ToString();
-                    _essencePostItem.preview = string.IsNullOrEmpty(_ds.Tables[0].Rows[i]["GoodSmallIcon"].ToString()) ? "http://" + Utils.GetDomain() + "/Files/threadImg/def.png" : _ds.Tables[0].Rows[i]["GoodSmallIcon"].ToString();
-                    BCW.Model.Forum _forummodel = new BCW.BLL.Forum().GetForum(_essencePostItem.forumId);
-                    _essencePostItem.forum = _forummodel != null ? _forummodel.Title : "";
-                    _essencePostItem.views = int.Parse(_ds.Tables[0].Rows[i]["ReadNum"].ToString());
-                    _essencePostItem.replys = int.Parse(_ds.Tables[0].Rows[i]["ReplyNum"].ToString());
-                    System.DateTime _startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
-                    _essencePostItem.addTime = (long)(DateTime.Parse(_ds.Tables[0].Rows[i]["AddTime"].ToString()) - _startTime).TotalSeconds;
+                    BCW.Model.Text _textModal = new BCW.BLL.Text().GetText(int.Parse(_ds.Tables[0].Rows[i]["ID"].ToString()));
+                    EssencePostItem _essencePostItem = AssembleItem(_textModal);  //new EssencePostItem();
 
-                    //打赏
-                    DataSet _dsCent = new BCW.BLL.Textcent().GetList("isnull(SUM(Cents),0)cents", "BID='" + _essencePostItem.threadId + "'");
-                    _essencePostItem.likes = int.Parse(_dsCent.Tables[0].Rows[0]["cents"].ToString());
+                    //_essencePostItem.threadId = int.Parse(_ds.Tables[0].Rows[i]["ID"].ToString());
+                    //_essencePostItem.authorId = int.Parse(_ds.Tables[0].Rows[i]["UsID"].ToString());
+                    //_essencePostItem.author = _ds.Tables[0].Rows[i]["UsName"].ToString();
+                    //_essencePostItem.authorImg = "http://" + Utils.GetDomain() + new BCW.BLL.User().GetPhoto(int.Parse(_ds.Tables[0].Rows[i]["UsID"].ToString()));
+                    //_essencePostItem.forumId = int.Parse(_ds.Tables[0].Rows[i]["ForumId"].ToString());
+                    //_essencePostItem.title = _ds.Tables[0].Rows[i]["Title"].ToString();//.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n");
+                    //_essencePostItem.content = Out.SysUBB(_ds.Tables[0].Rows[i]["Content"].ToString());//.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n");
+                    //_essencePostItem.ubb_content =_ds.Tables[0].Rows[i]["Content"].ToString();
+                    //_essencePostItem.preview = string.IsNullOrEmpty(_ds.Tables[0].Rows[i]["GoodSmallIcon"].ToString()) ? "http://" + Utils.GetDomain() + "/Files/threadImg/def.png" : _ds.Tables[0].Rows[i]["GoodSmallIcon"].ToString();
+                    //BCW.Model.Forum _forummodel = new BCW.BLL.Forum().GetForum(_essencePostItem.forumId);
+                    //_essencePostItem.forum = _forummodel != null ? _forummodel.Title : "";
+                    //_essencePostItem.views = int.Parse(_ds.Tables[0].Rows[i]["ReadNum"].ToString());
+                    //_essencePostItem.replys = int.Parse(_ds.Tables[0].Rows[i]["ReplyNum"].ToString());
+                    //System.DateTime _startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
+                    //_essencePostItem.addTime = (long)(DateTime.Parse(_ds.Tables[0].Rows[i]["AddTime"].ToString()) - _startTime).TotalSeconds;
 
-                    _essencePostItem.IsGood = int.Parse(_ds.Tables[0].Rows[i]["IsGood"].ToString());
-                    _essencePostItem.IsRecom = int.Parse(_ds.Tables[0].Rows[i]["IsRecom"].ToString());
-                    _essencePostItem.IsLock = int.Parse(_ds.Tables[0].Rows[i]["IsLock"].ToString());
-                    _essencePostItem.IsTop = int.Parse(_ds.Tables[0].Rows[i]["IsTop"].ToString());
+                    ////打赏
+                    //DataSet _dsCent = new BCW.BLL.Textcent().GetList("isnull(SUM(Cents),0)cents", "BID='" + _essencePostItem.threadId + "'");
+                    //_essencePostItem.likes = int.Parse(_dsCent.Tables[0].Rows[0]["cents"].ToString());
+
+                    //_essencePostItem.IsGood = int.Parse(_ds.Tables[0].Rows[i]["IsGood"].ToString());
+                    //_essencePostItem.IsRecom = int.Parse(_ds.Tables[0].Rows[i]["IsRecom"].ToString());
+                    //_essencePostItem.IsLock = int.Parse(_ds.Tables[0].Rows[i]["IsLock"].ToString());
+                    //_essencePostItem.IsTop = int.Parse(_ds.Tables[0].Rows[i]["IsTop"].ToString());
 
                     items.Add(_essencePostItem);
 
@@ -227,7 +266,7 @@ namespace BCW.Mobile.BBS.Thread
             }
 
             //自身权限不足
-            if (new BCW.User.Limits().IsUserLimit(User.Limits.enumRole.Role_Text, _reqData.userId) == true)
+            if (new BCW.User.Limits().IsUserLimit(BCW.User.Limits.enumRole.Role_Text, _reqData.userId) == true)
             {
                 _rspAddThread.header.status = ERequestResult.faild;
                 _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_LIMIT_NOT_ENOUGH ;
@@ -235,7 +274,7 @@ namespace BCW.Mobile.BBS.Thread
             }
 
             //板块权限不足
-            if (Common.Common.CheckUserFLimit(User.FLimits.enumRole.Role_Text,_reqData.userId,_reqData.forumId))
+            if (Common.Common.CheckUserFLimit(BCW.User.FLimits.enumRole.Role_Text,_reqData.userId,_reqData.forumId))
             {
                 _rspAddThread.header.status = ERequestResult.faild;
                 _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH;

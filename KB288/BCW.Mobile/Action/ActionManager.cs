@@ -56,6 +56,7 @@ namespace BCW.Mobile.Action
                 for (int i = 0; i < _ds.Tables[0].Rows.Count; i++)
                 {
                     ActionData _actionData = new ActionData();
+                    _actionData.actionId = int.Parse(_ds.Tables[0].Rows[i]["ID"].ToString());
                     _actionData.userId = int.Parse(_ds.Tables[0].Rows[i]["UsId"].ToString());
                     _actionData.userName =_ds.Tables[0].Rows[i]["UsName"].ToString();
                     _actionData.content = Out.SysUBB(_ds.Tables[0].Rows[i]["Notes"].ToString());

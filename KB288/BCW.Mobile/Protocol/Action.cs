@@ -12,6 +12,7 @@ namespace BCW.Mobile.Protocol
 
     public class ActionData
     {
+        public int actionId;
         public int userId;
         public string userName;
         public string content;

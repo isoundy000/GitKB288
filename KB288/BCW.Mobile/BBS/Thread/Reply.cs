@@ -191,7 +191,7 @@ namespace BCW.Mobile.BBS.Thread
             }
 
             //检查自身权限不足
-            if (Common.Common.IsUserLimit(User.Limits.enumRole.Role_Reply, _reqData.userId) == true)
+            if (Common.Common.IsUserLimit(BCW.User.Limits.enumRole.Role_Reply, _reqData.userId) == true)
             {
                 _rspData.header.status = ERequestResult.faild;
                 _rspData.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_LIMIT_NOT_ENOUGH;
@@ -199,7 +199,7 @@ namespace BCW.Mobile.BBS.Thread
             }
 
             //板块权限不足
-            if (Common.Common.CheckUserFLimit(User.FLimits.enumRole.Role_Reply, _reqData.userId, threadModel.ForumId))
+            if (Common.Common.CheckUserFLimit(BCW.User.FLimits.enumRole.Role_Reply, _reqData.userId, threadModel.ForumId))
             {
                 _rspData.header.status = ERequestResult.faild;
                 _rspData.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH;

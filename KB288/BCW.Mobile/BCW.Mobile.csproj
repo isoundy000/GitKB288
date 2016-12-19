@@ -66,6 +66,7 @@
     <Compile Include="DAL\UserPlatform.cs" />
     <Compile Include="Error\ErrorCodeManager.cs" />
     <Compile Include="Error\ErrorDefind.cs" />
+    <Compile Include="Favorites\FavoritesManager.cs" />
     <Compile Include="Forum.cs" />
     <Compile Include="Home.cs" />
     <Compile Include="DAL\MobileSlider.cs" />
@@ -82,14 +83,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Protocol\Action.cs" />
+    <Compile Include="Protocol\Favorites.cs" />
     <Compile Include="Protocol\Medal.cs" />
     <Compile Include="Protocol\Notices.cs" />
     <Compile Include="Protocol\ProtocolBase.cs" />
     <Compile Include="Protocol\Reply.cs" />
     <Compile Include="Protocol\Signin.cs" />
     <Compile Include="Protocol\Thread.cs" />
+    <Compile Include="Protocol\User.cs" />
     <Compile Include="Reg\Reg.cs" />
     <Compile Include="Reg\Sms.cs" />
+    <Compile Include="User\UserManager.cs" />
     <Compile Include="Web References\WebReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

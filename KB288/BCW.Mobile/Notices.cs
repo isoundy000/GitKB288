@@ -199,7 +199,7 @@ namespace BCW.Mobile
             }
 
             //自身权限不足
-            if (new BCW.User.Limits().IsUserLimit(User.Limits.enumRole.Role_NetWork, _reqData.userId) == true)
+            if (new BCW.User.Limits().IsUserLimit(BCW.User.Limits.enumRole.Role_NetWork, _reqData.userId) == true)
             {
                 _rspAddSuona.header.status = ERequestResult.faild;
                 _rspAddSuona.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_LIMIT_NOT_ENOUGH;
