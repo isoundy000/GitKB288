@@ -71,6 +71,7 @@
     <Compile Include="DAL\MobileSlider.cs" />
     <Compile Include="Login\LoginBase.cs" />
     <Compile Include="Login\LoginManager.cs" />
+    <Compile Include="Medal\MedalManager.cs" />
     <Compile Include="Model\MobileSlider.cs" />
     <Compile Include="Model\UserPlatform.cs" />
     <Compile Include="Notices.cs" />
@@ -81,6 +82,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Protocol\Action.cs" />
+    <Compile Include="Protocol\Medal.cs" />
     <Compile Include="Protocol\Notices.cs" />
     <Compile Include="Protocol\ProtocolBase.cs" />
     <Compile Include="Protocol\Reply.cs" />

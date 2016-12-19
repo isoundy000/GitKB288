@@ -4,13 +4,12 @@ using System.Text;
 
 namespace BCW.Mobile.Protocol
 {
-    public class reqAction : ReqProtocolBase
+    public class ReqMedalLog:ReqProtocolBase
     {
-        public int actionId;
+        public int medalId; 
     }
 
-
-    public class ActionData
+    public class MedalData
     {
         public int userId;
         public string userName;
@@ -18,18 +17,9 @@ namespace BCW.Mobile.Protocol
         public long addTime;
     }
 
-    public class rspAction : RspProtocolBase
+
+    public class RspMedalLog : RspProtocolBase
     {
-        /// <summary>
-        /// 人气
-        /// </summary>
-        public string totalClick;
-
-        /// <summary>
-        /// 在线时长
-        /// </summary>
-        public string onLineTime;
-
         /// <summary>
         /// 是否到底
         /// </summary>
@@ -41,12 +31,12 @@ namespace BCW.Mobile.Protocol
         public long serverTime;
 
         //动态数据列表
-        public List<ActionData> lstAction;
+        public List<ActionData> lstMedal;
 
-        public rspAction()
+        public RspMedalLog()
         {
-            lstAction = new List<ActionData>();
-        }        
-           
+            lstMedal = new List<ActionData>();
+        }
+
     }
 }

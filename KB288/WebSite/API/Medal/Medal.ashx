@@ -1,4 +1,4 @@
-﻿<%@ WebHandler Language="C#" Class="Action" %>
+﻿<%@ WebHandler Language="C#" Class="MedalLog" %>
 
 using System;
 using System.Web;
@@ -12,9 +12,9 @@ using Newtonsoft.Json.Converters;
 using BCW.Mobile.BBS.Thread;
 using BCW.Mobile.Error;
 using BCW.Mobile.Protocol;
-using BCW.Mobile.Action;
+using BCW.Mobile.Medal;
 
-public class Action : IHttpHandler {
+public class MedalLog : IHttpHandler {
 
     private HttpContext httpContext;
 
@@ -28,21 +28,21 @@ public class Action : IHttpHandler {
         switch( pAct )
         {
             case "list":            //获取最新签到数据
-                GetActionData();
+                GetMedalData();
                 break;
         }
 
 
     }
 
-    private void GetActionData()
+    private void GetMedalData()
     {
-        reqAction _reqData = new reqAction();
+        ReqMedalLog _reqData = new ReqMedalLog();
         _reqData.userId = int.Parse(Utils.GetRequest("pUserId", "post", 1, @"^\d*$", "-1"));
         _reqData.userKey = Utils.GetRequest("pUsKey", "post", 0, "", "");
-        _reqData.actionId = int.Parse(Utils.GetRequest("pActionId", "post", 1, @"^\d*$", "-1"));
+        _reqData.medalId = int.Parse(Utils.GetRequest("pMedalId", "post", 1, @"^\d*$", "-1"));
 
-        rspAction _rspData = ActionManager.Instance().GetActionData(_reqData);
+        RspMedalLog _rspData = MedalManager.Instance().GetUserMedal(_reqData);
         httpContext.Response.Write(_rspData.SerializeObject());
     }
 

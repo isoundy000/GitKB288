@@ -55,7 +55,13 @@ namespace BCW.Mobile.Action
             {
                 for (int i = 0; i < _ds.Tables[0].Rows.Count; i++)
                 {
-                    _rspData.lstAction.Add(Out.SysUBB(_ds.Tables[0].Rows[i]["Notes"].ToString()));
+                    ActionData _actionData = new ActionData();
+                    _actionData.userId = int.Parse(_ds.Tables[0].Rows[i]["UsId"].ToString());
+                    _actionData.userName =_ds.Tables[0].Rows[i]["UsName"].ToString();
+                    _actionData.content = Out.SysUBB(_ds.Tables[0].Rows[i]["Notes"].ToString());
+                    _actionData.addTime = Common.Common.GetLongTime(DateTime.Parse(_ds.Tables[0].Rows[i]["AddTime"].ToString()));
+
+                    _rspData.lstAction.Add(_actionData);
 
 
                     //检查是否到底
