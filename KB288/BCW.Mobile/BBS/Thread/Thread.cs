@@ -62,7 +62,7 @@ namespace BCW.Mobile.BBS.Thread
             _item.title = _text.Title; 
             _item.content = Out.SysUBB(_text.Content); 
             _item.ubb_content = _text.Content; 
-            _item.preview = string.IsNullOrEmpty(_text.GoodSmallIcon) ? "http://" + Utils.GetDomain() + "/Files/threadImg/def.png" : _text.GoodSmallIcon;
+            _item.preview = "http://" + Utils.GetDomain() + new BCW.BLL.User().GetPhoto(_text.UsID);//string.IsNullOrEmpty(_text.GoodSmallIcon) ? "http://" + Utils.GetDomain() + "/Files/threadImg/def.png" : "http://" + Utils.GetDomain() + new BCW.BLL.User().GetPhoto(_text.UsID); ;
             BCW.Model.Forum _forummodel = new BCW.BLL.Forum().GetForum(_item.forumId);
             _item.forum = _forummodel != null ? _forummodel.Title : "";
             _item.views = _text.ReadNum;

@@ -150,7 +150,7 @@ public partial class Manage_MobileSlider : System.Web.UI.Page
         }
 
         _data.contentType = _contentType;
-        _data.param = _params;
+        _data.param = _params.Replace("&amp;","&");
         new BCW.MobileSlider.BLL.MobileSlider().Update( _data );
 
         Utils.Success( "编辑内容", "修改成功", Utils.getUrl( "Slider.aspx?ptype=" + pType ), "2" );
