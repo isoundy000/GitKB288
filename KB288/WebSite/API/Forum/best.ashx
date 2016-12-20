@@ -49,6 +49,9 @@ public class best : IHttpHandler {
             case "setTop":          //设置置顶
                 SetTop();
                 break;
+            case "look":            //查看帖子
+                LookThread();         
+                break;
             default:
                 bestInfo.header.status = ERequestResult.faild;
                 bestInfo.header.statusCode = MOBILE_ERROR_CODE.MOBILE_PARAMS_ERROR;
@@ -133,10 +136,20 @@ public class best : IHttpHandler {
         _reqGoodThread.userId = int.Parse(Utils.GetRequest("pUserId", "post", 1, @"^\d*$", "-1"));
         _reqGoodThread.userKey = Utils.GetRequest("pUsKey", "post", 0, "", "");
         _reqGoodThread.threadId = int.Parse(Utils.GetRequest("pThreadId", "post", 1, @"^\d*$", "-1"));
-       _reqGoodThread.goodType = int.Parse(Utils.GetRequest("pGoodType", "post", 1, @"^\d*$", "-1"));
+        _reqGoodThread.goodType = int.Parse(Utils.GetRequest("pGoodType", "post", 1, @"^\d*$", "-1"));
 
 
         RspGoodThread _rspData = bestInfo.SetGoodThread(_reqGoodThread);
+        httpContext.Response.Write(_rspData.SerializeObject());
+    }
+
+    private void LookThread()
+    {
+        ReqLookThread _reqData = new ReqLookThread();
+        _reqData.userId = int.Parse(Utils.GetRequest("pUserId", "post", 1, @"^\d*$", "-1"));
+        _reqData.threadId = int.Parse(Utils.GetRequest("pThreadId", "post", 1, @"^\d*$", "-1"));
+
+        RspLookThread _rspData = bestInfo.LookThread(_reqData);
         httpContext.Response.Write(_rspData.SerializeObject());
     }
 

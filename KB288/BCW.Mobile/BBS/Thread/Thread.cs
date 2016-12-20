@@ -33,7 +33,7 @@ namespace BCW.Mobile.BBS.Thread
         public int IsRecom;                 //是否推荐
         public int IsLock;                  //是否锁定
         public int IsTop;                   //是否置顶
-        public bool isFavorites;             //是否收藏
+
     }
 
     /// <summary>
@@ -79,9 +79,6 @@ namespace BCW.Mobile.BBS.Thread
             _item.IsLock = _text.IsLock; 
             _item.IsTop = _text.IsTop;
 
-            //是否被收藏
-            _item.isFavorites = BCW.Data.SqlHelper.Exists(string.Format("select 1 from tb_Favorites where PUrl like '%bid={0}' and Types=1", _text.ID));           
-           
             return _item;
 
         }
@@ -177,7 +174,7 @@ namespace BCW.Mobile.BBS.Thread
     {
         public Header header;
         public EssencePost bests;    //论坛精华贴  
-        
+
         private string xmlPath = "../../Controls/bbs.xml";
 
         public BestInfo()
@@ -192,9 +189,9 @@ namespace BCW.Mobile.BBS.Thread
         /// <param name="ForumId">板块ID</param>
         /// <param name="_pIndex">分页ID</param>
         /// <param name="pType">贴子类型(1:精华  2：推荐  3：两日前  4：锁定  5：置顶)</param>
-        public void InitData(int ForumId, int _pIndex, int pType,int _userId)
+        public void InitData(int ForumId, int _pIndex, int pType, int _userId)
         {
-            bests.InitData(ForumId, _pIndex, pType,_userId);
+            bests.InitData(ForumId, _pIndex, pType, _userId);
         }
 
         /// <summary>
@@ -269,12 +266,12 @@ namespace BCW.Mobile.BBS.Thread
             if (new BCW.User.Limits().IsUserLimit(BCW.User.Limits.enumRole.Role_Text, _reqData.userId) == true)
             {
                 _rspAddThread.header.status = ERequestResult.faild;
-                _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_LIMIT_NOT_ENOUGH ;
+                _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_LIMIT_NOT_ENOUGH;
                 return _rspAddThread;
             }
 
             //板块权限不足
-            if (Common.Common.CheckUserFLimit(BCW.User.FLimits.enumRole.Role_Text,_reqData.userId,_reqData.forumId))
+            if (Common.Common.CheckUserFLimit(BCW.User.FLimits.enumRole.Role_Text, _reqData.userId, _reqData.forumId))
             {
                 _rspAddThread.header.status = ERequestResult.faild;
                 _rspAddThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH;
@@ -307,7 +304,7 @@ namespace BCW.Mobile.BBS.Thread
                 _rspAddThread.header.statusCode = _result;
                 return _rspAddThread;
             }
-            
+
             string Hide = string.Empty;
             int Price = 0;
             int Price2 = 0;
@@ -405,7 +402,7 @@ namespace BCW.Mobile.BBS.Thread
         /// <returns></returns>
         public RspEditThread EditThread(ReqEditThread _reqData)
         {
-            RspEditThread _rspEditThread =new RspEditThread();
+            RspEditThread _rspEditThread = new RspEditThread();
 
             //验证用户ID格式
             if (_reqData.userId < 0)
@@ -450,7 +447,7 @@ namespace BCW.Mobile.BBS.Thread
             }
 
             if (model.UsID != _reqData.userId && new BCW.User.Role().IsUserRole(BCW.User.Role.enumRole.Role_EditText, _reqData.userId, model.ForumId) == false)
-            {                
+            {
                 _rspEditThread.header.status = ERequestResult.faild;
                 _rspEditThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH;
                 return _rspEditThread;
@@ -523,7 +520,7 @@ namespace BCW.Mobile.BBS.Thread
             }
 
             int forumid = model.ForumId;
-                       
+
             if (ub.GetSub("BbsThreadDel", xmlPath) == "0")
             {
                 if (model.UsID != _reqData.userId && new BCW.User.Role().IsUserRole(BCW.User.Role.enumRole.Role_DelText, uid, model.ForumId) == false)
@@ -647,15 +644,15 @@ namespace BCW.Mobile.BBS.Thread
             bool IsSuper = new BCW.User.Role().IsUserRole(BCW.User.Role.enumRole.Role_TopText, uid);
 
             string sText = string.Empty;
-            if (_reqData.topType >0)
-                sText = "设置";               
+            if (_reqData.topType > 0)
+                sText = "设置";
             else
-                sText = "去掉";            
+                sText = "去掉";
 
             //得到置顶类型
             int threadTopType = new BCW.BLL.Text().GetIsTop(bid);
 
-            if (_reqData.topType  == 1 )    //版内置顶
+            if (_reqData.topType == 1)    //版内置顶
             {
                 //是否有置顶权限
                 if (IsSuper == false && new BCW.User.Role().IsUserRole(BCW.User.Role.enumRole.Role_TopText, uid, model.ForumId) == false)
@@ -774,7 +771,7 @@ namespace BCW.Mobile.BBS.Thread
             if (GroupId == 0)
             {
                 //检查权限
-                if (_reqData.goodType == 1 && new BCW.User.Role().IsUserRole(BCW.User.Role.enumRole.Role_GoodText, uid, model.ForumId)== false)
+                if (_reqData.goodType == 1 && new BCW.User.Role().IsUserRole(BCW.User.Role.enumRole.Role_GoodText, uid, model.ForumId) == false)
                 {
                     _rspGoodThread.header.status = ERequestResult.faild;
                     _rspGoodThread.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH;
@@ -797,8 +794,34 @@ namespace BCW.Mobile.BBS.Thread
             _rspGoodThread.header.status = ERequestResult.success;
             return _rspGoodThread;
         }
-               
 
-        
+        /// <summary>
+        /// 查看贴子
+        /// </summary>
+        /// <param name="_reqData"></param>
+        /// <returns></returns>
+        public RspLookThread LookThread(ReqLookThread _reqData)
+        {
+            RspLookThread _rspData = new RspLookThread();
+
+            //检查贴子合法性
+            BCW.Model.Text model = new BCW.BLL.Text().GetText(_reqData.threadId);//GetTextMe
+            if (model == null)
+            {
+                _rspData.header.status = ERequestResult.faild;
+                _rspData.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_NOT_FOUND;
+                return _rspData;
+            }
+
+            //如果用户已登录，则查看用户是否收藏了该贴
+            if (_reqData.userId > 0)
+                _rspData.isFavorites = BCW.Data.SqlHelper.Exists(string.Format("select 1 from tb_Favorites where PUrl like '%bid={0}' and Types=1 and UsID={1}", _reqData.threadId,_reqData.userId));
+
+            new BCW.BLL.Text().UpdateReadNum(model.ID,1);
+            _rspData.view = model.ReadNum + 1;
+
+            _rspData.header.status = ERequestResult.success;
+            return _rspData;
+        }
     }
  }

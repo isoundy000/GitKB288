@@ -32,22 +32,16 @@ namespace BCW.Mobile.BBS.Thread
             _rspData.isFinish = true;
 
             //验证用户ID格式
-            if (_reqData.userId < 0)
+            if (_reqData.userId > 0)
             {
-                _rspData.header.status = ERequestResult.faild;
-                _rspData.header.statusCode = Error.MOBILE_ERROR_CODE.MOBILE_PARAMS_ERROR;
-                return _rspData;
+                if (Common.Common.CheckLogin(_reqData.userId, _reqData.userKey) == 0)
+                {
+                    _rspData.header.status = ERequestResult.faild;
+                    _rspData.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;
+                    return _rspData;
+                }
             }
-
-            //检查是否登录状态
             
-            //if (Common.Common.CheckLogin(_reqData.userId, _reqData.userKey) == 0)
-            //{
-            //    _rspData.header.status = ERequestResult.faild;
-            //    _rspData.header.statusCode = Error.MOBILE_ERROR_CODE.SYS_USER_NOLOGIN;
-            //    return _rspData;
-            //}
-
             //检查帖子有效性
             BCW.Model.Text threadModel = new BCW.BLL.Text().GetText(_reqData.threadId);//GetTextMe
             if (threadModel == null)
@@ -58,14 +52,14 @@ namespace BCW.Mobile.BBS.Thread
             }
 
             //检查论坛访问限制
-            BCW.Model.Forum Forummodel = new BCW.BLL.Forum().GetForum(threadModel.ForumId);
-            Error.MOBILE_ERROR_CODE _error =  Common.Common.ShowForumLimit(_reqData.userId, Forummodel.Gradelt, Forummodel.Visitlt, Forummodel.VisitId, Forummodel.IsPc);
-            if (_error != Error.MOBILE_ERROR_CODE.MOBILE_MSG_NONE)
-            {
-                _rspData.header.status = ERequestResult.faild;
-                _rspData.header.statusCode = _error;
-                return _rspData;
-            }
+            //BCW.Model.Forum Forummodel = new BCW.BLL.Forum().GetForum(threadModel.ForumId);
+            //Error.MOBILE_ERROR_CODE _error =  Common.Common.ShowForumLimit(_reqData.userId, Forummodel.Gradelt, Forummodel.Visitlt, Forummodel.VisitId, Forummodel.IsPc);
+            //if (_error != Error.MOBILE_ERROR_CODE.MOBILE_MSG_NONE)
+            //{
+            //    _rspData.header.status = ERequestResult.faild;
+            //    _rspData.header.statusCode = _error;
+            //    return _rspData;
+            //}
 
 
             //得到帖子类型

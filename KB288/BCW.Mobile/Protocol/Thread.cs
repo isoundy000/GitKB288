@@ -94,4 +94,16 @@ namespace BCW.Mobile.Protocol
 
     }
 
+    public class ReqLookThread : ReqProtocolBase
+    {
+        public int threadId;     //帖子ID
+    }
+
+
+    public class RspLookThread : RspProtocolBase
+    {
+        public int view;     //帖子ID
+        public bool isFavorites = false;  //是否收藏
+    }
+
 }
