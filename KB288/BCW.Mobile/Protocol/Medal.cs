@@ -11,6 +11,7 @@ namespace BCW.Mobile.Protocol
 
     public class MedalData
     {
+        public int medalId;
         public int userId;
         public string userName;
         public string content;
@@ -31,11 +32,11 @@ namespace BCW.Mobile.Protocol
         public long serverTime;
 
         //动态数据列表
-        public List<ActionData> lstMedal;
+        public List<MedalData> lstMedal;
 
         public RspMedalLog()
         {
-            lstMedal = new List<ActionData>();
+            lstMedal = new List<MedalData>();
         }
 
     }
