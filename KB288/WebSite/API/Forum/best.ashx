@@ -23,7 +23,8 @@ public class best : IHttpHandler {
         context.Response.ContentType = "text/plain";
 
         string pAct = Utils.GetRequest( "pAct", "all", 1, "", "" );
-
+        
+       
         if( pAct == "list" )
         {
             int pThreadId = int.Parse( Utils.GetRequest( "pThreadId", "all", 1, @"^\d*$", "-1" ) );
@@ -31,7 +32,6 @@ public class best : IHttpHandler {
             int pType = int.Parse( Utils.GetRequest( "pType", "all", 1, @"^\d*$", "0" ) );
             
             bestInfo.header.status = ERequestResult.success;
-            bestInfo.header.statusMsg = "";
             
             bestInfo.InitData( pForumId, pThreadId, pType );
             context.Response.Write(JsonConvert.SerializeObject(bestInfo));
@@ -39,7 +39,7 @@ public class best : IHttpHandler {
         else
         {
             bestInfo.header.status = ERequestResult.faild;
-            bestInfo.header.statusMsg = "页面请求参数错误";
+            bestInfo.header.statusCode = MOBILE_ERROR_CODE.MOBILE_PARAMS_ERROR;
             context.Response.Write(JsonConvert.SerializeObject(bestInfo)); 
         }
             

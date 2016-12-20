@@ -32,7 +32,6 @@ public class home : IHttpHandler {
         if( _act == "list" )
         {
             homePageInfo.header.status = ERequestResult.success;
-            homePageInfo.header.statusMsg ="";
             
             //检查是否有内线消息
             homePageInfo.has_msg = new BCW.BLL.Guest().GetXCount( meid ) > 0;
@@ -63,7 +62,7 @@ public class home : IHttpHandler {
         else
         {
             homePageInfo.header.status = ERequestResult.faild;
-            homePageInfo.header.statusMsg = "页面请求参数错误";
+            homePageInfo.header.statusCode = MOBILE_ERROR_CODE.MOBILE_PARAMS_ERROR;
             context.Response.Write(JsonConvert.SerializeObject(homePageInfo.header)); 
         }      
          

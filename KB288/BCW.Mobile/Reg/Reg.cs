@@ -26,7 +26,7 @@ namespace BCW.Mobile
             if( string.IsNullOrEmpty( _mobile ) )
             {
                 header.status = ERequestResult.faild;
-                header.statusMsg = MOBILE_ERROR_CODE.MOBILE_PHONE_ISNULL; 
+                header.statusCode = MOBILE_ERROR_CODE.MOBILE_PHONE_ISNULL; 
                 return;
             }
 
@@ -35,7 +35,7 @@ namespace BCW.Mobile
             if( Regex.IsMatch( _mobile, @"^(?:11|12|13|14|15|16|17|18|19)\d{9}$" ) == false )
             {
                 header.status = ERequestResult.faild;
-                header.statusMsg = MOBILE_ERROR_CODE.MOBILE_PHONE_VERIFY; 
+                header.statusCode = MOBILE_ERROR_CODE.MOBILE_PHONE_VERIFY; 
                 return;
             }
 
@@ -43,7 +43,7 @@ namespace BCW.Mobile
             if( new BCW.BLL.User().Exists( _mobile ) )
             {
                 header.status = ERequestResult.faild;
-                header.statusMsg = MOBILE_ERROR_CODE.REGEDIT_MOBILE_EXISTS;
+                header.statusCode = MOBILE_ERROR_CODE.REGEDIT_MOBILE_EXISTS;
                 return;
             }
 
@@ -51,7 +51,7 @@ namespace BCW.Mobile
             if( Regex.IsMatch( _pwd, @"^[A-Za-z0-9]{6,20}$" ) == false )
             {
                 header.status = ERequestResult.faild;
-                header.statusMsg = MOBILE_ERROR_CODE.REGEDIT_PWD_VERIFY;
+                header.statusCode = MOBILE_ERROR_CODE.REGEDIT_PWD_VERIFY;
                 return;
             }
 
@@ -59,7 +59,7 @@ namespace BCW.Mobile
             if( Regex.IsMatch( _pwdr, @"^[A-Za-z0-9]{6,20}$" ) == false )
             {
                 header.status = ERequestResult.faild;
-                header.statusMsg = MOBILE_ERROR_CODE.REGEDIT_PWDR_VERIFY;
+                header.statusCode = MOBILE_ERROR_CODE.REGEDIT_PWDR_VERIFY;
                 return;
             }
 
@@ -67,7 +67,7 @@ namespace BCW.Mobile
             if( !_pwd .Equals( _pwdr ) )
             {
                 header.status = ERequestResult.faild;
-                header.statusMsg = MOBILE_ERROR_CODE.REGEDIT_PWD_DIFF;
+                header.statusCode = MOBILE_ERROR_CODE.REGEDIT_PWD_DIFF;
                 return;
             }
 
@@ -77,7 +77,7 @@ namespace BCW.Mobile
             if( _validate == null )
             {
                 header.status = ERequestResult.faild;
-                header.statusMsg = MOBILE_ERROR_CODE.REGEDIT_VERIFYCODE_EXPIRE;
+                header.statusCode = MOBILE_ERROR_CODE.REGEDIT_VERIFYCODE_EXPIRE;
                 return;
             }
 
@@ -85,7 +85,7 @@ namespace BCW.Mobile
             if( _validate.mesCode != _verifyCode )
             {
                 header.status = ERequestResult.faild;
-                header.statusMsg = MOBILE_ERROR_CODE.REGEDIT_VERIFYCODE_DIFF;
+                header.statusCode = MOBILE_ERROR_CODE.REGEDIT_VERIFYCODE_DIFF;
                 return;
             }
 
@@ -93,7 +93,7 @@ namespace BCW.Mobile
             if( DateTime.Now > _validate.codeTime )
             {
                 header.status = ERequestResult.faild;
-                header.statusMsg = MOBILE_ERROR_CODE.REGEDIT_VERIFYCODE_EXPIRE;
+                header.statusCode = MOBILE_ERROR_CODE.REGEDIT_VERIFYCODE_EXPIRE;
                 return;
             }
 
@@ -102,7 +102,7 @@ namespace BCW.Mobile
             if( maxId == 0 )
             {
                 header.status = ERequestResult.faild;
-                header.statusMsg = MOBILE_ERROR_CODE.MOBILE_SYS_BUSY;
+                header.statusCode = MOBILE_ERROR_CODE.MOBILE_SYS_BUSY;
                 return;
             }
 
@@ -140,14 +140,17 @@ namespace BCW.Mobile
                 //积分操作
                 new BCW.User.Cent().UpdateCent( BCW.User.Cent.enumRole.Cent_RegUser, maxId );
 
+                //注册成令验证码失效
+                _validate.type = 0;
+                new BCW.BLL.tb_Validate().Update( _validate );
+
                 header.status = ERequestResult.success;
-                header.statusMsg = "";
                 userId = maxId;
             }
             catch (Exception e)
             {
                 header.status = ERequestResult.faild;
-                header.statusMsg = MOBILE_ERROR_CODE.MOBILE_SYS_ERROR; 
+                header.statusCode = MOBILE_ERROR_CODE.MOBILE_SYS_ERROR; 
             }
         }
 

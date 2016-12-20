@@ -52,12 +52,15 @@
   <ItemGroup>
     <Compile Include="API.cs" />
     <Compile Include="BLL\MobileSlider.cs" />
+    <Compile Include="BLL\UserPlatform.cs" />
+    <Compile Include="DAL\UserPlatform.cs" />
     <Compile Include="Forum.cs" />
     <Compile Include="Home.cs" />
     <Compile Include="DAL\MobileSlider.cs" />
     <Compile Include="Login\LoginBase.cs" />
     <Compile Include="Login\LoginManager.cs" />
     <Compile Include="Model\MobileSlider.cs" />
+    <Compile Include="Model\UserPlatform.cs" />
     <Compile Include="Notices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

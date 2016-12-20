@@ -5,6 +5,11 @@ using System.Web;
 using BCW.Common;
 using System.Text.RegularExpressions;
 using System.Text;
+using BCW.Mobile.Login;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using BCW.Mobile;
+
 
 public class Login : IHttpHandler
 {
@@ -13,126 +18,75 @@ public class Login : IHttpHandler
     {
         context.Response.ContentType = "text/plain";
 
-        string Name = context.Request.Form["userId"];   //帐号
-        string Pwd = context.Request.Form["pwd"];     //密码
+        string _userId = context.Request.Form["userId"];   //帐号
+        string _pwd = context.Request.Form[ "pwd" ];     //密码
+        string _bingType = context.Request.Form[ "platformType" ];     //绑定平台类型
+        string _assessToken = context.Request.Form[ "platformId" ];     //绑定平台唯一AssessToken
 
-        if (Name != null && Pwd != null)
+        if( Regex.IsMatch( _userId, @"^\d*" ) == false )
         {
-            bool isname;
-            Regex reg = new Regex(@"^\d{1,10}$|^(?:13|14|15|18)\d{9}$");
-            if (reg.IsMatch(Name))
-                isname = true;
-            else
-                isname = false;
+            LoginData _loginData = LoginManager.instance().Error( MOBILE_ERROR_CODE.MOBILE_USERID_VERIFY);
+            context.Response.Write( JsonConvert.SerializeObject( _loginData ) );  
+            return;
+        }
+        
+       
+        LoginBase _loginBase = null;
+        try
+        {                     
+              
+            
+            if( string.IsNullOrEmpty( _userId ) == false && string.IsNullOrEmpty( _bingType ) == false )
+                _loginBase = LoginManager.instance().Login( _userId, _pwd, ( EMobileLoginType ) ( int.Parse( _bingType ) ), _assessToken );
+            else if( string.IsNullOrEmpty( _userId ) == false )
+                _loginBase = LoginManager.instance().Login(_userId, _pwd );
+            else if( string.IsNullOrEmpty( _bingType ) ==false )
+               _loginBase = LoginManager.instance().Login( ( EMobileLoginType ) ( int.Parse( _bingType ) ), _assessToken );
 
-            bool ispwd;
-            Regex regp = new Regex(@"^[A-Za-z0-9]{6,20}$");
-            if (regp.IsMatch(Pwd))
-                ispwd = true;
-            else
-                ispwd = false;
-
-            if (isname == true && ispwd == true)//验证账号密码是否符合
+            if( _loginBase != null )
             {
-                bool IsMy = bool.Parse(Utils.GetRequest("IsMy", "all", 1, @"^True|False$", "False"));
-                int State = int.Parse(Utils.GetRequest("State", "all", 1, @"^[0-1]$", "0"));
-
-                int rowsAffected = 0;
-                BCW.Model.User modellogin = new BCW.Model.User();
-                modellogin.UsPwd = Utils.MD5Str(Pwd);
-                if (Name.Length == 11)
+                //写入Cookie
+                if( _loginBase.rspLoginData.header.status == ERequestResult.success )
                 {
-                    modellogin.Mobile = Name;
-                    rowsAffected = new BCW.BLL.User().GetRowByMobile(modellogin);
-                }
-                else
-                {
-                    modellogin.ID = Convert.ToInt32(Name);
-                    rowsAffected = new BCW.BLL.User().GetRowByID(modellogin);
-                }
-
-                if (rowsAffected > 0)//帐号密码正确
-                {
-                    BCW.Model.User model = new BCW.BLL.User().GetKey(rowsAffected);
-
-
-                    int UsId = model.ID;
-                    string UsKey = model.UsKey;
-                    string UsPwd = model.UsPwd;
-
-                    BCW.Model.User modelgetbasic = new BCW.BLL.User().GetBasic(model.ID);
-
-                    //设置keys
-                    string keys = "";
-                    keys = BCW.User.Users.SetUserKeys(UsId, UsPwd, UsKey);
-                    string bUrl = string.Empty;
-                    if (Utils.getPage(1) != "")
-                    {
-                        bUrl = Utils.getUrl(Utils.removeUVe(Utils.getPage(1)));
-                    }
-                    else
-                    {
-                        bUrl = Utils.getUrl("/default.aspx");
-                    }
-                    //更新识别串
-                    string SID = ConfigHelper.GetConfigString("SID");
-                    bUrl = UrlOper.UpdateParam(bUrl, SID, keys);
-
-                    //写入Cookie
-                    HttpCookie cookie = new HttpCookie("LoginComment");
-                    cookie.Expires = DateTime.Now.AddDays(30);//30天
-                    cookie.Values.Add("userkeys", DESEncrypt.Encrypt(Utils.Mid(keys, 0, keys.Length - 4)));
-                    HttpContext.Current.Response.Cookies.Add(cookie);
+                    HttpCookie cookie = new HttpCookie( "LoginComment" );
+                    cookie.Expires = DateTime.Now.AddDays( 30 );//30天
+                    cookie.Values.Add( "userkeys", DESEncrypt.Encrypt( Utils.Mid( _loginBase.rspLoginData.user.keys, 0, _loginBase.rspLoginData.user.keys.Length - 4 ) ) );
+                    HttpContext.Current.Response.Cookies.Add( cookie );
 
                     //----------------------写入登录日志文件作永久保存
                     try
                     {
                         string MyIP = Utils.GetUsIP();
                         string ipCity = string.Empty;
-                        if (!string.IsNullOrEmpty(MyIP))
+                        ;
+                        if( !string.IsNullOrEmpty( MyIP ) )
                         {
 
-                            ipCity = new IPSearch().GetAddressWithIP(MyIP);
-                            if (!string.IsNullOrEmpty(ipCity))
+                            ipCity = new IPSearch().GetAddressWithIP( MyIP );
+                            if( !string.IsNullOrEmpty( ipCity ) )
                             {
-                                ipCity = ipCity.Replace("IANA保留地址  CZ88.NET", "本机地址").Replace("CZ88.NET", "") + ":";
+                                ipCity = ipCity.Replace( "IANA保留地址  CZ88.NET", "本机地址" ).Replace( "CZ88.NET", "" ) + ":";
                             }
 
-                            string FilePath = System.Web.HttpContext.Current.Server.MapPath("/log/loginip/" + UsId + "_" + DESEncrypt.Encrypt(UsId.ToString(), "kubaoLogenpt") + ".log");
-                            LogHelper.Write(FilePath, "" + ipCity + "" + MyIP + "(登录)");
+                            string FilePath = System.Web.HttpContext.Current.Server.MapPath( "/log/loginip/" + _loginBase.rspLoginData.user.userId + "_" + DESEncrypt.Encrypt( _loginBase.rspLoginData.user.userId.ToString(), "kubaoLogenpt" ) + ".log" );
+                            LogHelper.Write( FilePath, "" + ipCity + "" + MyIP + "(登录)" );
                         }
                     }
-                    catch { }
-                    //----------------------写入日志文件作永久保存
-
-                    new BCW.BLL.User().UpdateTime(UsId);
-                    //APP全部在线登录
-                    new BCW.BLL.User().UpdateState(UsId, 0);
-
-                    TimeSpan timediff = DateTime.Now - Convert.ToDateTime("1970-01-01 00:00:00");
-                    long stt = (Int64)timediff.TotalMilliseconds;
-
-                    string JsonStatue = LoginStatue(1, modelgetbasic.UsKey, stt.ToString(), "100000", model.ID.ToString(), modelgetbasic.Photo, modelgetbasic.UsName, modelgetbasic.Leven.ToString());//登录成功
-                    context.Response.Write(JsonStatue);
-                }
-                else
-                {
-                    string JsonStatue = LoginStatue(2, "", "", "", "", "", "", "");//登录失败,帐号或密码错误
-                    context.Response.Write(JsonStatue);
+                    catch
+                    {
+                    }
                 }
 
-            }
-            else
-            {
-                string JsonStatue = LoginStatue(2, "", "", "", "", "", "", "");//登录失败,帐号或密码格式错误
-                context.Response.Write(JsonStatue);
+                JsonSerializerSettings _seting = new JsonSerializerSettings();
+                _seting.NullValueHandling = NullValueHandling.Ignore;                
+                context.Response.Write( JsonConvert.SerializeObject( _loginBase.rspLoginData,Formatting.Indented,_seting ) );
             }
 
         }
-        else
+        catch( Exception e )
         {
-            string JsonStatue = LoginStatue(2, "", "", "", "", "", "", "");//登录失败,帐号或密码为空
-            context.Response.Write(JsonStatue);
+            LoginData _loginData = LoginManager.instance().Error( MOBILE_ERROR_CODE.LOGIN_PARAMS_ERROR );
+            context.Response.Write( JsonConvert.SerializeObject( _loginData ) );
         }
 
     }

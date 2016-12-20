@@ -50,7 +50,7 @@ namespace BCW.Mobile.SMS
            if( string.IsNullOrEmpty( _mobile ) )
            {
                _smsData.header.status = ERequestResult.faild;
-               _smsData.header.statusMsg = MOBILE_ERROR_CODE.MOBILE_PHONE_ISNULL;
+               _smsData.header.statusCode = MOBILE_ERROR_CODE.MOBILE_PHONE_ISNULL;
                return _smsData;
            }
 
@@ -58,7 +58,7 @@ namespace BCW.Mobile.SMS
            if( Regex.IsMatch( _mobile, @"^(?:11|12|13|14|15|16|17|18|19)\d{9}$" ) == false )
            {
                _smsData.header.status = ERequestResult.faild;
-               _smsData.header.statusMsg = MOBILE_ERROR_CODE.MOBILE_PHONE_VERIFY;
+               _smsData.header.statusCode = MOBILE_ERROR_CODE.MOBILE_PHONE_VERIFY;
                return _smsData;
            }
 
@@ -120,7 +120,7 @@ namespace BCW.Mobile.SMS
                    if( dt2.Tables[ 0 ].Rows.Count >= total )//当天时间内超过特定数
                    {
                        _smsData.header.status = ERequestResult.faild;
-                       _smsData.header.statusMsg = MOBILE_ERROR_CODE.SMS_FREQUENTLY_TODAY;
+                       _smsData.header.statusCode = MOBILE_ERROR_CODE.SMS_FREQUENTLY_TODAY;
                        return _smsData;
                    }
                    DateTime check = DateTime.Now.AddMinutes( -30 );
@@ -138,7 +138,7 @@ namespace BCW.Mobile.SMS
                    if( data.Tables[ 0 ].Rows[ 0 ][ "Flag" ].ToString() == "0" )//最新一条显示当天不能发送了
                    {
                        _smsData.header.status = ERequestResult.faild;
-                       _smsData.header.statusMsg = MOBILE_ERROR_CODE.SMS_FREQUENTLY_FLAG;
+                       _smsData.header.statusCode = MOBILE_ERROR_CODE.SMS_FREQUENTLY_FLAG;
                        return _smsData;
     
                    }
@@ -152,7 +152,7 @@ namespace BCW.Mobile.SMS
                        //int ID = int.Parse(dt3.Tables[0].Rows[0]["ID"].ToString());
                        //new BCW.BLL.tb_Validate().UpdateFlag(0, ID);
                        _smsData.header.status = ERequestResult.faild;
-                       _smsData.header.statusMsg = MOBILE_ERROR_CODE.SMS_FREQUENTLY_IP;
+                       _smsData.header.statusCode = MOBILE_ERROR_CODE.SMS_FREQUENTLY_IP;
                        return _smsData;
                    }
                    if( dt1.Tables[ 0 ].Rows.Count >= phoneCount )//半小时内超过10条
@@ -161,7 +161,7 @@ namespace BCW.Mobile.SMS
                        int ID = int.Parse( dt1.Tables[ 0 ].Rows[ 0 ][ "ID" ].ToString() );
                        new BCW.BLL.tb_Validate().UpdateFlag( 0, ID );
                        _smsData.header.status = ERequestResult.faild;
-                       _smsData.header.statusMsg = MOBILE_ERROR_CODE.SMS_FREQUENTLY_PHONE;
+                       _smsData.header.statusCode = MOBILE_ERROR_CODE.SMS_FREQUENTLY_PHONE;
                        return _smsData;
                    }
                    else

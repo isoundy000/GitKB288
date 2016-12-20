@@ -11,15 +11,37 @@ namespace BCW.Mobile.Home
     {
         [JsonConverter( typeof( StringEnumConverter ) )]
         public ERequestResult status;
-        public string statusMsg;
-        public string clientIP;
-        public string domainIP;
+
+        private MOBILE_ERROR_CODE mStatusCode; 
+
+
 
         public Header()
         {
             clientIP = "http://" + Utils.GetUsIP();
             domainIP = "http://" + Utils.GetDomain();
-        }     
+            mStatusCode = MOBILE_ERROR_CODE.MOBILE_MSG_NONE;
+        }
+
+        public MOBILE_ERROR_CODE statusCode
+        {
+            get
+            {
+                return mStatusCode;
+            }
+
+            set
+            {
+                mStatusCode = value;
+                statusMsg = ErrorCodeManager.Instance().GetErrorMsg( mStatusCode );
+            }
+        }
+
+        [JsonProperty]
+        private string statusMsg;
+
+        public string clientIP;
+        public string domainIP;
 
     }
 

@@ -28,7 +28,6 @@ public class text : IHttpHandler {
             //论坛精华 
 
             forumInfo.header.status = ERequestResult.success;
-            forumInfo.header.statusMsg = "";
 
             //是否请求轮播
             string _reqSlider = Utils.GetRequest( "pReqSlider", "all", 1, "", "" );
@@ -46,7 +45,7 @@ public class text : IHttpHandler {
         else
         {
             forumInfo.header.status = ERequestResult.faild;
-            forumInfo.header.statusMsg = "页面请求参数错误";
+            forumInfo.header.statusCode = MOBILE_ERROR_CODE.MOBILE_PARAMS_ERROR;
             context.Response.Write( JsonConvert.SerializeObject(forumInfo.header));
         }  
     }
