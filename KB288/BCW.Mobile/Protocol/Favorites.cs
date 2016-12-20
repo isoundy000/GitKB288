@@ -48,6 +48,7 @@ namespace BCW.Mobile.Protocol
 
     public class RspDelFavorites : RspProtocolBase
     {
-
+        public int threadId;        //帖子ID
+        public bool isFavorites;    //收藏状态
     }
 }
