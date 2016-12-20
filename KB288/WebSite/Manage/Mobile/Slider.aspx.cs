@@ -128,7 +128,7 @@ public partial class Manage_MobileSlider : System.Web.UI.Page
         sType = "hidden,text,text,hidden";
         sValu = ""+_data.id+"'" + _data .contentType+ "'"+_data.param+"'";
         sEmpt = "false,false,false,";
-        strOthe = "确定修改," + Utils.getUrl("/Manage/Mobile/Slider.aspx?ptype=" + pType + "&act=SaveFile") + ",post,2,blue";
+        strOthe = "确定修改," + "Slider.aspx?ptype=" + pType + "&act=SaveFile" + ",post,2,blue";
 
         builder.Append( Out.wapform( sText, sName, sType, sValu, sEmpt, strIdea, strOthe ) );
 
