@@ -38,9 +38,9 @@ public class MedalLog : IHttpHandler {
     private void GetMedalData()
     {
         ReqMedalLog _reqData = new ReqMedalLog();
-        _reqData.userId = int.Parse(Utils.GetRequest("pUserId", "all", 1, @"^\d*$", "-1"));
-        _reqData.userKey = Utils.GetRequest("pUsKey", "all", 0, "", "");
-        _reqData.medalId = int.Parse(Utils.GetRequest("pMedalId", "all", 1, @"^\d*$", "-1"));
+        _reqData.userId = int.Parse(Utils.GetRequest("pUserId", "post", 1, @"^\d*$", "-1"));
+        _reqData.userKey = Utils.GetRequest("pUsKey", "post", 0, "", "");
+        _reqData.medalId = int.Parse(Utils.GetRequest("pMedalId", "post", 1, @"^\d*$", "-1"));
 
         RspMedalLog _rspData = MedalManager.Instance().GetUserMedal(_reqData);
         httpContext.Response.Write(_rspData.SerializeObject());
