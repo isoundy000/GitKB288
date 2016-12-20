@@ -42,14 +42,14 @@ namespace BCW.Mobile.BBS.Thread
                 }
             }
             
-            //检查帖子有效性
-            BCW.Model.Text threadModel = new BCW.BLL.Text().GetText(_reqData.threadId);//GetTextMe
-            if (threadModel == null)
-            {
-                _rspData.header.status = ERequestResult.faild;
-                _rspData.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_NOT_FOUND;
-                return _rspData;
-            }
+            ////检查帖子有效性
+            //BCW.Model.Text threadModel = new BCW.BLL.Text().GetText(_reqData.threadId);//GetTextMe
+            //if (threadModel == null)
+            //{
+            //    _rspData.header.status = ERequestResult.faild;
+            //    _rspData.header.statusCode = Error.MOBILE_ERROR_CODE.BBS_THREAD_NOT_FOUND;
+            //    return _rspData;
+            //}
 
             //检查论坛访问限制
             //BCW.Model.Forum Forummodel = new BCW.BLL.Forum().GetForum(threadModel.ForumId);

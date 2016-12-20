@@ -92,7 +92,9 @@ namespace BCW.Mobile.Error
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_GROUP_VISIT_NO_LIMIT, "非成员不能访问该圈子");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_FORUM_FORBID_DEL_REPLY, "该论坛不允许删除评论");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_REPLY_NOT_FOUND, "找不到该条评论");
-            
+
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_FAVORITES_NOT_EXISTS, "不存在的收藏记录");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_FAVORITES_EXISTS, "重复收藏");
             
 
             #endregion

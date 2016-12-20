@@ -319,6 +319,16 @@ namespace BCW.Mobile.Error
         /// 找不到对应评论
         /// </summary>
         BBS_REPLY_NOT_FOUND = 10036,
+        
+        /// <summary>
+        /// 不存在的收藏记录
+        /// </summary>
+        BBS_FAVORITES_NOT_EXISTS = 10037,
+
+        /// <summary>
+        /// 重复收藏
+        /// </summary>
+        BBS_FAVORITES_EXISTS = 10038,
 
         #endregion
 

@@ -28,8 +28,14 @@ public class Favorites : IHttpHandler {
 
         switch( pAct )
         {
-            case "list":            //获取最新签到数据
+            case "list":                //获取收藏数据
                 GetFavoritesData();
+                break;
+            case "add":                //添加收藏
+                AddFavoritesData();
+                break;
+            case "del":                 //删除收藏
+                DelFavoritesData();
                 break;
         }
 
@@ -46,6 +52,29 @@ public class Favorites : IHttpHandler {
         RspFavoritesList _rspData = FavoritesManager.Instance().GetFavoritesList(_reqData);
         httpContext.Response.Write(_rspData.SerializeObject());
     }
+
+    private void AddFavoritesData()
+    {
+        ReqAddFavorites _reqData = new ReqAddFavorites();
+        _reqData.userId = int.Parse(Utils.GetRequest("pUserId", "all", 1, @"^\d*$", "-1"));
+        _reqData.userKey = Utils.GetRequest("pUsKey", "all", 0, "", "");
+        _reqData.threadId = int.Parse(Utils.GetRequest("pThreadId", "all", 1, @"^\d*$", "-1"));
+
+        RspAddFavorites _rspData = FavoritesManager.Instance().AddFavorites(_reqData);
+        httpContext.Response.Write(_rspData.SerializeObject());
+    }
+
+    private void DelFavoritesData()
+    {
+        ReqDelFavorites _reqData = new ReqDelFavorites();
+        _reqData.userId = int.Parse(Utils.GetRequest("pUserId", "all", 1, @"^\d*$", "-1"));
+        _reqData.userKey = Utils.GetRequest("pUsKey", "all", 0, "", "");
+        _reqData.threadId = int.Parse(Utils.GetRequest("pThreadId", "all", 1, @"^\d*$", "-1"));
+
+        RspDelFavorites _rspData = FavoritesManager.Instance().DelFavorites(_reqData);
+        httpContext.Response.Write(_rspData.SerializeObject());
+    }
+
 
     public bool IsReusable
     {

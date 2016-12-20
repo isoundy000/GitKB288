@@ -28,4 +28,26 @@ namespace BCW.Mobile.Protocol
             lstThread = new List<EssencePostItem>();    
         }
     }
+
+
+    public class ReqAddFavorites : ReqProtocolBase
+    {
+        public int threadId;     //帖子ID
+    }
+
+    public class RspAddFavorites : RspProtocolBase
+    {
+        public int threadId;        //帖子ID
+        public bool isFavorites;    //收藏状态
+    }
+
+    public class ReqDelFavorites : ReqProtocolBase
+    {
+        public int threadId;     //帖子ID
+    }
+
+    public class RspDelFavorites : RspProtocolBase
+    {
+
+    }
 }
