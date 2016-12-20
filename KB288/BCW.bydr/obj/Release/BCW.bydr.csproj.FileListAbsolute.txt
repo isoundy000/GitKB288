@@ -1,0 +1,8 @@
+G:\捕鱼\捕鱼游戏开发\BCW.bydr\bin\Release\BCW.bydr.dll
+G:\捕鱼\捕鱼游戏开发\BCW.bydr\bin\Release\BCW.bydr.pdb
+G:\捕鱼\捕鱼游戏开发\BCW.bydr\bin\Release\BCW.Common.dll
+G:\捕鱼\捕鱼游戏开发\BCW.bydr\bin\Release\BCW.Data.dll
+G:\捕鱼\捕鱼游戏开发\BCW.bydr\bin\Release\BCW.Data.pdb
+G:\捕鱼\捕鱼游戏开发\BCW.bydr\obj\Release\ResolveAssemblyReference.cache
+G:\捕鱼\捕鱼游戏开发\BCW.bydr\obj\Release\BCW.bydr.dll
+G:\捕鱼\捕鱼游戏开发\BCW.bydr\obj\Release\BCW.bydr.pdb

@@ -1,0 +1,8 @@
+F:\Work\KB288\BCW.PK10\bin\Debug\BCW.PK10.dll
+F:\Work\KB288\BCW.PK10\bin\Debug\BCW.PK10.pdb
+F:\Work\KB288\BCW.PK10\bin\Debug\BCW.Common.dll
+F:\Work\KB288\BCW.PK10\bin\Debug\BCW.Data.dll
+F:\Work\KB288\BCW.PK10\bin\Debug\BCW.Data.pdb
+F:\Work\KB288\BCW.PK10\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\KB288\BCW.PK10\obj\Debug\BCW.PK10.dll
+F:\Work\KB288\BCW.PK10\obj\Debug\BCW.PK10.pdb

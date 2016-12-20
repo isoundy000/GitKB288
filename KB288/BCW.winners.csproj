@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C88E1CE7-A5AD-4D50-8BB2-0FD30579FE96}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BCW.winners</RootNamespace>
+    <AssemblyName>BCW.winners</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BCW.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebSite\Bin\BCW.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\WinnersAward.cs" />
+    <Compile Include="BLL\WinnersGame.cs" />
+    <Compile Include="BLL\WinnersLists.cs" />
+    <Compile Include="DAL\WinnersAward.cs" />
+    <Compile Include="DAL\WinnersGame.cs" />
+    <Compile Include="DAL\WinnersLists.cs" />
+    <Compile Include="Model\WinnersAward.cs" />
+    <Compile Include="Model\WinnersGame.cs" />
+    <Compile Include="Model\WinnersLists.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="winners.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BCW.DAL\BCW.DAL.csproj">
+      <Project>{A96633B5-9FF6-4453-BB31-C09D7E7EB928}</Project>
+      <Name>BCW.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BCW.Data\BCW.Data.csproj">
+      <Project>{1F911584-4168-4896-A86D-4BEF49B65A0E}</Project>
+      <Name>BCW.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BCW.Model\BCW.Model.csproj">
+      <Project>{39DC906A-CDCA-4F36-878F-D6661C9BF84E}</Project>
+      <Name>BCW.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

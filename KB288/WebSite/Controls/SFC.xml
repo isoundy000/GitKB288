@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="SFmallPay" value="2" />
+	<set name="SFFive" value="6" />
+	<set name="SFThree" value="13" />
+	<set name="SFMax" value="4000000" />
+	<set name="SFName" value="胜负彩" />
+	<set name="SFprice" value="2" />
+	<set name="SFExpir" value="2" />
+	<set name="SFMin" value="2000000" />
+	<set name="SFBigPay" value="20000" />
+	<set name="SFsys" value="10" />
+	<set name="IsBot" value="1" />
+	<set name="SFRevenue" value="0" />
+	<set name="SFSix" value="4" />
+	<set name="SFrule" value="=玩法规则=\\   一、玩法类型\\    14场胜负彩是一种大盘玩法游戏，属竞技型彩票范畴。\\   二、玩法说明\\   14场胜负彩玩法竟猜规定的14场比赛90分钟内(含伤停补时)的胜平负结果。 \\  三、标准投注 对14场比赛各选1种比赛结果为1注，每场比赛最多可选3种结果。\\   四、设奖及中奖\\  设一等奖（中14场）、二等奖（中13场）、三等奖（中12场）、四等奖（中11场）、五等奖（中10场）、六等奖（中9场）、七等奖（中8场）\\   一等奖为当期奖金总额的20%，多注中则平分；\\   二等奖为当期奖金总额的15 %，多注中则平\\   三等奖为当期奖金总额的13 %，多注中则平分； \\  四等奖为当期奖金总额的10 %,多注中则平分； \\  五等奖为当期奖金总额的6 %,多注中则平分； \\  六等奖为当期奖金总额的4 %,多注中则平分； \\  七等奖为当期奖金总额的2 %,多注中则平分;\\  说明：以中国足球彩票胜负彩（http://www.lottery.gov.cn/lottery/sfc/Default.aspx）公布的开奖结果为本游戏开奖结果。系统投入币条件：上期开奖后滚存的奖金投入下一期，此时该期会员所有投注加上滚存不足200万，则系统再投200万累积奖池。系统收回币条件：系统已投入200万后，第一次在某一期截止投注后奖池超过400万，则系统收回已投入的200万，收回投入的200万后如果奖池再超过400万，则不再抽回200万。" />
+	<set name="SFCprice" value="100000000" />
+	<set name="RoBotID" value="53212#726#52784#51367#727" />
+	<set name="SFTopUbb" value="" />
+	<set name="SFForc" value="10" />
+	<set name="SFOne" value="20" />
+	<set name="SFSeven" value="2" />
+	<set name="SFforc" value="10" />
+	<set name="RoBotCount" value="5" />
+	<set name="SFStatus" value="0" />
+	<set name="SFTwo" value="15" />
+	<set name="SFCDemoIDS" value="53212#726#" />
+	<set name="RoBotCost" value="100" />
+	<set name="SFFootUbb" value="" />
+</data>

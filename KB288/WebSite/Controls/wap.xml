@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="SiteIsPC" value="0" />
+	<set name="SiteBbsIndexUbb" value="[@显示登录(含情景)]&amp;gt;[URL=/bbs/default.aspx]导航[/URL][br][URL=/bbs/finance.aspx?]金融[/URL]|[URL=/bbs/guest.aspx]内线[/URL]|[URL=/bbs/game/default.aspx]游戏[/URL]|[URL=/bbs/forum.aspx]论坛[/URL]|[URL=/default.aspx?id=273]公告[/URL][br] [@功能]|[URL=/bbs/chat.aspx]聊吧[/URL]|[URL=/bbs/albums.aspx]相册[/URL]|[URL=/bbs/diary.aspx]日记[/URL]|[URL=/bbs/group.aspx]圈子[/URL][br][@经典时间][br]酷爆网:kubao.cc" />
+	<set name="SiteIndexTopUbb" value="" />
+	<set name="SiteGameUbb" value="[@显示登录(含情景)]&amp;gt;[URL=/bbs/default.aspx]导航[/URL][br][URL=/bbs/finance.aspx?]金融[/URL]|[URL=/bbs/guest.aspx]内线[/URL]|[URL=/bbs/game/default.aspx]游戏[/URL]|[URL=/bbs/forum.aspx]论坛[/URL]|[URL=/default.aspx?id=273]公告[/URL][br] [@功能]|[URL=/bbs/chat.aspx]聊吧[/URL]|[URL=/bbs/albums.aspx]相册[/URL]|[URL=/bbs/diary.aspx]日记[/URL]|[URL=/bbs/group.aspx]圈子[/URL][br][@经典时间][br]酷爆网:kubao.cc" />
+	<set name="SiteHr" value="-----------" />
+	<set name="SiteWapUbb" value="[@显示登录(含情景)]&amp;gt;[URL=/bbs/default.aspx]导航[/URL][br][URL=/bbs/finance.aspx?]金融[/URL]|[URL=/bbs/guest.aspx]内线[/URL]|[URL=/bbs/game/default.aspx]游戏[/URL]|[URL=/bbs/forum.aspx]论坛[/URL]|[URL=/default.aspx?id=273]公告[/URL][br] [@功能]|[URL=/bbs/chat.aspx]聊吧[/URL]|[URL=/bbs/albums.aspx]相册[/URL]|[URL=/bbs/diary.aspx]日记[/URL]|[URL=/bbs/group.aspx]圈子[/URL][br][@经典时间][br]酷爆网:kubao.cc" />
+	<set name="SiteBz" value="酷币" />
+	<set name="SiteVCountType" value="2" />
+	<set name="SiteNoIPStat" value="1" />
+	<set name="SiteLogTime" value="2016/12/20 20:46:10" />
+	<set name="SiteNoIP" value="127.0.0.*" />
+	<set name="SiteWelNotes" value="书签登陆成功，欢迎回来酷友情缘！" />
+	<set name="SiteName" value="酷友情缘" />
+	<set name="SiteforumName" value="酷友论坛" />
+	<set name="SiteNoUAMsg" value="您的浏览器已被拒绝!" />
+	<set name="SiteWapBb" value="0" />
+	<set name="SiteListNo" value="10" />
+	<set name="SiteExTime" value="720" />
+	<set name="SiteGameTopUbb" value="" />
+	<set name="SiteNoUAStat" value="1" />
+	<set name="SiteiLogTime" value="30" />
+	<set name="SiteVerifyIP" value="0" />
+	<set name="SiteAlign" value="left" />
+	<set name="SiteNoIPMsg" value="您的IP段被系统拒绝..." />
+	<set name="SiteManExpir" value="60" />
+	<set name="SitebbsStatus" value="2" />
+	<set name="SiteLogo" value="" />
+	<set name="SitebbsName" value="酷友导航" />
+	<set name="SiteIsModel" value="1" />
+	<set name="SiteVersion" value="v1.3.72" />
+	<set name="SiteforumLogo" value="/FILES/wyoynk1987/14-3.gif" />
+	<set name="SiteLoginExpir" value="0" />
+	<set name="SiteStatus" value="0" />
+	<set name="SiteManIDS" value="2" />
+	<set name="SiteNoUA" value="" />
+	<set name="SiteBz2" value="爆谷" />
+	<set name="SiteGqText" value="滚球" />
+	<set name="SiteBbsUbb" value="[@显示登录(含情景)]&amp;gt;[URL=/bbs/default.aspx]导航[/URL][br][URL=/bbs/finance.aspx?]金融[/URL]|[URL=/bbs/guest.aspx]内线[/URL]|[URL=/bbs/game/default.aspx]游戏[/URL]|[URL=/bbs/forum.aspx]论坛[/URL]|[URL=/default.aspx?id=273]公告[/URL][br] [@功能]|[URL=/bbs/chat.aspx]聊吧[/URL]|[URL=/bbs/albums.aspx]相册[/URL]|[URL=/bbs/diary.aspx]日记[/URL]|[URL=/bbs/group.aspx]圈子[/URL][br][@经典时间][br]酷爆网:kubao.cc" />
+	<set name="SiteIndexUbb" value="[@功能] :[[@短日期] [@短时间] 星期[@星期几]][br][CODE=10_0_1_0_{SJ}a_{ZZ}_a{SQ}{BR}#0]" />
+	<set name="SiteBbsTopUbb" value="" />
+	<set name="SiteforumStatus" value="0" />
+	<set name="SitebbsLogo" value="/FILES/wyoynk1987/14-1.gif" />
+	<set name="SiteSensitive" value="903g.com#督察" />
+</data>

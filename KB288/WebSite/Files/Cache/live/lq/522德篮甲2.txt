@@ -1,0 +1,86 @@
+﻿<?xml version='1.0'?>
+<!DOCTYPE wml PUBLIC '-//WAPFORUM//DTD WML 1.1//EN' 'http://www.wapforum.org/DTD/wml_1.1.xml'><wml><head>
+<meta http-equiv="Cache-Control" content="max-age=0" />
+</head>
+<card title="球探网">
+<p align="center"><a href="/(S(d1yqu5yy0dnt2qz4noc5go55))/nbaScheduleseach.aspx?type=2&amp;nametype=1&amp;day=5&amp;SClassID=22" title="简体">简体</a>
+	|
+	<a href="/(S(d1yqu5yy0dnt2qz4noc5go55))/nbaScheduleseach.aspx?type=2&amp;nametype=2&amp;day=5&amp;SClassID=22" title="繁体">繁体</a>
+	|
+	<a href="http://wap.310win.com" title="购彩">购彩</a>
+</p><p><b>&gt;&gt;04月14号 星期四<br/>
+德篮甲</b><br/>
+<small>15 02:30 未 不来梅艾斯巴伦      <br/>
+
+[-]
+-,-,-,-
+<br/>
+
+ALBA柏林            
+</small><br/>
+<br/>
+<small>15 02:30 未 中央德国            <br/>
+
+[-]
+-,-,-,-
+<br/>
+
+图寅根雷达虎        
+</small><br/>
+<br/>
+<small>15 02:30 未 哥廷根              <br/>
+
+[-]
+-,-,-,-
+<br/>
+
+凤凰哈根            
+</small><br/>
+<br/>
+<small>15 02:30 未 拜仁盖尼兹          <br/>
+
+[-]
+-,-,-,-
+<br/>
+
+乌尔姆兰蒂奥帕姆    
+</small><br/>
+<br/>
+<small>15 02:30 未 路德维希堡          <br/>
+
+[-]
+-,-,-,-
+<br/>
+
+帕托马斯纽约人      
+</small><br/>
+<br/>
+<small>15 02:30 未 阿特兰德龙          <br/>
+
+[-]
+-,-,-,-
+<br/>
+
+特莱克姆波恩        
+</small><br/>
+<br/>
+<small>15 02:30 未 吉森46人            <br/>
+
+[-]
+-,-,-,-
+<br/>
+
+TBB特里尔           
+</small><br/>
+<br/>
+<small>15 02:30 未 BBC拜罗伊特         <br/>
+
+[-]
+-,-,-,-
+<br/>
+
+法兰克福            
+</small><br/>
+</p><p align="center"><a href="/nbaSclassseach.aspx?type=2&amp;nametype=1&amp;day=5" title="Link">[返回上页]</a><a href="/default.aspx" title="[首页]">[首页]</a><a href="" title="[刷新]">[刷新]</a>
+</p></card>
+</wml>

@@ -1,0 +1,9 @@
+D:\桌面\二次开发接口\开发环境及吹牛游戏实例\BCW.SWB\obj\Release\ResolveAssemblyReference.cache
+D:\桌面\二次开发接口\开发环境及吹牛游戏实例\BCW.SWB\bin\Release\BCW.SWB.dll.config
+D:\桌面\二次开发接口\开发环境及吹牛游戏实例\BCW.SWB\bin\Release\BCW.SWB.dll
+D:\桌面\二次开发接口\开发环境及吹牛游戏实例\BCW.SWB\bin\Release\BCW.SWB.pdb
+D:\桌面\二次开发接口\开发环境及吹牛游戏实例\BCW.SWB\bin\Release\BCW.Common.dll
+D:\桌面\二次开发接口\开发环境及吹牛游戏实例\BCW.SWB\bin\Release\BCW.Data.dll
+D:\桌面\二次开发接口\开发环境及吹牛游戏实例\BCW.SWB\bin\Release\BCW.Data.pdb
+D:\桌面\二次开发接口\开发环境及吹牛游戏实例\BCW.SWB\obj\Release\BCW.SWB.dll
+D:\桌面\二次开发接口\开发环境及吹牛游戏实例\BCW.SWB\obj\Release\BCW.SWB.pdb

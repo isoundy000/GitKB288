@@ -1,0 +1,20 @@
+﻿<?xml version='1.0'?>
+<!DOCTYPE wml PUBLIC '-//WAPFORUM//DTD WML 1.1//EN' 'http://www.wapforum.org/DTD/wml_1.1.xml'><wml><head>
+<meta http-equiv="Cache-Control" content="max-age=0" />
+</head>
+<card title="球探网">
+<p align="center"><a href="/(S(5mobcp55r322tp452x4iek55))/Scheduleseach.aspx?type=1&amp;nametype=1&amp;day=-3&amp;SClassID=215" title="简体">简体</a>
+	|
+	<a href="/(S(5mobcp55r322tp452x4iek55))/Scheduleseach.aspx?type=1&amp;nametype=2&amp;day=-3&amp;SClassID=215" title="繁体">繁体</a>
+	|
+	<a href="http://wap.310win.com" title="购彩">购彩</a>
+</p><p><b>05月24号 星期二<br/>
+欧青U19     </b><br/>
+<small>05-24 23:00 完 比利时U19[中] 1-0 葡萄牙U19 1-0</small><br/>
+<small>05-24 23:00 完 克罗地亞U19 1-0 (红1)愛沙尼亚U19 1-0</small><br/>
+<small>05-24 23:00 完 意大利U19[中] 1-0 乌克兰U19 0-0</small><br/>
+<small>05-24 23:00 完 波蘭U19 0-1 爱尔兰U19 0-1</small><br/>
+<small>05-24 22:00 完 俄罗斯U19[中] 1-1 荷兰U19 0-1</small><br/>
+<small>05-24 22:00 完 捷克U19 2-1 以色列 U19 0-0</small></p><p align="center"><a href="/Sclassseach.aspx?type=1&amp;nametype=1&amp;day=-3" title="Link">[返回上页]</a><a href="/default.aspx" title="[首页]">[首页]</a><a href="" title="[刷新]">[刷新]</a>
+</p></card>
+</wml>

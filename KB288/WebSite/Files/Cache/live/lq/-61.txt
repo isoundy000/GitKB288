@@ -1,0 +1,32 @@
+﻿<?xml version='1.0'?>
+<!DOCTYPE wml PUBLIC '-//WAPFORUM//DTD WML 1.1//EN' 'http://www.wapforum.org/DTD/wml_1.1.xml'><wml><head>
+<meta http-equiv="Cache-Control" content="max-age=0" />
+</head>
+<card title="球探网">
+<p align="center"><a href="/(S(fgtdrt45ezopts55hp5mgafp))/nbaSclassseach.aspx?type=1&amp;nametype=1&amp;day=-6" title="简体">简体</a>
+	|
+	<a href="/(S(fgtdrt45ezopts55hp5mgafp))/nbaSclassseach.aspx?type=1&amp;nametype=2&amp;day=-6" title="繁体">繁体</a>
+	|
+	<a href="http://wap.310win.com" title="购彩">购彩</a>
+</p><p>05月21号 星期六<br/>
+<small><a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=1&amp;SClass=NBA" title="NBA">NBA</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=16&amp;SClass=意篮甲" title="意篮甲">意篮甲</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=17&amp;SClass=希篮甲" title="希篮甲">希篮甲</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=19&amp;SClass=法篮甲" title="法篮甲">法篮甲</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=20&amp;SClass=西篮甲" title="西篮甲">西篮甲</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=22&amp;SClass=德篮甲" title="德篮甲">德篮甲</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=30&amp;SClass=比篮甲" title="比篮甲">比篮甲</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=81&amp;SClass=日本BJ联" title="日本BJ联">日本BJ联</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=141&amp;SClass=克罗甲" title="克罗甲">克罗甲</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=143&amp;SClass=捷篮甲" title="捷篮甲">捷篮甲</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=148&amp;SClass=东南澳联" title="东南澳联">东南澳联</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=150&amp;SClass=奥篮甲" title="奥篮甲">奥篮甲</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=151&amp;SClass=巴西甲" title="巴西甲">巴西甲</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=177&amp;SClass=罗篮甲" title="罗篮甲">罗篮甲</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=196&amp;SClass=东南澳女联" title="东南澳女联">东南澳女联</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=198&amp;SClass=塞爾超" title="塞爾超">塞爾超</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=222&amp;SClass=荷篮甲" title="荷篮甲">荷篮甲</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=225&amp;SClass=法篮乙" title="法篮乙">法篮乙</a><br/>
+<a href="nbaScheduleseach.aspx?day=-6&amp;nametype=1&amp;type=1&amp;SClassID=231&amp;SClass=拉脱甲" title="拉脱甲">拉脱甲</a></small></p><p align="center"><a href="/nbaweekindex.aspx?type=1&amp;nametype=1" title="Link">[返回上页]</a><a href="/default.aspx" title="[首页]">[首页]</a><a href="/nbaSclassseach.aspx?type=1&amp;nametype=1&amp;day=-6&amp;t=239" title="[刷新]">[刷新]</a>
+</p></card>
+</wml>

@@ -1,0 +1,10 @@
+F:\Work\KB288\BCW.Service\bin\x86\Debug\BCW.Service.dll
+F:\Work\KB288\BCW.Service\bin\x86\Debug\BCW.Service.pdb
+F:\Work\KB288\BCW.Service\bin\x86\Debug\BCW.Common.dll
+F:\Work\KB288\BCW.Service\bin\x86\Debug\BCW.Model.dll
+F:\Work\KB288\BCW.Service\bin\x86\Debug\BCW.SharpZipLib.dll
+F:\Work\KB288\BCW.Service\bin\x86\Debug\BCW.Model.pdb
+F:\Work\KB288\BCW.Service\bin\x86\Debug\BCW.SharpZipLib.pdb
+F:\Work\KB288\BCW.Service\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\Work\KB288\BCW.Service\obj\x86\Debug\BCW.Service.dll
+F:\Work\KB288\BCW.Service\obj\x86\Debug\BCW.Service.pdb

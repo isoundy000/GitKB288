@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gourl.aspx.cs" Inherits="bbs_gourl" %>

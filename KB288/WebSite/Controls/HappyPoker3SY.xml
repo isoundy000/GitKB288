@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="HP3SHUANG" value="1.5" />
+	<set name="HP3RX2" value="16.5" />
+	<set name="HP3BZ2" value="3200" />
+	<set name="HP3IsBot" value="1" />
+	<set name="HP3Logo" value="img/hp3.jpg" />
+	<set name="HP3SZ1" value="16.5" />
+	<set name="HP3THS2" value="1075" />
+	<set name="HP3SWKQ" value="0" />
+	<set name="HP3RX1" value="2.5" />
+	<set name="HP3BigPay" value="100000" />
+	<set name="HP3RX4" value="23" />
+	<set name="HP3DZ2" value="44" />
+	<set name="HP3Name" value="快乐扑克3试玩版" />
+	<set name="HP3XIAO" value="1.5" />
+	<set name="HP3OnTime" value="08:50-22:00" />
+	<set name="GETMONEYMAX" value="100000" />
+	<set name="HP3TH2" value="45" />
+	<set name="GETMONEYCI" value="10" />
+	<set name="HP3LianTing" value="2" />
+	<set name="HP3RX5" value="11" />
+	<set name="HP3RX3" value="58" />
+	<set name="HP3Price" value="1000000" />
+	<set name="HP3SZ2" value="200" />
+	<set name="HP3BZ1" value="250" />
+	<set name="HP3Foot" value="" />
+	<set name="HP3Status" value="0" />
+	<set name="GETMONEY" value="1000" />
+	<set name="HP3DAN" value="1.5" />
+	<set name="HP3DayChaMax" value="4" />
+	<set name="HP3Expir" value="5" />
+	<set name="HP3FUDONG" value="0.02" />
+	<set name="HP3ROBOTID" value="1433#1500#1511#1522#1533#1544#1555#1566#1573#1588#1599" />
+	<set name="HP3DA" value="1.5" />
+	<set name="HP3RX6" value="6" />
+	<set name="HP3DZ1" value="3.5" />
+	<set name="HP3SmallPay" value="100" />
+	<set name="HP3GuestSet" value="0" />
+	<set name="HP3THS1" value="267.5" />
+	<set name="HP3ROBOTBUY" value="4" />
+	<set name="HP3TH1" value="11" />
+	<set name="HP3ZUIDAMAX" value="100000" />
+	<set name="HP3ROBOTCOST" value="100" />
+	<set name="HP3Sec" value="15" />
+</data>

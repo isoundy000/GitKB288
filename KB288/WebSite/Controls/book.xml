@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="BookLogo" value="" />
+	<set name="BookStatus" value="0" />
+	<set name="BookIsContents2" value="0" />
+	<set name="BookPwNum" value="1500" />
+	<set name="BookAdminIDS2" value="1000" />
+	<set name="BookNotes" value="" />
+	<set name="BookIsShuMu" value="0" />
+	<set name="BookExpir" value="5" />
+	<set name="BookIsContents" value="0" />
+	<set name="BookAdminIDS" value="1000" />
+	<set name="BookName" value="酷爆书城" />
+	<set name="BookSystemUbb2" value="" />
+	<set name="BookSystemUbb" value="欢迎,[@显示登录]&#xD;&#xA;[url=default.aspx?act=fl]分类[/url] [url=default.aspx?act=listb&amp;amp;ptype=6]更新[/url] [url=default.aspx?act=top]排行[/url] [url=default.aspx?act=listb&amp;amp;ptype=1]全本[/url] [url=default.aspx?act=home]书房[/url]&#xD;&#xA;[url=default.aspx?act=listb&amp;amp;ptype=2]最新[/url] [url=default.aspx?act=listb&amp;amp;ptype=3]精品[/url] [url=default.aspx?act=listb&amp;amp;ptype=4]连载[/url] [url=default.aspx?act=listb&amp;amp;ptype=5]原创[/url] [url=default.aspx?act=search]搜索[/url]&#xD;&#xA;【小说搜索】&#xD;&#xA;[@搜索凋用]&#xD;&#xA;【强推精选】&#xD;&#xA;[@强推凋用]&#xD;&#xA;青涩校园：《豆蔻年华》&#xD;&#xA;重生宅斗：《重生之深宫嫡女》&#xD;&#xA;重生军旅：《重生之兵哥哥好哥哥》&#xD;&#xA;高干宠文：《然后，爱情随遇而安》&#xD;&#xA; 【原创精品】 更多&#xD;&#xA; 虐恋情深：《下堂妻》&#xD;&#xA; 穿越种田：《唐朝好媳妇》&#xD;&#xA;后宫宅斗：《皇后谋》&#xD;&#xA; 【最新连载】 更多&#xD;&#xA; 腹黑女强：《异世墨莲》&#xD;&#xA;高干虐恋：《裂锦》&#xD;&#xA;别后重逢：《因为爱情》&#xD;&#xA; 【经典全本】 更多&#xD;&#xA;青涩校园：《豆蔻年华》&#xD;&#xA;重生宅斗：《重生之深宫嫡女》&#xD;&#xA;重生女强：《庶女有毒》&#xD;&#xA;【男频专区】 更多&#xD;&#xA;都市异能：《重生一九七六》&#xD;&#xA;异世大陆：《完美世界》&#xD;&#xA;历史小说：《醉枕江山》&#xD;&#xA;【女频专区】 更多&#xD;&#xA;青涩校园：《豆蔻年华》&#xD;&#xA;重生宅斗：《重生之锦绣嫡女》&#xD;&#xA;重生军旅：《重生之军嫂》" />
+	<set name="BookIsShuMu2" value="0" />
+</data>

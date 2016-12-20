@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="VBookIsAc" value="0" />
+	<set name="VBookName" value="网友留言" />
+	<set name="VBookNotes" value="" />
+	<set name="VBookLogo" value="" />
+	<set name="VBookExpir" value="60" />
+	<set name="VBookStatus" value="0" />
+	<set name="VBookIsUser" value="0" />
+</data>

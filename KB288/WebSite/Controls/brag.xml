@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="BragF3" value="1000" />
+	<set name="BragBigPay" value="10000" />
+	<set name="BragF1" value="500" />
+	<set name="BragStatus" value="0" />
+	<set name="BragF2" value="1000" />
+	<set name="BragIsBot" value="0" />
+	<set name="BragName" value="疯狂吹牛" />
+	<set name="BragTar1" value="1" />
+	<set name="BragFoot" value="" />
+	<set name="BragLogo" value="" />
+	<set name="BragTNum" value="3" />
+	<set name="BragTar2" value="2" />
+	<set name="BragF4" value="2000" />
+	<set name="BragTar3" value="3" />
+	<set name="BragSmallPay2" value="100" />
+	<set name="BragExpir" value="5" />
+	<set name="BragNotes" value="" />
+	<set name="BragSmallPay" value="100" />
+	<set name="BragBigPay2" value="10000" />
+</data>

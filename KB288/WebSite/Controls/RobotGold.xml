@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="AddMoney" value="3000000" />
+	<set name="ExpIds" value="104#103" />
+	<set name="Status" value="0" />
+	<set name="MinMoney" value="100000" />
+</data>

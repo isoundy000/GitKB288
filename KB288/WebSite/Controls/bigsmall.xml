@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="BsExpir" value="5" />
+	<set name="BsZWinID" value="" />
+	<set name="BsNotes" value="" />
+	<set name="BsvMoney2" value="10000" />
+	<set name="BsXTar" value="0.1" />
+	<set name="BsFoot" value="" />
+	<set name="BsOdds" value="2" />
+	<set name="BsIsBot" value="1" />
+	<set name="BsStatus" value="0" />
+	<set name="BsvMoney" value="10000" />
+	<set name="BsName" value="赌大小" />
+	<set name="BsbCent" value="2" />
+	<set name="BsSmallPay2" value="10000" />
+	<set name="BsZLostID" value="1108" />
+	<set name="BssCent2" value="3" />
+	<set name="BsZTar" value="0.1" />
+	<set name="BsSmallPay" value="100" />
+	<set name="BsBigPay2" value="10000" />
+	<set name="BsBotTime" value="2014-06-04 16:39:34" />
+	<set name="BsbCent2" value="4" />
+	<set name="BsWinID" value="" />
+	<set name="BsIsWinBot" value="1" />
+	<set name="BsLogo" value="" />
+	<set name="BssCent" value="1" />
+	<set name="BsBigPay" value="100000" />
+	<set name="BsLostID" value="" />
+</data>

@@ -1,0 +1,35 @@
+﻿<?xml version='1.0'?>
+<!DOCTYPE wml PUBLIC '-//WAPFORUM//DTD WML 1.1//EN' 'http://www.wapforum.org/DTD/wml_1.1.xml'><wml><head>
+<meta http-equiv="Cache-Control" content="max-age=0" />
+</head>
+<card title="球探网">
+<p align="center"><a href="/(S(0152zummrorb5m45vpihihnm))/nbabfshow.aspx?nametype=1&amp;SClassID=20&amp;SClass=西篮甲" title="简体">简体</a>
+	|
+	<a href="/(S(0152zummrorb5m45vpihihnm))/nbabfshow.aspx?nametype=2&amp;SClassID=20&amp;SClass=西篮甲" title="繁体">繁体</a>
+	|
+	<a href="http://wap.310win.com" title="购彩">购彩</a>
+</p><p><b>西篮甲</b><br/>
+<small>28 02:00 未 巴塞隆拿            <br/>
+
+[-]
+-,-,-,-
+<br/>
+
+泰斯拉米卡          
+<a href="/analysis/basketball.aspx?id=99543" title="Link">析</a>
+</small><br/>
+<br/>
+<small>28 03:45 未 皇家马德里          <br/>
+
+[-]
+-,-,-,-
+<br/>
+
+毕尔包              
+<a href="/analysis/basketball.aspx?id=99542" title="Link">析</a>
+</small><br/>
+</p><p align="center"><a href="/nbabflist.aspx?nametype=1" title="Link">[返回上页]</a><a href="/default.aspx" title="[首页]">[首页]</a><a href="" title="[刷新]">[刷新]</a>
+
+<br/>更新时间：05-27 18:30
+</p></card>
+</wml>

@@ -1,0 +1,17 @@
+﻿<?xml version='1.0'?>
+<!DOCTYPE wml PUBLIC '-//WAPFORUM//DTD WML 1.1//EN' 'http://www.wapforum.org/DTD/wml_1.1.xml'><wml><head>
+<meta http-equiv="Cache-Control" content="max-age=0" />
+</head>
+<card title="球探网">
+<p align="center"><a href="/(S(t5p1buvoashu3q451vpe4045))/nbaSclassseach.aspx?type=2&amp;nametype=1&amp;day=5" title="简体">简体</a>
+	|
+	<a href="/(S(t5p1buvoashu3q451vpe4045))/nbaSclassseach.aspx?type=2&amp;nametype=2&amp;day=5" title="繁体">繁体</a>
+	|
+	<a href="http://wap.310win.com" title="购彩">购彩</a>
+</p><p>04月14号 星期四<br/>
+<small><a href="nbaScheduleseach.aspx?day=5&amp;nametype=1&amp;type=2&amp;SClassID=16&amp;SClass=意篮甲" title="意篮甲">意篮甲</a><br/>
+<a href="nbaScheduleseach.aspx?day=5&amp;nametype=1&amp;type=2&amp;SClassID=20&amp;SClass=西篮甲" title="西篮甲">西篮甲</a><br/>
+<a href="nbaScheduleseach.aspx?day=5&amp;nametype=1&amp;type=2&amp;SClassID=22&amp;SClass=德篮甲" title="德篮甲">德篮甲</a><br/>
+<a href="nbaScheduleseach.aspx?day=5&amp;nametype=1&amp;type=2&amp;SClassID=24&amp;SClass=以篮超" title="以篮超">以篮超</a></small></p><p align="center"><a href="/nbaweekindex.aspx?type=2&amp;nametype=1" title="Link">[返回上页]</a><a href="/default.aspx" title="[首页]">[首页]</a><a href="/nbaSclassseach.aspx?type=2&amp;nametype=1&amp;day=5&amp;t=13" title="[刷新]">[刷新]</a>
+</p></card>
+</wml>

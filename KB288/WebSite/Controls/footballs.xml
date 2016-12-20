@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="BasketBallHidden" value="" />
+	<set name="BasketBallOutZhi" value="" />
+	<set name="ZQOpen" value="1" />
+	<set name="BallOpenSpeak" value="0" />
+	<set name="getZQOpen" value="1" />
+	<set name="BallSpeakTime" value="60" />
+	<set name="BallPeiLu" value="1" />
+	<set name="BallJinQiu" value="1" />
+	<set name="BallSpeak" value="2" />
+	<set name="BasketBallCollect" value="" />
+	<set name="BasketBall" value="1" />
+	<set name="BallQiuChang" value="1" />
+	<set name="LQOpen" value="1" />
+	<set name="deletetext" value="" />
+	<set name="Open" value="1" />
+	<set name="getLQOpen" value="1" />
+</data>

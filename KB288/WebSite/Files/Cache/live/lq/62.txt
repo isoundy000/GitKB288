@@ -1,0 +1,16 @@
+﻿<?xml version='1.0'?>
+<!DOCTYPE wml PUBLIC '-//WAPFORUM//DTD WML 1.1//EN' 'http://www.wapforum.org/DTD/wml_1.1.xml'><wml><head>
+<meta http-equiv="Cache-Control" content="max-age=0" />
+</head>
+<card title="球探网">
+<p align="center"><a href="/(S(caj3dt55ufh0d4uwqqafqx55))/nbaSclassseach.aspx?type=2&amp;nametype=1&amp;day=6" title="简体">简体</a>
+	|
+	<a href="/(S(caj3dt55ufh0d4uwqqafqx55))/nbaSclassseach.aspx?type=2&amp;nametype=2&amp;day=6" title="繁体">繁体</a>
+	|
+	<a href="http://wap.310win.com" title="购彩">购彩</a>
+</p><p>06月02号 星期四<br/>
+<small><a href="nbaScheduleseach.aspx?day=6&amp;nametype=1&amp;type=2&amp;SClassID=1&amp;SClass=NBA" title="NBA">NBA</a><br/>
+<a href="nbaScheduleseach.aspx?day=6&amp;nametype=1&amp;type=2&amp;SClassID=145&amp;SClass=纽西联" title="纽西联">纽西联</a><br/>
+<a href="nbaScheduleseach.aspx?day=6&amp;nametype=1&amp;type=2&amp;SClassID=228&amp;SClass=意篮乙" title="意篮乙">意篮乙</a></small></p><p align="center"><a href="/nbaweekindex.aspx?type=2&amp;nametype=1" title="Link">[返回上页]</a><a href="/default.aspx" title="[首页]">[首页]</a><a href="/nbaSclassseach.aspx?type=2&amp;nametype=1&amp;day=6&amp;t=239" title="[刷新]">[刷新]</a>
+</p></card>
+</wml>

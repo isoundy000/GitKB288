@@ -1,0 +1,35 @@
+﻿<?xml version='1.0'?>
+<!DOCTYPE wml PUBLIC '-//WAPFORUM//DTD WML 1.1//EN' 'http://www.wapforum.org/DTD/wml_1.1.xml'><wml><head>
+<meta http-equiv="Cache-Control" content="max-age=0" />
+</head>
+<card title="球探网">
+<p align="center"><a href="/(S(njnkks45n2mtgo553ddu10rc))/nbabfshow.aspx?nametype=1&amp;SClassID=196&amp;SClass=东南澳女联" title="简体">简体</a>
+	|
+	<a href="/(S(njnkks45n2mtgo553ddu10rc))/nbabfshow.aspx?nametype=2&amp;SClassID=196&amp;SClass=东南澳女联" title="繁体">繁体</a>
+	|
+	<a href="http://wap.310win.com" title="购彩">购彩</a>
+</p><p><b>东南澳女联</b><br/>
+<small>27 16:00 4节 霍巴特电光女篮      <br/>
+
+[53-68]
+11-12,23-22,16-25,3-9
+<br/>
+
+基尔塞斯眼镜蛇女篮  
+<a href="/analysis/basketball.aspx?id=99564" title="Link">析</a>
+</small><br/>
+<br/>
+<small>28 15:30 未 布里斯班斯巴达人女篮<br/>
+
+[-]
+-,-,-,-
+<br/>
+
+丹德农流浪者女篮    
+<a href="/analysis/basketball.aspx?id=99612" title="Link">析</a>
+</small><br/>
+</p><p align="center"><a href="/nbabflist.aspx?nametype=1" title="Link">[返回上页]</a><a href="/default.aspx" title="[首页]">[首页]</a><a href="" title="[刷新]">[刷新]</a>
+
+<br/>更新时间：05-27 18:16
+</p></card>
+</wml>

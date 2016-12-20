@@ -1,0 +1,12 @@
+F:\Work\KB288\BCW.GuestSend\bin\Debug\BCW.GuestSend.dll
+F:\Work\KB288\BCW.GuestSend\bin\Debug\BCW.GuestSend.pdb
+F:\Work\KB288\BCW.GuestSend\bin\Debug\BCW.Common.dll
+F:\Work\KB288\BCW.GuestSend\bin\Debug\BCW.DAL.dll
+F:\Work\KB288\BCW.GuestSend\bin\Debug\BCW.Data.dll
+F:\Work\KB288\BCW.GuestSend\bin\Debug\BCW.Model.dll
+F:\Work\KB288\BCW.GuestSend\bin\Debug\BCW.Data.pdb
+F:\Work\KB288\BCW.GuestSend\bin\Debug\BCW.DAL.pdb
+F:\Work\KB288\BCW.GuestSend\bin\Debug\BCW.Model.pdb
+F:\Work\KB288\BCW.GuestSend\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\KB288\BCW.GuestSend\obj\Debug\BCW.GuestSend.dll
+F:\Work\KB288\BCW.GuestSend\obj\Debug\BCW.GuestSend.pdb

@@ -1,0 +1,15 @@
+﻿<?xml version='1.0'?>
+<!DOCTYPE wml PUBLIC '-//WAPFORUM//DTD WML 1.1//EN' 'http://www.wapforum.org/DTD/wml_1.1.xml'><wml><head>
+<meta http-equiv="Cache-Control" content="max-age=0" />
+</head>
+<card title="球探网">
+<do type="prev" label="Back"><prev /></do>
+<p align="center"><a href="/(S(0cjkuzu3qr5qjs455k0tzq45))/nbabflist.aspx?nametype=1" title="简体">简体</a>
+	|
+	<a href="/(S(0cjkuzu3qr5qjs455k0tzq45))/nbabflist.aspx?nametype=2" title="繁体">繁体</a>
+	|
+	<a href="http://wap.310win.com" title="购彩">购彩</a>
+</p><p>&gt;&gt;篮球即时比分<br/>
+<a href="nbaScheduleall.aspx?nametype=1" title="Link">今天全部赛事</a><small><a href="/nbabfshow.aspx?nametype=1&amp;SClassID=15&amp;SClass=韩篮甲" title="韩篮甲">韩篮甲</a><a href="/nbabfshow.aspx?nametype=1&amp;SClassID=25&amp;SClass=土篮甲" title="土篮甲">土篮甲</a><a href="/nbabfshow.aspx?nametype=1&amp;SClassID=36&amp;SClass=WCBA" title="WCBA">WCBA</a><a href="/nbabfshow.aspx?nametype=1&amp;SClassID=81&amp;SClass=日联" title="日联">日联</a><a href="/nbabfshow.aspx?nametype=1&amp;SClassID=140&amp;SClass=台篮甲" title="台篮甲">台篮甲</a><a href="/nbabfshow.aspx?nametype=1&amp;SClassID=198&amp;SClass=塞爾超" title="塞爾超">塞爾超</a></small></p><p align="center"><a href="/default.aspx?nametype=1" title="Link">[返回上页]</a><a href="/default.aspx" title="[首页]">[首页]</a><a href="" title="[刷新]">[刷新]</a>
+</p></card>
+</wml>

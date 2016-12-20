@@ -1,0 +1,15 @@
+﻿<?xml version='1.0'?>
+<!DOCTYPE wml PUBLIC '-//WAPFORUM//DTD WML 1.1//EN' 'http://www.wapforum.org/DTD/wml_1.1.xml'><wml><head>
+<meta http-equiv="Cache-Control" content="max-age=0" />
+</head>
+<card title="球探网">
+<do type="prev" label="Back"><prev /></do>
+<p align="center"><a href="/(S(czi2z2zilexc4n55ro54xg55))/weekindex.aspx?nametype=1&amp;type=1" title="简体">简体</a>
+	|
+	<a href="/(S(czi2z2zilexc4n55ro54xg55))/weekindex.aspx?nametype=2&amp;type=1" title="繁体">繁体</a>
+	|
+	<a href="http://wap.310win.com" title="购彩">购彩</a>
+</p><p>&gt;&gt;足球完场比分<br/>
+<a href="/Sclassseach.aspx?day=-1&amp;type=1&amp;nametype=1" title="Link">12月24号 星期六</a><a href="/Sclassseach.aspx?day=-2&amp;type=1&amp;nametype=1" title="Link">12月23号 星期五</a><a href="/Sclassseach.aspx?day=-3&amp;type=1&amp;nametype=1" title="Link">12月22号 星期四</a><a href="/Sclassseach.aspx?day=-4&amp;type=1&amp;nametype=1" title="Link">12月21号 星期三</a><a href="/Sclassseach.aspx?day=-5&amp;type=1&amp;nametype=1" title="Link">12月20号 星期二</a><a href="/Sclassseach.aspx?day=-6&amp;type=1&amp;nametype=1" title="Link">12月19号 星期一</a><a href="/Sclassseach.aspx?day=-7&amp;type=1&amp;nametype=1" title="Link">12月18号 星期日</a><br/>查询完场比分：<br/><input name="day" /><anchor title="查询">查询<go href="Sclassseach.aspx" method="post"><postfield name="day" value="$(day)" /><postfield name="nametype" value="1" /><postfield name="type" value="1" /></go></anchor><br/>(查询格式：20070518)</p><p align="center"><a href="/default.aspx?nametype=1" title="Link">[返回上页]</a><a href="/default.aspx" title="[首页]">[首页]</a><a href="/weekindex.aspx?nametype=1&amp;type=1" title="[刷新]">[刷新]</a>
+</p></card>
+</wml>

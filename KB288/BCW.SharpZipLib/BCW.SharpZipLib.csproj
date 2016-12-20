@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B403E887-BDD1-48FD-B8BB-22D5F155C99E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BCW.SharpZipLib</RootNamespace>
+    <AssemblyName>BCW.SharpZipLib</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'NET|AnyCPU' ">
+    <OutputPath>bin\NET\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'NET|x86' ">
+    <OutputPath>bin\x86\NET\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BZip2\BZip2.cs" />
+    <Compile Include="BZip2\BZip2Constants.cs" />
+    <Compile Include="BZip2\BZip2Exception.cs" />
+    <Compile Include="BZip2\BZip2InputStream.cs" />
+    <Compile Include="BZip2\BZip2OutputStream.cs" />
+    <Compile Include="Checksums\Adler32.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Checksums\Core\FileSystemScanner.cs" />
+    <Compile Include="Checksums\Core\INameTransform.cs" />
+    <Compile Include="Checksums\Core\IScanFilter.cs" />
+    <Compile Include="Checksums\Core\NameFilter.cs" />
+    <Compile Include="Checksums\Core\PathFilter.cs" />
+    <Compile Include="Checksums\Core\StreamUtils.cs" />
+    <Compile Include="Checksums\CRC32.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Checksums\IChecksum.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Checksums\StrangeCRC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Encryption\PkzipClassic.cs" />
+    <Compile Include="GZip\GZIPConstants.cs" />
+    <Compile Include="GZip\GZipException.cs" />
+    <Compile Include="GZip\GzipInputStream.cs" />
+    <Compile Include="GZip\GzipOutputStream.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharpZipBaseException.cs" />
+    <Compile Include="Tar\InvalidHeaderException.cs" />
+    <Compile Include="Tar\TarArchive.cs" />
+    <Compile Include="Tar\TarBuffer.cs" />
+    <Compile Include="Tar\TarEntry.cs" />
+    <Compile Include="Tar\TarException.cs" />
+    <Compile Include="Tar\TarHeader.cs" />
+    <Compile Include="Tar\TarInputStream.cs" />
+    <Compile Include="Tar\TarOutputStream.cs" />
+    <Compile Include="Zip\Compression\Deflater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Zip\Compression\DeflaterConstants.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Zip\Compression\DeflaterEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Zip\Compression\DeflaterHuffman.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Zip\Compression\DeflaterPending.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Zip\Compression\Inflater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Zip\Compression\InflaterDynHeader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Zip\Compression\InflaterHuffmanTree.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Zip\Compression\PendingBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Zip\Compression\Streams\DeflaterOutputStream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Zip\Compression\Streams\InflaterInputStream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Zip\Compression\Streams\OutputWindow.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Zip\Compression\Streams\StreamManipulator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Zip\FastZip.cs" />
+    <Compile Include="Zip\IEntryFactory.cs" />
+    <Compile Include="Zip\ZipConstants.cs" />
+    <Compile Include="Zip\ZipEntry.cs" />
+    <Compile Include="Zip\ZipEntryFactory.cs" />
+    <Compile Include="Zip\ZipException.cs" />
+    <Compile Include="Zip\ZipExtraData.cs" />
+    <Compile Include="Zip\ZipFile.cs" />
+    <Compile Include="Zip\ZipHelperStream.cs" />
+    <Compile Include="Zip\ZipInputStream.cs" />
+    <Compile Include="Zip\ZipNameTransform.cs" />
+    <Compile Include="Zip\ZipOutputStream.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

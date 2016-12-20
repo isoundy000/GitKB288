@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E489FDB8-182E-4450-B7B6-066B6CFF63D1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BCW.farm</RootNamespace>
+    <AssemblyName>BCW.farm</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BCW.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebSite\Bin\BCW.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\NC_baoxiang.cs" />
+    <Compile Include="BLL\NC_daoju.cs" />
+    <Compile Include="BLL\NC_daoju_use.cs" />
+    <Compile Include="BLL\NC_GetCrop.cs" />
+    <Compile Include="BLL\NC_Goldlog.cs" />
+    <Compile Include="BLL\NC_gonggao.cs" />
+    <Compile Include="BLL\NC_hecheng.cs" />
+    <Compile Include="BLL\NC_market.cs" />
+    <Compile Include="BLL\NC_messagelog.cs" />
+    <Compile Include="BLL\NC_mydaoju.cs" />
+    <Compile Include="BLL\NC_record.cs" />
+    <Compile Include="BLL\NC_shop.cs" />
+    <Compile Include="BLL\NC_slave.cs" />
+    <Compile Include="BLL\NC_slavelist.cs" />
+    <Compile Include="BLL\NC_task.cs" />
+    <Compile Include="BLL\NC_tasklist.cs" />
+    <Compile Include="BLL\NC_tudi.cs" />
+    <Compile Include="BLL\NC_user.cs" />
+    <Compile Include="BLL\NC_win.cs" />
+    <Compile Include="BLL\NC_zhitiao.cs" />
+    <Compile Include="DAL\NC_baoxiang.cs" />
+    <Compile Include="DAL\NC_daoju.cs" />
+    <Compile Include="DAL\NC_daoju_use.cs" />
+    <Compile Include="DAL\NC_GetCrop.cs" />
+    <Compile Include="DAL\NC_Goldlog.cs" />
+    <Compile Include="DAL\NC_gonggao.cs" />
+    <Compile Include="DAL\NC_hecheng.cs" />
+    <Compile Include="DAL\NC_market.cs" />
+    <Compile Include="DAL\NC_messagelog.cs" />
+    <Compile Include="DAL\NC_mydaoju.cs" />
+    <Compile Include="DAL\NC_record.cs" />
+    <Compile Include="DAL\NC_shop.cs" />
+    <Compile Include="DAL\NC_slave.cs" />
+    <Compile Include="DAL\NC_slavelist.cs" />
+    <Compile Include="DAL\NC_task.cs" />
+    <Compile Include="DAL\NC_tasklist.cs" />
+    <Compile Include="DAL\NC_tudi.cs" />
+    <Compile Include="DAL\NC_user.cs" />
+    <Compile Include="DAL\NC_win.cs" />
+    <Compile Include="DAL\NC_zhitiao.cs" />
+    <Compile Include="Model\NC_baoxiang.cs" />
+    <Compile Include="Model\NC_daoju.cs" />
+    <Compile Include="Model\NC_daoju_use.cs" />
+    <Compile Include="Model\NC_GetCrop.cs" />
+    <Compile Include="Model\NC_Goldlog.cs" />
+    <Compile Include="Model\NC_gonggao.cs" />
+    <Compile Include="Model\NC_hecheng.cs" />
+    <Compile Include="Model\NC_market.cs" />
+    <Compile Include="Model\NC_messagelog.cs" />
+    <Compile Include="Model\NC_mydaoju.cs" />
+    <Compile Include="Model\NC_record.cs" />
+    <Compile Include="Model\NC_shop.cs" />
+    <Compile Include="Model\NC_slave.cs" />
+    <Compile Include="Model\NC_slavelist.cs" />
+    <Compile Include="Model\NC_task.cs" />
+    <Compile Include="Model\NC_tasklist.cs" />
+    <Compile Include="Model\NC_tudi.cs" />
+    <Compile Include="Model\NC_user.cs" />
+    <Compile Include="Model\NC_win.cs" />
+    <Compile Include="Model\NC_zhitiao.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BCW.Data\BCW.Data.csproj">
+      <Project>{1F911584-4168-4896-A86D-4BEF49B65A0E}</Project>
+      <Name>BCW.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

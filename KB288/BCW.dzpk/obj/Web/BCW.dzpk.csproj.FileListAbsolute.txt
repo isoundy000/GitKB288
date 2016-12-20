@@ -1,0 +1,11 @@
+E:\项目\德州扑克\开发环境\BCW.dzpk\bin\Web\BCW.dzpk.dll
+E:\项目\德州扑克\开发环境\BCW.dzpk\bin\Web\BCW.Common.dll
+E:\项目\德州扑克\开发环境\BCW.dzpk\bin\Web\BCW.Data.dll
+E:\项目\德州扑克\开发环境\BCW.dzpk\bin\Web\BCW.User.dll
+E:\项目\德州扑克\开发环境\BCW.dzpk\bin\Web\BCW.DAL.dll
+E:\项目\德州扑克\开发环境\BCW.dzpk\bin\Web\BCW.BLL.dll
+E:\项目\德州扑克\开发环境\BCW.dzpk\bin\Web\BCW.Files.dll
+E:\项目\德州扑克\开发环境\BCW.dzpk\bin\Web\BCW.Service.dll
+E:\项目\德州扑克\开发环境\BCW.dzpk\bin\Web\BCW.Model.dll
+E:\项目\德州扑克\开发环境\BCW.dzpk\obj\Web\ResolveAssemblyReference.cache
+E:\项目\德州扑克\开发环境\BCW.dzpk\obj\Web\BCW.dzpk.dll

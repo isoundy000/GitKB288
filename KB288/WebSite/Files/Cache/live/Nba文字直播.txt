@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml">
+<wml>
+<card title="+NBA 蛙彩+">
+<p align="left">
+	 	<strong>挠挠<a href="/notify/index.do?z=R4xgsCKsYMc12&amp;hotId=1">(1)</a></strong>
+	<br/>
+	<a href="/love/index.do?z=R4xgsCKsYMc12&amp;cf=hd">交友</a>|<a href="/space/index.do?z=R4xgsCKsYMc12&amp;cf=hd">空间</a>|<a href="/myroom/communityIndex.do?z=R4xgsCKsYMc12&amp;cf=hd">社区</a>|<a href="/happy/happyhomepage.do?z=R4xgsCKsYMc12&amp;cf=hd">游戏</a>|<a href="/sitemap.do?z=R4xgsCKsYMc12&amp;cf=hd">导航</a><br/>	<img src="http://img.tx.com.cn/img/tx/NBA/1_bfzb.gif" alt="zb" /><br/>NBA 06-08<a href="nbaLive.do?z=R4xgsCKsYMc12">[刷新]</a><br/><a href="nbaLiving.do?z=R4xgsCKsYMc12&amp;ar1=1834206">3rd 小牛61-61热火</a><br/>----------<br/><a href="nbaLiveMatchType.do?z=R4xgsCKsYMc12">篮球比分首页&gt;&gt;</a><br/>----------<br/>	
+直播讨论<br/>[10:47]<a href="/space/index.do?z=R4xgsCKsYMc58&amp;uid=14904946">情比雨丝</a> 我发现你越来越爱我…晕<br/>[10:47]<a href="/space/index.do?z=R4xgsCKsYMc11&amp;uid=61178462">管天下</a> 呵呵，我以为你学我，半场才出现<br/>[10:47]<a href="/space/index.do?z=R4xgsCKsYMc11&amp;uid=36283932">三岁就很“帅</a> 等总冠军一出来，咱俩就没机会刷着屏爱爱了，所以珍惜每一场，骂是爱，我发现你越来越爱我了。<br/>[10:46]<a href="/space/index.do?z=R4xgsCKsYMc11&amp;uid=36283932">三岁就很“帅</a> 等总冠军一出来，咱俩就没机会刷着屏爱爱了，所以珍惜每一场，骂是爱，我发现你越来越爱我了。<br/>[10:46]<a href="/space/index.do?z=R4xgsCKsYMc11&amp;uid=61178462">管天下</a> 呵呵，你知道我买的什么？还是分香香那点吧<br/><a href="/txnews/sports/nba/nbaLive.do;jsessionid=8F1F8E34686411D7597AD10716CAC6AE?z=R4xgsCKsYMc12&amp;fctpn=2">下一页</a><br/><input type="text" name="content"/><br/><anchor><go href="/txnews/sports/nba/nbaLive.do;jsessionid=8F1F8E34686411D7597AD10716CAC6AE?z=R4xgsCKsYMc12" method="post"><postfield name="uid" value="19612"/><postfield name="type" value="3"/><postfield name="content" value="$content"/></go>发言.</anchor><a href="/txnews/sports/nba/nbaLive.do;jsessionid=8F1F8E34686411D7597AD10716CAC6AE?z=R4xgsCKsYMc12">刷新</a><br/>	----------<br/>	
+<a href="index.do?z=R4xgsCKsYMc11">NBA</a>&gt;<a href="nbaLive.do?z=R4xgsCKsYMc11">直播</a>-<a href="/plugins/arena/index.do?z=R4xgsCKsYMc11">竞猜</a>-<a href="nbaScoreRet.do?z=R4xgsCKsYMc11">积分</a>-<a href="nbaPrev.do?z=R4xgsCKsYMc11">赛程</a><br /><a href="/forum/threads.do?z=R4xgsCKsYMc11&amp;fid=136453">[返回体育频道]</a><br/>----------<br/>
+
+		<a href="/relate/scene.do?z=R4xgsCKsYMc11&amp;from=link"><img src="http://img.tx.com.cn/img/tx/logos/zone_pj.gif" alt="平静"/></a><a href="/space/index.do?z=R4xgsCKsYMc11&amp;uid=19612&amp;cf=link">【红@牛】</a>&gt;<a href="/im/default.do?z=R4xgsCKsYMc11&amp;cf=link">好友</a><br/>
+<a href="/love/index.do?z=R4xgsCKsYMc11&amp;cf=link">交友</a>|<a href="/space/index.do?z=R4xgsCKsYMc11&amp;uid=19612&amp;cf=link">空间</a>|<a href="/myroom/communityIndex.do?z=R4xgsCKsYMc11&amp;cf=link">社区</a>|<a href="/happy/happyhomepage.do?z=R4xgsCKsYMc11&amp;cf=link">游戏</a>|<a href="/sitemap.do?z=R4xgsCKsYMc11&amp;cf=link">导航</a><br/>
+
+----------<br/>
+	天下网 tx.com.cn 10:49<br/>
+<a href="/kf/index.do?z=R4xgsCKsYMc11&amp;from=footer">客服中心</a>
+<a href="/myroom/invite/invite.do?z=R4xgsCKsYMc11">邀请朋友</a>
+	<a href="/space/cs_cssConfirm.do?z=R4xgsCKsYMc11&amp;sub=2">彩色版</a>
+
+<br/>
+</p>
+</card>
+</wml> 

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B7F7EF6D-1A58-48C6-8440-A02B653116BD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BCW.Question</RootNamespace>
+    <AssemblyName>BCW.Question</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BCW.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebSite\Bin\BCW.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="BCW.DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebSite\Bin\BCW.DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="BCW.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebSite\Bin\BCW.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\tb_QuestionAnswer.cs" />
+    <Compile Include="BLL\tb_QuestionControl.cs" />
+    <Compile Include="BLL\tb_QuestionController.cs" />
+    <Compile Include="BLL\tb_QuestionsAnswerCtr.cs" />
+    <Compile Include="BLL\tb_QuestionsList.cs" />
+    <Compile Include="BLL\tb_QuestionsType.cs" />
+    <Compile Include="DAL\tb_QuestionAnswer.cs" />
+    <Compile Include="DAL\tb_QuestionControl.cs" />
+    <Compile Include="DAL\tb_QuestionController.cs" />
+    <Compile Include="DAL\tb_QuestionsAnswerCtr.cs" />
+    <Compile Include="DAL\tb_QuestionsList.cs" />
+    <Compile Include="DAL\tb_QuestionsType.cs" />
+    <Compile Include="Model\tb_QuestionAnswer.cs" />
+    <Compile Include="Model\tb_QuestionControl.cs" />
+    <Compile Include="Model\tb_QuestionController.cs" />
+    <Compile Include="Model\tb_QuestionsAnswerCtr.cs" />
+    <Compile Include="Model\tb_QuestionsList.cs" />
+    <Compile Include="Model\tb_QuestionsType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Questions.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

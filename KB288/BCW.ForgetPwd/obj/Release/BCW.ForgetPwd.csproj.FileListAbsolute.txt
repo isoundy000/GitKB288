@@ -1,0 +1,15 @@
+G:\二次开发接口\开发环境及吹牛游戏实例\BCW.ForgetPwd\bin\Release\BCW.ForgetPwd.dll.config
+G:\二次开发接口\开发环境及吹牛游戏实例\BCW.ForgetPwd\bin\Release\BCW.ForgetPwd.dll
+G:\二次开发接口\开发环境及吹牛游戏实例\BCW.ForgetPwd\bin\Release\BCW.ForgetPwd.pdb
+G:\二次开发接口\开发环境及吹牛游戏实例\BCW.ForgetPwd\bin\Release\BCW.BLL.dll
+G:\二次开发接口\开发环境及吹牛游戏实例\BCW.ForgetPwd\bin\Release\BCW.Common.dll
+G:\二次开发接口\开发环境及吹牛游戏实例\BCW.ForgetPwd\bin\Release\BCW.DAL.dll
+G:\二次开发接口\开发环境及吹牛游戏实例\BCW.ForgetPwd\bin\Release\BCW.Data.dll
+G:\二次开发接口\开发环境及吹牛游戏实例\BCW.ForgetPwd\bin\Release\BCW.Model.dll
+G:\二次开发接口\开发环境及吹牛游戏实例\BCW.ForgetPwd\bin\Release\BCW.Data.pdb
+G:\二次开发接口\开发环境及吹牛游戏实例\BCW.ForgetPwd\bin\Release\BCW.DAL.pdb
+G:\二次开发接口\开发环境及吹牛游戏实例\BCW.ForgetPwd\bin\Release\BCW.Model.pdb
+G:\二次开发接口\开发环境及吹牛游戏实例\BCW.ForgetPwd\bin\Release\BCW.BLL.pdb
+G:\二次开发接口\开发环境及吹牛游戏实例\BCW.ForgetPwd\obj\Release\ResolveAssemblyReference.cache
+G:\二次开发接口\开发环境及吹牛游戏实例\BCW.ForgetPwd\obj\Release\BCW.ForgetPwd.dll
+G:\二次开发接口\开发环境及吹牛游戏实例\BCW.ForgetPwd\obj\Release\BCW.ForgetPwd.pdb

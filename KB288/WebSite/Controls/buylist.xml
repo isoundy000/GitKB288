@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="BuylistExpir" value="0" />
+	<set name="BuylistPayNum" value="3" />
+	<set name="BuylistpText2" value="付款方式(支持UBB):" />
+	<set name="BuylistpText" value="付款方式(支持UBB):" />
+	<set name="BuylistReTar" value="5" />
+	<set name="BuylistReMax" value="100" />
+</data>

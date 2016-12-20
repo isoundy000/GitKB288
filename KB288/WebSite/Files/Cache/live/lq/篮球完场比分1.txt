@@ -1,0 +1,34 @@
+﻿
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1"><title>
+	比分同步直播 - 手机球探网
+</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link type="text/css" href="/Css/Buy.css" rel="stylesheet" /></head>
+<body>
+ <div class="mainDiv">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td height="30"><div style="float:left"><a href="/"><img src="/Images/logo.gif" alt="球探网" height="30" width="100" /></a></div>
+<div class="rs"><span style='color:orange;' >简体</span> | <a href='/Home/Index_big'>繁體</a></div></td>
+    </tr>
+  </table>
+<div class="topNavigationBar"><a href="/Home/Index">首页</a>&nbsp;&nbsp;<a href="http://wap.310win.com?id=33">购彩</a>&nbsp;&nbsp;<a href="/ImScore/Index_cn?bfSimpleDisp=1&selectAll=1">足球比分</a>&nbsp;&nbsp;<a href="/BasImScore/Index_cn?selectAll=1">篮球比分</a></div> 
+
+<div style="line-height:20px;">
+    <div class="list_lottory c3"><a href='/Download.aspx'>安卓，iphone客户端下载！</a></div>
+    <div class="list_lottory" style="color:#EEE"><B>[足球]</B>&nbsp;<a href="/ImScore/Index_cn?bfSimpleDisp=1&selectAll=1">比分</a>&nbsp;<a href="/FoOdds/Index_cn">指数</a>&nbsp;<a href="/FiScore/Index_cn">完场</a>&nbsp;<a href="/FuScore/Index_cn">赛程</a>&nbsp;<a href="/FoPoint/Index_cn">积分</a></div>
+    <div class="list_lottory" style="color:#EEE"><B>[篮球]</B>&nbsp;<a href="/BasImScore/Index_cn?selectAll=1">比分</a>&nbsp;<a href="/BasOdds/Index_cn">指数</a>&nbsp;<a href="/BasFiScore/Index_cn">完场</a>&nbsp;<a href="/BasFuScore/Index_cn">赛程</a></div>
+    <div class="list_lottory" style="color:#EEE"><B>[网球]</B>&nbsp;<a href="/TnImScore/Index_cn?selectAll=1">比分</a>&nbsp;<a href="/TnFiScore/Index_cn">完场</a>&nbsp;<a href="/TnFuScore/Index_cn">赛程</a></div>
+    <div class="list_lottory" style="color:#EEE"><B>[综合]</B>&nbsp;<a href="/Badmin/Index_cn?selectAll=1" >羽毛球</a>&nbsp;<a href="/Baseball/Index_cn?selectAll=1">棒球</a>&nbsp;<a href="/Hockey/Index_cn?selectAll=1" >冰球</a><br/>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/PingPong/Index_cn?selectAll=1" >乒乓球</a>&nbsp;<a href="/Vollyball/Index_cn?selectAll=1" >排球</a>&nbsp;<a href="/Football/Index_cn?selectAll=1" >美式足球</a></div>
+      <div class="list_lottory" style="color:#EEE"><B>[前瞻]</B>&nbsp;<a href="/News/Index_cn?kind=1" >足球</a>&nbsp;<a href="/News/Index_cn?kind=2" >篮球</a></div>
+       <div class="list_lottory" style="color:#EEE"><B>[其他]</B>&nbsp;<a href="/Living/Index_cn" >直播</a></div>
+    
+  </div>
+
+</div>
+<div id="bottom"> 版式：<a href='http://wap.win007.com/default.aspx'>旧版</a>&nbsp;|&nbsp;3G版&nbsp;|&nbsp;<a href='/Download.aspx'>客户端</a><br />
+    球探网 ICP:粤B2-20060628</div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+G:\KUBAO\BCW.HB\bin\Release\BCW.HB.dll
+G:\KUBAO\BCW.HB\bin\Release\BCW.HB.pdb
+G:\KUBAO\BCW.HB\bin\Release\BCW.Common.dll
+G:\KUBAO\BCW.HB\bin\Release\BCW.Data.dll
+G:\KUBAO\BCW.HB\bin\Release\BCW.User.dll
+G:\KUBAO\BCW.HB\bin\Release\BCW.Data.pdb
+G:\KUBAO\BCW.HB\obj\Release\ResolveAssemblyReference.cache
+G:\KUBAO\BCW.HB\obj\Release\BCW.HB.dll
+G:\KUBAO\BCW.HB\obj\Release\BCW.HB.pdb

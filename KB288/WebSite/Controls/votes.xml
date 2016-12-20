@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="VotesLogo" value="" />
+	<set name="VotesStatus" value="0" />
+	<set name="VotesName" value="投票系统" />
+</data>

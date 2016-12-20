@@ -1,0 +1,51 @@
+﻿<?xml version='1.0'?>
+<!DOCTYPE wml PUBLIC '-//WAPFORUM//DTD WML 1.1//EN' 'http://www.wapforum.org/DTD/wml_1.1.xml'><wml><head>
+<meta http-equiv="Cache-Control" content="max-age=0" />
+</head>
+<card title="球探网">
+<do type="prev" label="Back"><prev /></do>
+<p align="center"><a href="/(S(h1jomc3az2fcsc45ngqnzs45))/nbaoddsshow.aspx?nametype=1&amp;SClassID=29&amp;SClass=波篮甲&amp;cid=3" title="简体">简体</a>
+	|
+	<a href="/(S(h1jomc3az2fcsc45ngqnzs45))/nbaoddsshow.aspx?nametype=2&amp;SClassID=29&amp;SClass=波篮甲&amp;cid=3" title="繁体">繁体</a>
+	|
+	<a href="http://wap.310win.com" title="购彩">购彩</a>
+</p><p><b>皇冠 - 波篮甲</b><br/>
+<small>01-13 01:00 <a href="/analysis/basketball.aspx?id=120504" title="Link">分析</a><br/>
+
+						AZS科斯扎林          - 特里弗              <br/>
+
+						让分:0.89 13.5 0.95<br/>
+总分:0.9 160.0 0.92</small><br/>
+<br/>
+<small>01-13 01:00 <a href="/analysis/basketball.aspx?id=120505" title="Link">分析</a><br/>
+
+						SKK科特维卡          - 普尔菲阿尔马        <br/>
+
+						让分:0.92 5.5 0.92<br/>
+总分:0.88 150.5 0.94</small><br/>
+<br/>
+<small>01-13 01:00 <a href="/analysis/basketball.aspx?id=120506" title="Link">分析</a><br/>
+
+						萨斯图               - 阿维尔              <br/>
+
+						让分:1.03 -1.0 0.81<br/>
+总分:0.93 157.5 0.89</small><br/>
+<br/>
+<small>01-13 02:00 <a href="/analysis/basketball.aspx?id=120507" title="Link">分析</a><br/>
+
+						波兹南               - 恩尼加斯扎尼        <br/>
+
+						让分:0.98 -9.0 0.86<br/>
+总分:0.93 148.5 0.89</small><br/>
+<br/>
+<small>01-13 02:30 <a href="/analysis/basketball.aspx?id=120508" title="Link">分析</a><br/>
+
+						波特图罗瓦           - 罗德茨              <br/>
+
+						让分:0.9 27.0 0.94<br/>
+总分:0.95 148.5 0.87</small><br/>
+</p><p align="center"><a href="/cnnbaoddslist.aspx?nametype=1&amp;cid=3" title="Link">[返回上页]</a><a href="/default.aspx" title="[首页]">[首页]</a><a href="/nbaoddsshow.aspx?nametype=1&amp;SClassID=29&amp;SClass=波篮甲&amp;cid=3&amp;t=5" title="[刷新]">[刷新]</a>
+
+<br/>更新时间：01-12 21:30
+</p></card>
+</wml>

@@ -1,0 +1,45 @@
+D:\klsf - 副本\开发环境及吹牛游戏实例\BCW.klsf\obj\Release\ResolveAssemblyReference.cache
+D:\klsf - 副本\开发环境及吹牛游戏实例\BCW.klsf\bin\Release\BCW.klsf.dll
+D:\klsf - 副本\开发环境及吹牛游戏实例\BCW.klsf\bin\Release\BCW.klsf.pdb
+D:\klsf - 副本\开发环境及吹牛游戏实例\BCW.klsf\bin\Release\BCW.BLL.dll
+D:\klsf - 副本\开发环境及吹牛游戏实例\BCW.klsf\bin\Release\BCW.Common.dll
+D:\klsf - 副本\开发环境及吹牛游戏实例\BCW.klsf\bin\Release\BCW.DAL.dll
+D:\klsf - 副本\开发环境及吹牛游戏实例\BCW.klsf\bin\Release\BCW.Data.dll
+D:\klsf - 副本\开发环境及吹牛游戏实例\BCW.klsf\bin\Release\BCW.Model.dll
+D:\klsf - 副本\开发环境及吹牛游戏实例\BCW.klsf\bin\Release\BCW.Data.pdb
+D:\klsf - 副本\开发环境及吹牛游戏实例\BCW.klsf\bin\Release\BCW.Model.pdb
+D:\klsf - 副本\开发环境及吹牛游戏实例\BCW.klsf\bin\Release\BCW.DAL.pdb
+D:\klsf - 副本\开发环境及吹牛游戏实例\BCW.klsf\bin\Release\BCW.BLL.pdb
+D:\klsf - 副本\开发环境及吹牛游戏实例\BCW.klsf\obj\Release\BCW.klsf.dll
+D:\klsf - 副本\开发环境及吹牛游戏实例\BCW.klsf\obj\Release\BCW.klsf.pdb
+D:\klsf - 副本\开发环境及吹牛游戏实例\BCW.klsf\bin\Release\BCW.klsf.dll.config
+D:\快乐十分\BCW.klsf\bin\Release\BCW.klsf.dll.config
+D:\快乐十分\BCW.klsf\bin\Release\BCW.klsf.dll
+D:\快乐十分\BCW.klsf\bin\Release\BCW.klsf.pdb
+D:\快乐十分\BCW.klsf\bin\Release\BCW.BLL.dll
+D:\快乐十分\BCW.klsf\bin\Release\BCW.Common.dll
+D:\快乐十分\BCW.klsf\bin\Release\BCW.DAL.dll
+D:\快乐十分\BCW.klsf\bin\Release\BCW.Data.dll
+D:\快乐十分\BCW.klsf\bin\Release\BCW.Model.dll
+D:\快乐十分\BCW.klsf\bin\Release\BCW.Data.pdb
+D:\快乐十分\BCW.klsf\bin\Release\BCW.Model.pdb
+D:\快乐十分\BCW.klsf\bin\Release\BCW.DAL.pdb
+D:\快乐十分\BCW.klsf\bin\Release\BCW.BLL.pdb
+D:\快乐十分\BCW.klsf\obj\Release\ResolveAssemblyReference.cache
+D:\快乐十分\BCW.klsf\obj\Release\BCW.klsf.dll
+D:\快乐十分\BCW.klsf\obj\Release\BCW.klsf.pdb
+D:\新建文件夹\快乐十分\BCW.klsf\bin\Release\BCW.klsf.dll.config
+D:\新建文件夹\快乐十分\BCW.klsf\bin\Release\BCW.klsf.dll
+D:\新建文件夹\快乐十分\BCW.klsf\bin\Release\BCW.klsf.pdb
+D:\新建文件夹\快乐十分\BCW.klsf\bin\Release\BCW.BLL.dll
+D:\新建文件夹\快乐十分\BCW.klsf\bin\Release\BCW.Common.dll
+D:\新建文件夹\快乐十分\BCW.klsf\bin\Release\BCW.DAL.dll
+D:\新建文件夹\快乐十分\BCW.klsf\bin\Release\BCW.Data.dll
+D:\新建文件夹\快乐十分\BCW.klsf\bin\Release\BCW.Model.dll
+D:\新建文件夹\快乐十分\BCW.klsf\bin\Release\BCW.Data.pdb
+D:\新建文件夹\快乐十分\BCW.klsf\bin\Release\BCW.Model.pdb
+D:\新建文件夹\快乐十分\BCW.klsf\bin\Release\BCW.DAL.pdb
+D:\新建文件夹\快乐十分\BCW.klsf\bin\Release\BCW.BLL.pdb
+D:\新建文件夹\快乐十分\BCW.klsf\obj\Release\ResolveAssemblyReference.cache
+D:\新建文件夹\快乐十分\BCW.klsf\obj\Release\BCW.klsf.dll
+D:\新建文件夹\快乐十分\BCW.klsf\obj\Release\BCW.klsf.pdb

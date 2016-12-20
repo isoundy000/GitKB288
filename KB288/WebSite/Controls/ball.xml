@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="BallOutIDNum" value="500" />
+	<set name="BallCycleMin" value="30" />
+	<set name="BallFoot" value="" />
+	<set name="BallTax" value="5" />
+	<set name="BallLogo" value="" />
+	<set name="BallNotes" value="" />
+	<set name="BallName" value="疯狂彩球" />
+	<set name="BallStatus" value="0" />
+	<set name="BalliCent" value="100000000" />
+	<set name="BallSysPay" value="100" />
+	<set name="BallOdds" value="20" />
+	<set name="BallOnTime" value="" />
+	<set name="BallRule" value="疯狂球彩游戏规则:[br]1.疯狂球彩为30分钟开一局，每期都有固定的赔率、限购份数和每份价格。[br]2.共20个彩球作为开奖数字，即1-20的数字随机开出，您可以每个数字购买多份，每份单价是一样的，如您买中则奖励如下：份数*单价*赔率=获奖币，同时游戏也抽取5%作为手续费，系统在每期投入1000币作为奖池！[br]3.如果无人中奖，会员的下注额奖投入下一轮奖池中，请放心购买！[br]4.本游戏纯属娱乐，本游戏最终解释权归本站所有。" />
+	<set name="BallSysNum" value="20" />
+	<set name="BallOutNum" value="1000" />
+	<set name="BallExpir" value="10" />
+	<set name="BallOpenType" value="0" />
+</data>

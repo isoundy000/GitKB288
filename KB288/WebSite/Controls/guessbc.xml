@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="SitePayCent" value="" />
+	<set name="Sitezq1" value="" />
+	<set name="SiteDsOdds" value="" />
+	<set name="Sitelq1" value="" />
+	<set name="SiteLogo" value="" />
+	<set name="Sitelq3" value="" />
+	<set name="Sitelq2" value="" />
+	<set name="SiteSmallPay" value="100" />
+	<set name="SiteDemoIDS" value="" />
+	<set name="SiteBigPay" value="1000" />
+	<set name="Sitelq4" value="" />
+	<set name="SitePayNum" value="0" />
+	<set name="SiteBigPay3" value="1000" />
+	<set name="SiteName" value="半场单节球类竞猜" />
+	<set name="Sitegqstat2" value="" />
+	<set name="Sitegqstat3" value="" />
+	<set name="Sitegqstat" value="" />
+	<set name="SiteDsSet" value="3" />
+	<set name="Sitevice" value="" />
+	<set name="Sitelqstat" value="" />
+	<set name="SiteMaxNum" value="0" />
+	<set name="SiteIsyc" value="0" />
+	<set name="SiteIDMaxPay" value="0" />
+	<set name="SiteExpir" value="5" />
+	<set name="SiteMaxNumGid" value="" />
+	<set name="SiteFoot" value="" />
+	<set name="Sitezqstat" value="" />
+	<set name="SiteSmallPay3" value="100" />
+	<set name="SiteIsbz" value="0" />
+</data>

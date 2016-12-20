@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="RemoveBodyEnd" value="" />
+	<set name="NextPageRegex" value="" />
+	<set name="ItemRemark" value="看图解码采集" />
+	<set name="Types" value="2" />
+	<set name="WebName" value="看图解码" />
+	<set name="CollecNum" value="0" />
+	<set name="Script_Html" value="Html" />
+	<set name="IsDesc" value="0" />
+	<set name="WebUrl" value="http://49yc.us" />
+	<set name="WebEncode" value="1" />
+	<set name="RemoveContent" value="" />
+	<set name="ItemName" value="看图解码" />
+	<set name="ListStart" value="&amp;lt;p align=&amp;apos;left&amp;apos;&amp;gt;" />
+	<set name="KeyWordStart" value="" />
+	<set name="ListUrl" value="http://49yc.us/List.aspx?ClassID=2" />
+	<set name="id" value="2" />
+	<set name="NextListRegex" value="&amp;lt;a.href=./([\s\S]+?).&amp;gt;下页&amp;lt;/a&amp;gt;" />
+	<set name="ContentStart" value="&amp;lt;br /&amp;gt;-------------&amp;lt;br/&amp;gt;" />
+	<set name="ListEnd" value="&amp;lt;br/&amp;gt;&amp;lt;a href=&amp;quot;/List.aspx" />
+	<set name="KeyWordEnd" value="" />
+	<set name="LinkStart" value="&amp;lt;a href=&amp;apos;" />
+	<set name="ContentEnd" value="&amp;lt;br /&amp;gt;-------------&amp;lt;br /&amp;gt;" />
+	<set name="DateRegex" value="" />
+	<set name="IsSaveImg" value="0" />
+	<set name="LinkEnd" value="&amp;apos;&amp;gt;" />
+	<set name="TitleEnd" value="&amp;apos;&amp;gt;&amp;lt;p align=&amp;apos;left&amp;apos;&amp;gt;" />
+	<set name="RemoveTitle" value="" />
+	<set name="RemoveBodyStart" value="" />
+	<set name="TitleStart" value="&amp;lt;card title=&amp;apos;" />
+</data>

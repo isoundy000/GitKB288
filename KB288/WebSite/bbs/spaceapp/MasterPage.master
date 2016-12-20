@@ -1,0 +1,4 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="bbs_spaceapp_MasterPage" %>
+<asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+</asp:ContentPlaceHolder>
+<%= BCW.Common.Utils.ForWordType(builder.ToString()) %>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<set name="Fruit28Odds" value="0,28,0,0,0,0,0,0,0,1,0,0,0,1,5,5,5,0,28,0,0,0,0,0,0,0,0,0" />
+	<set name="Fruit28Notes" value="[公告]流氓导弹全新出炉" />
+	<set name="Fruit28SmallPay" value="100" />
+	<set name="Fruit28BigPay" value="5100000" />
+	<set name="Fruit28Name" value="水果28" />
+	<set name="Fruit28Foot" value="" />
+	<set name="Fruit28Fee" value="5" />
+	<set name="Fruit28Status" value="0" />
+	<set name="Fruit28Expir" value="5" />
+	<set name="Fruit28Logo" value="/bbs/game/fruit.png" />
+</data>

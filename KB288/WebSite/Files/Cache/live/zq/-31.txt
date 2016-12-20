@@ -1,0 +1,57 @@
+﻿<?xml version='1.0'?>
+<!DOCTYPE wml PUBLIC '-//WAPFORUM//DTD WML 1.1//EN' 'http://www.wapforum.org/DTD/wml_1.1.xml'><wml><head>
+<meta http-equiv="Cache-Control" content="max-age=0" />
+</head>
+<card title="球探网">
+<p align="center"><a href="/(S(rwnqmd55xijdqq453oe0sazp))/Sclassseach.aspx?type=1&amp;nametype=1&amp;day=-3" title="简体">简体</a>
+	|
+	<a href="/(S(rwnqmd55xijdqq453oe0sazp))/Sclassseach.aspx?type=1&amp;nametype=2&amp;day=-3" title="繁体">繁体</a>
+	|
+	<a href="http://wap.310win.com" title="购彩">购彩</a>
+</p><p>05月24号 星期二<br/>
+<small><a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=9" title="德乙">德乙</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=215" title="欧青U19">欧青U19</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=26" title="瑞典超">瑞典超</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=617" title="波罗联">波罗联</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=266" title="挪乙C">挪乙C</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=192" title="亚冠杯">亚冠杯</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=350" title="亚协杯">亚协杯</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=127" title="丹麦甲">丹麦甲</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=161" title="海湾杯">海湾杯</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=268" title="丹乙东">丹乙东</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=128" title="奥乙">奥乙</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=118" title="以超">以超</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=235" title="俄甲">俄甲</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=520" title="海湾锦标">海湾锦标</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=221" title="波兰甲">波兰甲</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=193" title="阿尔甲">阿尔甲</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=194" title="新加坡联">新加坡联</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=246" title="冰岛杯">冰岛杯</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=321" title="摩洛超">摩洛超</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=353" title="爱沙甲">爱沙甲</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=620" title="阿塞杯">阿塞杯</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=436" title="澳维超">澳维超</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=317" title="马来甲">马来甲</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=423" title="阿乙">阿乙</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=483" title="美公开赛">美公开赛</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=41" title="友谊赛">友谊赛</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=233" title="芬乙A">芬乙A</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=443" title="瑞典女超">瑞典女超</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=447" title="瑞青联">瑞青联</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=448" title="美乙">美乙</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=569" title="马其杯">马其杯</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=807" title="捷U19">捷U19</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=823" title="乌兹杯">乌兹杯</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=848" title="波兰乙西">波兰乙西</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=895" title="俄乙西">俄乙西</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=898" title="伊朗甲">伊朗甲</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=1039" title="俄乙乌">俄乙乌</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=1047" title="冰女超">冰女超</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=1054" title="伊拉联">伊拉联</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=1062" title="阿美甲">阿美甲</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=1077" title="哈萨甲">哈萨甲</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=1115" title="威甲">威甲</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=1116" title="格鲁乙">格鲁乙</a><br/>
+<a href="Scheduleseach.aspx?day=-3&amp;nametype=1&amp;SClassID=1161" title="土丙附">土丙附</a></small></p><p align="center"><a href="/weekindex.aspx?type=1&amp;nametype=1" title="Link">[返回上页]</a><a href="/default.aspx" title="[首页]">[首页]</a><a href="/Sclassseach.aspx?type=1&amp;nametype=1&amp;day=-3&amp;t=551" title="[刷新]">[刷新]</a>
+</p></card>
+</wml>

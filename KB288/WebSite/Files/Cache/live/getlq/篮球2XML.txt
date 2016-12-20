@@ -1,0 +1,15 @@
+﻿<?xml version='1.0'?>
+<!DOCTYPE wml PUBLIC '-//WAPFORUM//DTD WML 1.1//EN' 'http://www.wapforum.org/DTD/wml_1.1.xml'><wml><head>
+<meta http-equiv="Cache-Control" content="max-age=0" />
+</head>
+<card title="球探网">
+<do type="prev" label="Back"><prev /></do>
+<p align="center"><a href="/(S(s2ctcc45f1bkm5aqemasotqi))/cnnbaoddslist.aspx?cid=3&amp;nametype=1" title="简体">简体</a>
+	|
+	<a href="/(S(s2ctcc45f1bkm5aqemasotqi))/cnnbaoddslist.aspx?cid=3&amp;nametype=2" title="繁体">繁体</a>
+	|
+	<a href="http://wap.310win.com" title="购彩">购彩</a>
+</p><p>&gt;&gt;皇冠指数<br/>
+<small><a href="/nbaoddsshow.aspx?nametype=1&amp;SClassID=29&amp;sclass=波篮甲&amp;cid=3" title="波篮甲">波篮甲</a><a href="/nbaoddsshow.aspx?nametype=1&amp;SClassID=221&amp;sclass=乌克超&amp;cid=3" title="乌克超">乌克超</a><a href="/nbaoddsshow.aspx?nametype=1&amp;SClassID=172&amp;sclass=丹麦甲&amp;cid=3" title="丹麦甲">丹麦甲</a><a href="/nbaoddsshow.aspx?nametype=1&amp;SClassID=1&amp;sclass=NBA&amp;cid=3" title="NBA">NBA</a><a href="/nbaoddsshow.aspx?nametype=1&amp;SClassID=18&amp;sclass=亚海联&amp;cid=3" title="亚海联">亚海联</a><a href="/nbaoddsshow.aspx?nametype=1&amp;SClassID=176&amp;sclass=欧女联&amp;cid=3" title="欧女联">欧女联</a><a href="/nbaoddsshow.aspx?nametype=1&amp;SClassID=222&amp;sclass=荷篮甲&amp;cid=3" title="荷篮甲">荷篮甲</a><a href="/nbaoddsshow.aspx?nametype=1&amp;SClassID=302&amp;sclass=阿甲&amp;cid=3" title="阿甲">阿甲</a><a href="/nbaoddsshow.aspx?nametype=1&amp;SClassID=177&amp;sclass=罗篮甲&amp;cid=3" title="罗篮甲">罗篮甲</a><a href="/nbaoddsshow.aspx?nametype=1&amp;SClassID=20&amp;sclass=西篮甲&amp;cid=3" title="西篮甲">西篮甲</a><a href="/nbaoddsshow.aspx?nametype=1&amp;SClassID=8&amp;sclass=NCAA&amp;cid=3" title="NCAA">NCAA</a><a href="/nbaoddsshow.aspx?nametype=1&amp;SClassID=151&amp;sclass=巴西甲&amp;cid=3" title="巴西甲">巴西甲</a></small></p><p align="center"><a href="/oddsnbaindex.aspx?nametype=1" title="Link">[返回上页]</a><a href="/default.aspx" title="[首页]">[首页]</a><a href="/cnnbaoddslist.aspx?cid=3&amp;nametype=1&amp;t=677" title="[刷新]">[刷新]</a>
+</p></card>
+</wml>
