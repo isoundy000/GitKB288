@@ -28,7 +28,7 @@ namespace BCW.Mobile.Error
         MOBILE_PARAMS_ERROR,
 
         /// <summary>
-        /// 注册手机号码为空值 
+        /// 手机号码不能为空 
         /// </summary>
         MOBILE_PHONE_ISNULL,
 
@@ -127,7 +127,7 @@ namespace BCW.Mobile.Error
         //10000起：论坛
         //20000起：内线
         //30000起：游戏 
-        //40000起：公告、喇叭系统
+        //40000起：公告、喇叭系统        
           
 
         #region 系统错误码
@@ -145,6 +145,17 @@ namespace BCW.Mobile.Error
         /// 会员酷币不足
         /// </summary>
         SYS_USER_COBI_NOT_ENOUGH = 1003,
+
+        /// <summary>
+        /// 帐号ID格式不正确
+        /// </summary>
+        SYS_USER_ACCOUNT_VERIFY = 1004,
+
+        /// <summary>
+        /// 原密码不正确
+        /// </summary>
+        SYS_USER_OLDPWD_ERROR = 1005,
+
 
         #endregion
 

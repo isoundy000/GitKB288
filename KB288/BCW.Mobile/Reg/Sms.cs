@@ -43,7 +43,7 @@ namespace BCW.Mobile.SMS
            return instance;
        }
 
-       public SmsData SendSms(string _mobile)
+       public SmsData SendSms(string _mobile,int _type)
        {
            SmsData _smsData = new SmsData();  
 
@@ -94,7 +94,7 @@ namespace BCW.Mobile.SMS
                    validate.Flag = 1;
                    validate.mesCode = mesCode;
                    validate.codeTime = DateTime.Now.AddMinutes( tm );
-                   validate.type = 1;
+                   validate.type = _type;
                    validate.source = 1;
                    Soap57ProviderService MesExt = new Soap57ProviderService();
                    string result = "";

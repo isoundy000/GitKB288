@@ -14,6 +14,7 @@ using BCW.Mobile.Error;
 using BCW.Mobile.Protocol;
 using BCW.Mobile.User;
 
+
 public class UserAccount : IHttpHandler {
 
     private HttpContext httpContext;
@@ -30,6 +31,12 @@ public class UserAccount : IHttpHandler {
             case "get":            //获得所有帐户信息
                 GetMedalData();
                 break;
+            case "modifyPwd":    //修改密码
+                ModifyPwd();
+                break;
+            case "resetPwd":    //忘记密码
+                ResetPwd();
+                break;
         }
 
 
@@ -44,6 +51,34 @@ public class UserAccount : IHttpHandler {
         RspUserAccount _rspData = UserManager.Instance().GetUserAllAccount(_reqData);
         httpContext.Response.Write(_rspData.SerializeObject());
     }
+
+    /// <summary>
+    /// 修改密码
+    /// </summary>
+    private void ModifyPwd()
+    {
+        ReqUserModifyPwd _reqData = new ReqUserModifyPwd();
+        _reqData.userId =  int.Parse(Utils.GetRequest("pUserId", "all", 1, @"^\d*$", "-1"));
+        _reqData.userKey =  Utils.GetRequest("pUsKey", "all", 0, "", "");
+        _reqData.oldPwd =   Utils.GetRequest("pOldPwd", "all", 0, "", "");
+        _reqData.newPwd =   Utils.GetRequest("pNewPwd", "all", 0, "", "");   
+        RspUserModifyPwd _rspData = PasswordManager.Instance().UserModifyPwd(_reqData);
+        httpContext.Response.Write(_rspData.SerializeObject());      
+    }
+
+    /// <summary>
+    /// 重置密码
+    /// </summary>
+    private void ResetPwd()
+    {
+        ReqUserResetPwd _reqData = new ReqUserResetPwd();
+        _reqData.userId =  int.Parse(Utils.GetRequest("pUserId", "all", 1, @"^\d*$", "-1"));
+        _reqData.ValidateCode = int.Parse(Utils.GetRequest("pVerifycode", "all", 1, @"^\d*$", "-1"));
+        _reqData.newPwd =   Utils.GetRequest("pNewPwd", "all", 0, "", "");   
+        RspUserResetPwd _rspData = PasswordManager.Instance().UserResetPwd(_reqData);
+        httpContext.Response.Write(_rspData.SerializeObject());  
+    }
+
 
     public bool IsReusable
     {

@@ -93,6 +93,7 @@
     <Compile Include="Protocol\User.cs" />
     <Compile Include="Reg\Reg.cs" />
     <Compile Include="Reg\Sms.cs" />
+    <Compile Include="User\PasswordManager.cs" />
     <Compile Include="User\UserManager.cs" />
     <Compile Include="Web References\WebReference\Reference.cs">
       <AutoGen>True</AutoGen>

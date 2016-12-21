@@ -22,8 +22,9 @@ namespace BCW.Mobile.Error
             dctErrorCode.Add(MOBILE_ERROR_CODE.SYS_USER_LIMIT_NOT_ENOUGH, "自身权限不足");
 
 
-            dctErrorCode.Add(MOBILE_ERROR_CODE.MOBILE_PHONE_ISNULL, "注册手机号码为空值");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.MOBILE_PHONE_ISNULL, "手机号码不能为空");
             dctErrorCode.Add(MOBILE_ERROR_CODE.MOBILE_PHONE_VERIFY, "手机号码格式不正确");
+
 
             #region 短信验证码
             dctErrorCode.Add(MOBILE_ERROR_CODE.SMS_FREQUENTLY_TODAY, "今日获取短信太频繁，已达本日上限，请明天再试");
@@ -44,13 +45,21 @@ namespace BCW.Mobile.Error
             #region  登录
             dctErrorCode.Add(MOBILE_ERROR_CODE.LOGIN_PARAMS_ERROR, "登录参数错误");
             dctErrorCode.Add(MOBILE_ERROR_CODE.LOGIN_PLATFORM_USER_NOTFOUND, "未绑定到第三方登录帐号");
-            dctErrorCode.Add(MOBILE_ERROR_CODE.LOGIN_ACCOUNT_NOTFOUND, "找不到用户帐户信息");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.LOGIN_ACCOUNT_NOTFOUND, "帐号不存在");
             dctErrorCode.Add(MOBILE_ERROR_CODE.LOGIN_BINDPLATFORM_FAILD, "绑定第三方帐号失败");
             dctErrorCode.Add(MOBILE_ERROR_CODE.LOGIN_USER_PWD_ERROR, "用户名或密码不正确");
             dctErrorCode.Add(MOBILE_ERROR_CODE.MOBILE_USERID_VERIFY, "帐号格式错误(必须是数字)");
             dctErrorCode.Add(MOBILE_ERROR_CODE.LOGIN_BINDPLATFORM_USE, "该帐号已被其它帐号绑定");
             dctErrorCode.Add(MOBILE_ERROR_CODE.SYS_USER_NOLOGIN, "该会员还未登录");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.SYS_USER_ACCOUNT_VERIFY, "帐号ID格式不正确");
+
             #endregion
+
+            #region 密码相关 
+            dctErrorCode.Add(MOBILE_ERROR_CODE.SYS_USER_OLDPWD_ERROR, "原密码不正确");
+
+            #endregion
+
 
             #region
             dctErrorCode.Add(MOBILE_ERROR_CODE.SYS_USER_COBI_NOT_ENOUGH, "酷币不足");
