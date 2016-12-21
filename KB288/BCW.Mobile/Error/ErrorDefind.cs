@@ -235,8 +235,16 @@ namespace BCW.Mobile.Error
         /// </summary>
         BBS_THREAD_DEL_FORBID = 10019,
 
-
+        /// <summary>
+        /// 不能操作自己的帖子
+        /// </summary>
         BBS_THREAD_OPER_MYSELF = 10020,
+
+        /// <summary>
+        /// 今天已经签到
+        /// </summary>
+        BBS_SIGNIN_HAS_TODAY = 10021,
+
         #endregion
 
         #region  公告、喇叭错误码

@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API.cs" />
+    <Compile Include="BBS\Signin\SigninManager.cs" />
     <Compile Include="BBS\Thread\Thread.cs" />
     <Compile Include="BLL\MobileSlider.cs" />
     <Compile Include="BLL\UserPlatform.cs" />
@@ -78,6 +79,7 @@
     </Compile>
     <Compile Include="Protocol\Notices.cs" />
     <Compile Include="Protocol\ProtocolBase.cs" />
+    <Compile Include="Protocol\Signin.cs" />
     <Compile Include="Protocol\Thread.cs" />
     <Compile Include="Reg\Reg.cs" />
     <Compile Include="Reg\Sms.cs" />

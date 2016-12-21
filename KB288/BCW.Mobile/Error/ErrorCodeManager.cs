@@ -8,8 +8,8 @@ namespace BCW.Mobile.Error
     public class ErrorCodeManager
     {
         private static ErrorCodeManager mInstance;
-        private string xmlPath = "../Controls/bbs.xml";
-        private string netWorkXmlPath = "../Controls/network.xml";
+        private string xmlPath = "../../Controls/bbs.xml";
+        private string netWorkXmlPath = "../../Controls/network.xml";
 
         private Dictionary<MOBILE_ERROR_CODE, string> dctErrorCode;
 
@@ -78,6 +78,9 @@ namespace BCW.Mobile.Error
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_IS_RECOM, "帖子已被推荐");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_DEL_FORBID, "本版帖子不能删除");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_OPER_MYSELF, "不能操作自己的帖子");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_SIGNIN_HAS_TODAY, "今天已经签过到");
+            
+
             #endregion
 
             #region 公告、喇叭
