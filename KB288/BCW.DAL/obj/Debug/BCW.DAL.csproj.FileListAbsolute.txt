@@ -65,6 +65,6 @@ F:\Work\GitKB288\KB288\BCW.DAL\bin\Debug\BCW.Data.dll
 F:\Work\GitKB288\KB288\BCW.DAL\bin\Debug\BCW.Model.dll
 F:\Work\GitKB288\KB288\BCW.DAL\bin\Debug\BCW.Data.pdb
 F:\Work\GitKB288\KB288\BCW.DAL\bin\Debug\BCW.Model.pdb
-F:\Work\GitKB288\KB288\BCW.DAL\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\GitKB288\KB288\BCW.DAL\obj\Debug\BCW.DAL.csprojResolveAssemblyReference.cache
 F:\Work\GitKB288\KB288\BCW.DAL\obj\Debug\BCW.DAL.dll
 F:\Work\GitKB288\KB288\BCW.DAL\obj\Debug\BCW.DAL.pdb

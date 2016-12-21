@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:suds="http://www.w3.org/2000/wsdl/suds" xmlns:ns3="http://schemas.microsoft.com/clr/nsassem/weblib.ISoap57/weblib%2C%20Version%3D2.1.5960.31462%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull" xmlns:ns2="http://schemas.microsoft.com/clr/nsassem/weblib/weblib%2C%20Version%3D2.1.5960.31462%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps/soaps" xmlns:ns1="http://schemas.microsoft.com/clr/ns/System" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns0="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps/soaps" name="Soap57Provider" targetNamespace="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps/soaps" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:suds="http://www.w3.org/2000/wsdl/suds" xmlns:ns3="http://schemas.microsoft.com/clr/nsassem/weblib.ISoap57/weblib%2C%20Version%3D3.0.1.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dc1a16487c920c3dc" xmlns:ns2="http://schemas.microsoft.com/clr/nsassem/weblib/weblib%2C%20Version%3D3.0.1.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dc1a16487c920c3dc" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps/soaps" xmlns:ns1="http://schemas.microsoft.com/clr/ns/System" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns0="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps/soaps" name="Soap57Provider" targetNamespace="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps/soaps" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps/soaps">
       <xsd:complexType name="ArrayOfString">
@@ -10,7 +10,7 @@
         </xsd:complexContent>
       </xsd:complexType>
     </xsd:schema>
-    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://schemas.microsoft.com/clr/nsassem/weblib.ISoap57/weblib%2C%20Version%3D2.1.5960.31462%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://schemas.microsoft.com/clr/nsassem/weblib.ISoap57/weblib%2C%20Version%3D3.0.1.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dc1a16487c920c3dc">
       <xsd:complexType name="ArrayOfString">
         <xsd:complexContent mixed="false">
           <xsd:restriction base="soapenc:Array">
@@ -20,11 +20,24 @@
       </xsd:complexType>
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="Soap57Provider.QueryReportInput">
+  <wsdl:message name="Soap57Provider.InitializeLifetimeServiceInput" />
+  <wsdl:message name="Soap57Provider.InitializeLifetimeServiceOutput">
+    <wsdl:part name="return" type="xsd:anyType" />
+  </wsdl:message>
+  <wsdl:message name="Soap57Provider.RetrieveAllInput">
     <wsdl:part name="spID" type="xsd:string" />
     <wsdl:part name="password" type="xsd:string" />
   </wsdl:message>
-  <wsdl:message name="Soap57Provider.QueryReportOutput">
+  <wsdl:message name="Soap57Provider.RetrieveAllOutput">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="Soap57Provider.BatchSubmitInput">
+    <wsdl:part name="spID" type="xsd:string" />
+    <wsdl:part name="password" type="xsd:string" />
+    <wsdl:part name="accessCode" type="xsd:string" />
+    <wsdl:part name="mobileContentArray" type="ns0:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="Soap57Provider.BatchSubmitOutput">
     <wsdl:part name="return" type="xsd:string" />
   </wsdl:message>
   <wsdl:message name="Soap57Provider.SubmitInput">
@@ -37,31 +50,18 @@
   <wsdl:message name="Soap57Provider.SubmitOutput">
     <wsdl:part name="return" type="xsd:string" />
   </wsdl:message>
-  <wsdl:message name="Soap57Provider.RetrieveAllInput">
-    <wsdl:part name="spID" type="xsd:string" />
-    <wsdl:part name="password" type="xsd:string" />
-  </wsdl:message>
-  <wsdl:message name="Soap57Provider.RetrieveAllOutput">
-    <wsdl:part name="return" type="xsd:string" />
-  </wsdl:message>
-  <wsdl:message name="Soap57Provider.InitializeLifetimeServiceInput" />
-  <wsdl:message name="Soap57Provider.InitializeLifetimeServiceOutput">
-    <wsdl:part name="return" type="xsd:anyType" />
-  </wsdl:message>
-  <wsdl:message name="Soap57Provider.BatchSubmitInput">
-    <wsdl:part name="spID" type="xsd:string" />
-    <wsdl:part name="password" type="xsd:string" />
-    <wsdl:part name="accessCode" type="xsd:string" />
-    <wsdl:part name="mobileContentArray" type="ns0:ArrayOfString" />
-  </wsdl:message>
-  <wsdl:message name="Soap57Provider.BatchSubmitOutput">
-    <wsdl:part name="return" type="xsd:string" />
-  </wsdl:message>
   <wsdl:message name="Soap57Provider.QueryBalanceInput">
     <wsdl:part name="spID" type="xsd:string" />
     <wsdl:part name="password" type="xsd:string" />
   </wsdl:message>
   <wsdl:message name="Soap57Provider.QueryBalanceOutput">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="Soap57Provider.QueryReportInput">
+    <wsdl:part name="spID" type="xsd:string" />
+    <wsdl:part name="password" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="Soap57Provider.QueryReportOutput">
     <wsdl:part name="return" type="xsd:string" />
   </wsdl:message>
   <wsdl:message name="Soap57Provider.QueryMoInput">
@@ -119,29 +119,29 @@
     <wsdl:part name="return" type="xsd:string" />
   </wsdl:message>
   <wsdl:portType name="Soap57ProviderPortType">
-    <wsdl:operation name="QueryReport" parameterOrder="spID password">
-      <wsdl:input name="QueryReportRequest" message="ns0:Soap57Provider.QueryReportInput" />
-      <wsdl:output name="QueryReportResponse" message="ns0:Soap57Provider.QueryReportOutput" />
-    </wsdl:operation>
-    <wsdl:operation name="Submit" parameterOrder="spID password accessCode content mobileString">
-      <wsdl:input name="SubmitRequest" message="ns0:Soap57Provider.SubmitInput" />
-      <wsdl:output name="SubmitResponse" message="ns0:Soap57Provider.SubmitOutput" />
+    <wsdl:operation name="InitializeLifetimeService">
+      <wsdl:input name="InitializeLifetimeServiceRequest" message="ns0:Soap57Provider.InitializeLifetimeServiceInput" />
+      <wsdl:output name="InitializeLifetimeServiceResponse" message="ns0:Soap57Provider.InitializeLifetimeServiceOutput" />
     </wsdl:operation>
     <wsdl:operation name="RetrieveAll" parameterOrder="spID password">
       <wsdl:input name="RetrieveAllRequest" message="ns0:Soap57Provider.RetrieveAllInput" />
       <wsdl:output name="RetrieveAllResponse" message="ns0:Soap57Provider.RetrieveAllOutput" />
     </wsdl:operation>
-    <wsdl:operation name="InitializeLifetimeService">
-      <wsdl:input name="InitializeLifetimeServiceRequest" message="ns0:Soap57Provider.InitializeLifetimeServiceInput" />
-      <wsdl:output name="InitializeLifetimeServiceResponse" message="ns0:Soap57Provider.InitializeLifetimeServiceOutput" />
-    </wsdl:operation>
     <wsdl:operation name="BatchSubmit" parameterOrder="spID password accessCode mobileContentArray">
       <wsdl:input name="BatchSubmitRequest" message="ns0:Soap57Provider.BatchSubmitInput" />
       <wsdl:output name="BatchSubmitResponse" message="ns0:Soap57Provider.BatchSubmitOutput" />
     </wsdl:operation>
+    <wsdl:operation name="Submit" parameterOrder="spID password accessCode content mobileString">
+      <wsdl:input name="SubmitRequest" message="ns0:Soap57Provider.SubmitInput" />
+      <wsdl:output name="SubmitResponse" message="ns0:Soap57Provider.SubmitOutput" />
+    </wsdl:operation>
     <wsdl:operation name="QueryBalance" parameterOrder="spID password">
       <wsdl:input name="QueryBalanceRequest" message="ns0:Soap57Provider.QueryBalanceInput" />
       <wsdl:output name="QueryBalanceResponse" message="ns0:Soap57Provider.QueryBalanceOutput" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryReport" parameterOrder="spID password">
+      <wsdl:input name="QueryReportRequest" message="ns0:Soap57Provider.QueryReportInput" />
+      <wsdl:output name="QueryReportResponse" message="ns0:Soap57Provider.QueryReportOutput" />
     </wsdl:operation>
     <wsdl:operation name="QueryMo" parameterOrder="spID password">
       <wsdl:input name="QueryMoRequest" message="ns0:Soap57Provider.QueryMoInput" />
@@ -179,23 +179,13 @@
     <suds:class type="ns0:Soap57Provider" rootType="MarshalByRefObject">
       <suds:implements type="ns2:ISoap57" />
     </suds:class>
-    <wsdl:operation name="QueryReport">
-      <soap:operation soapAction="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps#QueryReport" />
+    <wsdl:operation name="InitializeLifetimeService">
+      <soap:operation soapAction="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps#InitializeLifetimeService" />
       <suds:method attributes="public virtual" />
-      <wsdl:input name="QueryReportRequest">
+      <wsdl:input name="InitializeLifetimeServiceRequest">
         <soap:body use="encoded" namespace="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
-      <wsdl:output name="QueryReportResponse">
-        <soap:body use="encoded" namespace="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Submit">
-      <soap:operation soapAction="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps#Submit" />
-      <suds:method attributes="public virtual" />
-      <wsdl:input name="SubmitRequest">
-        <soap:body use="encoded" namespace="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:input>
-      <wsdl:output name="SubmitResponse">
+      <wsdl:output name="InitializeLifetimeServiceResponse">
         <soap:body use="encoded" namespace="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
@@ -209,16 +199,6 @@
         <soap:body use="encoded" namespace="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="InitializeLifetimeService">
-      <soap:operation soapAction="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps#InitializeLifetimeService" />
-      <suds:method attributes="public virtual" />
-      <wsdl:input name="InitializeLifetimeServiceRequest">
-        <soap:body use="encoded" namespace="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:input>
-      <wsdl:output name="InitializeLifetimeServiceResponse">
-        <soap:body use="encoded" namespace="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="BatchSubmit">
       <soap:operation soapAction="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps#BatchSubmit" />
       <suds:method attributes="public virtual" />
@@ -229,6 +209,16 @@
         <soap:body use="encoded" namespace="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Submit">
+      <soap:operation soapAction="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps#Submit" />
+      <suds:method attributes="public virtual" />
+      <wsdl:input name="SubmitRequest">
+        <soap:body use="encoded" namespace="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="SubmitResponse">
+        <soap:body use="encoded" namespace="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="QueryBalance">
       <soap:operation soapAction="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps#QueryBalance" />
       <suds:method attributes="public virtual" />
@@ -236,6 +226,16 @@
         <soap:body use="encoded" namespace="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output name="QueryBalanceResponse">
+        <soap:body use="encoded" namespace="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryReport">
+      <soap:operation soapAction="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps#QueryReport" />
+      <suds:method attributes="public virtual" />
+      <wsdl:input name="QueryReportRequest">
+        <soap:body use="encoded" namespace="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="QueryReportResponse">
         <soap:body use="encoded" namespace="http://schemas.microsoft.com/clr/nsassem/com.softwee.smgw.soaps.Soap57Provider/soaps" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>

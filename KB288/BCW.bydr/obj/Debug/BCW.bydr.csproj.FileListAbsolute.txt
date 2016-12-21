@@ -51,6 +51,5 @@ F:\Work\GitKB288\KB288\BCW.bydr\bin\Debug\BCW.bydr.pdb
 F:\Work\GitKB288\KB288\BCW.bydr\bin\Debug\BCW.Common.dll
 F:\Work\GitKB288\KB288\BCW.bydr\bin\Debug\BCW.Data.dll
 F:\Work\GitKB288\KB288\BCW.bydr\bin\Debug\BCW.Data.pdb
-F:\Work\GitKB288\KB288\BCW.bydr\obj\Debug\ResolveAssemblyReference.cache
 F:\Work\GitKB288\KB288\BCW.bydr\obj\Debug\BCW.bydr.dll
 F:\Work\GitKB288\KB288\BCW.bydr\obj\Debug\BCW.bydr.pdb

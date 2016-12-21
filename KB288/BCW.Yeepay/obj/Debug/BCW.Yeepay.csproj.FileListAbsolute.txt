@@ -37,6 +37,5 @@ F:\Work\KB288\BCW.Yeepay\obj\Debug\BCW.Yeepay.pdb
 F:\Work\GitKB288\KB288\BCW.Yeepay\bin\Debug\BCW.Yeepay.dll
 F:\Work\GitKB288\KB288\BCW.Yeepay\bin\Debug\BCW.Yeepay.pdb
 F:\Work\GitKB288\KB288\BCW.Yeepay\bin\Debug\BCW.Common.dll
-F:\Work\GitKB288\KB288\BCW.Yeepay\obj\Debug\ResolveAssemblyReference.cache
 F:\Work\GitKB288\KB288\BCW.Yeepay\obj\Debug\BCW.Yeepay.dll
 F:\Work\GitKB288\KB288\BCW.Yeepay\obj\Debug\BCW.Yeepay.pdb

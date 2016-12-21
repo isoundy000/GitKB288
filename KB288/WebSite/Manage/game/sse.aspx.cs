@@ -1476,11 +1476,11 @@ namespace SSEManagePage
 
         public override void ShowPage()
         {
-            //int ManageId = new BCW.User.Manage().IsManageLogin();
-            //if( ManageId != 1 && ManageId != 9 )
-            //{
-            //    Utils.Error( "权限不足", "" );
-            //}
+            int ManageId = new BCW.User.Manage().IsManageLogin();
+            if( ManageId != 1 && ManageId != 9 )
+            {
+                Utils.Error( "权限不足", "" );
+            }
                 
 
             //IncludePage( new SSEPageHeader( this.mainPage, this.baseMaster ) );

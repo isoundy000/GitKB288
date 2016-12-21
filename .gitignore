@@ -10,3 +10,9 @@ Desktop.ini
 *.txt
 *.cache
 *.bak
+/KB288/WebSite/App_Data/ASPNETDB.MDF
+/KB288/WebSite/App_Data/aspnetdb_log.ldf
+/KB288/WebSite/log
+/KB288/WebSite/Bin
+/KB288/WebSite/{3B9911EB-3ACC-44FB-A3BE-2074817A2F01}
+/KB288/WebSite/Files/txt

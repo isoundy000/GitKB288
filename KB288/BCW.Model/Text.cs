@@ -23,6 +23,7 @@ namespace BCW.Model
 		private string _replyid;
 		private int _readnum;
 		private int _isgood;
+        private string _goodSmallIcon;
 		private int _isrecom;
 		private int _islock;
 		private int _istop;
@@ -199,6 +200,14 @@ namespace BCW.Model
 		{
 			set{ _isgood=value;}
 			get{return _isgood;}
+		}
+        		/// <summary>
+		/// 是否精华
+		/// </summary>
+		public string GoodSmallIcon
+		{
+			set{ _goodSmallIcon=value;}
+			get{return _goodSmallIcon;}
 		}
 		/// <summary>
 		/// 是否推荐

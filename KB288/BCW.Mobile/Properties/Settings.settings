@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BCW.Mobile.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="BCW_Mobile_net_smswang_inter_Soap57ProviderService" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://inter.smswang.net:7801/sms</Value>
+    </Setting>
+    <Setting Name="BCW_Mobile_WebReference_Soap57ProviderService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://113.105.65.138:7801/sms</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

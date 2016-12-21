@@ -271,7 +271,7 @@ public partial class bbs_Forum : System.Web.UI.Page
 
             Master.Title = ub.Get("SiteforumName");
             string Logo = ub.Get("SiteforumLogo");
-            if (!string.IsNullOrEmpty(Logo))
+            if (!string.IsNullOrEmpty(Logo) && Utils.IsMobileUa() == true)
             {
                 builder.Append(Out.Tab("<div>", ""));
                 builder.Append("<img src=\"" + Logo + "\" alt=\"load\"/>");
@@ -474,7 +474,7 @@ public partial class bbs_Forum : System.Web.UI.Page
 
         if (pageIndex == 1)
         {
-            if (!string.IsNullOrEmpty(model.Logo))
+            if (!string.IsNullOrEmpty(model.Logo) && Utils.IsMobileUa() == true)
             {
                 builder.Append(Out.Tab("<div>", ""));
                 builder.Append("<img src=\"" + model.Logo + "\" alt=\"load\"/>");

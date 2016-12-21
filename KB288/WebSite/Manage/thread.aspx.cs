@@ -209,11 +209,11 @@ public partial class Manage_thread : System.Web.UI.Page
         else
             Label = "0|综合";
 
-        string strText = "主题:/,内容:/,类型:,用户ID:/,用户昵称:/,阅读数:/,精华:,推荐:,置顶:,锁定:,结束:,删除:,回帖时间:/,所在版块:/,,";
-        string strName = "Title,Content,LabelId,UsID,UsName,ReadNum,IsGood,IsRecom,IsTop,IsLock,IsOver,IsDel,ReTime,ForumID,id,act";
-        string strType = "text,textarea,select,num,text,num,select,select,select,select,select,select,date,select,hidden,hidden";
-        string strValu = "" + model.Title + "'" + model.Content + "'" + model.LabelId + "'" + model.UsID + "'" + model.UsName + "'" + model.ReadNum + "'" + model.IsGood + "'" + model.IsRecom + "'" + model.IsTop + "'" + model.IsLock + "'" + model.IsOver + "'" + model.IsDel + "'" + DT.FormatDate(model.ReTime, 0) + "'" + model.ForumId + "'" + id + "'save";
-        string strEmpt = "false,false," + Label + ",false,false,false,0|普通|1|精华,0|普通|1|推荐,-1|固底|0|普通|1|普通置顶|2|全区置顶,0|普通|1|锁定,0|普通|1|结束,0|正常|1|已删,false," + strForum + ",false,false";
+        string strText = "主题:/,内容:/,类型:,用户ID:/,用户昵称:/,阅读数:/,精华:,申精缩略图/,推荐:,置顶:,锁定:,结束:,删除:,回帖时间:/,所在版块:/,,";
+        string strName = "Title,Content,LabelId,UsID,UsName,ReadNum,IsGood,GoodSmallIcon,IsRecom,IsTop,IsLock,IsOver,IsDel,ReTime,ForumID,id,act";
+        string strType = "text,textarea,select,num,text,num,select,text,select,select,select,select,select,date,select,hidden,hidden";
+        string strValu = "" + model.Title + "'" + model.Content + "'" + model.LabelId + "'" + model.UsID + "'" + model.UsName + "'" + model.ReadNum + "'"+model.IsGood+"'" + model.GoodSmallIcon +"'" + model.IsRecom + "'" + model.IsTop + "'" + model.IsLock + "'" + model.IsOver + "'" + model.IsDel + "'" + DT.FormatDate(model.ReTime, 0) + "'" + model.ForumId + "'" + id + "'save";
+        string strEmpt = "false,false," + Label + ",false,false,false,0|普通|1|精华,true,0|普通|1|推荐,-1|固底|0|普通|1|普通置顶|2|全区置顶,0|普通|1|锁定,0|普通|1|结束,0|正常|1|已删,false," + strForum + ",false,false";
         string strIdea = "/";
         string strOthe = "确定编辑,thread.aspx,post,1,red";
         builder.Append(Out.wapform(strText, strName, strType, strValu, strEmpt, strIdea, strOthe));
@@ -240,6 +240,7 @@ public partial class Manage_thread : System.Web.UI.Page
         string UsName = Utils.GetRequest("UsName", "post", 2, @"^[^\^]{1,50}$", "昵称不超50字");
         int ReadNum = int.Parse(Utils.GetRequest("ReadNum", "post", 2, @"^[0-9]\d*$", "阅读数填写错误"));
         int IsGood = int.Parse(Utils.GetRequest("IsGood", "post", 2, @"^[0-1]$", "精华选择错误"));
+        string GoodSmallIcon = Utils.GetRequest( "GoodSmallIcon", "post", 1, "", "" );
         int IsRecom = int.Parse(Utils.GetRequest("IsRecom", "post", 2, @"^[0-1]$", "推荐选择错误"));
         int IsTop = int.Parse(Utils.GetRequest("IsTop", "post", 2, @"^-1|0|1|2$", "置顶选择错误"));
         int IsLock = int.Parse(Utils.GetRequest("IsLock", "post", 2, @"^[0-1]$", "锁定选择错误"));
@@ -280,6 +281,7 @@ public partial class Manage_thread : System.Web.UI.Page
         model.UsName = UsName;
         model.ReadNum = ReadNum;
         model.IsGood = IsGood;
+        model.GoodSmallIcon = GoodSmallIcon;
         model.IsRecom = IsRecom;
         model.IsTop = IsTop;
         model.IsLock = IsLock;

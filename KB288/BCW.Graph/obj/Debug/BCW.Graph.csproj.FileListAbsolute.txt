@@ -30,6 +30,6 @@ F:\Work\KB288\BCW.Graph\obj\Debug\BCW.Graph.dll
 F:\Work\KB288\BCW.Graph\obj\Debug\BCW.Graph.pdb
 F:\Work\GitKB288\KB288\BCW.Graph\bin\Debug\BCW.Graph.dll
 F:\Work\GitKB288\KB288\BCW.Graph\bin\Debug\BCW.Graph.pdb
-F:\Work\GitKB288\KB288\BCW.Graph\obj\Debug\ResolveAssemblyReference.cache
+F:\Work\GitKB288\KB288\BCW.Graph\obj\Debug\BCW.Graph.csprojResolveAssemblyReference.cache
 F:\Work\GitKB288\KB288\BCW.Graph\obj\Debug\BCW.Graph.dll
 F:\Work\GitKB288\KB288\BCW.Graph\obj\Debug\BCW.Graph.pdb

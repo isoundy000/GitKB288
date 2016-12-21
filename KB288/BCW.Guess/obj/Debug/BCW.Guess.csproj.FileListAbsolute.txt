@@ -51,6 +51,5 @@ F:\Work\GitKB288\KB288\BCW.Guess\bin\Debug\BCW.Guess.pdb
 F:\Work\GitKB288\KB288\BCW.Guess\bin\Debug\BCW.Common.dll
 F:\Work\GitKB288\KB288\BCW.Guess\bin\Debug\BCW.Data.dll
 F:\Work\GitKB288\KB288\BCW.Guess\bin\Debug\BCW.Data.pdb
-F:\Work\GitKB288\KB288\BCW.Guess\obj\Debug\ResolveAssemblyReference.cache
 F:\Work\GitKB288\KB288\BCW.Guess\obj\Debug\BCW.Guess.dll
 F:\Work\GitKB288\KB288\BCW.Guess\obj\Debug\BCW.Guess.pdb

@@ -497,6 +497,7 @@ namespace BCW.DAL
             strSql.Append("UsName=@UsName,");
             strSql.Append("ReadNum=@ReadNum,");
             strSql.Append("IsGood=@IsGood,");
+            strSql.Append("GoodSmallIcon=@GoodSmallIcon," );
             strSql.Append("IsRecom=@IsRecom,");
             strSql.Append("IsLock=@IsLock,");
             strSql.Append("IsTop=@IsTop,");
@@ -514,6 +515,7 @@ namespace BCW.DAL
 					new SqlParameter("@UsName", SqlDbType.NVarChar,50),
 					new SqlParameter("@ReadNum", SqlDbType.Int,4),
 					new SqlParameter("@IsGood", SqlDbType.TinyInt,1),
+                    new SqlParameter("@GoodSmallIcon", SqlDbType.NVarChar,200),
 					new SqlParameter("@IsRecom", SqlDbType.TinyInt,1),
 					new SqlParameter("@IsLock", SqlDbType.TinyInt,1),
 					new SqlParameter("@IsTop", SqlDbType.Int,4),
@@ -529,12 +531,13 @@ namespace BCW.DAL
             parameters[6].Value = model.UsName;
             parameters[7].Value = model.ReadNum;
             parameters[8].Value = model.IsGood;
-            parameters[9].Value = model.IsRecom;
-            parameters[10].Value = model.IsLock;
-            parameters[11].Value = model.IsTop;
-            parameters[12].Value = model.IsOver;
-            parameters[13].Value = model.IsDel;
-            parameters[14].Value = model.ReTime;
+            parameters[9].Value = model.GoodSmallIcon;
+            parameters[10].Value = model.IsRecom;
+            parameters[11].Value = model.IsLock;
+            parameters[12].Value = model.IsTop;
+            parameters[13].Value = model.IsOver;
+            parameters[14].Value = model.IsDel;
+            parameters[15].Value = model.ReTime;
 
             SqlHelper.ExecuteSql(strSql.ToString(), parameters);
         }
@@ -1552,7 +1555,7 @@ namespace BCW.DAL
         {
 
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select  top 1 ID,ForumId,Types,LabelId,Title,Content,HideContent,UsID,UsName,ReplyNum,ReplyID,ReadNum,IsGood,IsRecom,IsLock,IsTop,Prices,Price,Price2,Pricel,BzType,HideType,PayID,PayCi,IsSeen,IsOver,IsDel,ReStats,ReList,FileNum,TsID,IsFlow,AddTime,ReTime,Gaddnum,Gwinnum,Glznum,Gmnum,Gqinum,Istxt,Praise,PraiseID,PricesLimit,IsPriceID from tb_Text ");
+            strSql.Append( "select  top 1 ID,ForumId,Types,LabelId,Title,Content,HideContent,UsID,UsName,ReplyNum,ReplyID,ReadNum,IsGood,IsRecom,IsLock,IsTop,Prices,Price,Price2,Pricel,BzType,HideType,PayID,PayCi,IsSeen,IsOver,IsDel,ReStats,ReList,FileNum,TsID,IsFlow,AddTime,ReTime,Gaddnum,Gwinnum,Glznum,Gmnum,Gqinum,Istxt,Praise,PraiseID,PricesLimit,IsPriceID,GoodSmallIcon from tb_Text " );
             strSql.Append(" where ID=@ID ");
             SqlParameter[] parameters = {
 					new SqlParameter("@ID", SqlDbType.Int,4)};
@@ -1620,6 +1623,8 @@ namespace BCW.DAL
                     model.PricesLimit = reader.GetString(42);
                     if (!reader.IsDBNull(43)) 
                         model.IsPriceID = reader.GetString(43);
+                    if( !reader.IsDBNull( 44 ) ) 
+                        model.GoodSmallIcon = reader.GetString( 44 );
                     return model;
                 }
                 else
@@ -1658,7 +1663,7 @@ namespace BCW.DAL
             IList<BCW.Model.Text> listTexts = new List<BCW.Model.Text>();
             string sTable = "tb_Text";
             string sPkey = "id";
-            string sField = "ID,ForumId,Types,LabelId,Title,UsID,UsName,ReplyNum,ReadNum,IsGood,IsRecom,IsLock,IsTop,IsOver,AddTime,Gaddnum,Gwinnum";
+            string sField = "ID,ForumId,Types,LabelId,Title,UsID,UsName,ReplyNum,ReadNum,IsGood,IsRecom,IsLock,IsTop,IsOver,AddTime,Gaddnum,Gwinnum,GoodSmallIcon";
             string sCondition = strWhere;
             string sOrder = strOrder;
             int iSCounts = 0;
@@ -1693,6 +1698,8 @@ namespace BCW.DAL
                     objText.AddTime = reader.GetDateTime(14);
                     objText.Gaddnum = reader.GetInt32(15);
                     objText.Gwinnum = reader.GetInt32(16);
+                    if( !reader.IsDBNull( 17 ) )
+                        objText.GoodSmallIcon = reader.GetString( 17 );
                     listTexts.Add(objText);
                 }
             }
