@@ -4,11 +4,8 @@ ehthumbs.db
 Desktop.ini
 
 #kb288:
-*.dll
-*.pdb
 *.log
 *.txt
-*.cache
 *.bak
 /KB288/WebSite/App_Data/ASPNETDB.MDF
 /KB288/WebSite/App_Data/aspnetdb_log.ldf
