@@ -8,7 +8,8 @@ namespace BCW.Mobile.Error
     public class ErrorCodeManager
     {
         private static ErrorCodeManager mInstance;
-        private string xmlPath = "../../Controls/bbs.xml";
+        private string xmlPath = "../Controls/bbs.xml";
+        private string netWorkXmlPath = "../Controls/network.xml";
 
         private Dictionary<MOBILE_ERROR_CODE, string> dctErrorCode;
 
@@ -53,6 +54,11 @@ namespace BCW.Mobile.Error
             dctErrorCode.Add(MOBILE_ERROR_CODE.SYS_USER_NOLOGIN, "该会员还未登录");
             #endregion
 
+            #region
+            dctErrorCode.Add(MOBILE_ERROR_CODE.SYS_USER_COBI_NOT_ENOUGH, "酷币不足");
+            
+            #endregion
+
             #region 论坛
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_FORUM_NOT_FOUND, "找不到该论坛或该论坛已暂停使用");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_FORUM_LIMIT_NOT_ENOUGH, "论坛权限不足");
@@ -72,10 +78,17 @@ namespace BCW.Mobile.Error
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_IS_RECOM, "帖子已被推荐");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_DEL_FORBID, "本版帖子不能删除");
             dctErrorCode.Add(MOBILE_ERROR_CODE.BBS_THREAD_OPER_MYSELF, "不能操作自己的帖子");
-            
+            #endregion
+
+            #region 公告、喇叭
+            dctErrorCode.Add(MOBILE_ERROR_CODE.NETWORK_SUONA_REGDAY_NOT_ENOUGH, "注册不到" + Utils.ParseInt(ub.GetSub("NetworkRegDay", netWorkXmlPath) + "天不能发布广播"));
+            dctErrorCode.Add(MOBILE_ERROR_CODE.NETWORK_SUONA_LEVEL_NOT_ENOUGH, "发布广播需要等级" + ub.GetSub("NetworkGrade", netWorkXmlPath) + "级");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.NETWORK_SUONA_CONTENT_LENGTH_ERROR, "内容限" + ub.GetSub("NetworksLength", netWorkXmlPath) + "-" + ub.GetSub("NetworkbLength", netWorkXmlPath) + "字");
+            dctErrorCode.Add(MOBILE_ERROR_CODE.NETWORK_SUONA_TIME_LENGTH_ERROR, "显示时长限1-" + ub.GetSub("NetworkbMinute", netWorkXmlPath) + "分钟");
 
 
             #endregion
+
 
         }
 

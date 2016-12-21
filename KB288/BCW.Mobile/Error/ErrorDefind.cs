@@ -127,6 +127,7 @@ namespace BCW.Mobile.Error
         //10000起：论坛
         //20000起：内线
         //30000起：游戏 
+        //40000起：公告、喇叭系统
           
 
         #region 系统错误码
@@ -139,6 +140,11 @@ namespace BCW.Mobile.Error
         /// 会员自身权限不足
         /// </summary>
         SYS_USER_LIMIT_NOT_ENOUGH = 1002,
+
+        /// <summary>
+        /// 会员酷币不足
+        /// </summary>
+        SYS_USER_COBI_NOT_ENOUGH = 1003,
 
         #endregion
 
@@ -231,11 +237,21 @@ namespace BCW.Mobile.Error
 
 
         BBS_THREAD_OPER_MYSELF = 10020,
-
-
-
         #endregion
 
+        #region  公告、喇叭错误码
+        /// <summary>
+        /// 注册时间未达到可发布天数
+        /// </summary>
+        NETWORK_SUONA_REGDAY_NOT_ENOUGH = 40001,
+
+        NETWORK_SUONA_LEVEL_NOT_ENOUGH = 40002,
+
+        NETWORK_SUONA_CONTENT_LENGTH_ERROR = 40003,
+
+        NETWORK_SUONA_TIME_LENGTH_ERROR = 40004,
+
+        #endregion
 
         MAX
     }

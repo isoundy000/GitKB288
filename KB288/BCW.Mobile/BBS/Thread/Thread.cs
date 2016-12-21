@@ -22,6 +22,7 @@ namespace BCW.Mobile.BBS.Thread
         public int forumId;                  //论坛栏目ID
         public string title;                 //帖子标题
         public string content;               //贴子内容
+        public string ubb_content;           //ubb贴子内容
         public string preview;               //预览图
         public string forum;                 //论坛栏目名称
         public int views;                    //阅读数
@@ -98,6 +99,7 @@ namespace BCW.Mobile.BBS.Thread
                     _essencePostItem.forumId = int.Parse(_ds.Tables[0].Rows[i]["ForumId"].ToString());
                     _essencePostItem.title = _ds.Tables[0].Rows[i]["Title"].ToString();//.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n");
                     _essencePostItem.content = Out.SysUBB(_ds.Tables[0].Rows[i]["Content"].ToString());//.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n");
+                    _essencePostItem.ubb_content =_ds.Tables[0].Rows[i]["Content"].ToString();
                     _essencePostItem.preview = string.IsNullOrEmpty(_ds.Tables[0].Rows[i]["GoodSmallIcon"].ToString()) ? "http://" + Utils.GetDomain() + "/Files/threadImg/def.png" : _ds.Tables[0].Rows[i]["GoodSmallIcon"].ToString();
                     BCW.Model.Forum _forummodel = new BCW.BLL.Forum().GetForum(_essencePostItem.forumId);
                     _essencePostItem.forum = _forummodel != null ? _forummodel.Title : "";
