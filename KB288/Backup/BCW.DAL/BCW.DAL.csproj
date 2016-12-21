@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A96633B5-9FF6-4453-BB31-C09D7E7EB928}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BCW.DAL</RootNamespace>
+    <AssemblyName>BCW.DAL</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'NET|AnyCPU' ">
+    <OutputPath>bin\NET\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'NET|x86' ">
+    <OutputPath>bin\x86\NET\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BCW.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebSite\Bin\BCW.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Action.cs" />
+    <Compile Include="Advert.cs" />
+    <Compile Include="Appbank.cs" />
+    <Compile Include="BankUser.cs" />
+    <Compile Include="Blacklist.cs" />
+    <Compile Include="Buylist.cs" />
+    <Compile Include="Chat.cs" />
+    <Compile Include="Chatblack.cs" />
+    <Compile Include="ChatLog.cs" />
+    <Compile Include="ChatText.cs" />
+    <Compile Include="Comment.cs" />
+    <Compile Include="Contact.cs" />
+    <Compile Include="Detail.cs" />
+    <Compile Include="Diary.cs" />
+    <Compile Include="File.cs" />
+    <Compile Include="Forumfund.cs" />
+    <Compile Include="Forumvote.cs" />
+    <Compile Include="Forumvotelog.cs" />
+    <Compile Include="Gamelog.cs" />
+    <Compile Include="Gameowe.cs" />
+    <Compile Include="Game\Applelist.cs" />
+    <Compile Include="Game\Applepay.cs" />
+    <Compile Include="Game\Balllist.cs" />
+    <Compile Include="Game\Ballpay.cs" />
+    <Compile Include="Game\Brag.cs" />
+    <Compile Include="Game\Bslist.cs" />
+    <Compile Include="Game\Bspay.cs" />
+    <Compile Include="Game\Dicelist.cs" />
+    <Compile Include="Game\Dicepay.cs" />
+    <Compile Include="Game\Dxdice.cs" />
+    <Compile Include="Game\flowmyprop.cs" />
+    <Compile Include="Game\flowmyzz.cs" />
+    <Compile Include="Game\flows.cs" />
+    <Compile Include="Game\flowuser.cs" />
+    <Compile Include="Game\flowzz.cs" />
+    <Compile Include="Game\Free.cs" />
+    <Compile Include="Game\Freemoney.cs" />
+    <Compile Include="Game\Freesell.cs" />
+    <Compile Include="Game\GiftChange.cs" />
+    <Compile Include="Game\GiftFlows.cs" />
+    <Compile Include="Game\HcList.cs" />
+    <Compile Include="Game\HcPay.cs" />
+    <Compile Include="Game\Horselist.cs" />
+    <Compile Include="Game\Horsepay.cs" />
+    <Compile Include="Game\Lottery.cs" />
+    <Compile Include="Game\Lucklist.cs" />
+    <Compile Include="Game\Luckpay.cs" />
+    <Compile Include="Game\Mora.cs" />
+    <Compile Include="Game\Race.cs" />
+    <Compile Include="Game\Racelist.cs" />
+    <Compile Include="Game\SSClist.cs" />
+    <Compile Include="Game\SSCpay.cs" />
+    <Compile Include="Game\Stklist.cs" />
+    <Compile Include="Game\Stkpay.cs" />
+    <Compile Include="Group.cs" />
+    <Compile Include="Grouplog.cs" />
+    <Compile Include="GroupText.cs" />
+    <Compile Include="LinkIp.cs" />
+    <Compile Include="Marry.cs" />
+    <Compile Include="MarryAction.cs" />
+    <Compile Include="MarryBook.cs" />
+    <Compile Include="MarryPhoto.cs" />
+    <Compile Include="Mebook.cs" />
+    <Compile Include="Medal.cs" />
+    <Compile Include="Medalget.cs" />
+    <Compile Include="numsManage.cs" />
+    <Compile Include="SellNum.cs" />
+    <Compile Include="Shopgift.cs" />
+    <Compile Include="Shopgoods.cs" />
+    <Compile Include="Shopkeep.cs" />
+    <Compile Include="Shoplist.cs" />
+    <Compile Include="Shopsend.cs" />
+    <Compile Include="Shoptg.cs" />
+    <Compile Include="Shopuser.cs" />
+    <Compile Include="Spkblack.cs" />
+    <Compile Include="SysTemp.cs" />
+    <Compile Include="Textcent.cs" />
+    <Compile Include="Textdc.cs" />
+    <Compile Include="Upgroup.cs" />
+    <Compile Include="Favgroup.cs" />
+    <Compile Include="Favorites.cs" />
+    <Compile Include="FComment.cs" />
+    <Compile Include="Forum.cs" />
+    <Compile Include="Forumstat.cs" />
+    <Compile Include="Forumts.cs" />
+    <Compile Include="Forumlog.cs" />
+    <Compile Include="Friend.cs" />
+    <Compile Include="Frigroup.cs" />
+    <Compile Include="Goldlog.cs" />
+    <Compile Include="Goods.cs" />
+    <Compile Include="Guest.cs" />
+    <Compile Include="Health.cs" />
+    <Compile Include="Game\ktv789.cs" />
+    <Compile Include="Link.cs" />
+    <Compile Include="Manage.cs" />
+    <Compile Include="Modata.cs" />
+    <Compile Include="Network.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="Panel.cs" />
+    <Compile Include="Payrmb.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reply.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="Speak.cs" />
+    <Compile Include="Statinfo.cs" />
+    <Compile Include="Game\Stone.cs" />
+    <Compile Include="Submit.cs" />
+    <Compile Include="Text.cs" />
+    <Compile Include="Topics.cs" />
+    <Compile Include="Toplist.cs" />
+    <Compile Include="Transfer.cs" />
+    <Compile Include="Upfile.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="Validate.cs" />
+    <Compile Include="Vbook.cs" />
+    <Compile Include="Visitor.cs" />
+    <Compile Include="Votes.cs" />
+    <Compile Include="xitonghao.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BCW.Data\BCW.Data.csproj">
+      <Project>{1F911584-4168-4896-A86D-4BEF49B65A0E}</Project>
+      <Name>BCW.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BCW.Model\BCW.Model.csproj">
+      <Project>{39DC906A-CDCA-4F36-878F-D6661C9BF84E}</Project>
+      <Name>BCW.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

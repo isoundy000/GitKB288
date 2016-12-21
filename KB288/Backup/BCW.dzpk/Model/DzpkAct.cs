@@ -1,0 +1,89 @@
+using System;
+namespace BCW.dzpk.Model
+{
+	/// <summary>
+	/// 实体类DzpkAct 。(属性说明自动提取数据库字段的描述信息)
+	/// </summary>
+	[Serializable]
+	public class DzpkAct
+	{
+		public DzpkAct()
+		{}
+		#region Model
+		private int _id;
+		private int _rmid;
+		private int _usid;
+		private string _actmake;
+		private long _money;
+		private string _maxcard;
+		private DateTime _acttime;
+		private string _rmmake;
+		/// <summary>
+		/// 
+		/// </summary>
+		public int ID
+		{
+			set{ _id=value;}
+			get{return _id;}
+		}
+		/// <summary>
+		/// 房间ID
+		/// </summary>
+		public int RmID
+		{
+			set{ _rmid=value;}
+			get{return _rmid;}
+		}
+		/// <summary>
+		/// 用户ID
+		/// </summary>
+		public int UsID
+		{
+			set{ _usid=value;}
+			get{return _usid;}
+		}
+		/// <summary>
+		/// 用户操作描述
+		/// </summary>
+		public string ActMake
+		{
+			set{ _actmake=value;}
+			get{return _actmake;}
+		}
+		/// <summary>
+		/// 资金变动
+		/// </summary>
+		public long Money
+		{
+			set{ _money=value;}
+			get{return _money;}
+		}
+		/// <summary>
+		/// 最大牌型
+		/// </summary>
+		public string MaxCard
+		{
+			set{ _maxcard=value;}
+			get{return _maxcard;}
+		}
+		/// <summary>
+		/// 操作时间
+		/// </summary>
+		public DateTime ActTime
+		{
+			set{ _acttime=value;}
+			get{return _acttime;}
+		}
+		/// <summary>
+		/// 游戏标记
+		/// </summary>
+		public string RmMake
+		{
+			set{ _rmmake=value;}
+			get{return _rmmake;}
+		}
+		#endregion Model
+
+	}
+}
+

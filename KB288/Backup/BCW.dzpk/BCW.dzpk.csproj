@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{07563A13-AE48-4511-86DD-54ECBA15D9EB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BCW.dzpk</RootNamespace>
+    <AssemblyName>BCW.dzpk</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Web|AnyCPU' ">
+    <OutputPath>bin\Web\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BCW.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebSite\Bin\BCW.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="BCW.User, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebSite\Bin\BCW.User.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\DzpkAct.cs" />
+    <Compile Include="BLL\DzpkCard.cs" />
+    <Compile Include="BLL\DzpkHistory.cs" />
+    <Compile Include="BLL\DzpkPlayRanks.cs" />
+    <Compile Include="BLL\DzpkRankList.cs" />
+    <Compile Include="BLL\DzpkRooms.cs" />
+    <Compile Include="Class\Algorithms.cs" />
+    <Compile Include="Class\dzEnum.cs" />
+    <Compile Include="DAL\DzpkAct.cs" />
+    <Compile Include="DAL\DzpkCard.cs" />
+    <Compile Include="DAL\DzpkHistory.cs" />
+    <Compile Include="DAL\DzpkPlayRanks.cs" />
+    <Compile Include="DAL\DzpkRankList.cs" />
+    <Compile Include="DAL\DzpkRooms.cs" />
+    <Compile Include="dzpk.cs" />
+    <Compile Include="Model\DzpkAct.cs" />
+    <Compile Include="Model\DzpkCard.cs" />
+    <Compile Include="Model\DzpkHistory.cs" />
+    <Compile Include="Model\DzpkPlayRanks.cs" />
+    <Compile Include="Model\DzpkRankList.cs" />
+    <Compile Include="Model\DzpkRooms.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BCW.Data\BCW.Data.csproj">
+      <Project>{1F911584-4168-4896-A86D-4BEF49B65A0E}</Project>
+      <Name>BCW.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
