@@ -23,6 +23,11 @@ namespace BCW.Mobile.Protocol
         /// </summary>
         public int suonaId;
 
+        /// <summary>
+        /// 消耗金钱
+        /// </summary>
+        public int cobi;
+
     }
 
     public class RspNoticAll : RspProtocolBase

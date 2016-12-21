@@ -257,6 +257,7 @@ namespace BCW.Mobile
 
             _rspAddSuona.header.status = ERequestResult.success;
             _rspAddSuona.suonaId = _id;
+            _rspAddSuona.cobi = -(_reqData.minute * bMinute);
             return _rspAddSuona;
 
         }      
