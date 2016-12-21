@@ -305,6 +305,8 @@ namespace BCW.Mobile.BBS.Thread
                 return _rspAddThread;
             }
 
+            //判断玩家是否刷屏
+
             string Hide = string.Empty;
             int Price = 0;
             int Price2 = 0;
